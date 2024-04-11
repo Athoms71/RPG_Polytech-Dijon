@@ -30,10 +30,7 @@ class Joueur ():
         self.pieds = None
 
     def inventaire_est_plein(self):
-        poids_total_inv = 0
-        for objet in self.inventaire:
-            poids_total_inv += objet.poids
-        if poids_total_inv >= self.taille_inv_max:
+        if self.taille_inv >= self.taille_inv_max:
             return True
         else:
             return False
@@ -102,6 +99,3 @@ orc = Type("orc", 250, 8, 12, 40)
 
 liste_classe = [guerrier, archer, tank]
 liste_race = [humain, elfe, orc]
-
-joueur = Joueur("Prout", guerrier, humain)
-joueur.__repr__()
