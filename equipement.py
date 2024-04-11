@@ -4,7 +4,6 @@ class Equipement():
         self.atk = atk
         self.dfc = dfc
         self.prix = prix
-        self.equip = False
         self.poids = poids
         self.cat = cat
 
