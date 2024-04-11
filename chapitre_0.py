@@ -1,5 +1,6 @@
 import entite as Ett
 import combat as Cbt
+import equipement as E
 
 
 def intro():
@@ -29,6 +30,14 @@ def intro():
     Cbt.bataille(hero, gardeRoyal)
 
     del (gardeRoyal)
+
+    if hero.pv <= 0:
+        # defaite contre le garde
+        print("Vous avez péri contre le garde")
+        return 0
+
+    # obtention de l equipement :
+    epee = E.equipement()
 
 
 intro()

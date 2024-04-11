@@ -1,6 +1,3 @@
-import entite as Ett
-
-
 class Equipement():
     def __init__(self, nom, atk, dfc, prix, poids, cat, equip=False):
         self.nom = nom
@@ -22,7 +19,7 @@ class Consommable():
         self.poids = poids
         self.cat = cat
 
-    def utilisation(self, joueur: Ett.Joueur):
+    def utilisation(self, joueur):
         if self.cat == "soin":
             joueur.pv += self.heal
         elif self.cat == "attaque":
