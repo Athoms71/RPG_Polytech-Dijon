@@ -1,6 +1,3 @@
-import equipement as E
-
-
 class Type ():
     def __init__(self, nom, pvMax, pc, pd, tailleInvMax):
         self.nom = nom
