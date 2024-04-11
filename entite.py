@@ -20,6 +20,14 @@ class Joueur ():
         self.tailleInv = 0
         self.inventaire = []
         self.argent = 0
+        self.karma = 0.0
+        self.mainGauche = None
+        self.mainDroite = None
+        self.tete = None
+        self.torse = None
+        self.gants = None
+        self.jambes = None
+        self.pieds = None
 
     def inventaireEstPlein(self):
         poidsTotalInv = 0
@@ -36,6 +44,33 @@ class Joueur ():
             if elt.cat == choixChgt:
                 listeChgt.append(elt)
         print("Voici la liste de votre équipement :", listeChgt)
+        iChgt = int(
+            input("Entrez le numéro de l'équipement que vous souhaitez équiper : "))
+        if choixChgt == "mainGauche":
+            self.mainGauche, listeChgt[iChgt -
+                                       1] = listeChgt[iChgt-1], self.mainGauche
+            print("Vous venez d'équiper \""+self.mainGauche+"\".")
+        elif choixChgt == "mainDroite":
+            self.mainDroite, listeChgt[iChgt -
+                                       1] = listeChgt[iChgt-1], self.mainDroite
+            print("Vous venez d'équiper \""+self.mainDroite+"\".")
+        elif choixChgt == "tete":
+            self.tete, listeChgt[iChgt-1] = listeChgt[iChgt-1], self.tete
+            print("Vous venez d'équiper \""+self.tete+"\".")
+        elif choixChgt == "torse":
+            self.torse, listeChgt[iChgt-1] = listeChgt[iChgt-1], self.torse
+            print("Vous venez d'équiper \""+self.torse+"\".")
+        elif choixChgt == "gants":
+            self.gants, listeChgt[iChgt-1] = listeChgt[iChgt-1], self.gants
+            print("Vous venez d'équiper \""+self.gants+"\".")
+        elif choixChgt == "jambes":
+            self.jambes, listeChgt[iChgt-1] = listeChgt[iChgt-1], self.jambes
+            print("Vous venez d'équiper \""+self.jambes+"\".")
+        elif choixChgt == "pieds":
+            self.pieds, listeChgt[iChgt-1] = listeChgt[iChgt-1], self.pieds
+            print("Vous venez d'équiper \""+self.pieds+"\".")
+        if listeChgt[iChgt-1] != None:
+            self.inventaire.append(listeChgt[iChgt-1])
 
     def __repr__(self):
         print(self.nom + ", vous êtes un " + self.classe +
