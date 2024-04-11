@@ -45,3 +45,6 @@ def intro():
     print("Alors que vous vous éloignez de la clairière, le soleil déclinant jette des reflets dorés à travers les feuilles, éclairant le chemin devant vous d'une lueur chaleureuse et réconfortante. Vous ne savez pas ce que l'avenir vous réserve, mais une chose est sûre : vous êtes prêt à affronter chaque défi avec courage et détermination, car dans les Royaumes de l'Éclipse, seuls les plus forts et les plus audacieux survivent.")
     print("\n")
     print("Votre aventure ne fait que commencer. Êtes-vous prêt à laisser votre empreinte sur ce monde tumultueux et à découvrir les secrets qui se cachent dans ses recoins les plus sombres ?")
+
+
+intro()

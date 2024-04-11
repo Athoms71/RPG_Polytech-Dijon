@@ -95,7 +95,7 @@ tank = Type("tank", 250, 8, 12, 40)
 
 humain = Type("humain", 200, 10, 10, 20)
 elfe = Type("elfe", 150, 8, 8, 20)
-orc = Type("orc", 250, 8, 12, 40)
+orc = Type("orc", 250, 100, 15, 40)
 
 liste_classe = [guerrier, archer, tank]
 liste_race = [humain, elfe, orc]
