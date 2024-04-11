@@ -14,8 +14,8 @@ def intro():
         "Veuillez selectionner une classe parmi :\n\n1 guerrier\n2 archer\n3 tank\n\n")
 
     # on créé un hero avec le X eme element de la liste des race/classes
-    hero = Ett.Joueur(nom, Ett.listeClasse[int(
-        classe)-1], Ett.listeRace[int(classe)-1])
+    hero = Ett.Joueur(nom, Ett.liste_classe[int(
+        classe)-1], Ett.liste_race[int(classe)-1])
 
     print("Vous vous réveillez dans une cellule sombre et humide, les murs de pierre émanant une froideur glaciale. Votre tête tourne, et vous vous rendez compte que vous avez été capturé. Avant même que vous puissiez rassembler vos pensées, des bruits de lutte retentissent à l'extérieur de votre cellule. Des cris, des grondements de métal et le son de pas pressés remplissent l'air, vous laissant avec un sentiment d'urgence.")
     print("\n")
@@ -38,7 +38,7 @@ def intro():
         return 0
 
     # obtention de l equipement :
-    epee = E.equipement("epee", 10, 0, 10, 5, "1main")
+    epee = E.Equipement("epee", 10, 0, 10, 5, "main_droite")
 
     print("Dans un échange de coups féroces, vous parvenez à surmonter le garde, le forçant à reculer sous la puissance de vos attaques bien placées. Avec un ultime effort, il tombe à genoux, désarmé et vaincu. Le silence retombe sur la clairière, brisé seulement par le souffle haletant de vos efforts et le bruissement des feuilles dans le vent.")
     print("\n")
