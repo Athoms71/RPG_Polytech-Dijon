@@ -22,7 +22,7 @@ def action_du_tour_monstre(personnage: Ett.Joueur, ennemi: Ett.Monstre):
     # on prevoit quand les montres pourront faire plusieurs actions (IA du monstre)
     choix = 1
     if (int(choix) == 1):
-        attaquer(ennemi, personnage)
+        attaquer(ennemi, personnage, 0)
     elif (int(choix) == 2):
         pass
 
@@ -31,22 +31,25 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
     """effectue une action parmis celles disponible, prend en parametre les ennemis present dans le combat et le joueur"""
     choix = input("choisissez une action parmis :\n1: attaquer\n\n")
     if (int(choix) == 1):
-        attaquer(personnage, ennemi)
+        attaquer(personnage, ennemi, 1)
     else:
         print("choix indisponible, votre trour est passé :)")
 
 
-def attaquer(source, destination):
+def attaquer(source, destination, type_attaquant: int):
     """prend en parametre la source de l attaque et sa destination, 
     elle peuvent chacun etre de type joueur ou monstre, puis on enleve 
-    aux pv de la destinantion autant que les dégats de la source"""
-    atkspe = input(
-        "voulez vous tenter une attaque critique ?\n1 : oui\n2 : non\n\n")
-    if atkspe == 1:
-        # par exemple si l attaque de bas (source.pc est 10, on attaque entre 0 et 20)
-        degat = 2*(source.pc) - DX(2*(source.pc))
-    else:
-        degat = source.pc
+    aux pv de la destinantion autant que les dégats de la source
+    Si le type attaquant est 1, le joueur attaque un monstre, sinon, 
+    c est le montres qui attaque le joueur"""
+    if type_attaquant == 1:
+        atkspe = int(input(
+            "voulez vous tenter une attaque critique ?\n1 : oui\n2 : non\n\n"))
+        if atkspe == 1:
+            # par exemple si l attaque de bas (source.pc est 10, on attaque entre 0 et 20)
+            degat = 2*(source.pc) - DX(2*(source.pc))
+        else:
+            degat = source.pc
 
     resistance = destination.pd
     destination.pv = destination.pv - (degat-resistance)
