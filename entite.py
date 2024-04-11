@@ -7,7 +7,7 @@ class Type ():
         self.pvMax = pvMax
         self.pc = pc
         self.pd = pd
-        self.tailleInvMax = tailleInvMax
+        self.tailleInvMax = float(tailleInvMax)
 
 
 class Joueur ():
@@ -32,6 +32,13 @@ class Joueur ():
             return True
         else:
             return False
+
+    def changementEquipement(self, choixChgt: str):
+        listeChgt = []
+        for elt in self.inventaire:
+            if elt.cat == choixChgt:
+                listeChgt.append(elt)
+        print("Voici la liste de votre équipement :", listeChgt)
 
     def __repr__(self):
         print(self.nom + ", vous êtes un " + self.classe +

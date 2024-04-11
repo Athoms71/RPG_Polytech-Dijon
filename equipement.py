@@ -1,31 +1,24 @@
-import entite as Ett
-
-
 class Equipement():
-    def __init__(self, nom, atk, dfc, prix, poids, cat, equip=False):
+    def __init__(self, nom: str, atk: int, dfc: int, prix: float, poids: float, cat: str):
         self.nom = nom
         self.atk = atk
         self.dfc = dfc
         self.prix = prix
-        self.equip = equip
+        self.equip = False
         self.poids = poids
         self.cat = cat
 
 
 class Consommable():
-    def __init__(self, nom, atk, dfc, heal, prix, poids, cat):
+    def __init__(self, nom: str, atk: int, dfc: int, heal: int, prix: float, poids: float, cat: str):
         self.nom = nom
         self.atk = atk
         self.dfc = dfc
         self.heal = heal
         self.prix = prix
         self.poids = poids
-        self.cat = cat
 
-    def utilisation(self, joueur: Ett.Joueur):
-        if self.cat == "soin":
-            joueur.pv += self.heal
-        elif self.cat == "attaque":
-            joueur.pc += self.atk
-        elif self.cat == "defense":
-            joueur.pd += self.dfc
+    def utilisation(self, joueur):
+        joueur.pv += self.heal
+        joueur.pc += self.atk
+        joueur.pd += self.dfc
