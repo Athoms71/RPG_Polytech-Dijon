@@ -1,4 +1,5 @@
 import entite as Ett
+import equipement as E
 import random
 
 
@@ -8,32 +9,34 @@ def DX(X):
 
 
 def bataille(personnage: Ett.Joueur, ennemi: Ett.Monstre):
-    """tant que le joueur et le(s) ennemi(s) on 1 PV ou plus, on alterne entre le tour du joueur et celui du monstre"""
+    """tant que le joueur et le(s) ennemi(s) ont 1 PV ou plus, on alterne entre le tour du joueur et celui du monstre"""
     combat = 1
     while (combat):
         action_du_tour_joueur(personnage, ennemi)
         action_du_tour_monstre(personnage, ennemi)
-        if (
-                personnage.pv == 0 or ennemi.pv == 0):
+        if (personnage.pv == 0 or ennemi.pv == 0):
             combat = 0
 
 
 def action_du_tour_monstre(personnage: Ett.Joueur, ennemi: Ett.Monstre):
-    # on prevoit quand les montres pourront faire plusieurs actions (IA du monstre)
-    choix = 1
-    if (int(choix) == 1):
+    if ennemi.pv <= 20*ennemi.pv_max/100 and ennemi.taille_inv > 0:
+        liste_inv = []
+        for elt in ennemi.inventaire:
+            if elt.cat == "soin":
+                liste_inv.append(elt)
+        if len(liste_inv) > 0:
+            liste_inv[0].utilisation(ennemi)
+    else:
         attaquer(ennemi, personnage)
-    elif (int(choix) == 2):
-        pass
 
 
 def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
     """effectue une action parmis celles disponible, prend en parametre les ennemis present dans le combat et le joueur"""
-    choix = input("choisissez une action parmis :\n1: attaquer\n\n")
+    choix = input("choisissez une action parmi :\n1: attaquer\n\n")
     if (int(choix) == 1):
         attaquer(personnage, ennemi)
     else:
-        print("choix indisponible, votre trour est passé :)")
+        print("choix indisponible, votre tour est passé :)")
 
 
 def attaquer(source, destination):
@@ -50,7 +53,3 @@ def attaquer(source, destination):
 
     resistance = destination.pd
     destination.pv = destination.pv - (degat-resistance)
-
-
-# def objet(source):
-#    for i in source.
