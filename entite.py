@@ -29,6 +29,14 @@ class Joueur ():
         self.jambes = None
         self.pieds = None
 
+    def lister_inventaire_consommable(self):
+        liste_inventaire = []
+        for i in range(len(self.inventaire)):
+            if self.inventaire[i].cat in ["soin", "attaque", "defense"]:
+                liste_inventaire.append(self.inventaire[i])
+                print("\t-", i+1, ":", self.inventaire[i])
+        return liste_inventaire
+
     def inventaire_est_plein(self):
         if self.taille_inv >= self.taille_inv_max:
             return True
@@ -68,6 +76,14 @@ class Joueur ():
             print("Vous venez d'équiper \""+self.pieds+"\".")
         if liste_chgt[i_chgt-1] != None:
             self.inventaire.append(liste_chgt[i_chgt-1])
+
+    def competence_speciale(self):
+        if self.classe == "guerrier":
+            pass
+        elif self.classe == "archer":
+            pass
+        elif self.classe == "tank":
+            pass
 
     def __repr__(self):
         print(self.nom + ", vous êtes un " + self.classe +
