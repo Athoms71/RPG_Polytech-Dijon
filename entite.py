@@ -78,12 +78,21 @@ class Joueur ():
             self.inventaire.append(liste_chgt[i_chgt-1])
 
     def competence_speciale(self):
+        degat_bonus = 0
         if self.classe == "guerrier":
-            pass
+            print(
+                "Vous infligez un effet d'hémorragie à votre adversaire pendant 2 tours !")
+            degat_bonus = 10
+            compteur_tour_competence = 2
         elif self.classe == "archer":
-            pass
+            print("Vos flèches sont empoisonnées pendant 3 tours !")
+            degat_bonus = 5
+            compteur_tour_competence = 3
         elif self.classe == "tank":
-            pass
+            print("Vous courez sur votre adversaire et l'écrasez sous votre poids !")
+            degat_bonus = 20
+            compteur_tour_competence = 1
+        return degat_bonus, compteur_tour_competence
 
     def __repr__(self):
         print(self.nom + ", vous êtes un " + self.classe +
