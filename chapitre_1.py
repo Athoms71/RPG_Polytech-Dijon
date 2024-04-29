@@ -27,7 +27,7 @@ def ch1():
         "Quelle option choisissez vous ?\n\n1 : Obtenir de l'Équipement\n2 : Augmenter votre Karma"))
     if choix == 1:
         C0.hero.karma = - 1
-        bouclier = E.Equipement("bouclier", 0, 10, 10, 5, "main_gauche")
+        bouclier = E.Equipement("bouclier", 0, 15, 10, 5, "main_gauche")
         potion = E.Consommable("Potion de Soin", 0, 0, 10, 10, "soin")
     if choix == 2:
         C0.hero.karma = + 5

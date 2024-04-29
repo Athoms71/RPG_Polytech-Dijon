@@ -35,7 +35,7 @@ def intro():
         return 0
 
     # obtention de l equipement :
-    epee = E.Equipement("epee", 10, 0, 10, 5, "main_droite")
+    epee = E.Equipement("epee", 10, 0, 5, 5, "main_droite")
     hero.inventaire.append(epee)
 
     print("Dans un échange de coups féroces, vous parvenez à surmonter le garde, le forçant à reculer sous la puissance de vos attaques bien placées. Avec un ultime effort, il tombe à genoux, désarmé et vaincu. Le silence retombe sur la clairière, brisé seulement par le souffle haletant de vos efforts et le bruissement des feuilles dans le vent.")
