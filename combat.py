@@ -10,12 +10,14 @@ def DX(X):
 
 def bataille(personnage: Ett.Joueur, ennemi: Ett.Monstre):
     """tant que le joueur et le(s) ennemi(s) ont 1 PV ou plus, on alterne entre le tour du joueur et celui du monstre"""
-    combat = 1
-    while (combat):
+    while personnage.pv != 0 or ennemi.pv != 0:
         action_du_tour_joueur(personnage, ennemi)
         action_du_tour_monstre(personnage, ennemi)
-        if (personnage.pv == 0 or ennemi.pv == 0):
-            combat = 0
+    print("La bataille est terminée !")
+    if personnage.pv == 0:
+        print("Vous avez perdu...")
+    else:
+        print("Vous avez gagné !")
 
 
 def action_du_tour_monstre(personnage: Ett.Joueur, ennemi: Ett.Monstre):
@@ -42,7 +44,7 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
             premier_tour = False
         attaquer(personnage, ennemi, 1, degat_bonus)
     elif int(choix) == 2:
-        if temps_recuperation == 0:
+        if temps_recup_competence == 0:
             degat_bonus, compteur_tour_competence = personnage.competence_speciale()
             temps_recup_competence = 6
         elif temps_recup_competence == temps_recup_competence - compteur_tour_competence:
@@ -52,7 +54,7 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
         liste_inventaire = personnage.lister_inventaire_consommable()
     else:
         print("choix indisponible, votre tour est passé :)")
-    temps_recuperation -= 1
+    temps_recup_competence -= 1
 
 
 def attaquer(source, destination, type_attaquant: int, degat_bonus=0):
@@ -62,9 +64,9 @@ def attaquer(source, destination, type_attaquant: int, degat_bonus=0):
     Si le type attaquant est 1, le joueur attaque un monstre, sinon, 
     c est le monstre qui attaque le joueur"""
     if type_attaquant == 1:
-        atkspe = int(input(
+        crit = int(input(
             "Voulez vous tenter une attaque critique ?\n\t1 : oui\n\t2 : non\n"))
-        if atkspe == 1:
+        if crit == 1:
             # par exemple si l attaque de bas (source.pc est 10, on attaque entre 0 et 20)
             degat = 2*(source.pc) - DX(2*(source.pc))
         else:
@@ -74,8 +76,3 @@ def attaquer(source, destination, type_attaquant: int, degat_bonus=0):
 
     resistance = destination.pd
     destination.pv -= (degat-resistance)
-
-
-joueur = Ett.Joueur("t", Ett.guerrier, Ett.humain)
-monstre = Ett.Monstre(Ett.guerrier, Ett.humain)
-bataille(joueur, monstre)
