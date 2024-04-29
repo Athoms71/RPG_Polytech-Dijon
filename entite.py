@@ -114,13 +114,13 @@ class Monstre ():
         self.inventaire = []
 
 
-guerrier = Type("guerrier", 200, 10, 10, 20)
-archer = Type("archer", 150, 8, 8, 20)
-tank = Type("tank", 250, 8, 12, 40)
+guerrier = Type("guerrier", 0, 20, 10, 20)
+archer = Type("archer", 0, 30, 0, 0)
+tank = Type("tank", 20, 2, 20, 40)
 
-humain = Type("humain", 200, 10, 10, 20)
-elfe = Type("elfe", 150, 8, 8, 20)
-orc = Type("orc", 250, 100, 15, 40)
+humain = Type("humain", 100, 30, 10, 100)
+elfe = Type("elfe", 75, 40, 10, 90)
+orc = Type("orc", 200, 10, 60, 110)
 
 liste_classe = [guerrier, archer, tank]
 liste_race = [humain, elfe, orc]
