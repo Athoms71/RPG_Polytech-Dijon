@@ -20,9 +20,9 @@ def intro():
     print("Soudain, la porte de votre cellule est forcée avec violence, révélant une scène chaotique. Des gardes en armure engagent le combat avec des assaillants masqués, créant une diversion parfaite pour votre évasion. Profitant de l'opportunité, vous vous précipitez hors de votre cellule et vous frayez un chemin à travers le chaos qui règne dans les couloirs obscurs du donjon.")
     print("Dans le tumulte, vous parvenez à vous emparer de quelques armes et pièces d'équipement abandonnées par les combattants. Armé et prêt à tout, vous atteignez enfin l'extérieur du donjon, émergeant dans une clairière bordée d'une dense forêt.\n\nCependant, à peine avez-vous eu le temps de reprendre votre souffle que vous vous rendez compte que vous n'êtes pas seul. Un garde en uniforme, l'épée déjà tirée, émerge des ombres de la forêt, sa présence chargée d'hostilité. Il semble déterminé à vous ramener, et il n'hésitera pas à utiliser la force pour accomplir sa mission. Les échos de la lutte résonnent encore derrière vous, et vous réalisez que vous n'avez pas d'autre choix que de vous défendre...")
 
-    garde_royal_intro = Ett.Type("Garde Royal", 100, 5, 5, 10)
+    type_garde_royal_intro = Ett.Type("Garde Royal", 100, 5, 5, 10)
 
-    garde_royal = Ett.Monstre(garde_royal_intro, Ett.humain)
+    garde_royal = Ett.Monstre(type_garde_royal_intro, Ett.humain)
 
     Cbt.bataille(hero, garde_royal)
 
@@ -36,10 +36,11 @@ def intro():
 
     # obtention de l equipement :
     epee = E.Equipement("epee", 10, 0, 10, 5, "main_droite")
+    hero.inventaire.append(epee)
 
     print("Dans un échange de coups féroces, vous parvenez à surmonter le garde, le forçant à reculer sous la puissance de vos attaques bien placées. Avec un ultime effort, il tombe à genoux, désarmé et vaincu. Le silence retombe sur la clairière, brisé seulement par le souffle haletant de vos efforts et le bruissement des feuilles dans le vent.")
     print("Alors que vous vous éloignez de la clairière, le soleil déclinant jette des reflets dorés à travers les feuilles, éclairant le chemin devant vous d'une lueur chaleureuse et réconfortante. Vous ne savez pas ce que l'avenir vous réserve, mais une chose est sûre : vous êtes prêt à affronter chaque défi avec courage et détermination, car dans les Royaumes de l'Éclipse, seuls les plus forts et les plus audacieux survivent.")
     print("Votre aventure ne fait que commencer. Êtes-vous prêt à laisser votre empreinte sur ce monde tumultueux et à découvrir les secrets qui se cachent dans ses recoins les plus sombres ?")
 
 
-intro()
+# intro()

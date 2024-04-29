@@ -1,6 +1,7 @@
 import entite as Ett
 import combat as Cbt
 import equipement as E
+import chapitre_0 as C0
 
 
 def ch1():
@@ -22,4 +23,37 @@ def ch1():
     print("Option 2 : Augmenter votre Karma :")
     print("D'un autre côté, vous pourriez choisir d'ignorer le sac d'équipement et de vous concentrer sur l'aide aux voyageurs. En intervenant rapidement, vous pourriez sauver des vies innocentes et gagner le respect et la gratitude des gens que vous rencontrez. Bien que cela puisse vous coûter un avantage temporaire, votre conscience serait claire et votre karma augmenterait.")
     print("\n")
-    input("Quelle option choisissez vous ?\n\n1 : Obtenir de l'Équipement\n2 : Augmenter votre Karma")
+    choix = str(input(
+        "Quelle option choisissez vous ?\n\n1 : Obtenir de l'Équipement\n2 : Augmenter votre Karma"))
+    if choix == 1:
+        C0.hero.karma = - 1
+        bouclier = E.Equipement("bouclier", 0, 10, 10, 5, "main_gauche")
+        potion = E.Consommable("Potion de Soin", 0, 0, 10, 10, "soin")
+    if choix == 2:
+        C0.hero.karma = + 5
+
+    if C0.hero.karma > 0:
+        print("Le héros, dans la lueur tamisée de la forêt, se tenait là, respirant encore avec le poids de la liberté fraîchement acquise. Son souffle s'accélérait avec l'adrénaline de la bataille récente. À travers les arbres, une voix mystérieuse et profonde s'éleva, portée par une brise légère.")
+        print("\n")
+        print("''Bravo, valeureux héros'', résonna la voix, empreinte d'une solennité antique. ''Tu as montré un courage exceptionnel en te dressant contre l'oppression et en offrant ton aide à ceux dans le besoin. Les dieux eux-mêmes ont pris note de ton altruisme et de ta compassion envers tes semblables.''")
+        print("\n")
+        print("Les feuilles bruissaient doucement, comme si la forêt elle-même applaudissait la bravoure du héros.")
+        print("\n")
+        print("''Tu es l'élu, celui choisi pour restaurer l'équilibre dans ce monde tourmenté. Les ténèbres menacent de l'engloutir, mais avec ta force et ta détermination, tu peux apporter la lumière là où règne l'ombre. Sache que tu n'es pas seul dans cette quête. Des alliés se présenteront à toi, des épreuves te testeront, mais à chaque pas, sache que ta vertu guidera tes choix.''")
+        print("\n")
+        print("")
+        print("\n")
+        print("La voix sembla se fondre dans le murmure de la forêt, laissant le héros avec un sentiment de responsabilité mêlé d'espoir. Il se tint là, absorbant les paroles du destin, prêt à embrasser sa nouvelle mission avec tout le courage et la compassion dont il était capable.")
+        print("\n")
+    if C0.hero.karma <= 0:
+        print("''Tu as commis des erreurs, mais les dieux, dans leur clémence infinie, te tendent maintenant une chance de te racheter. Malgré ta décision égoïste, ils voient encore en toi le potentiel de changer et de faire le bien. Tu as été choisi pour une mission qui dépasse tes propres désirs, une chance de réparer les torts que tu as causés.''")
+        print("\n")
+        print("La voix résonnait avec une douceur empreinte de patience, comme une main tendue dans l'obscurité.")
+        print("\n")
+        print("''Accepte cette opportunité avec humilité et reconnaissance. Utilise-la pour rectifier tes erreurs passées et pour trouver la rédemption dans les actions futures. Les dieux ne t'abandonneront pas, même lorsque tu doutes de toi-même. Reste fidèle à cette nouvelle voie qui s'ouvre à toi, et peut-être, un jour, trouveras-tu la paix que tu cherches.''")
+        print("\n")
+
+    print("Inspiré par les paroles mystiques de la voix de la forêt, le héros sentit une flamme nouvelle s'allumer en lui. Son cœur, autrefois alourdi par le poids du doute et des erreurs passées, s'éleva maintenant avec un sentiment de dessein et de détermination. Les mots résonnaient en lui, réaffirmant sa foi en sa capacité à faire une différence dans ce monde troublé.")
+    print("\n")
+    print("Ses pas résonnèrent sur le sol de la forêt alors qu'il se préparait à l'aventure qui l'attendait. Son esprit s'embrasa d'une volonté féroce, prêt à affronter les défis et les dangers qui se dresseraient sur son chemin. Guidé par la voix de la destinée, il leva les yeux vers les cieux étoilés, où l'ombre menaçante de l'éclipse s'étendait.")
+    print("\n")
