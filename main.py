@@ -5,20 +5,33 @@ import pygame
 from pygame.locals import *
 
 pygame.init()
+pygame.display.set_caption("Les Royaumes de l'Éclipse")
 pygame.key.set_repeat(400, 30)
 
-screen = pygame.display.set_mode((640, 480))
-bg = pygame.image.load("img/chemin_fond.jpg").convert()
-bg = pygame.transform.scale(bg, (640, 480))
+
+def dimensions_ecran():
+    screen_info = pygame.display.Info()
+    screen_width = screen_info.current_w
+    screen_height = screen_info.current_h
+    return (screen_width, screen_height)
+
+
+window_width, window_height = dimensions_ecran()
+screen = pygame.display.set_mode((window_width, window_height))
+bg_titre = pygame.image.load("img/chemin_fond_flou.png").convert()
+bg_titre = pygame.transform.scale(bg_titre, (window_width, window_height))
+
+title_box = pygame.display.set_mode(())
 
 keep_screen = True
 
 while keep_screen:
     for event in pygame.event.get():
-        if event.type == QUIT:
+        dicKeys = pygame.key.get_pressed()
+        if event.type == QUIT or dicKeys[K_ESCAPE]:
             keep_screen = False
-    screen.blit(bg, (0, 0))
     pygame.display.update()
+    screen.blit(bg_titre, (0, 0))
     pygame.time.wait(10)
 pygame.quit()
 
