@@ -21,7 +21,7 @@ screen = pygame.display.set_mode((window_width, window_height))
 bg_titre = pygame.image.load("img/chemin_fond_flou.png").convert()
 bg_titre = pygame.transform.scale(bg_titre, (window_width, window_height))
 
-title_box = pygame.display.set_mode(())
+# title_box = pygame.display.set_mode(())
 
 keep_screen = True
 
