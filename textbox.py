@@ -1,4 +1,3 @@
-import sys
 import pygame
 
 
@@ -19,6 +18,7 @@ def sepLignes(text: str):
     if len(text) == 0:
         done = True
     while not done:
+
         # cas de base (<100 caractere par ligne ou on est au millieu d un mot)
         if (count_lettre_ligne < 100) or text[count_lettre] != " ":
 
@@ -145,10 +145,7 @@ def textbox_output(text):
     # color_inactive = pygame.Color('lightskyblue3')
     # color_active = pygame.Color('dodgerblue2')
     color = pygame.Color('lightskyblue3')
-
-    screen.fill((30, 30, 30))
     text_en_cours = ''
-
     done = False
     while not done:
         for event in pygame.event.get():
@@ -168,7 +165,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l0,
-                            (input_box.x+5, input_box.y+(5+(i*30))s))
+                            (input_box.x+5, input_box.y+(5+(i*30))))
 
             if i == 1:
                 # Render the current text.
@@ -240,11 +237,16 @@ def textbox_output(text):
         pygame.display.flip()
         clock.tick(100)
 
-    pygame.quit()
+    # pygame.quit()
 
 
-texte = "Bienvenue aventurier, dans les Royaumes de l'Éclipse !\n\nAu seuil de cette aventure épique, vous êtes sur le point d'embarquer pour des terres inconnues, où le destin se tisse entre les ombres et la lumière.\n\nPréparez-vous à plonger dans un monde de mystère et de magie, où chaque choix que vous ferez influencera le cours de l'histoire. Des terres sauvages aux cités florissantes, des donjons oubliés aux montagnes glacées, l'aventure vous attend à chaque tournant.\n\nAvant de commencer votre voyage, il est temps de forger votre propre destin. Créez votre personnage, choisissez votre race, votre classe et vos compétences, et préparez-vous à affronter les défis qui vous attendent. Votre courage, votre astuce et votre détermination seront vos meilleurs alliés dans cette quête pour la gloire et la fortune.\n\nL'aventure vous appelle, cher héros. Êtes-vous prêt à répondre à son appel et à laisser votre marque sur les Royaumes de l'Éclipse ?"
-
-textbox_output(texte)
+'''
+texte1 = "Bienvenue aventurier, dans les Royaumes de l'Éclipse !@Au seuil de cette aventure épique, vous êtes sur le point d'embarquer pour des terres inconnues, où le destin se tisse entre les ombres et la lumière.\n\nPréparez-vous à plonger dans un monde de mystère et de magie, où chaque choix que vous ferez influencera le cours de l'histoire. Des terres sauvages aux cités florissantes, des donjons oubliés aux montagnes glacées, l'aventure vous attend à chaque tournant.\n\nAvant de commencer votre voyage, il est temps de forger votre propre destin. Créez votre personnage, choisissez votre race, votre classe et vos compétences, et préparez-vous à affronter les défis qui vous attendent. Votre courage, votre astuce et votre détermination seront vos meilleurs alliés dans cette quête pour la gloire et la fortune.\n\nL'aventure vous appelle, cher héros. Êtes-vous prêt à répondre à son appel et à laisser votre marque sur les Royaumes de l'Éclipse ?"
+texte2 = "Veuillez entrer le nom de votre personnage : "
+textbox_output(texte1)
+textbox_output(texte2)
+texte3 = textbox_input()
+textbox_output("Votre nom est ''"+texte3+"'' c est bien ca ?")
+'''
 
 # print(popStr("hello word", 0))
