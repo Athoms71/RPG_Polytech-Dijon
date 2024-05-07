@@ -8,6 +8,10 @@ pygame.init()
 pygame.display.set_caption("Les Royaumes de l'Éclipse")
 pygame.key.set_repeat(400, 30)
 
+# Variables globales
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
 
 def dimensions_ecran():
     screen_info = pygame.display.Info()
@@ -21,7 +25,9 @@ screen = pygame.display.set_mode((window_width, window_height))
 bg_titre = pygame.image.load("img/chemin_fond_flou.png").convert()
 bg_titre = pygame.transform.scale(bg_titre, (window_width, window_height))
 
-# title_box = pygame.display.set_mode(())
+title_font = pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 90)
+title_text = title_font.render("Les Royaumes de l'Eclipse", True, WHITE)
+title_rect = title_text.get_rect(center=(window_width//2, window_height//4))
 
 keep_screen = True
 
@@ -30,8 +36,9 @@ while keep_screen:
         dicKeys = pygame.key.get_pressed()
         if event.type == QUIT or dicKeys[K_ESCAPE]:
             keep_screen = False
-    pygame.display.update()
     screen.blit(bg_titre, (0, 0))
+    screen.blit(title_text, title_rect)
+    pygame.display.update()
     pygame.time.wait(10)
 pygame.quit()
 
