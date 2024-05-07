@@ -2,6 +2,19 @@ import sys
 import pygame
 
 
+def sepLignes(text: str):
+    l1 = text[:100]
+    l2 = text[100:200]
+    l3 = text[200:300]
+    l4 = text[300:400]
+    l5 = text[400:500]
+    l6 = text[500:600]
+    l7 = text[600:700]
+    l8 = text[700:800]
+    l9 = text[800:]
+    return (l1, l2, l3, l4, l5, l6, l7, l8, l9)
+
+
 def dimensions_ecran():
     pygame.init()
     screen_info = pygame.display.Info()
@@ -80,30 +93,94 @@ def textbox_output(text):
 
         if len(text_en_cours) < len(text):
             text_en_cours += text[len(text_en_cours)]
-            l1 = text_en_cours[:100]
-            l2 = text_en_cours[100:200]
             # a chaque iteration, on ajoute un caractere a la liste a afficher jusqu'a que le texte soit complet'"
-
         screen.fill((30, 30, 30))
-        for i in range((int(len(text_en_cours)/100))+1):
+
+        iterations = (int(len(text)/100))+1
+
+        for i in range(8):
+
             if i == 0:
                 # Render the current text.
-                txt_surface_l1 = font.render(l1, True, color)
+                txt_surface_l0 = font.render(
+                    sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
-                screen.blit(txt_surface_l1, (input_box.x+5, input_box.y+5))
+                screen.blit(txt_surface_l0, (input_box.x+5, input_box.y+5))
+
             if i == 1:
                 # Render the current text.
-                txt_surface_l2 = font.render(l2, True, color)
+                txt_surface_l1 = font.render(
+                    sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
-                screen.blit(txt_surface_l2, (input_box.x+5, input_box.y+30))
+                screen.blit(txt_surface_l1,
+                            (input_box.x+5, input_box.y+(i*30)))
+
+            if i == 2:
+                # Render the current text.
+                txt_surface_l2 = font.render(
+                    sepLignes(text_en_cours)[i], True, color)
+                # Blit the text.
+                screen.blit(txt_surface_l2,
+                            (input_box.x+5, input_box.y+(i*30)))
+
+            if i == 3:
+                # Render the current text.
+                txt_surface_l3 = font.render(
+                    sepLignes(text_en_cours)[i], True, color)
+                # Blit the text.
+                screen.blit(txt_surface_l3,
+                            (input_box.x+5, input_box.y+(i*30)))
+
+            if i == 4:
+                # Render the current text.
+                txt_surface_l4 = font.render(
+                    sepLignes(text_en_cours)[i], True, color)
+                # Blit the text.
+                screen.blit(txt_surface_l4,
+                            (input_box.x+5, input_box.y+(i*30)))
+
+            if i == 5:
+                # Render the current text.
+                txt_surface_l5 = font.render(
+                    sepLignes(text_en_cours)[i], True, color)
+                # Blit the text.
+                screen.blit(txt_surface_l5,
+                            (input_box.x+5, input_box.y+(i*30)))
+
+            if i == 6:
+                # Render the current text.
+                txt_surface_l6 = font.render(
+                    sepLignes(text_en_cours)[i], True, color)
+                # Blit the text.
+                screen.blit(txt_surface_l6,
+                            (input_box.x+5, input_box.y+(i*30)))
+
+            if i == 7:
+                # Render the current text.
+                txt_surface_l7 = font.render(
+                    sepLignes(text_en_cours)[i], True, color)
+                # Blit the text.
+                screen.blit(txt_surface_l7,
+                            (input_box.x+5, input_box.y+(i*30)))
+
+            if i == 8:
+                # Render the current text.
+                txt_surface_l8 = font.render(
+                    sepLignes(text_en_cours)[i], True, color)
+                # Blit the text.
+                screen.blit(txt_surface_l8,
+                            (input_box.x+5, input_box.y+(i*30)))
+
         # Blit the input_box rect.
         pygame.draw.rect(screen, color, input_box, 2)
 
         pygame.display.flip()
         clock.tick(100)
 
-    return (text)
     pygame.quit()
 
 
-textbox_output("le CACABOUDIN c trop bienle CACABOUDIN c trop bienle CACABOUDIN c trop bienle CACABOUDIN c trop bienle CACABOUDIN c trop bienle CACABOUDIN c trop bienle CACABOUDIN c trop bienle CACABOUDIN c trop bienle CACABOUDIN c trop bienle CACABOUDIN c trop bienle CACABOUDIN c trop bienle CACABOUDIN c trop bienle CACABOUDIN c trop bienle CACABOUDIN c trop bienle CACABOUDIN c trop bien")
+texte = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+
+
+textbox_output(texte)
