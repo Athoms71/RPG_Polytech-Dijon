@@ -3,16 +3,80 @@ import pygame
 
 
 def sepLignes(text: str):
-    l1 = text[:100]
-    l2 = text[100:200]
-    l3 = text[200:300]
-    l4 = text[300:400]
-    l5 = text[400:500]
-    l6 = text[500:600]
-    l7 = text[600:700]
-    l8 = text[700:800]
-    l9 = text[800:]
-    return (l1, l2, l3, l4, l5, l6, l7, l8, l9)
+    l1 = ''
+    l2 = ''
+    l3 = ''
+    l4 = ''
+    l5 = ''
+    l6 = ''
+    l7 = ''
+    l8 = ''
+    l9 = ''
+    ligne_en_cours = 1
+    count_lettre_ligne = 0
+    count_lettre = 0
+    done = False
+    if len(text) == 0:
+        done = True
+    while not done:
+        # cas de base (<100 caractere par ligne ou on est au millieu d un mot)
+        if (count_lettre_ligne < 100) or text[count_lettre] != " ":
+
+            if ligne_en_cours == 1:
+                l1 += text[count_lettre]
+                count_lettre_ligne += 1
+                count_lettre += 1
+
+            elif ligne_en_cours == 2:
+                l2 += text[count_lettre]
+                count_lettre += 1
+                count_lettre_ligne += 1
+
+            elif ligne_en_cours == 3:
+                l3 += text[count_lettre]
+                count_lettre += 1
+                count_lettre_ligne += 1
+
+            elif ligne_en_cours == 4:
+                l4 += text[count_lettre]
+                count_lettre += 1
+                count_lettre_ligne += 1
+
+            elif ligne_en_cours == 5:
+                l5 += text[count_lettre]
+                count_lettre += 1
+                count_lettre_ligne += 1
+
+            elif ligne_en_cours == 6:
+                l6 += text[count_lettre]
+                count_lettre += 1
+                count_lettre_ligne += 1
+
+            elif ligne_en_cours == 7:
+                l7 += text[count_lettre]
+                count_lettre += 1
+                count_lettre_ligne += 1
+
+            elif ligne_en_cours == 8:
+                l8 += text[count_lettre]
+                count_lettre += 1
+                count_lettre_ligne += 1
+
+            elif ligne_en_cours == 9:
+                l9 += text[count_lettre]
+                count_lettre += 1
+                count_lettre_ligne += 1
+        else:
+            # alerte, on a plus de 100 caractere et on est a la fin d un mot !
+            if text[count_lettre] == " ":
+                count_lettre_ligne = 0
+                ligne_en_cours += 1
+
+        if len(l1)+len(l2)+len(l3)+len(l4)+len(l5)+len(l6)+len(l7)+len(l8)+len(l9) == len(text):
+            # as t on fini de trier ? -> travail fini
+            done = True
+    # on retire le 1er élément de chaque ligne, ce sont des espaces
+    return (l1, l2[1:], l3[1:], l4[1:], l5[1:], l6[1:], l7[1:], l8[1:], l9[1:])
 
 
 def dimensions_ecran():
@@ -96,8 +160,6 @@ def textbox_output(text):
             # a chaque iteration, on ajoute un caractere a la liste a afficher jusqu'a que le texte soit complet'"
         screen.fill((30, 30, 30))
 
-        iterations = (int(len(text)/100))+1
-
         for i in range(8):
 
             if i == 0:
@@ -105,7 +167,8 @@ def textbox_output(text):
                 txt_surface_l0 = font.render(
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
-                screen.blit(txt_surface_l0, (input_box.x+5, input_box.y+5))
+                screen.blit(txt_surface_l0,
+                            (input_box.x+5, input_box.y+(5+(i*30))s))
 
             if i == 1:
                 # Render the current text.
@@ -113,7 +176,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l1,
-                            (input_box.x+5, input_box.y+(i*30)))
+                            (input_box.x+5, input_box.y+(5+(i*30))))
 
             if i == 2:
                 # Render the current text.
@@ -121,7 +184,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l2,
-                            (input_box.x+5, input_box.y+(i*30)))
+                            (input_box.x+5, input_box.y+(5+(i*30))))
 
             if i == 3:
                 # Render the current text.
@@ -129,7 +192,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l3,
-                            (input_box.x+5, input_box.y+(i*30)))
+                            (input_box.x+5, input_box.y+(5+(i*30))))
 
             if i == 4:
                 # Render the current text.
@@ -137,7 +200,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l4,
-                            (input_box.x+5, input_box.y+(i*30)))
+                            (input_box.x+5, input_box.y+(5+(i*30))))
 
             if i == 5:
                 # Render the current text.
@@ -145,7 +208,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l5,
-                            (input_box.x+5, input_box.y+(i*30)))
+                            (input_box.x+5, input_box.y+(5+(i*30))))
 
             if i == 6:
                 # Render the current text.
@@ -153,7 +216,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l6,
-                            (input_box.x+5, input_box.y+(i*30)))
+                            (input_box.x+5, input_box.y+(5+(i*30))))
 
             if i == 7:
                 # Render the current text.
@@ -161,7 +224,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l7,
-                            (input_box.x+5, input_box.y+(i*30)))
+                            (input_box.x+5, input_box.y+(5+(i*30))))
 
             if i == 8:
                 # Render the current text.
@@ -169,7 +232,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l8,
-                            (input_box.x+5, input_box.y+(i*30)))
+                            (input_box.x+5, input_box.y+(5+(i*30))))
 
         # Blit the input_box rect.
         pygame.draw.rect(screen, color, input_box, 2)
@@ -180,7 +243,8 @@ def textbox_output(text):
     pygame.quit()
 
 
-texte = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-
+texte = "Bienvenue aventurier, dans les Royaumes de l'Éclipse !\n\nAu seuil de cette aventure épique, vous êtes sur le point d'embarquer pour des terres inconnues, où le destin se tisse entre les ombres et la lumière.\n\nPréparez-vous à plonger dans un monde de mystère et de magie, où chaque choix que vous ferez influencera le cours de l'histoire. Des terres sauvages aux cités florissantes, des donjons oubliés aux montagnes glacées, l'aventure vous attend à chaque tournant.\n\nAvant de commencer votre voyage, il est temps de forger votre propre destin. Créez votre personnage, choisissez votre race, votre classe et vos compétences, et préparez-vous à affronter les défis qui vous attendent. Votre courage, votre astuce et votre détermination seront vos meilleurs alliés dans cette quête pour la gloire et la fortune.\n\nL'aventure vous appelle, cher héros. Êtes-vous prêt à répondre à son appel et à laisser votre marque sur les Royaumes de l'Éclipse ?"
 
 textbox_output(texte)
+
+# print(popStr("hello word", 0))
