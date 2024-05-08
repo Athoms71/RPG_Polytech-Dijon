@@ -1,6 +1,10 @@
 import pygame
 
 
+def modifStr(text: str, X: int):
+    return (text[:X-1] + text[X:])
+
+
 def sepLignes(text: str):
     l1 = ''
     l2 = ''
@@ -11,6 +15,7 @@ def sepLignes(text: str):
     l7 = ''
     l8 = ''
     l9 = ''
+    reste = ''
     ligne_en_cours = 1
     count_lettre_ligne = 0
     count_lettre = 0
@@ -19,8 +24,13 @@ def sepLignes(text: str):
         done = True
     while not done:
 
-        # cas de base (<100 caractere par ligne ou on est au millieu d un mot)
-        if (count_lettre_ligne < 100) or text[count_lettre] != " ":
+        if text[count_lettre] == "@":
+            text = modifStr(text, count_lettre)  # on retire le @
+            count_lettre_ligne = 0
+            ligne_en_cours += 1
+
+       # cas de base (<100 caractere par ligne ou on est au millieu d un mot)
+        elif (count_lettre_ligne < 100) or text[count_lettre] != " ":
 
             if ligne_en_cours == 1:
                 l1 += text[count_lettre]
@@ -71,12 +81,13 @@ def sepLignes(text: str):
             if text[count_lettre] == " ":
                 count_lettre_ligne = 0
                 ligne_en_cours += 1
+                text = modifStr(text, count_lettre)  # on retire le " "
 
-        if len(l1)+len(l2)+len(l3)+len(l4)+len(l5)+len(l6)+len(l7)+len(l8)+len(l9) == len(text):
+        if len(reste)+len(l1)+len(l2)+len(l3)+len(l4)+len(l5)+len(l6)+len(l7)+len(l8)+len(l9) == len(text):
             # as t on fini de trier ? -> travail fini
             done = True
     # on retire le 1er élément de chaque ligne, ce sont des espaces
-    return (l1, l2[1:], l3[1:], l4[1:], l5[1:], l6[1:], l7[1:], l8[1:], l9[1:])
+    return (l1, l2, l3, l4, l5, l6, l7, l8, l9)
 
 
 def dimensions_ecran():
@@ -95,7 +106,7 @@ screen = pygame.display.set_mode((window_width, window_height))
 def textbox_input():
     "renvoie le text fournis dans la textbox"
     pygame.init()
-    font = pygame.font.Font(None, 32)
+    font = pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 32)
     clock = pygame.time.Clock()
     input_box = pygame.Rect(0, (dimensions_ecran(
     )[1]*2/3), (dimensions_ecran()[0]), (dimensions_ecran()[1]*1/3))
@@ -138,7 +149,7 @@ def textbox_input():
 def textbox_output(text):
     "écrit dans la textbox le text fournis en entree."
     pygame.init()
-    font = pygame.font.Font(None, 32)
+    font = pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 32)  # bug ?
     clock = pygame.time.Clock()
     input_box = pygame.Rect(0, (dimensions_ecran(
     )[1]*2/3), (dimensions_ecran()[0]), (dimensions_ecran()[1]*1/3))
@@ -240,13 +251,9 @@ def textbox_output(text):
     # pygame.quit()
 
 
-'''
-texte1 = "Bienvenue aventurier, dans les Royaumes de l'Éclipse !@Au seuil de cette aventure épique, vous êtes sur le point d'embarquer pour des terres inconnues, où le destin se tisse entre les ombres et la lumière.\n\nPréparez-vous à plonger dans un monde de mystère et de magie, où chaque choix que vous ferez influencera le cours de l'histoire. Des terres sauvages aux cités florissantes, des donjons oubliés aux montagnes glacées, l'aventure vous attend à chaque tournant.\n\nAvant de commencer votre voyage, il est temps de forger votre propre destin. Créez votre personnage, choisissez votre race, votre classe et vos compétences, et préparez-vous à affronter les défis qui vous attendent. Votre courage, votre astuce et votre détermination seront vos meilleurs alliés dans cette quête pour la gloire et la fortune.\n\nL'aventure vous appelle, cher héros. Êtes-vous prêt à répondre à son appel et à laisser votre marque sur les Royaumes de l'Éclipse ?"
+texte1 = "Bienvenue aventurier, dans les Royaumes de l'Éclipse !@Au seuil de cette aventure épique, vous êtes sur le point d'embarquer pour des terres inconnues, où le destin se tisse entre les ombres et la lumière.@@Préparez-vous à plonger dans un monde de mystère et de magie, où chaque choix que vous ferez influencera le cours de l'histoire. Des terres sauvages aux cités florissantes, des donjons oubliés aux montagnes glacées, l'aventure vous attend à chaque tournant.@@Avant de commencer votre voyage, il est temps de forger votre propre destin. Créez votre personnage, choisissez votre race, votre classe et vos compétences, et préparez-vous à affronter les défis qui vous attendent. Votre courage, votre astuce et votre détermination seront vos meilleurs alliés dans cette quête pour la gloire et la fortune.\n\nL'aventure vous appelle, cher héros. Êtes-vous prêt à répondre à son appel et à laisser votre marque sur les Royaumes de l'Éclipse ?"
 texte2 = "Veuillez entrer le nom de votre personnage : "
 textbox_output(texte1)
 textbox_output(texte2)
 texte3 = textbox_input()
 textbox_output("Votre nom est ''"+texte3+"'' c est bien ca ?")
-'''
-
-# print(popStr("hello word", 0))
