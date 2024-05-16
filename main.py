@@ -106,7 +106,7 @@ def ecran_titre():
     screen.blit(title_text, title_rect)
     screen.blit(icon, (2*button_w//3, window_height//5-button_h//2))
     pygame_widgets.update(pygame.event.get())
-    pygame.display.update()
+    pygame.display.flip()
 
 
 window_width, window_height = dimensions_ecran()
@@ -118,11 +118,11 @@ afficher = ecran_titre
 while RUNNING:
     afficher()
     events = pygame.event.get()
-    '''for event in events:
+    for event in events:
         dicKeys = pygame.key.get_pressed()
         if event.type == QUIT or dicKeys[K_TAB]:
             RUNNING = False
             pygame.quit()
-            quit()'''
+            quit()
     pygame_widgets.update(events)
     pygame.display.flip()
