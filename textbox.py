@@ -1,8 +1,8 @@
 import pygame
 
 
-def modifStr(text: str, X: int):
-    return (text[:X-1] + text[X:])
+def modifStr(text: str, X: int,):
+    return (text[:X] + text[X+1:])
 
 
 def sepLignes(text: str):
@@ -15,6 +15,7 @@ def sepLignes(text: str):
     l7 = ''
     l8 = ''
     l9 = ''
+    l10 = ''
     reste = ''
     ligne_en_cours = 1
     count_lettre_ligne = 0
@@ -76,6 +77,10 @@ def sepLignes(text: str):
                 l9 += text[count_lettre]
                 count_lettre += 1
                 count_lettre_ligne += 1
+            else:
+                l9 += text[count_lettre]
+                count_lettre += 1
+                count_lettre_ligne += 1
         else:
             # alerte, on a plus de 100 caractere et on est a la fin d un mot !
             if text[count_lettre] == " ":
@@ -83,11 +88,10 @@ def sepLignes(text: str):
                 ligne_en_cours += 1
                 text = modifStr(text, count_lettre)  # on retire le " "
 
-        if len(reste)+len(l1)+len(l2)+len(l3)+len(l4)+len(l5)+len(l6)+len(l7)+len(l8)+len(l9) == len(text):
+        if len(reste)+len(l1)+len(l2)+len(l3)+len(l4)+len(l5)+len(l6)+len(l7)+len(l8)+len(l9)+len(l10) == len(text):
             # as t on fini de trier ? -> travail fini
             done = True
-    # on retire le 1er élément de chaque ligne, ce sont des espaces
-    return (l1, l2, l3, l4, l5, l6, l7, l8, l9)
+    return (l1, l2, l3, l4, l5, l6, l7, l8, l9, l10)
 
 
 def dimensions_ecran():
@@ -103,15 +107,15 @@ window_width, window_height = dimensions_ecran()
 screen = pygame.display.set_mode((window_width, window_height))
 
 
-def textbox_input():
-    "renvoie le text fournis dans la textbox"
+def textbox_input(texte: str):
+    textbox_output(texte)
+    "renvoie le text fournis dans la textbox en ayant au prealable affiché le texte mis en parametre"
     pygame.init()
-    font = pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 32)
+    # pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 32)
+    font = pygame.font.Font(None, 32)
     clock = pygame.time.Clock()
     input_box = pygame.Rect(0, (dimensions_ecran(
     )[1]*2/3), (dimensions_ecran()[0]), (dimensions_ecran()[1]*1/3))
-    # color_inactive = pygame.Color('lightskyblue3')
-    # color_active = pygame.Color('dodgerblue2')
     color = pygame.Color('lightskyblue3')
     text = ''
     done = False
@@ -133,7 +137,6 @@ def textbox_input():
         screen.fill((30, 30, 30))
         # Render the current text.
         txt_surface = font.render(text, True, color)
-        # Resize the box if the text is too long.
         # Blit the text.
         screen.blit(txt_surface, (input_box.x+5, input_box.y+5))
         # Blit the input_box rect.
@@ -149,7 +152,8 @@ def textbox_input():
 def textbox_output(text):
     "écrit dans la textbox le text fournis en entree."
     pygame.init()
-    font = pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 32)  # bug ?
+    # pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 32)
+    font = pygame.font.Font(None, 32)
     clock = pygame.time.Clock()
     input_box = pygame.Rect(0, (dimensions_ecran(
     )[1]*2/3), (dimensions_ecran()[0]), (dimensions_ecran()[1]*1/3))
@@ -160,7 +164,7 @@ def textbox_output(text):
     done = False
     while not done:
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN:  # pygame.KEYDOWN si on veut n importe quelle touche
                 done = True
 
         if len(text_en_cours) < len(text):
@@ -249,11 +253,12 @@ def textbox_output(text):
         clock.tick(100)
 
     # pygame.quit()
+'''
+texte1 = "Bienvenue aventurier, dans les Royaumes de l'Éclipse !@Au seuil de cette aventure épique, vous êtes sur le point d'embarquer pour des terres inconnues, où le destin se tisse entre les ombres et la lumière.@@Préparez-vous à plonger dans un monde de mystère et de magie, où chaque choix que vous ferez influencera le cours de l'histoire. Des terres sauvages aux cités florissantes, des donjons oubliés aux montagnes glacées, l'aventure vous attend à chaque tournant."
 
-
-texte1 = "Bienvenue aventurier, dans les Royaumes de l'Éclipse !@Au seuil de cette aventure épique, vous êtes sur le point d'embarquer pour des terres inconnues, où le destin se tisse entre les ombres et la lumière.@@Préparez-vous à plonger dans un monde de mystère et de magie, où chaque choix que vous ferez influencera le cours de l'histoire. Des terres sauvages aux cités florissantes, des donjons oubliés aux montagnes glacées, l'aventure vous attend à chaque tournant.@@Avant de commencer votre voyage, il est temps de forger votre propre destin. Créez votre personnage, choisissez votre race, votre classe et vos compétences, et préparez-vous à affronter les défis qui vous attendent. Votre courage, votre astuce et votre détermination seront vos meilleurs alliés dans cette quête pour la gloire et la fortune.\n\nL'aventure vous appelle, cher héros. Êtes-vous prêt à répondre à son appel et à laisser votre marque sur les Royaumes de l'Éclipse ?"
+texte4 = "Avant de commencer votre voyage, il est temps de forger votre propre destin. Créez votre personnage, choisissez votre race, votre classe et vos compétences, et préparez-vous à affronter les défis qui vous attendent. Votre courage, votre astuce et votre détermination seront vos meilleurs alliés dans cette quête pour la gloire et la fortune.@@L'aventure vous appelle, cher héros. Êtes-vous prêt à répondre à son appel et à laisser votre marque sur les Royaumes de l'Éclipse ?  "  # texte1 = "test1"
 texte2 = "Veuillez entrer le nom de votre personnage : "
 # textbox_output(texte1)
 # textbox_output(texte2)
 # texte3 = textbox_input()
-# textbox_output("Votre nom est ''"+texte3+"'' c est bien ca ?")
+# textbox_output("Votre nom est ''"+texte3+"'' c est bien ca ?")'''
