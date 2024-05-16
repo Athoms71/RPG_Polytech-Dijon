@@ -106,7 +106,8 @@ screen = pygame.display.set_mode((window_width, window_height))
 def textbox_input():
     "renvoie le text fournis dans la textbox"
     pygame.init()
-    font = pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 32)
+    # pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 32)
+    font = pygame.font.Font(None, 32)
     clock = pygame.time.Clock()
     input_box = pygame.Rect(0, (dimensions_ecran(
     )[1]*2/3), (dimensions_ecran()[0]), (dimensions_ecran()[1]*1/3))
@@ -149,7 +150,8 @@ def textbox_input():
 def textbox_output(text):
     "écrit dans la textbox le text fournis en entree."
     pygame.init()
-    font = pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 32)  # bug ?
+    # pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 32)
+    font = pygame.font.Font(None, 32)
     clock = pygame.time.Clock()
     input_box = pygame.Rect(0, (dimensions_ecran(
     )[1]*2/3), (dimensions_ecran()[0]), (dimensions_ecran()[1]*1/3))
@@ -251,9 +253,13 @@ def textbox_output(text):
     # pygame.quit()
 
 
-texte1 = "Bienvenue aventurier, dans les Royaumes de l'Éclipse !@Au seuil de cette aventure épique, vous êtes sur le point d'embarquer pour des terres inconnues, où le destin se tisse entre les ombres et la lumière.@@Préparez-vous à plonger dans un monde de mystère et de magie, où chaque choix que vous ferez influencera le cours de l'histoire. Des terres sauvages aux cités florissantes, des donjons oubliés aux montagnes glacées, l'aventure vous attend à chaque tournant.@@Avant de commencer votre voyage, il est temps de forger votre propre destin. Créez votre personnage, choisissez votre race, votre classe et vos compétences, et préparez-vous à affronter les défis qui vous attendent. Votre courage, votre astuce et votre détermination seront vos meilleurs alliés dans cette quête pour la gloire et la fortune.\n\nL'aventure vous appelle, cher héros. Êtes-vous prêt à répondre à son appel et à laisser votre marque sur les Royaumes de l'Éclipse ?"
+texte1 = "Bienvenue aventurier, dans les Royaumes de l'Éclipse !@Au seuil de cette aventure épique, vous êtes sur le point d'embarquer pour des terres inconnues, où le destin se tisse entre les ombres et la lumière.@@Préparez-vous à plonger dans un monde de mystère et de magie, où chaque choix que vous ferez influencera le cours de l'histoire. Des terres sauvages aux cités florissantes, des donjons oubliés aux montagnes glacées, l'aventure vous attend à chaque tournant."
+
+texte4 = "Avant de commencer votre voyage, il est temps de forger votre propre destin. Créez votre personnage, choisissez votre race, votre classe et vos compétences, et préparez-vous à affronter les défis qui vous attendent. Votre courage, votre astuce et votre détermination seront vos meilleurs alliés dans cette quête pour la gloire et la fortune.@@L'aventure vous appelle, cher héros. Êtes-vous prêt à répondre à son appel et à laisser votre marque sur les Royaumes de l'Éclipse ?  "  # texte1 = "test1"
 texte2 = "Veuillez entrer le nom de votre personnage : "
+# texte2 = "test 2"
 textbox_output(texte1)
+textbox_output(texte4)
 textbox_output(texte2)
 texte3 = textbox_input()
 textbox_output("Votre nom est ''"+texte3+"'' c est bien ca ?")
