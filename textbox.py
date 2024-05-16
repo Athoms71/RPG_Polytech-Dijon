@@ -15,6 +15,7 @@ def sepLignes(text: str):
     l7 = ''
     l8 = ''
     l9 = ''
+    l10 = ''
     reste = ''
     ligne_en_cours = 1
     count_lettre_ligne = 0
@@ -76,6 +77,10 @@ def sepLignes(text: str):
                 l9 += text[count_lettre]
                 count_lettre += 1
                 count_lettre_ligne += 1
+            else:
+                l9 += text[count_lettre]
+                count_lettre += 1
+                count_lettre_ligne += 1
         else:
             # alerte, on a plus de 100 caractere et on est a la fin d un mot !
             if text[count_lettre] == " ":
@@ -83,12 +88,10 @@ def sepLignes(text: str):
                 ligne_en_cours += 1
                 text = modifStr(text, count_lettre)  # on retire le " "
 
-        if len(reste)+len(l1)+len(l2)+len(l3)+len(l4)+len(l5)+len(l6)+len(l7)+len(l8)+len(l9) == len(text):
+        if len(reste)+len(l1)+len(l2)+len(l3)+len(l4)+len(l5)+len(l6)+len(l7)+len(l8)+len(l9)+len(l10) == len(text):
             # as t on fini de trier ? -> travail fini
             done = True
-    if len(l9) > 100:
-        l9 = l9[:100]+"[...]"
-    return (l1, l2, l3, l4, l5, l6, l7, l8, l9)
+    return (l1, l2, l3, l4, l5, l6, l7, l8, l9, l10)
 
 
 def dimensions_ecran():
@@ -113,8 +116,6 @@ def textbox_input(texte: str):
     clock = pygame.time.Clock()
     input_box = pygame.Rect(0, (dimensions_ecran(
     )[1]*2/3), (dimensions_ecran()[0]), (dimensions_ecran()[1]*1/3))
-    # color_inactive = pygame.Color('lightskyblue3')
-    # color_active = pygame.Color('dodgerblue2')
     color = pygame.Color('lightskyblue3')
     text = ''
     done = False
@@ -136,7 +137,6 @@ def textbox_input(texte: str):
         screen.fill((30, 30, 30))
         # Render the current text.
         txt_surface = font.render(text, True, color)
-        # Resize the box if the text is too long.
         # Blit the text.
         screen.blit(txt_surface, (input_box.x+5, input_box.y+5))
         # Blit the input_box rect.
@@ -164,7 +164,7 @@ def textbox_output(text):
     done = False
     while not done:
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN:  # pygame.KEYDOWN si on veut n importe quelle touche
                 done = True
 
         if len(text_en_cours) < len(text):
