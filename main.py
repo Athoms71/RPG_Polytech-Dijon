@@ -101,12 +101,15 @@ def ecran_titre():
         pressedColour=(180, 180, 180),
         radius=10,
         onClick=fin_fenetre)
-    return title_text, title_rect, button_play, button_settings, button_quit
-
-
-def menu_pause():
-    # A coder, menu pause en jeu
-    pass
+    background = pygame.image.load("img/chemin_fond_flou.png").convert_alpha()
+    background = pygame.transform.scale(
+        background, (window_width, window_height))
+    icon = pygame.transform.scale(icon, (window_height//5, window_height//5))
+    screen.blit(background, (0, 0))
+    screen.blit(title_text, title_rect)
+    screen.blit(icon, (2*button_w//3, window_height//5-button_h//2))
+    pygame_widgets.update(pygame.event.get())
+    pygame.display.flip()
 
 
 window_width, window_height = dimensions_ecran()
@@ -124,16 +127,7 @@ while keep_screen:
         dicKeys = pygame.key.get_pressed()
         if event.type == QUIT or dicKeys[K_TAB]:
             pygame.quit()
-            keep_screen = False
             quit()
-        if dicKeys[K_ESCAPE] and menu_actuel == 1:
-            menu_pause()
-    if menu_actuel == 0:
-        title_text, title_rect, button_play, button_settings, button_quit = ecran_titre()
-        screen.blit(title_text, title_rect)
-    # elif menu_actuel == 1:
-
-    screen.blit(background, (0, 0))
     pygame_widgets.update(events)
     pygame.display.flip()
 
