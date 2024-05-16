@@ -11,11 +11,16 @@ def DX(X):
 
 def bataille(personnage: Ett.Joueur, ennemi: Ett.Monstre):
     """tant que le joueur et le(s) ennemi(s) ont 1 PV ou plus, on alterne entre le tour du joueur et celui du monstre"""
-    while personnage.pv != 0 and ennemi.pv != 0:
-        action_du_tour_joueur(personnage, ennemi)
-        action_du_tour_monstre(personnage, ennemi)
+    while personnage.pv > 0 and ennemi.pv > 0:
+        if personnage.pv > 0:
+            TB.textbox_output("Votre tour :")
+            action_du_tour_joueur(personnage, ennemi)
+        if ennemi.pv > 0:
+            TB.textbox_output("Tour du "+str(ennemi.classe+" :"))
+            action_du_tour_monstre(personnage, ennemi)
+
     TB.textbox_output("La bataille est terminée !")
-    if personnage.pv == 0:
+    if personnage.pv < 0:
         TB.textbox_output("Vous avez perdu...")
     else:
         TB.textbox_output("Vous avez gagné !")
@@ -78,5 +83,7 @@ def attaquer(source, destination, type_attaquant: int, degat_bonus=0):
                           " dégats, l'adversaire a encore "+str(destination.pv-(degat-destination.pd))+" PV.")
     elif type_attaquant == 0:
         degat = source.pc
+        TB.textbox_output("le "+str(source.classe)+" vous attaque et vous inflige "+(
+            str(degat-destination.pd)) + "degats. Il vous reste" + str(destination.pv) + "PV")
     resistance = destination.pd
     destination.pv -= (degat-resistance)
