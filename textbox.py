@@ -253,7 +253,7 @@ def textbox_output(text):
 
 texte1 = "Bienvenue aventurier, dans les Royaumes de l'Éclipse !@Au seuil de cette aventure épique, vous êtes sur le point d'embarquer pour des terres inconnues, où le destin se tisse entre les ombres et la lumière.@@Préparez-vous à plonger dans un monde de mystère et de magie, où chaque choix que vous ferez influencera le cours de l'histoire. Des terres sauvages aux cités florissantes, des donjons oubliés aux montagnes glacées, l'aventure vous attend à chaque tournant.@@Avant de commencer votre voyage, il est temps de forger votre propre destin. Créez votre personnage, choisissez votre race, votre classe et vos compétences, et préparez-vous à affronter les défis qui vous attendent. Votre courage, votre astuce et votre détermination seront vos meilleurs alliés dans cette quête pour la gloire et la fortune.\n\nL'aventure vous appelle, cher héros. Êtes-vous prêt à répondre à son appel et à laisser votre marque sur les Royaumes de l'Éclipse ?"
 texte2 = "Veuillez entrer le nom de votre personnage : "
-textbox_output(texte1)
-textbox_output(texte2)
-texte3 = textbox_input()
-textbox_output("Votre nom est ''"+texte3+"'' c est bien ca ?")
+# textbox_output(texte1)
+# textbox_output(texte2)
+# texte3 = textbox_input()
+# textbox_output("Votre nom est ''"+texte3+"'' c est bien ca ?")

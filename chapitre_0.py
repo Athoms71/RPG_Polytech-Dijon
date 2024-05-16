@@ -48,4 +48,4 @@ def intro():
     print("Votre aventure ne fait que commencer. Êtes-vous prêt à laisser votre empreinte sur ce monde tumultueux et à découvrir les secrets qui se cachent dans ses recoins les plus sombres ?")
 
 
-intro()
+# intro()
