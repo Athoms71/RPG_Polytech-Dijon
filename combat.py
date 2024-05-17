@@ -20,7 +20,7 @@ def bataille(personnage: Ett.Joueur, ennemi: Ett.Monstre):
             action_du_tour_monstre(personnage, ennemi)
 
     TB.textbox_output("La bataille est terminée !")
-    if personnage.pv < 0:
+    if personnage.pv <= 0:
         TB.textbox_output("Vous avez perdu...")
     else:
         TB.textbox_output("Vous avez gagné !")
@@ -75,15 +75,15 @@ def attaquer(source, destination, type_attaquant: int, degat_bonus=0):
             "Voulez vous tenter une attaque critique ?@-1 : oui@-2 : non@")
         if crit == "1":
             # par exemple si l attaque de bas (source.pc est 10, on attaque entre 0 et 20)
-            degat = 2*(source.pc) - DX(2*(source.pc))
+            degat = source.pc/2 + DX((source.pc))/2
         else:
             degat = source.pc + degat_bonus
 
         TB.textbox_output("vous avez infligé "+str(degat-destination.pd) +
-                          " dégats, l'adversaire a encore "+str(destination.pv-(degat-destination.pd))+" PV.")
+                          " dégats, l'adversaire a encore " + str(max(0, destination.pv-(degat-destination.pd)))+" PV.")
     elif type_attaquant == 0:
         degat = source.pc
         TB.textbox_output("le "+str(source.classe)+" vous attaque et vous inflige "+(
-            str(degat-destination.pd)) + "degats. Il vous reste" + str(destination.pv) + "PV")
+            str(degat-destination.pd)) + " degats. Il vous reste " + str(max(0, destination.pv-(degat-destination.pd))) + " PV")
     resistance = destination.pd
     destination.pv -= (degat-resistance)
