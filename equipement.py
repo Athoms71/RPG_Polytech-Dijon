@@ -16,6 +16,7 @@ class Consommable():
         self.heal = heal
         self.prix = prix
         self.poids = poids
+        self.cat = cat
 
     def utilisation(self, joueur):
         joueur.pv += self.heal

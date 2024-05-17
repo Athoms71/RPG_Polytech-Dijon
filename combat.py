@@ -55,19 +55,32 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
             temps_recup_competence = 6
         elif temps_recup_competence == temps_recup_competence - compteur_tour_competence:
             degat_bonus = 0
+
     elif choix == "3":
-        TB.textbox_output("Voici la liste de vos objets :@")
-        liste_inventaire = personnage.lister_inventaire_consommable()
+        liste_equipements = ''  # il s agit de la liste bien formatée
+        for i in range(len(personnage.lister_inventaire_consommable())):
+            liste_equipements += str(
+                # on ajoute tt les élément a la suite en leur donnant un indice et en ajoutant des sauts al la ligne
+                str(i+1)+'- '+personnage.lister_inventaire_consommable()[i])+'@'
+        choix_consommable = TB.textbox_input("Choisissez l objet que vous souhaitez utiliser parmi la liste de vos objets :@" +
+                                             liste_equipements)
+        try:
+            if int(choix_consommable) <= len((personnage.lister_inventaire_consommable())):
+                E.utilisation(
+                    personnage, personnage.lister_inventaire_consommable()[int(choix_consommable)])
+        except:
+            TB.textbox_output("choix invalide, votre tour est passé :)")
+
     else:
         TB.textbox_output("choix indisponible, votre tour est passé :)")
     temps_recup_competence -= 1
 
 
 def attaquer(source, destination, type_attaquant: int, degat_bonus=0):
-    """prend en parametre la source de l attaque et sa destination, 
-    elle peuvent chacune etre de type joueur ou monstre, puis on enleve 
+    """prend en parametre la source de l attaque et sa destination,
+    elle peuvent chacune etre de type joueur ou monstre, puis on enleve
     aux pv de la destinantion autant que les dégats de la source
-    Si le type attaquant est 1, le joueur attaque un monstre, sinon, 
+    Si le type attaquant est 1, le joueur attaque un monstre, sinon,
     c est le monstre qui attaque le joueur"""
 
     if type_attaquant == 1:
@@ -75,7 +88,7 @@ def attaquer(source, destination, type_attaquant: int, degat_bonus=0):
             "Voulez vous tenter une attaque critique ?@-1 : oui@-2 : non@")
         if crit == "1":
             # par exemple si l attaque de bas (source.pc est 10, on attaque entre 0 et 20)
-            degat = source.pc/2 + DX((source.pc))/2
+            degat = int(source.pc/2 + DX((source.pc))/2)
         else:
             degat = source.pc + degat_bonus
 
