@@ -10,8 +10,9 @@ pygame.init()
 pygame.mixer_music.load("./sounds/main_theme.mp3")
 pygame.mixer.music.play(loops=-1)
 pygame.display.set_caption("Les Royaumes de l'Éclipse")
-ICON = pygame.image.load("img/logo.png").convert_alpha()
-pygame.display.set_icon(ICON)
+pygame.key.set_repeat(400, 30)
+icon = pygame.image.load("img/logo.png").convert_alpha()
+pygame.display.set_icon(icon)
 
 # Variables globales
 BLACK = (0, 0, 0)
@@ -69,7 +70,7 @@ def ecran_titre():
     global RUNNING
     button_w, button_h = 350, 80
     button_font = pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 50)
-    title_font = pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 100)
+    title_font = pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 125)
     title_text = title_font.render("Les Royaumes de l'Eclipse", True, WHITE)
     title_rect = title_text.get_rect(
         center=(window_width//2+button_w//3, window_height//4))
@@ -84,10 +85,11 @@ def ecran_titre():
         textColour=(0, 0, 0),
         fontSize=60,
         margin=5,
-        inactiveColour=(255, 255, 255),
+        inactiveColour=(255, 255, 255, 128),
         hoverColour=(210, 210, 210),
+        pressedColour=(180, 180, 180),
         radius=10,
-        onClick=changement_affichage
+        onClick=start_game
     )
     button_continue = Button(
         screen,
@@ -102,6 +104,7 @@ def ecran_titre():
         margin=5,
         inactiveColour=(255, 255, 255),
         hoverColour=(210, 210, 210),
+        pressedColour=(180, 180, 180),
         radius=10
     )
     button_quit = Button(
@@ -110,13 +113,15 @@ def ecran_titre():
         2*window_height//5+2*(button_h+50),
         button_w,
         button_h,
+
         text="Quitter",
         font=button_font,
         textColour=(0, 0, 0),
         fontSize=60,
         margin=5,
-        inactiveColour=(255, 255, 255),
+        inactiveColour=(255, 255, 255, 128),
         hoverColour=(210, 210, 210),
+        pressedColour=(180, 180, 180),
         radius=10,
         onClick=fin_fenetre)
     background = pygame.image.load("img/chemin_fond_flou.png").convert_alpha()
@@ -131,9 +136,12 @@ def ecran_titre():
 
 window_width, window_height = dimensions_ecran()
 screen = pygame.display.set_mode((window_width, window_height))
+background = pygame.image.load("img/chemin_fond_flou.png").convert()
+background = pygame.transform.scale(background, (window_width, window_height))
 
-RUNNING = True
-afficher = ecran_titre
+
+keep_screen = True
+menu_actuel = 0
 
 while RUNNING:
     afficher()

@@ -33,8 +33,8 @@ class Joueur ():
         liste_inventaire = []
         for i in range(len(self.inventaire)):
             if self.inventaire[i].cat in ["soin", "attaque", "defense"]:
-                liste_inventaire.append(self.inventaire[i])
-                print("\t-", i+1, ":", self.inventaire[i])
+                liste_inventaire.append(self.inventaire[i].nom)
+                # print("\t-", i+1, ":", self.inventaire[i])
         return liste_inventaire
 
     def inventaire_est_plein(self):
