@@ -1,4 +1,3 @@
-import entite as Ett
 import chapitre_0 as C0
 import chapitre_1 as C1
 import pygame
@@ -27,26 +26,26 @@ def dimensions_ecran():
 
 
 def changement_affichage():
-    global afficher
-    if afficher == ecran_titre:
-        afficher = game
+    global AFFICHER
+    if AFFICHER == ecran_titre:
+        AFFICHER = game
+        print("game")
         game()
-    if afficher == game:
-        afficher = ecran_titre
+    elif AFFICHER == game:
+        AFFICHER = ecran_titre
+        print("titre")
         ecran_titre()
 
 
-def game():
-    # C0.intro()
-    check_events()
-
-
 def check_events():
+    global AFFICHER
     events = pygame.event.get()
     for event in events:
         dicKeys = pygame.key.get_pressed()
         if event.type == QUIT or dicKeys[K_TAB]:
             fin_fenetre()
+        if AFFICHER == game and dicKeys[K_ESCAPE]:
+            menu_pause()
     pygame_widgets.update(events)
     pygame.display.flip()
 
@@ -130,13 +129,22 @@ def ecran_titre():
     check_events()
 
 
+def game():
+    # C0.intro()
+    check_events()
+
+
+def menu_pause():
+    check_events()
+
+
 window_width, window_height = dimensions_ecran()
 screen = pygame.display.set_mode((window_width, window_height))
 
 
 RUNNING = True
-afficher = ecran_titre
+AFFICHER = ecran_titre
 
 while RUNNING:
-    afficher()
+    AFFICHER()
     check_events()
