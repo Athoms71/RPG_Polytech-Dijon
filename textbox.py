@@ -100,7 +100,6 @@ def dimensions_ecran():
     screen_width = screen_info.current_w
     screen_height = screen_info.current_h
     return (screen_width, screen_height)
-    pygame.quit()
 
 
 window_width, window_height = dimensions_ecran()
