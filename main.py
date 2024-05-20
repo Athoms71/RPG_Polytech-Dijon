@@ -1,5 +1,6 @@
 import chapitre_0 as C0
 import chapitre_1 as C1
+import operation_fichier as OF
 import pygame
 from pygame.locals import *
 import pygame_widgets
@@ -25,18 +26,6 @@ def dimensions_ecran():
     return (screen_width, screen_height)
 
 
-def changement_affichage():
-    global AFFICHER
-    if AFFICHER == ecran_titre:
-        AFFICHER = game
-        print("game")
-        game()
-    elif AFFICHER == game:
-        AFFICHER = ecran_titre
-        print("titre")
-        ecran_titre()
-
-
 def check_events():
     global AFFICHER
     events = pygame.event.get()
@@ -44,8 +33,6 @@ def check_events():
         dicKeys = pygame.key.get_pressed()
         if event.type == QUIT or dicKeys[K_TAB]:
             fin_fenetre()
-        if AFFICHER == game and dicKeys[K_ESCAPE]:
-            menu_pause()
     pygame_widgets.update(events)
     pygame.display.flip()
 
@@ -56,6 +43,19 @@ def fin_fenetre():
     pygame.quit()
     pygame.mixer.quit()
     quit()
+
+
+def changement_affichage():
+    global AFFICHER
+    global SAVE_VAR_LIST
+    if AFFICHER == ecran_titre:
+        AFFICHER = game
+        print("game")
+        game(SAVE_VAR_LIST)
+    if AFFICHER == game:
+        AFFICHER = ecran_titre
+        print("titre")
+        ecran_titre()
 
 
 def ecran_titre():
@@ -73,7 +73,7 @@ def ecran_titre():
         2*window_height//5,
         button_w,
         button_h,
-        text="Nouvelle partie",
+        text="Jouer",
         font=button_font,
         textColour=(0, 0, 0),
         fontSize=60,
@@ -84,13 +84,13 @@ def ecran_titre():
         radius=10,
         onClick=changement_affichage
     )
-    button_continue = Button(
+    button_settings = Button(
         screen,
         window_width//2-button_w//2,
         2*window_height//5+button_h+50,
         button_w,
         button_h,
-        text="Continuer",
+        text="Parametres",
         font=button_font,
         textColour=(0, 0, 0),
         fontSize=60,
@@ -99,7 +99,7 @@ def ecran_titre():
         hoverColour=(210, 210, 210),
         pressedColour=(180, 180, 180),
         radius=10,
-        onClick=changement_affichage
+        onClick=parametres
     )
     button_quit = Button(
         screen,
@@ -129,13 +129,14 @@ def ecran_titre():
     check_events()
 
 
-def game():
+def game(save_list: list):
+    pygame.mixer_music.stop()
     # C0.intro()
     check_events()
 
 
-def menu_pause():
-    check_events()
+def parametres():
+    pass
 
 
 window_width, window_height = dimensions_ecran()
@@ -144,6 +145,10 @@ screen = pygame.display.set_mode((window_width, window_height))
 
 RUNNING = True
 AFFICHER = ecran_titre
+if OF.exists("save.txt"):
+    SAVE_VAR_LIST = ["Toto", "guerrier", "humain"]
+else:
+    SAVE_VAR_LIST = ["", "", ""]
 
 while RUNNING:
     AFFICHER()
