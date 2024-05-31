@@ -64,12 +64,22 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
                 str(i+1)+'- '+personnage.lister_inventaire_consommable()[i])+'@'
         choix_consommable = TB.textbox_input("Choisissez l objet que vous souhaitez utiliser parmi la liste de vos objets :@" +
                                              liste_equipements)
-        try:
-            if int(choix_consommable) <= len((personnage.lister_inventaire_consommable())):
-                E.utilisation(
-                    personnage, personnage.lister_inventaire_consommable()[int(choix_consommable)])
-        except:
-            TB.textbox_output("choix invalide, votre tour est passé :)")
+
+        if (choix_consommable in ["1", "2", "3", "4", "5", "6", "7", "8"]):
+            choix_consommable = int(choix_consommable)-1
+            if (choix_consommable <= len((personnage.lister_inventaire_consommable())) and len((personnage.lister_inventaire_consommable())) != 0):
+                objChoisi = personnage.lister_inventaire_consommable()[
+                    choix_consommable]
+                TB.textbox_output(str(objChoisi))
+
+                objChoisi.utilisation(personnage)
+                TB.textbox_output(
+                    "vous avez utilisé '"+str(objChoisi)+"@Vous nouvelles statisitiques sont :@- PV : "+str(personnage.pv)+"/"+str(personnage.pv_max)+"@- Dégâts par coup : "+str(personnage.pc))
+
+        else:
+            TB.textbox_output(
+                "choix invalide, votre tour est passé :)")
+            TB.textbox_output("le choix est"+str(choix_consommable))
 
     else:
         TB.textbox_output("choix indisponible, votre tour est passé :)")

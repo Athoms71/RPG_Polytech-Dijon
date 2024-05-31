@@ -1,5 +1,4 @@
 import pygame
-import main as M
 
 
 def modifStr(text: str, X: int,):
@@ -131,7 +130,8 @@ def textbox_input(texte: str):
                     text = text[:-1]
                 elif event.key == pygame.K_ESCAPE:
                     pygame.quit()
-                    M.ecran_titre()
+                    text = ""
+                    return 0
 
                 else:
                     if len(text) < 100:
