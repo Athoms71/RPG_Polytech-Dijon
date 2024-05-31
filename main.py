@@ -17,6 +17,7 @@ def dimensions_ecran():
 def check_events():
     global ETAT
     global GAME_RUNNING
+    global SAVE_LIST
     events = pygame.event.get()
     for event in events:
         dicKeys = pygame.key.get_pressed()
@@ -24,6 +25,7 @@ def check_events():
             fin_fenetre()
         if dicKeys[K_ESCAPE] and ETAT == "jeu":
             changement_affichage()
+            OF.save(SAVE_LIST)
             GAME_RUNNING = False
             pygame.mixer.music.load("./sounds/main_theme.mp3")
             pygame.mixer.music.play(-1)
@@ -51,10 +53,6 @@ def changement_affichage():
         ETAT = "ecran_titre"
 
 
-def parametres():
-    pass
-
-
 pygame.init()
 pygame.mixer_music.load("./sounds/main_theme.mp3")
 pygame.mixer.music.play(-1)
@@ -70,11 +68,9 @@ screen = pygame.display.set_mode((window_width, window_height))
 RUNNING = True
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-
-# Variable de sélection de menus : ecran_titre / jeu
-ETAT = "ecran_titre"
-# Variable qui indique si le jeu (gameplay après écran titre) tourne ou non
-GAME_RUNNING = False
+ETAT = "ecran_titre"    # Variable de sélection de menus : ecran_titre / jeu
+GAME_RUNNING = False    # Variable qui indique si le jeu tourne ou non
+SAVE_LIST = []
 
 
 # Affichage de l'écran titre
@@ -169,8 +165,3 @@ while RUNNING:
         jeu()
     elif ETAT == "menu_pause":
         pass
-
-'''if OF.exists("save.txt"):
-    SAVE_VAR_LIST = ["Toto", "guerrier", "humain"]
-else:
-    SAVE_VAR_LIST = ["", "", ""]'''
