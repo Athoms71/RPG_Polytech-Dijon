@@ -1,3 +1,6 @@
+import entite as Ett
+
+
 class Equipement():
     def __init__(self, nom: str, atk: int, dfc: int, prix: float, poids: float, cat: str):
         self.nom = nom
@@ -18,7 +21,8 @@ class Consommable():
         self.poids = poids
         self.cat = cat
 
-    def utilisation(self, joueur):
-        joueur.pv += self.heal
+    def utilisation(self, joueur: Ett.Joueur):
+
+        joueur.pv = min(joueur.pv+self.heal, joueur.pv_max)
         joueur.pc += self.atk
         joueur.pd += self.dfc

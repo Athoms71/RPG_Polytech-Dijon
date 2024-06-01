@@ -1,10 +1,9 @@
 class Type ():
-    def __init__(self, nom, pv_max, pc, pd, taille_inv_max):
+    def __init__(self, nom, pv_max, pc, pd):
         self.nom = nom
         self.pv_max = pv_max
         self.pc = pc
         self.pd = pd
-        self.taille_inv_max = float(taille_inv_max)
 
 
 class Joueur ():
@@ -16,8 +15,6 @@ class Joueur ():
         self.pv = classe.pv_max + race.pv_max
         self.pc = classe.pc + race.pc
         self.pd = classe.pd + race.pd
-        self.taille_inv_max = classe.taille_inv_max + race.taille_inv_max
-        self.taille_inv = 0
         self.inventaire = []
         self.argent = 0
         self.karma = 0.0
@@ -34,7 +31,6 @@ class Joueur ():
         for i in range(len(self.inventaire)):
             if self.inventaire[i].cat in ["soin", "attaque", "defense"]:
                 liste_inventaire.append(self.inventaire[i].nom)
-                # print("\t-", i+1, ":", self.inventaire[i])
         return liste_inventaire
 
     def inventaire_est_plein(self):
@@ -109,18 +105,16 @@ class Monstre ():
         self.pv = classe.pv_max + race.pv_max
         self.pc = classe.pc + race.pc
         self.pd = classe.pd + race.pd
-        self.taille_inv_max = classe.taille_inv_max + race.taille_inv_max
-        self.taille_inv = 0
         self.inventaire = []
 
 
-guerrier = Type("guerrier", 0, 20, 10, 20)
-archer = Type("archer", 0, 30, 0, 0)
-tank = Type("tank", 20, 2, 20, 40)
+guerrier = Type("guerrier", 0, 20, 5)
+archer = Type("archer", 0, 30, 0)
+tank = Type("tank", 20, 2, 10)
 
-humain = Type("humain", 100, 30, 10, 100)
-elfe = Type("elfe", 75, 40, 10, 90)
-orc = Type("orc", 200, 10, 60, 110)
+humain = Type("humain", 100, 30, 20)
+elfe = Type("elfe", 75, 40, 20)
+orc = Type("orc", 200, 10, 40)
 
 liste_classe = [guerrier, archer, tank]
 liste_race = [humain, elfe, orc]
