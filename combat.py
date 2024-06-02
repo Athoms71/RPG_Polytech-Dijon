@@ -27,7 +27,7 @@ def bataille(personnage: Ett.Joueur, ennemi: Ett.Monstre):
 
 
 def action_du_tour_monstre(personnage: Ett.Joueur, ennemi: Ett.Monstre):
-    if ennemi.pv <= 20*ennemi.pv_max/100 and ennemi.taille_inv > 0:
+    if ennemi.pv <= 20*ennemi.pv_max/100:
         liste_inv = []
         for elt in ennemi.inventaire:
             if elt.cat == "soin":
@@ -43,20 +43,13 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
     temps_recup_competence = 0
     premier_tour = True
     choix = TB.textbox_input(
-        "choisissez une action parmi :@-1 : attaquer@-2 : compétence spéciale@-3 : utiliser un objet@")
+        "choisissez une action parmi :@-1 : attaquer@-2 : utiliser un objet@")
     if choix == "1":
         if premier_tour:
-            degat_bonus = 0
             premier_tour = False
-        attaquer(personnage, ennemi, 1, degat_bonus)
-    elif choix == "2":
-        if temps_recup_competence == 0:
-            degat_bonus, compteur_tour_competence = personnage.competence_speciale()
-            temps_recup_competence = 6
-        elif temps_recup_competence == temps_recup_competence - compteur_tour_competence:
-            degat_bonus = 0
+        attaquer(personnage, ennemi, 1)
 
-    elif choix == "3":
+    elif choix == "2":
         liste_equipements = ''  # il s agit de la liste bien formatée
         for i in range(len(personnage.lister_inventaire_consommable())):
             liste_equipements += str(
@@ -68,13 +61,25 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
         if (choix_consommable in ["1", "2", "3", "4", "5", "6", "7", "8"]):
             choix_consommable = int(choix_consommable)-1
             if (choix_consommable <= len((personnage.lister_inventaire_consommable())) and len((personnage.lister_inventaire_consommable())) != 0):
-                objChoisi = personnage.lister_inventaire_consommable()[
+                nomObjChoisi = personnage.lister_inventaire_consommable()[
                     choix_consommable]
-                TB.textbox_output(str(objChoisi))
 
+                done = False
+                i = 0
+                # on viens parcourir l inventaire du joueur pour y trouver l'élément cherché
+                while (not done):
+                    if personnage.inventaire[i].nom == nomObjChoisi:
+                        objChoisi = personnage.inventaire[i]
+                        done = True
+                        break
+                    i += 1
+                    if i > len(personnage.inventaire):
+                        break
+                # on utilise l'élément choisi, puis on le retire
                 objChoisi.utilisation(personnage)
+                personnage.inventaire.pop(i)
                 TB.textbox_output(
-                    "vous avez utilisé '"+str(objChoisi)+"@Vous nouvelles statisitiques sont :@- PV : "+str(personnage.pv)+"/"+str(personnage.pv_max)+"@- Dégâts par coup : "+str(personnage.pc))
+                    "vous avez utilisé '"+str(nomObjChoisi)+"'@Vos nouvelles statisitiques sont :@- PV : "+str(personnage.pv)+"/"+str(personnage.pv_max)+"@- Dégâts par coup : "+(str(personnage.pc-ennemi.pd))+"@- Résistance : "+str(personnage.pd))
 
         else:
             TB.textbox_output(
@@ -86,7 +91,7 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
     temps_recup_competence -= 1
 
 
-def attaquer(source, destination, type_attaquant: int, degat_bonus=0):
+def attaquer(source, destination, type_attaquant: int):
     """prend en parametre la source de l attaque et sa destination,
     elle peuvent chacune etre de type joueur ou monstre, puis on enleve
     aux pv de la destinantion autant que les dégats de la source
@@ -94,19 +99,54 @@ def attaquer(source, destination, type_attaquant: int, degat_bonus=0):
     c est le monstre qui attaque le joueur"""
 
     if type_attaquant == 1:
+        # on calcule le bonus d attaque lié aux armes
+        bonusArmes = 0
+        bonusDef = 0
+
+        if (len(source.inventaire) != 0):
+            for i in range(len(source.inventaire)):
+                if type(source.inventaire[i]) == E.Equipement:
+                    bonusArmes += source.inventaire[i].atk
+        # on calcul les bonus de def lié aux defences
+
+        if (len(destination.inventaire) != 0):
+            for i in range(len(destination.inventaire)):
+                if type(destination.inventaire[i]) == E.Equipement:
+                    bonusDef += destination.inventaire[i].dfc
+
         crit = TB.textbox_input(
             "Voulez vous tenter une attaque critique ?@-1 : oui@-2 : non@")
         if crit == "1":
             # par exemple si l attaque de bas (source.pc est 10, on attaque entre 0 et 20)
-            degat = int(source.pc/2 + DX((source.pc))/2)
+            degat = int(source.pc/2 + DX(source.pc)) + bonusArmes
         else:
-            degat = source.pc + degat_bonus
+            degat = source.pc + bonusArmes
 
-        TB.textbox_output("vous avez infligé "+str(degat-destination.pd) +
-                          " dégats, l'adversaire a encore " + str(max(0, destination.pv-(degat-destination.pd)))+" PV.")
+        resistance = destination.pd + bonusDef
+        TB.textbox_output("vous avez infligé "+str(max(0, degat-resistance)) +
+                          " dégats, l'adversaire a encore " +
+                          str(max(0, destination.pv-(max(0, degat-resistance)))
+                              )+"/"+str(destination.pv_max)+" PV.")
+
     elif type_attaquant == 0:
-        degat = source.pc
+        # on calcule le bonus d attaque lié aux armes
+        bonusArmes = 0
+        bonusDef = 0
+
+        if (len(source.inventaire) != 0):
+            for i in range(len(source.inventaire)):
+                if type(source.inventaire[i]) == E.Equipement:
+                    bonusArmes += source.inventaire[i].atk
+
+            # on calcul les bonus de def lié aux defences
+        if (len(destination.inventaire) != 0):
+            for i in range(len(destination.inventaire)):
+                if type(destination.inventaire[i]) == E.Equipement:
+                    bonusDef += destination.inventaire[i].dfc
+
+        degat = source.pc + bonusArmes
+        resistance = destination.pd + bonusDef
         TB.textbox_output("le "+str(source.classe)+" vous attaque et vous inflige "+(
-            str(degat-destination.pd)) + " degats. Il vous reste " + str(max(0, destination.pv-(degat-destination.pd))) + " PV")
-    resistance = destination.pd
-    destination.pv -= (degat-resistance)
+            str(max(0, degat-resistance))) + " degats. Il vous reste " + str(max(0, destination.pv-(degat-resistance))) + "/"+str(destination.pv_max) + " PV")
+
+    destination.pv -= max(0, (degat-resistance))

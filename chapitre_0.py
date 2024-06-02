@@ -52,14 +52,14 @@ def speedrun_dev():
                       Ett.liste_classe[1], Ett.liste_race[1])
     # TB.textbox_output("Vous etes : "+hero.nom+", de la race des "+hero.race+", vous etes un futur " +hero.classe+" dont on racontera l'hisoire pendant des générations !")
     # creation du gare
-    type_garde_royal_intro = Ett.Type("Garde Royal", 1, 5, 5, 10)
+    type_garde_royal_intro = Ett.Type("Garde Royal", 5, 5, 3)
     garde_royal = Ett.Monstre(type_garde_royal_intro, Ett.humain)
     # obtention de l equipement :
     pSoin = E.Consommable("Petite potion de soin", 0, 0, 5, 5, 5, "soin")
     hero.inventaire.append(pSoin)
-    pSoin = E.Consommable("Grosse popo", 0, 0, 5, 5, 5, "soin")
-    hero.inventaire.append(pSoin)
-    epee = E.Equipement("epee", 10, 0, 5, 5, "main_droite")
+    gpSoin = E.Consommable("Grosse popo", 0, 0, 700, 5, 5, "soin")
+    hero.inventaire.append(gpSoin)
+    epee = E.Equipement("epee", 35, 0, 5, 5, "main_droite")
     hero.inventaire.append(epee)
     Cbt.bataille(hero, garde_royal)
 
