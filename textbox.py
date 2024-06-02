@@ -32,55 +32,43 @@ def sepLignes(text: str):
 
        # cas de base (<100 caractere par ligne ou on est au millieu d un mot)
         elif (count_lettre_ligne < 100) or text[count_lettre] != " ":
-
-            if ligne_en_cours == 1:
-                l1 += text[count_lettre]
-                count_lettre_ligne += 1
-                count_lettre += 1
-
-            elif ligne_en_cours == 2:
-                l2 += text[count_lettre]
-                count_lettre += 1
-                count_lettre_ligne += 1
-
-            elif ligne_en_cours == 3:
-                l3 += text[count_lettre]
-                count_lettre += 1
-                count_lettre_ligne += 1
-
-            elif ligne_en_cours == 4:
-                l4 += text[count_lettre]
-                count_lettre += 1
-                count_lettre_ligne += 1
-
-            elif ligne_en_cours == 5:
-                l5 += text[count_lettre]
-                count_lettre += 1
-                count_lettre_ligne += 1
-
-            elif ligne_en_cours == 6:
-                l6 += text[count_lettre]
-                count_lettre += 1
-                count_lettre_ligne += 1
-
-            elif ligne_en_cours == 7:
-                l7 += text[count_lettre]
-                count_lettre += 1
-                count_lettre_ligne += 1
-
-            elif ligne_en_cours == 8:
-                l8 += text[count_lettre]
-                count_lettre += 1
-                count_lettre_ligne += 1
-
-            elif ligne_en_cours == 9:
-                l9 += text[count_lettre]
-                count_lettre += 1
-                count_lettre_ligne += 1
-            else:
-                l9 += text[count_lettre]
-                count_lettre += 1
-                count_lettre_ligne += 1
+            match ligne_en_cours:
+                case 1:
+                    l1 += text[count_lettre]
+                    count_lettre_ligne += 1
+                    count_lettre += 1
+                case 2:
+                    l2 += text[count_lettre]
+                    count_lettre += 1
+                    count_lettre_ligne += 1
+                case 3:
+                    l3 += text[count_lettre]
+                    count_lettre += 1
+                    count_lettre_ligne += 1
+                case 4:
+                    l4 += text[count_lettre]
+                    count_lettre += 1
+                    count_lettre_ligne += 1
+                case 5:
+                    l5 += text[count_lettre]
+                    count_lettre += 1
+                    count_lettre_ligne += 1
+                case 6:
+                    l6 += text[count_lettre]
+                    count_lettre += 1
+                    count_lettre_ligne += 1
+                case 7:
+                    l7 += text[count_lettre]
+                    count_lettre += 1
+                    count_lettre_ligne += 1
+                case 8:
+                    l8 += text[count_lettre]
+                    count_lettre += 1
+                    count_lettre_ligne += 1
+                case _:
+                    l9 += text[count_lettre]
+                    count_lettre += 1
+                    count_lettre_ligne += 1
         else:
             # alerte, on a plus de 100 caractere et on est a la fin d un mot !
             if text[count_lettre] == " ":
@@ -123,6 +111,8 @@ def textbox_input(texte: str):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
+                pygame.quit()
+                quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     done = True
@@ -150,7 +140,6 @@ def textbox_input(texte: str):
         clock.tick(30)
 
     return (text)
-    pygame.quit()
 
 
 def textbox_output(text):
@@ -174,7 +163,6 @@ def textbox_output(text):
         if len(text_en_cours) < len(text):
             text_en_cours += text[len(text_en_cours)]
             # a chaque iteration, on ajoute un caractere a la liste a afficher jusqu'a que le texte soit complet'"
-        screen.fill((30, 30, 30))
 
         for i in range(8):
 

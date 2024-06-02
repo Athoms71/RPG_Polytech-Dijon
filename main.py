@@ -154,7 +154,12 @@ def jeu():
     pygame.mixer.music.load("./sounds/musique_jeu.mp3")
     pygame.mixer.music.play(-1)
     while GAME_RUNNING:
-        screen.fill((255, 0, 0))
+        background = pygame.image.load(
+            "img/chemin_fond_flou.png").convert_alpha()
+        background = pygame.transform.scale(
+            background, (window_width, window_height))
+        screen.blit(background, (0, 0))
+        C0.intro()
         check_events()
 
 
