@@ -22,7 +22,6 @@ class Consommable():
         self.cat = cat
 
     def utilisation(self, joueur: Ett.Joueur):
-
         joueur.pv = min(joueur.pv+self.heal, joueur.pv_max)
         joueur.pc += self.atk
         joueur.pd += self.dfc

@@ -119,16 +119,16 @@ def textbox_input(texte: str):
                 elif event.key == pygame.K_BACKSPACE:
                     text = text[:-1]
                 elif event.key == pygame.K_ESCAPE:
-                    pygame.quit()
                     text = ""
                     return 0
+                elif event.key == pygame.K_TAB:
+                    pygame.quit()
+                    quit()
 
                 else:
                     if len(text) < 100:
                         # verification que le texte est pas trop long
                         text += event.unicode
-
-        screen.fill((30, 30, 30))
         # Render the current text.
         txt_surface = font.render(text, True, color)
         # Blit the text.
@@ -143,10 +143,10 @@ def textbox_input(texte: str):
 
 
 def textbox_output(text):
-    "écrit dans la textbox le text fournis en entree."
     pygame.init()
+    "écrit dans la textbox le text fournis en entree."
     # pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 32)
-    font = pygame.font.Font(None, 32)
+    font = pygame.font.Font("freesansbold.ttf", 32)
     clock = pygame.time.Clock()
     input_box = pygame.Rect(0, (dimensions_ecran(
     )[1]*2/3), (dimensions_ecran()[0]), (dimensions_ecran()[1]*1/3))
@@ -155,10 +155,15 @@ def textbox_output(text):
     color = pygame.Color('lightskyblue3')
     text_en_cours = ''
     done = False
+    screen.fill((30, 30, 30), input_box)
     while not done:
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:  # pygame.KEYDOWN si on veut n importe quelle touche
+            # pygame.KEYDOWN si on veut n importe quelle touche
+            if event.type == pygame.KEYDOWN:
                 done = True
+                if event.key == pygame.K_TAB:
+                    pygame.quit()
+                    quit()
 
         if len(text_en_cours) < len(text):
             text_en_cours += text[len(text_en_cours)]
@@ -243,5 +248,3 @@ def textbox_output(text):
 
         pygame.display.flip()
         clock.tick(100)
-
-    # pygame.quit()
