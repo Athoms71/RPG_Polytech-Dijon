@@ -106,7 +106,7 @@ def textbox_input(texte: str):
     color = pygame.Color('lightskyblue3')
     text = ''
     done = False
-
+    screen.fill((30, 30, 30), input_box)
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -130,6 +130,7 @@ def textbox_input(texte: str):
                         # verification que le texte est pas trop long
                         text += event.unicode
         # Render the current text.
+
         txt_surface = font.render(text, True, color)
         # Blit the text.
         screen.blit(txt_surface, (input_box.x+5, input_box.y+5))
@@ -177,7 +178,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l0,
-                            (input_box.x+5, input_box.y+(5+(i*30))))
+                            (input_box.x+5, input_box.y+5))
 
             if i == 1:
                 # Render the current text.
@@ -185,7 +186,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l1,
-                            (input_box.x+5, input_box.y+(5+(i*30))))
+                            (input_box.x+5, input_box.y+35))
 
             if i == 2:
                 # Render the current text.
@@ -193,7 +194,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l2,
-                            (input_box.x+5, input_box.y+(5+(i*30))))
+                            (input_box.x+5, input_box.y+65))
 
             if i == 3:
                 # Render the current text.
@@ -201,7 +202,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l3,
-                            (input_box.x+5, input_box.y+(5+(i*30))))
+                            (input_box.x+5, input_box.y+95))
 
             if i == 4:
                 # Render the current text.
@@ -209,7 +210,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l4,
-                            (input_box.x+5, input_box.y+(5+(i*30))))
+                            (input_box.x+5, input_box.y+125))
 
             if i == 5:
                 # Render the current text.
@@ -217,7 +218,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l5,
-                            (input_box.x+5, input_box.y+(5+(i*30))))
+                            (input_box.x+5, input_box.y+155))
 
             if i == 6:
                 # Render the current text.
@@ -225,7 +226,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l6,
-                            (input_box.x+5, input_box.y+(5+(i*30))))
+                            (input_box.x+5, input_box.y+185))
 
             if i == 7:
                 # Render the current text.
@@ -233,7 +234,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l7,
-                            (input_box.x+5, input_box.y+(5+(i*30))))
+                            (input_box.x+5, input_box.y+215))
 
             if i == 8:
                 # Render the current text.
@@ -241,7 +242,7 @@ def textbox_output(text):
                     sepLignes(text_en_cours)[i], True, color)
                 # Blit the text.
                 screen.blit(txt_surface_l8,
-                            (input_box.x+5, input_box.y+(5+(i*30))))
+                            (input_box.x+5, input_box.y+245))
 
         # Blit the input_box rect.
         pygame.draw.rect(screen, color, input_box, 2)
