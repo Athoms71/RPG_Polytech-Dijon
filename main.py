@@ -51,13 +51,15 @@ def changement_affichage():
 
 
 def nouvelle_partie():
-    dict_var = {}
+    if os.path.exists("save.txt"):
+        os.remove("save.txt")
     changement_affichage()
 
 
 def continuer_partie():
+    global DICT_VAR
     if os.path.exists("save.txt"):
-        dict_var = OF.load()
+        DICT_VAR = OF.load()
         # Affectation des valeurs aux variables du jeu
         changement_affichage()
 
@@ -66,11 +68,11 @@ def continuer_partie():
 def ecran_titre():
     global ICON
     button_font = pygame.font.Font(
-        "font/TheWildBreathOfZelda-15Lv.ttf", 50)
+        "./font/VecnaBold-4YY4.ttf", 45)
     title_font = pygame.font.Font(
-        "font/TheWildBreathOfZelda-15Lv.ttf", 125)
+        "./font/VecnaBold-4YY4.ttf", 105)
     title_text = title_font.render(
-        "Les Royaumes de l'Eclipse", True, WHITE)
+        "Les Royaumes de l'Éclipse", True, WHITE)
     title_rect = title_text.get_rect(
         center=(window_width//2+button_w//3, window_height//4))
     button_new = Button(
@@ -140,7 +142,7 @@ def ecran_titre():
 def jeu():
     global GAME_RUNNING
     GAME_RUNNING = True
-    pygame.mixer.music.load("./sounds/musique_jeu.mp3")
+    pygame.mixer.music.load("./sounds/title_theme.mp3")
     pygame.mixer.music.play(-1)
     avancement = 0
     while GAME_RUNNING:
@@ -158,6 +160,8 @@ def jeu():
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
                 avancement = chapitre1()
+            case _:
+                check_events()
         check_events()
 
 
@@ -221,7 +225,9 @@ screen = pygame.display.set_mode((window_width, window_height))
 # Variables globales
 RUNNING = True
 BLACK = (0, 0, 0)
+GREY_30 = (30, 30, 30)
 WHITE = (255, 255, 255)
+DICT_VAR = {}           # Dictionnaire de sauvegarde
 ETAT = "ecran_titre"    # Variable de sélection de menus : ecran_titre / jeu
 GAME_RUNNING = False    # Variable qui indique si le jeu tourne ou non
 
