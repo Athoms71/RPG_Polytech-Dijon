@@ -142,7 +142,7 @@ def ecran_titre():
 def jeu():
     global GAME_RUNNING
     GAME_RUNNING = True
-    pygame.mixer.music.load("./sounds/title_theme.mp3")
+    pygame.mixer.music.load("./sounds/musique_jeu.mp3")
     pygame.mixer.music.play(-1)
     avancement = 0
     while GAME_RUNNING:
@@ -212,7 +212,7 @@ def chapitre1():
 
 
 pygame.init()
-pygame.mixer_music.load("./sounds/main_theme.mp3")
+pygame.mixer_music.load("./sounds/title_theme.mp3")
 pygame.mixer.music.play(-1)
 pygame.display.set_caption("Les Royaumes de l'Éclipse")
 pygame.key.set_repeat(400, 30)
