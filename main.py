@@ -58,7 +58,7 @@ def nouvelle_partie():
 def continuer_partie():
     if os.path.exists("save.txt"):
         dict_var = OF.load()
-
+        # Affectation des valeurs aux variables du jeu
         changement_affichage()
 
 
@@ -203,8 +203,8 @@ def chapitre0():
 
 
 def chapitre1():
-    print("Chapitre 1")
-    pass
+    TB.textbox_output("Vous venez de passer au chapitre 1.")
+    TB.textbox_output("Appuyez sur Tab pour quitter le jeu")
 
 
 pygame.init()
