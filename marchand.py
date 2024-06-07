@@ -42,12 +42,43 @@ def venteObligatoireEquipement(joueur: Ett.Joueur, equipement1: E.Equipement, eq
                 break
 
 
+def venteObligatoireConsommable(joueur: Ett.Joueur):
+    TB.textbox_output(
+        "il semblerait que vous ayez trop de consommables dans dans votre inventaire, veuillez en vendre :")
+    liste_conso_joueur = []
+    for i in range(len(joueur.inventaire)):
+        if (type(joueur.inventaire[i]) == E.Consommable):
+            liste_conso_joueur.append(joueur.inventaire[i])
+    if len(liste_conso_joueur) == 6:
+
+        choix_vente = int(TB.textbox_input("Lequel de ces consommables souhaitez vous vendre parmis :@- 1 :" +
+                                           str(liste_conso_joueur[0].nom)+" -> " +
+                                           str(liste_conso_joueur[0].prix)+" PO@- 2 :" +
+                                           str(liste_conso_joueur[1].nom)+" -> " +
+                                           str(liste_conso_joueur[1].prix)+" PO@- 3 :" +
+                                           str(liste_conso_joueur[2].nom)+" -> " +
+                                           str(liste_conso_joueur[2].prix)+" PO@- 4 :" +
+                                           str(liste_conso_joueur[3].nom)+" -> " +
+                                           str(liste_conso_joueur[3].prix)+" PO@- 5 :" +
+                                           str(liste_conso_joueur[4].nom)+" -> " +
+                                           str(liste_conso_joueur[4].prix)+" PO@- 6 :" +
+                                           str(liste_conso_joueur[5].nom)+" -> " +
+                                           str(liste_conso_joueur[5].prix)+" PO"))-1
+
+        for i in range(len(joueur.inventaire)):
+            if joueur.inventaire[i].nom == liste_conso_joueur[choix_vente].nom:
+                joueur.argent += liste_conso_joueur[choix_vente].prix
+                joueur.inventaire.pop(i)
+                break
+
+
 def obt_objet(objet: E.Equipement | E.Consommable, joueur: Ett.Joueur):
+    TB.textbox_output("Vous avez obtenu : "+str(objet.nom))
     if type(objet) == E.Consommable:
-        if (len(Ett.Joueur.lister_inventaire_consommable()) <= 5):
+        if (len(Ett.Joueur.lister_inventaire_consommable(joueur)) <= 5):
             joueur.inventaire.append(objet)
         else:
-            venteObligatoireConsommable(joueur.inventaire)
+            venteObligatoireConsommable(joueur)
         pass
 
     if type(objet) == E.Equipement:
