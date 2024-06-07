@@ -64,6 +64,7 @@ def speedrun_dev():
     # creation du gare
     type_garde_royal_intro = Ett.Type("Garde Royal", 5, 5, 3)
     garde_royal = Ett.Monstre(type_garde_royal_intro, Ett.humain)
+
     # obtention de l equipement :
     pSoin = E.Consommable("Petite potion de soin", 0, 0, 5, 5, 5, "soin")
     M.obt_objet(pSoin, hero)
@@ -71,6 +72,11 @@ def speedrun_dev():
     M.obt_objet(gpSoin, hero)
     epee = E.Equipement("epee", 35, 0, 5, 5, "main_droite")
     M.obt_objet(epee, hero)
+    M.obt_objet(pSoin, hero)
+    M.obt_objet(pSoin, hero)
+    M.obt_objet(pSoin, hero)
+    M.obt_objet(pSoin, hero)
+    M.obt_objet(pSoin, hero)
     Cbt.bataille(hero, garde_royal)
     del (garde_royal)
     # obtention de l equipement :
