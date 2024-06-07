@@ -114,7 +114,7 @@ def textbox_input(texte: str):
                 pygame.quit()
                 quit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:
+                if event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER:
                     done = True
                 elif event.key == pygame.K_BACKSPACE:
                     text = text[:-1]

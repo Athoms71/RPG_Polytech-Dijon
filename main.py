@@ -142,12 +142,12 @@ def ecran_titre():
 def jeu():
     global GAME_RUNNING
     GAME_RUNNING = True
-    pygame.mixer.music.load("./sounds/musique_jeu.mp3")
-    pygame.mixer.music.play(-1)
     avancement = 0
     while GAME_RUNNING:
         match avancement:
             case 0:
+                pygame.mixer.music.load("./sounds/musique_jeu.mp3")
+                pygame.mixer.music.play(-1)
                 background = pygame.image.load(
                     "img/chemin_fond_flou.png").convert_alpha()
                 background = pygame.transform.scale(
@@ -155,6 +155,8 @@ def jeu():
                 screen.blit(background, (0, 0))
                 avancement = chapitre0()
             case 1:
+                pygame.mixer.music.load("./sounds/marchand_theme.mp3")
+                pygame.mixer.music.play(-1)
                 background = pygame.image.load("./img/pont_fond.jpg")
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
