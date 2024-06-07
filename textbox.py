@@ -147,7 +147,7 @@ def textbox_output(text):
     pygame.init()
     "écrit dans la textbox le text fournis en entree."
     # pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 32)
-    font = pygame.font.Font("freesansbold.ttf", 32)
+    font = pygame.font.Font(None, 32)
     clock = pygame.time.Clock()
     input_box = pygame.Rect(0, (dimensions_ecran(
     )[1]*2/3), (dimensions_ecran()[0]), (dimensions_ecran()[1]*1/3))

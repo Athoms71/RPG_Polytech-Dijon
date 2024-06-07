@@ -3,6 +3,7 @@ import combat as Cbt
 import equipement as E
 import textbox as TB
 import chapitre_1 as C1
+import marchand as M
 
 
 def intro():
@@ -65,21 +66,18 @@ def speedrun_dev():
     garde_royal = Ett.Monstre(type_garde_royal_intro, Ett.humain)
     # obtention de l equipement :
     pSoin = E.Consommable("Petite potion de soin", 0, 0, 5, 5, 5, "soin")
-    hero.inventaire.append(pSoin)
+    M.obt_objet(pSoin, hero)
     gpSoin = E.Consommable("Grosse popo", 0, 0, 700, 5, 5, "soin")
-    hero.inventaire.append(gpSoin)
+    M.obt_objet(gpSoin, hero)
     epee = E.Equipement("epee", 35, 0, 5, 5, "main_droite")
-    hero.inventaire.append(epee)
+    M.obt_objet(epee, hero)
     Cbt.bataille(hero, garde_royal)
-
     del (garde_royal)
-
     # obtention de l equipement :
-    epee = E.Equipement("epee", 10, 0, 5, 5, "main_droite")
-    hero.inventaire.append(epee)
+    M.obt_objet(epee, hero)
 
 
 # intro()
 
 
-# speedrun_dev()
+speedrun_dev()
