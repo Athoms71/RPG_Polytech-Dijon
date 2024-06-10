@@ -149,7 +149,7 @@ def jeu():
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
                 background = pygame.image.load(
-                    "img/chemin_fond_flou.png").convert_alpha()
+                    "img/chemin_fond.jpg").convert_alpha()
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
@@ -162,6 +162,86 @@ def jeu():
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
                 avancement = chapitre1()
+            case 2:
+                pygame.mixer.music.load("./sounds/musique_jeu.mp3")
+                pygame.mixer.music.play(-1)
+                background = pygame.image.load(
+                    "img/chemin_fond.jpg").convert_alpha()
+                background = pygame.transform.scale(
+                    background, (window_width, window_height))
+                screen.blit(background, (0, 0))
+                avancement = chapitre2()
+            case 3:
+                pygame.mixer.music.load("./sounds/marchand_theme.mp3")
+                pygame.mixer.music.play(-1)
+                background = pygame.image.load("./img/pont_fond.jpg")
+                background = pygame.transform.scale(
+                    background, (window_width, window_height))
+                screen.blit(background, (0, 0))
+                avancement = chapitre3()
+            case 4:
+                pygame.mixer.music.load("./sounds/musique_jeu.mp3")
+                pygame.mixer.music.play(-1)
+                background = pygame.image.load(
+                    "img/chemin_fond.jpg").convert_alpha()
+                background = pygame.transform.scale(
+                    background, (window_width, window_height))
+                screen.blit(background, (0, 0))
+                avancement = chapitre4()
+            case 5:
+                pygame.mixer.music.load("./sounds/marchand_theme.mp3")
+                pygame.mixer.music.play(-1)
+                background = pygame.image.load("./img/pont_fond.jpg")
+                background = pygame.transform.scale(
+                    background, (window_width, window_height))
+                screen.blit(background, (0, 0))
+                avancement = chapitre5()
+            case 6:
+                pygame.mixer.music.load("./sounds/musique_jeu.mp3")
+                pygame.mixer.music.play(-1)
+                background = pygame.image.load(
+                    "img/chemin_fond.jpg").convert_alpha()
+                background = pygame.transform.scale(
+                    background, (window_width, window_height))
+                screen.blit(background, (0, 0))
+                avancement = chapitre6()
+            case 7:
+                pygame.mixer.music.load("./sounds/marchand_theme.mp3")
+                pygame.mixer.music.play(-1)
+                background = pygame.image.load("./img/pont_fond.jpg")
+                background = pygame.transform.scale(
+                    background, (window_width, window_height))
+                screen.blit(background, (0, 0))
+                avancement = chapitre7()
+            case 8:
+                pygame.mixer.music.load("./sounds/musique_jeu.mp3")
+                pygame.mixer.music.play(-1)
+                background = pygame.image.load(
+                    "img/chemin_fond.jpg").convert_alpha()
+                background = pygame.transform.scale(
+                    background, (window_width, window_height))
+                screen.blit(background, (0, 0))
+                avancement = chapitre8()
+            case 9:
+                pygame.mixer.music.load("./sounds/marchand_theme.mp3")
+                pygame.mixer.music.play(-1)
+                background = pygame.image.load("./img/pont_fond.jpg")
+                background = pygame.transform.scale(
+                    background, (window_width, window_height))
+                screen.blit(background, (0, 0))
+                avancement = chapitre9()
+            case 10:
+                pygame.mixer.music.load("./sounds/musique_jeu.mp3")
+                pygame.mixer.music.play(-1)
+                background = pygame.image.load(
+                    "img/chemin_fond.jpg").convert_alpha()
+                background = pygame.transform.scale(
+                    background, (window_width, window_height))
+                screen.blit(background, (0, 0))
+                avancement = chapitre10()
+            case -1:
+                print("Fin du jeu")
+                check_events()
             case _:
                 check_events()
         check_events()
@@ -210,7 +290,53 @@ def chapitre0():
 
 def chapitre1():
     TB.textbox_output("Vous venez de passer au chapitre 1.")
+    return 2
+
+
+def chapitre2():
+    TB.textbox_output("Vous venez de passer au chapitre 2.")
+    return 3
+
+
+def chapitre3():
+    TB.textbox_output("Vous venez de passer au chapitre 3.")
+    return 4
+
+
+def chapitre4():
+    TB.textbox_output("Vous venez de passer au chapitre 4.")
+    return 5
+
+
+def chapitre5():
+    TB.textbox_output("Vous venez de passer au chapitre 5.")
+    return 6
+
+
+def chapitre6():
+    TB.textbox_output("Vous venez de passer au chapitre 6.")
+    return 7
+
+
+def chapitre7():
+    TB.textbox_output("Vous venez de passer au chapitre 7.")
+    return 8
+
+
+def chapitre8():
+    TB.textbox_output("Vous venez de passer au chapitre 8.")
+    return 9
+
+
+def chapitre9():
+    TB.textbox_output("Vous venez de passer au chapitre 9.")
+    return 10
+
+
+def chapitre10():
+    TB.textbox_output("Vous venez de passer au chapitre 10.")
     TB.textbox_output("Appuyez sur Tab pour quitter le jeu")
+    return -1
 
 
 pygame.init()
@@ -238,5 +364,3 @@ while RUNNING:
         ecran_titre()
     elif ETAT == "jeu":
         jeu()
-    elif ETAT == "menu_pause":
-        pass
