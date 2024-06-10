@@ -129,13 +129,14 @@ def textbox_input(texte: str):
                     if len(text) < 100:
                         # verification que le texte est pas trop long
                         text += event.unicode
-        # Render the current text.
 
+        pygame.draw.rect(screen, color, input_box, 2)
+        # Render the current text.
         txt_surface = font.render(text, True, color)
+
         # Blit the text.
         screen.blit(txt_surface, (input_box.x+5, input_box.y+5))
         # Blit the input_box rect.
-        pygame.draw.rect(screen, color, input_box, 2)
 
         pygame.display.flip()
         clock.tick(30)
