@@ -27,13 +27,12 @@ def bataille(personnage: Ett.Joueur, ennemi: Ett.Monstre):
 
 
 def action_du_tour_monstre(personnage: Ett.Joueur, ennemi: Ett.Monstre):
-    if ennemi.pv <= 20*ennemi.pv_max/100:
-        liste_inv = []
-        for elt in ennemi.inventaire:
-            if elt.cat == "soin":
-                liste_inv.append(elt)
-        if len(liste_inv) > 0:
-            liste_inv[0].utilisation(ennemi)
+    liste_inv = []
+    for elt in ennemi.inventaire:
+        if elt.cat == "soin":
+            liste_inv.append(elt)
+    if ennemi.pv <= 20*ennemi.pv_max/100 and len(liste_inv) > 0:
+        liste_inv[0].utilisation(ennemi)
     else:
         attaquer(ennemi, personnage, 0)
 

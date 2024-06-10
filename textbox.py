@@ -106,7 +106,6 @@ def textbox_input(texte: str):
     color = pygame.Color('lightskyblue3')
     text = ''
     done = False
-    screen.fill((30, 30, 30), input_box)
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -129,6 +128,8 @@ def textbox_input(texte: str):
                     if len(text) < 100:
                         # verification que le texte est pas trop long
                         text += event.unicode
+
+        screen.fill((30, 30, 30), input_box)
 
         pygame.draw.rect(screen, color, input_box, 2)
         # Render the current text.

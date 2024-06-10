@@ -4,20 +4,45 @@ import textbox as TB
 
 
 def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float):
-    if (TB.textbox_input("Voulez vous vendre des objets ?@@- 1 : Oui@- 2 : Non") == "1"):
-        choixType = (TB.textbox_input(
-            "Voulez vous vendre?@@- 1 : des consommables@- 2 : De l'équipement") == "1")
-        if choixType == "2":
-            liste_equip_a_afficher = []
-            for i in range(len(joueur.inventaire)):
-                if joueur.inventaire[i].cat in ["main_droite", "main_gauche", "tete", "torse", "jambe", "pied"]:
-                    liste_equip_a_afficher.append(
-                        str(joueur.inventaire[i].cat) + " : "+str(joueur.inventaire[i].nom) + " : "+str(joueur.inventaire[i].prix*honnetete) + " PO")
+    done = False
+    while not done:
+        if (TB.textbox_input("Voulez vous vendre des objets ?@@- 1 : Oui@- 2 : Non") == "1"):
+            choixType = (TB.textbox_input(
+                "Voulez vous vendre?@@- 1 : des consommables@- 2 : De l'équipement"))
+            j = 0
+            if (choixType == "2"):
+                TB.textbox_output("Lequel souhaitez vous vendre ?")
+                liste_equip_a_afficher = ""
+                for i in range(len(joueur.inventaire)):
+                    if joueur.inventaire[i].cat in ["main_droite", "main_gauche", "tete", "torse", "jambe", "pied"]:
+                        j += 1
+                        liste_equip_a_afficher += (str(j) + " - "+str(joueur.inventaire[i].cat) +
+                                                   " : "+str(joueur.inventaire[i].nom) +
+                                                   " : "+str(joueur.inventaire[i].prix*honnetete) + " PO@")
+                choixVente = TB.textbox_input(str(liste_equip_a_afficher))
+                if choixVente in ["1", "2", "3", "4", "5", "6",]:
+                    choixVente = int(choixVente) - 1
+                    if choixVente <= len(joueur.inventaire):
+                        joueur.argent += joueur.inventaire[choixVente].prix
+                        joueur.inventaire.pop(choixVente)
+            if (choixType == "1"):
+                TB.textbox_output("Lequel souhaitez vous vendre ?")
+                liste_equip_a_afficher = ""
+                for i in range(len(joueur.inventaire)):
+                    if joueur.inventaire[i].cat in ["soin", "attaque", "defense"]:
+                        j += 1
+                        liste_equip_a_afficher += (str(j) + " - "+str(joueur.inventaire[i].cat) +
+                                                   " : "+str(joueur.inventaire[i].nom) +
+                                                   " : "+str(joueur.inventaire[i].prix*honnetete) + " PO@")
+                choixVente = TB.textbox_input(str(liste_equip_a_afficher))
+                if choixVente in ["1", "2", "3", "4", "5", "6",]:
+                    choixVente = int(choixVente) - 1
+                    if choixVente <= len(joueur.inventaire):
+                        joueur.argent += joueur.inventaire[choixVente].prix
+                        joueur.inventaire.pop(choixVente)
 
-        if choixType == "1":
-            pass
-    else:
-        pass
+        else:
+            done = True
 
 
 def venteObligatoireEquipement(joueur: Ett.Joueur, equipement1: E.Equipement, equipement2: E.Equipement):

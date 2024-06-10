@@ -90,6 +90,8 @@ class Monstre ():
         self.pd = classe.pd + race.pd
         self.inventaire = []
 
+# Joueur
+
 
 guerrier = Type("guerrier", 0, 20, 5)
 archer = Type("archer", 0, 30, 0)
@@ -98,6 +100,12 @@ tank = Type("tank", 20, 2, 10)
 humain = Type("humain", 100, 30, 20)
 elfe = Type("elfe", 75, 40, 20)
 orc = Type("orc", 200, 10, 40)
+
+# monstres
+
+ombre_race = Type("ombre", 50, 10, 0)
+ombre_assayante_classe = Type("Ombre Assaillante", 10, 5, 3)
+
 
 liste_classe = [guerrier, archer, tank]
 liste_race = [humain, elfe, orc]

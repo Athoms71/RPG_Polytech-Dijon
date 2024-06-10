@@ -72,10 +72,6 @@ def speedrun_dev():
     M.obt_objet(gpSoin, hero)
     epee = E.Equipement("epee", 35, 0, 5, 5, "main_droite")
     M.obt_objet(epee, hero)
-
-    M.obt_objet(epee, hero)
-    M.obt_objet(pSoin, hero)
-    M.obt_objet(pSoin, hero)
     M.obt_objet(pSoin, hero)
     M.obt_objet(pSoin, hero)
     M.obt_objet(pSoin, hero)
@@ -83,7 +79,6 @@ def speedrun_dev():
     # Cbt.bataille(hero, garde_royal)
     del (garde_royal)
     # obtention de l equipement :
-    M.obt_objet(epee, hero)
 
 
 # intro()
