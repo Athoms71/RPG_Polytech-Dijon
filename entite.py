@@ -93,7 +93,6 @@ class Monstre ():
 # Joueur
 
 
-garde_royal = Type("Garde Royal", 5, 5, 3)  # Type pour l'adversaire d'intro
 guerrier = Type("guerrier", 0, 20, 5)
 archer = Type("archer", 0, 30, 0)
 tank = Type("tank", 20, 2, 10)
@@ -104,8 +103,8 @@ orc = Type("orc", 200, 10, 40)
 
 # monstres
 
-ombre_race = Type("ombre", 50, 10, 0)
-ombre_assayante_classe = Type("Ombre Assaillante", 10, 5, 3)
+ombre_race = Type("ombre", 50, 20, 0)
+ombre_assayante_classe = Type("Ombre Assaillante", 30, 20, 10)
 
 
 liste_classe = [guerrier, archer, tank]

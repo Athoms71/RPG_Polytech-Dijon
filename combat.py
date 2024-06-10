@@ -41,8 +41,12 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
     """effectue une action parmi celles disponibles, prend en parametre l ennemi et le joueur"""
     temps_recup_competence = 0
     premier_tour = True
-    choix = TB.textbox_input(
-        "choisissez une action parmi :@-1 : attaquer@-2 : utiliser un objet@")
+    if (len(personnage.lister_inventaire_consommable()) > 0):
+        choix = TB.textbox_input(
+            "choisissez une action parmi :@-1 : attaquer@-2 : utiliser un objet@")
+    else:
+        choix = "1"
+        TB.textbox_output("Vous attaquez")
     if choix == "1":
         if premier_tour:
             premier_tour = False
@@ -116,7 +120,7 @@ def attaquer(source, destination, type_attaquant: int):
         crit = TB.textbox_input(
             "Voulez vous tenter une attaque critique ?@-1 : oui@-2 : non@")
         if crit == "1":
-            # par exemple si l attaque de bas (source.pc est 10, on attaque entre 0 et 20)
+            # par exemple si l attaque de bas (source.pc est 10, on attaque entre 5 et 15)
             degat = int(source.pc/2 + DX(source.pc)) + bonusArmes
         else:
             degat = source.pc + bonusArmes
