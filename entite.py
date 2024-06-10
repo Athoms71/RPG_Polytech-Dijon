@@ -91,6 +91,7 @@ class Monstre ():
         self.inventaire = []
 
 
+garde_royal = Type("Garde Royal", 5, 5, 3)  # Type pour l'adversaire d'intro
 guerrier = Type("guerrier", 0, 20, 5)
 archer = Type("archer", 0, 30, 0)
 tank = Type("tank", 20, 2, 10)
