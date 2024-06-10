@@ -3,15 +3,19 @@ import equipement as E
 import textbox as TB
 
 
-def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: int):
+def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float):
     if (TB.textbox_input("Voulez vous vendre des objets ?@@- 1 : Oui@- 2 : Non") == "1"):
         choixType = (TB.textbox_input(
             "Voulez vous vendre?@@- 1 : des consommables@- 2 : De l'équipement") == "1")
+        if choixType == "2":
+            liste_equip_a_afficher = []
+            for i in range(len(joueur.inventaire)):
+                if joueur.inventaire[i].cat in ["main_droite", "main_gauche", "tete", "torse", "jambe", "pied"]:
+                    liste_equip_a_afficher.append(
+                        str(joueur.inventaire[i].cat) + " : "+str(joueur.inventaire[i].nom) + " : "+str(joueur.inventaire[i].prix*honnetete) + " PO")
+
         if choixType == "1":
             pass
-        if choixType == "2":
-            pass
-
     else:
         pass
 
