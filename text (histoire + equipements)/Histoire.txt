@@ -22,8 +22,6 @@ Vous vous dirigez vers la forêt voisine, cherchant à échapper à l'horreur qu
 2. **Ignorer les symboles et avancer dans la forêt :** Vous choisissez de ne pas suivre le sentier et de continuer votre chemin dans la forêt. Plus loin, vous trouvez une cachette naturelle sous un arbre colossal. En fouillant, vous découvrez un vieux sac contenant un arc en bois sombre et un carquois rempli de flèches enchantées. Vous vous équipez de l'arc, sentant une connexion immédiate avec l'arme.
 
 
-Peu importe votre choix, vous réalisez que ces armes ne sont pas de simples outils de combat, mais des reliques anciennes ayant appartenu à des héros d'autrefois. Elles seront cruciales pour votre survie dans les jours à venir.
-
 Vous continuez votre marche, les ténèbres de la forêt vous enveloppant. Chaque pas que vous faites vous éloigne un peu plus de votre passé et vous rapproche de la vérité sur cette éclipse mystérieuse et des créatures qui ont ravagé votre village. 
 
 La quête pour découvrir la source de cette malédiction et venger votre foyer commence maintenant.

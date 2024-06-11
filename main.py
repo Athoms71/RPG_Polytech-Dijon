@@ -1,6 +1,5 @@
 import entite as Ett
 import textbox as TB
-import combat as Cbt
 import operation_fichier as OF
 import os
 import pygame
@@ -8,6 +7,8 @@ from pygame.locals import *
 import pygame_widgets
 from pygame_widgets.button import Button
 import combat as C
+import marchand as M
+import equipement as E
 
 
 def dimensions_ecran():
@@ -295,11 +296,35 @@ def chapitre0():
 
 
 def chapitre1(hero: Ett.Joueur):
+    M.ouvertureDeLaBoutique(
+        hero, 1, [E.Equipement("Arc", 40, 0, 15, 5, "main_droite"),
+                  E.Equipement("Petite potion de soin", 0, 0, 5, 5, "soin")])
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
     ombreAssayante = Ett.Monstre(Ett.ombre_assayante_classe, Ett.ombre_race)
     C.bataille(hero, ombreAssayante)
-    return 2
+    TB.textbox_output("Après un combat acharné, vous parvenez à abattre l'une des créatures, mais vous réalisez que vous ne pouvez pas sauver ce qui reste du village. Vous devez fuir et trouver un endroit sûr.")
+    TB.textbox_output("Vous vous dirigez vers la forêt voisine, cherchant à échapper à l'horreur qui s'est abattue sur vous. En vous enfonçant dans les bois, vous découvrez un sentier à peine visible, marqué par des signes anciens. Vous sentez une étrange énergie émanant de ces symboles.")
+    done = False
+    while not done:
+        choix = TB.textbox_input(
+            "Choix : @- 1 : Suivre le sentier marqué@- 2 : Ignorer les symboles et avancer dans la forêt")
+        if choix in ["1", "2"]:
+            done = True
+    if choix == "1":
+        TB.textbox_output("1. Suivre le sentier marqué :@Vous décidez de suivre le sentier, intrigué par les signes. Après une marche prudente, vous tombez sur une petite clairière où repose un ancien autel. Sur l'autel, vous trouvez une dague en argent finement ouvragée, ornée de runes protectrices. Vous la prenez, sentant une légère chaleur émaner de l'arme, comme si elle vous acceptait comme son porteur légitime.")
+        M.obt_objet(E.Equipement("Dague en argent",
+                    35, 0, 30, 5, "main_droite"), hero)
+
+    if choix == "2":
+        TB.textbox_output("2. Ignorer les symboles et avancer dans la forêt :@ Vous choisissez de ne pas suivre le sentier et de continuer votre chemin dans la forêt. Plus loin, vous trouvez une cachette naturelle sous un arbre colossal. En fouillant, vous découvrez un vieux sac contenant un arc en bois sombre et un carquois rempli de flèches enchantées. Vous vous équipez de l'arc, sentant une connexion immédiate avec l'arme.")
+        M.obt_objet(E.Equipement("Arc", 40, 0, 15, 5, "main_droite"), hero)
+
+    TB.textbox_output("Vous continuez votre marche, les ténèbres de la forêt vous enveloppant. Chaque pas que vous faites vous éloigne un peu plus de votre passé et vous rapproche de la vérité sur cette éclipse mystérieuse et des créatures qui ont ravagé votre village. ")
+    TB.textbox_output(
+        "La quête pour découvrir la source de cette malédiction et venger votre foyer commence maintenant.")
+    M.ouvertureDeLaBoutique(hero, 1)
+    return 2, hero
 
 
 def chapitre2():
