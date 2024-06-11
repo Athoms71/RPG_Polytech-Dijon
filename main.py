@@ -21,7 +21,7 @@ def dimensions_ecran():
 def check_events():
     global ETAT
     global GAME_RUNNING
-    global SAVE_LIST
+    global DICT_VAR
     events = pygame.event.get()
     for event in events:
         dicKeys = pygame.key.get_pressed()
@@ -29,7 +29,7 @@ def check_events():
             fin_fenetre()
         if dicKeys[K_ESCAPE] and ETAT == "jeu":
             changement_affichage()
-            OF.save(SAVE_LIST)
+            OF.save(DICT_VAR)
             GAME_RUNNING = False
             pygame.mixer.music.load("./sounds/main_theme.mp3")
             pygame.mixer.music.play(-1)
