@@ -17,7 +17,6 @@ class Joueur ():
         self.pd = classe.pd + race.pd
         self.inventaire = []
         self.argent = 0
-        self.karma = 0.0
         self.main_gauche = None
         self.main_droite = None
         self.tete = None
@@ -90,9 +89,8 @@ class Monstre ():
         self.pd = classe.pd + race.pd
         self.inventaire = []
 
-# Joueur
 
-
+# Joueur & monstres normaux
 guerrier = Type("guerrier", 0, 20, 5)
 archer = Type("archer", 0, 30, 0)
 tank = Type("tank", 20, 2, 10)
@@ -101,11 +99,9 @@ humain = Type("humain", 100, 30, 20)
 elfe = Type("elfe", 75, 40, 20)
 orc = Type("orc", 200, 10, 40)
 
-# monstres
-
+# Monstres spéciaux (ou boss) -> fin de chapitre
 ombre_race = Type("ombre", 50, 20, 0)
 ombre_assayante_classe = Type("Ombre Assaillante", 30, 20, 10)
-
 
 liste_classe = [guerrier, archer, tank]
 liste_race = [humain, elfe, orc]
