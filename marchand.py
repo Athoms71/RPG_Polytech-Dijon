@@ -67,10 +67,7 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
                                     joueur.inventaire.pop(i)
                                     break
 
-
-
-
-            if (choixType == "1"): 
+            if (choixType == "1"):
                 liste_equip_a_afficher = ""
                 liste_equipements_vente = []  # liste des equipements que l'on peut vendre
                 for i in range(len(joueur.inventaire)):
@@ -106,9 +103,6 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
             elif choix not in ["1", "2"]:
                 TB.textbox_output(
                     "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse")
-
-
-            
 
         if choix == "2":
             if len(stockMarchand) == 0:

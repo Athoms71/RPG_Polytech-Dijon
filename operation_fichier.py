@@ -22,8 +22,6 @@ def save(dict_var: dict):
         elif type_dict_var == list:
             for elt in dict_var[key]:
                 file.write(str(elt)+",")
-        else:
-            print("Erreur")
         file.write("\n")
     file.close()
 

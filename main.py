@@ -12,6 +12,7 @@ import equipement as E
 
 
 def dimensions_ecran():
+    '''Récupère les dimensions de l'écran du joueur et les retourne dans un tuple (w,h)'''
     screen_info = pygame.display.Info()
     screen_width = screen_info.current_w
     screen_height = screen_info.current_h
@@ -19,6 +20,7 @@ def dimensions_ecran():
 
 
 def check_events():
+    '''Regarde les évènements dans la queue et réalise des actions en fonction des conditions (touches, état des variables...)'''
     global ETAT
     global GAME_RUNNING
     global DICT_VAR
@@ -38,6 +40,7 @@ def check_events():
 
 
 def fin_fenetre():
+    '''Ferme la fenêtre de jeu'''
     global RUNNING
     RUNNING = False
     pygame.quit()
@@ -46,6 +49,7 @@ def fin_fenetre():
 
 
 def changement_affichage():
+    '''Change d'affichage entre l'écran titre et le jeu'''
     global ETAT
     if ETAT == "ecran_titre":
         ETAT = "jeu"
@@ -54,12 +58,16 @@ def changement_affichage():
 
 
 def nouvelle_partie():
+    '''Crée une nouvelle partie en effaçant une potentielle sauvegarde déjà existante'''
+    global AVANCEMENT
     if os.path.exists("save.txt"):
         os.remove("save.txt")
+    AVANCEMENT = 0
     changement_affichage()
 
 
 def continuer_partie():
+    '''Charge la sauvegarde et met à jour les variables du jeu'''
     global DICT_VAR
     global AVANCEMENT
     global HEROS
@@ -102,6 +110,7 @@ def dict_var_update(dict_var: dict, heros: Ett.Joueur, avancement: int):
 
 
 def ecran_titre():
+    '''Affiche l'écran titre'''
     global ICON
     button_font = pygame.font.Font(
         "./font/VecnaBold-4YY4.ttf", 45)
@@ -176,6 +185,8 @@ def ecran_titre():
 
 
 def jeu():
+    '''Affiche le chapitre du jeu en fonction de l'avancement dans celui-ci et si le joueur continue ou recommence une partie'''
+    global ETAT
     global GAME_RUNNING
     global AVANCEMENT
     global DICT_VAR
@@ -186,11 +197,6 @@ def jeu():
             case 0:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
-                background = pygame.image.load(
-                    "img/chemin_fond.jpg").convert_alpha()
-                background = pygame.transform.scale(
-                    background, (window_width, window_height))
-                screen.blit(background, (0, 0))
                 AVANCEMENT, HEROS = chapitre0()
             case 1:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
@@ -277,8 +283,8 @@ def jeu():
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
                 AVANCEMENT = chapitre10()
-            case -1:
-                print("Fin du jeu")
+                changement_affichage()
+                GAME_RUNNING = False
             case _:
                 check_events()
         DICT_VAR = dict_var_update(DICT_VAR, HEROS, AVANCEMENT)
@@ -287,6 +293,8 @@ def jeu():
 
 
 def chapitre0():
+    '''Lance le chapitre d'introduction du jeu'''
+    screen.fill(BLACK)
     TB.textbox_output(
         "Bonjour, avant de comencer, nous vous proposons un petit didacticiel.@@Pour passer à la boite de texte suivante, appuyez sur n importe quelle touche.@@@@@appuyez pour continuer")
     TB.textbox_output(
@@ -332,7 +340,12 @@ def chapitre0():
 
 
 def chapitre1(heros: Ett.Joueur):
-
+    '''Lance le chapitre 1 du jeu'''
+    background = pygame.image.load(
+        "./img/burning_village.jpg").convert_alpha()
+    background = pygame.transform.scale(
+        background, (window_width, window_height))
+    screen.blit(background, (0, 0))
     M.obt_objet(E.Consommable("Petite potion de force",
                 5, 5, 0, 10, 10, "attaque"), heros)
     M.obt_objet(E.Consommable("Petite potion de force",
@@ -349,6 +362,11 @@ def chapitre1(heros: Ett.Joueur):
     M.obt_objet(E.Consommable(
         "Petite potion de soin", 0, 0, 10, 10, 10, "soin"), heros)
     TB.textbox_output("Après un combat acharné, vous parvenez à abattre l'une des créatures, mais vous réalisez que vous ne pouvez pas sauver ce qui reste du village. Vous devez fuir et trouver un endroit sûr.")
+    background = pygame.image.load(
+        "./img/chemin_pierre_runes.jpg").convert_alpha()
+    background = pygame.transform.scale(
+        background, (window_width, window_height))
+    screen.blit(background, (0, 0))
     TB.textbox_output("Vous vous dirigez vers la forêt voisine, cherchant à échapper à l'horreur qui s'est abattue sur vous. En vous enfonçant dans les bois, vous découvrez un sentier à peine visible, marqué par des signes anciens. Vous sentez une étrange énergie émanant de ces symboles.")
     done = False
     while not done:
@@ -374,49 +392,59 @@ def chapitre1(heros: Ett.Joueur):
 
 
 def chapitre2():
+    '''Lance le chapitre 2 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 2.")
     return 3
 
 
 def chapitre3():
+    '''Lance le chapitre 3 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 3.")
     return 4
 
 
 def chapitre4():
+    '''Lance le chapitre 4 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 4.")
     return 5
 
 
 def chapitre5():
+    '''Lance le chapitre 5 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 5.")
     return 6
 
 
 def chapitre6():
+    '''Lance le chapitre 6 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 6.")
     return 7
 
 
 def chapitre7():
+    '''Lance le chapitre 7 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 7.")
     return 8
 
 
 def chapitre8():
+    '''Lance le chapitre 8 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 8.")
     return 9
 
 
 def chapitre9():
+    '''Lance le chapitre 9 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 9.")
     return 10
 
 
 def chapitre10():
+    '''Lance le chapitre 10 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 10.")
-    TB.textbox_output("Appuyez sur Tab pour quitter le jeu")
-    return -1
+    TB.textbox_output("Merci d'avoir joué")
+    TB.textbox_output("Fin de la partie")
+    return 10
 
 
 pygame.init()

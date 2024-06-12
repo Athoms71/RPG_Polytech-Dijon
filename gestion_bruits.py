@@ -12,11 +12,13 @@ class playlist():
         self.bruits = liste_bruits  # Spécifier le chemin des bruits dans listes_bruits
 
     def play_sound(self):
+        '''Joue un bruit aléatoire d'une playlist donnée'''
         index_bruit = randint(0, len(self.bruits)-1)
         bruit = pygame.mixer.Sound(self.bruits[index_bruit])
         bruit.play()
 
     def play_sounds(self, loopback: int = 0):
+        '''Joue tous les bruits aléatoirement d'une playlist donnée'''
         while loopback >= 0:
             index_bruit = 0
             index_bruit_precedent = -1
@@ -32,7 +34,7 @@ class playlist():
             loopback -= 1
 
 
-# Création des différentes playlists en fonction des sons
+# Création des différentes playlists en fonction des bruits
 sons_epee = playlist([
     "./sounds/bruit_epee.mp3",
     "./sounds/bruit_epee_1.mp3",
