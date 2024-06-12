@@ -11,11 +11,12 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
     while not done:
         choix = TB.textbox_input(
             "Voulez vous vendre ou acheter des objets ?@@- 1 : Vendre@- 2 : Acheter@- 3 : Partir")
-        if (choix == "1"):
+        if (choix == "1"):  # Vendre
             choixType = (TB.textbox_input(
                 "Voulez vous vendre?@@- 1 : des consommables@- 2 : De l'équipement"))
             j = 0
-            if (choixType == "2"):
+            """
+            if (choixType == "2"): #on vend de l'équipement
                 liste_equip_a_afficher = ""
                 for i in range(len(joueur.inventaire)):
                     if joueur.inventaire[i].cat in ["main_droite", "main_gauche", "tete", "torse", "jambe", "pied"]:
@@ -26,24 +27,29 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
                 if len(liste_equip_a_afficher) == 0:
                     TB.textbox_output(
                         "Vous ne possez rien de valeur dans cette catégorie :)")
-                else:
-
+                elif len(liste_equip_a_afficher) > 0:
                     TB.textbox_output("Lequel souhaitez vous vendre ?")
                     choixVente = TB.textbox_input(
                         str(liste_equip_a_afficher))
                     if choixVente in ["1", "2", "3", "4", "5", "6",]:
                         choixVente = int(choixVente) - 1
-                        if choixVente <= len(joueur.inventaire):
+                        if choixVente < len(joueur.inventaire):
                             joueur.argent += joueur.inventaire[choixVente].prix
                             joueur.inventaire.pop(choixVente)
-            if (choixType == "1"):
+                    else:
+                        TB.textbox_output(
+                            "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse")
+            """
+            if (choixType == "2"):  # on vend de l'équipement
                 liste_equip_a_afficher = ""
+                liste_equipements_vente = []  # liste des equipements que l'on peut vendre
                 for i in range(len(joueur.inventaire)):
-                    if joueur.inventaire[i].cat in ["soin", "attaque", "defense"]:
+                    if joueur.inventaire[i].cat in ["main_droite", "main_gauche", "tete", "torse", "jambe", "pied"]:
                         j += 1
                         liste_equip_a_afficher += (str(j) + " - "+str(joueur.inventaire[i].cat) +
                                                    " : "+str(joueur.inventaire[i].nom) +
                                                    " : "+str(joueur.inventaire[i].prix*honnetete) + " PO@")
+                        liste_equipements_vente.append(joueur.inventaire[i])
                 if (len(liste_equip_a_afficher)) == 0:
                     TB.textbox_output(
                         "Vous ne possez rien de valeur dans cette catégorie :)")
@@ -51,10 +57,58 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
                     TB.textbox_output("Lequel souhaitez vous vendre ?")
                     choixVente = TB.textbox_input(str(liste_equip_a_afficher))
                     if choixVente in ["1", "2", "3", "4", "5", "6",]:
+                        # normalisation du choi aux bons indices
                         choixVente = int(choixVente) - 1
-                        if choixVente <= len(joueur.inventaire):
-                            joueur.argent += joueur.inventaire[choixVente].prix
-                            joueur.inventaire.pop(choixVente)
+                        # on verifie que l'on ne vend pas un consommable d indice trop grand
+                        if choixVente < len(liste_equipements_vente):
+                            for i in range(len(joueur.inventaire)):
+                                if joueur.inventaire[i].nom == liste_equipements_vente[choixVente]:
+                                    joueur.argent += joueur.inventaire[i].prix
+                                    joueur.inventaire.pop(i)
+                                    break
+
+
+
+
+            if (choixType == "1"): 
+                liste_equip_a_afficher = ""
+                liste_equipements_vente = []  # liste des equipements que l'on peut vendre
+                for i in range(len(joueur.inventaire)):
+                    if joueur.inventaire[i].cat in ["soin", "attaque", "defense"]:
+                        j += 1
+                        liste_equip_a_afficher += (str(j) + " - "+str(joueur.inventaire[i].cat) +
+                                                   " : "+str(joueur.inventaire[i].nom) +
+                                                   " : "+str(joueur.inventaire[i].prix*honnetete) + " PO@")
+                        liste_equipements_vente.append(joueur.inventaire[i])
+                if (len(liste_equip_a_afficher)) == 0:
+                    TB.textbox_output(
+                        "Vous ne possez rien de valeur dans cette catégorie :)")
+                else:
+                    TB.textbox_output("Lequel souhaitez vous vendre ?")
+                    choixVente = TB.textbox_input(str(liste_equip_a_afficher))
+                    if choixVente in ["1", "2", "3", "4", "5", "6",]:
+                        # normalisation du choi aux bons indices
+                        choixVente = int(choixVente) - 1
+                        # on verifie que l'on ne vend pas un consommable d indice trop grand
+                        if choixVente < len(liste_equipements_vente):
+                            for i in range(len(joueur.inventaire)):
+                                if joueur.inventaire[i].nom == liste_equipements_vente[choixVente]:
+                                    joueur.argent += joueur.inventaire[i].prix
+                                    joueur.inventaire.pop(i)
+                                    break
+                        else:
+                            TB.textbox_output(
+                                "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse")
+
+                    else:
+                        TB.textbox_output(
+                            "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse")
+            elif choix not in ["1", "2"]:
+                TB.textbox_output(
+                    "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse")
+
+
+            
 
         if choix == "2":
             if len(stockMarchand) == 0:
@@ -86,9 +140,13 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
                     TB.textbox_output(
                         "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse")
 
-        elif choix == "3":
+        elif choix == "3":  # partir
             TB.textbox_output("Vous quittez le marchand.")
             done = True
+
+        else:
+            TB.textbox_output(
+                "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse")
 
 
 def venteObligatoireEquipement(joueur: Ett.Joueur, equipement1: E.Equipement, equipement2: E.Equipement):
