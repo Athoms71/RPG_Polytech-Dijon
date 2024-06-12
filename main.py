@@ -69,8 +69,8 @@ def continuer_partie():
         HEROS.classe = DICT_VAR["classe_joueur"]
         HEROS.race = DICT_VAR["race_joueur"]
         HEROS.inventaire = DICT_VAR["inventaire_joueur"]
-        HEROS.pv = DICT_VAR["pv_joueur"]
-        HEROS.argent = DICT_VAR["argent_joueur"]
+        HEROS.pv = int(DICT_VAR["pv_joueur"])
+        HEROS.argent = int(DICT_VAR["argent_joueur"])
         HEROS.main_gauche = DICT_VAR["main_gauche_joueur"]
         HEROS.main_droite = DICT_VAR["main_droite_joueur"]
         HEROS.tete = DICT_VAR["tete_joueur"]
@@ -78,7 +78,7 @@ def continuer_partie():
         HEROS.gants = DICT_VAR["gants_joueur"]
         HEROS.jambes = DICT_VAR["jambes_joueur"]
         HEROS.pieds = DICT_VAR["pieds_joueur"]
-        AVANCEMENT = DICT_VAR["avancement"]
+        AVANCEMENT = int(DICT_VAR["avancement"])
         changement_affichage()
 
 
@@ -287,7 +287,6 @@ def jeu():
 
 
 def chapitre0():
-    global HEROS
     TB.textbox_output(
         "Bonjour, avant de comencer, nous vous proposons un petit didacticiel.@@Pour passer à la boite de texte suivante, appuyez sur n importe quelle touche.@@@@@appuyez pour continuer")
     TB.textbox_output(
@@ -324,12 +323,12 @@ def chapitre0():
             done = True
             classe = int(choix_classe)
 
-    # on crée un HEROS avec le X eme element de la liste des races/classes
-    HEROS = Ett.Joueur(nom, Ett.liste_classe[int(
+    # on crée un heros avec le X eme element de la liste des races/classes
+    heros = Ett.Joueur(nom, Ett.liste_classe[int(
         classe)-1], Ett.liste_race[int(race)-1])
-    TB.textbox_output("Vous etes : "+HEROS.nom+", de la race des "+HEROS.race+", vous etes un futur " +
-                      HEROS.classe+" dont on racontera l'hisoire pendant des générations !")
-    return (1, HEROS)
+    TB.textbox_output("Vous etes : "+heros.nom+", de la race des "+heros.race+", vous etes un futur " +
+                      heros.classe+" dont on racontera l'hisoire pendant des générations !")
+    return (1, heros)
 
 
 def chapitre1(heros: Ett.Joueur):
@@ -445,7 +444,7 @@ DICT_VAR = {            # Dictionnaire de sauvegarde
 ETAT = "ecran_titre"    # Variable de sélection de menus : ecran_titre / jeu
 GAME_RUNNING = False    # Variable qui indique si le jeu tourne ou non
 AVANCEMENT = 0
-HEROSS = Ett.Joueur("", Ett.guerrier, Ett.humain)
+HEROS = Ett.Joueur("", Ett.guerrier, Ett.humain)
 
 while RUNNING:
     if ETAT == "ecran_titre":

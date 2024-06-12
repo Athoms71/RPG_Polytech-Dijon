@@ -37,7 +37,7 @@ def load():
         for i in range(0, len(f), 2):
             key = f[i][:-1]
             values = f[i+1][:-1].split(',')
-            if len(values) > 1:
+            if key == "inventaire_joueur":
                 dict_var[key] = []
                 for elt in values[:-1]:
                     dict_var[key].append(elt)
