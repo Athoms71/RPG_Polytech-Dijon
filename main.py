@@ -335,8 +335,8 @@ def chapitre1(heros: Ett.Joueur):
 
     M.obt_objet(E.Consommable("Petite potion de force",
                 5, 5, 0, 10, 10, "attaque"), heros)
-    M.obt_objet(E.Consommable("Petite potion de force",
-                5, 5, 0, 10, 10, "attaque"), heros)
+    M.obt_objet(E.Equipement("Heaume",
+                0, 5, 10, 10, "tete"), heros)
     M.ouvertureDeLaBoutique(
         heros, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, 10, "attaque"))])
 
