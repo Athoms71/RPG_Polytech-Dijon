@@ -72,12 +72,6 @@ class Joueur ():
         if liste_chgt[i_chgt-1] != None:
             self.inventaire.append(liste_chgt[i_chgt-1])
 
-    def __repr__(self):
-        print(self.nom + ", vous êtes un " + self.classe +
-              " de la race des " + self.race + "s.")
-        print("Voici vos attributs :\n\t- PV : " + str(self.pv) +
-              "\n\t- PC : " + str(self.pc) + "\n\t- PD : " + str(self.pd))
-
 
 class Monstre ():
     def __init__(self, classe: Type, race: Type):
