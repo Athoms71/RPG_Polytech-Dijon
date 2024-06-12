@@ -331,23 +331,23 @@ def chapitre0():
     return (1, heros)
 
 
-def chapitre1(hero: Ett.Joueur):
+def chapitre1(heros: Ett.Joueur):
 
     M.obt_objet(E.Consommable("Petite potion de force",
-                5, 5, 0, 10, 10, "attaque"), hero)
+                5, 5, 0, 10, 10, "attaque"), heros)
     M.obt_objet(E.Consommable("Petite potion de force",
-                5, 5, 0, 10, 10, "attaque"), hero)
+                5, 5, 0, 10, 10, "attaque"), heros)
     M.ouvertureDeLaBoutique(
-        hero, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, 10, "attaque"))])
+        heros, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, 10, "attaque"))])
 
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
     ombreAssayante = Ett.Monstre(Ett.ombre_assayante_classe, Ett.ombre_race)
-    C.bataille(hero, ombreAssayante)
+    C.bataille(heros, ombreAssayante)
     M.obt_objet(E.Consommable(
-        "Petite potion de soin", 0, 0, 10, 10, 10,  "soin"), hero)
+        "Petite potion de soin", 0, 0, 10, 10, 10,  "soin"), heros)
     M.obt_objet(E.Consommable(
-        "Petite potion de soin", 0, 0, 10, 10, 10, "soin"), hero)
+        "Petite potion de soin", 0, 0, 10, 10, 10, "soin"), heros)
     TB.textbox_output("Après un combat acharné, vous parvenez à abattre l'une des créatures, mais vous réalisez que vous ne pouvez pas sauver ce qui reste du village. Vous devez fuir et trouver un endroit sûr.")
     TB.textbox_output("Vous vous dirigez vers la forêt voisine, cherchant à échapper à l'horreur qui s'est abattue sur vous. En vous enfonçant dans les bois, vous découvrez un sentier à peine visible, marqué par des signes anciens. Vous sentez une étrange énergie émanant de ces symboles.")
     done = False
@@ -369,8 +369,8 @@ def chapitre1(hero: Ett.Joueur):
     TB.textbox_output(
         "La quête pour découvrir la source de cette malédiction et venger votre foyer commence maintenant.")
     M.ouvertureDeLaBoutique(
-        hero, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, 10, "attaque"))])
-    return 2, hero
+        heros, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, 10, "attaque"))])
+    return 2, heros
 
 
 def chapitre2():
