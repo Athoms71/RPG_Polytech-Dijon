@@ -114,12 +114,21 @@ def ecran_titre():
     global ICON
     button_font = pygame.font.Font(
         "./font/VecnaBold-4YY4.ttf", 45)
+    title_font_size = 150
     title_font = pygame.font.Font(
-        "./font/VecnaBold-4YY4.ttf", 105)
+        "./font/VecnaBold-4YY4.ttf", title_font_size)
     title_text = title_font.render(
         "Les Royaumes de l'Éclipse", True, WHITE)
-    title_rect = title_text.get_rect(
-        center=(window_width//2+button_w//3, window_height//4))
+    title_rect = title_text.get_rect()
+    title_max_rect = pygame.Rect(
+        150+window_height//5, 100, window_width-(window_width//5+100), window_height//5)
+    while title_rect.w > title_max_rect.w or title_rect.h > title_max_rect.h:
+        title_font_size -= 5
+        title_font = pygame.font.Font(
+            "./font/VecnaBold-4YY4.ttf", title_font_size)
+        title_text = title_font.render(
+            "Les Royaumes de l'Éclipse", True, WHITE)
+        title_rect = title_text.get_rect()
     button_new = Button(
         screen,
         window_width//2-button_w//2,
@@ -179,8 +188,8 @@ def ecran_titre():
     ICON = pygame.transform.scale(
         ICON, (window_height//5, window_height//5))
     screen.blit(background, (0, 0))
-    screen.blit(title_text, title_rect)
-    screen.blit(ICON, (button_w//3, window_height//5-button_h//2))
+    screen.blit(title_text, (150+window_height//5, window_height//5-50))
+    screen.blit(ICON, (100, 100))
     check_events()
 
 
