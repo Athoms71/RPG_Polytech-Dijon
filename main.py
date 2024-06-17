@@ -896,7 +896,6 @@ def chapitre9():
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
 
-<<<<<<< HEAD
     TB.textbox_output("")
     TB.textbox_output("")
     TB.textbox_output("")
@@ -917,14 +916,12 @@ def chapitre9():
         "Quel que soit votre choix, vous vous lancez dans une série de batailles épiques contre les forces maléfiques, repoussant chaque assaut avec force et courage.")
     TB.textbox_output("Finalement, après de nombreuses batailles et de nombreux défis surmontés, vous parvenez à vaincre les forces maléfiques et à ramener la paix durable dans votre royaume. Les habitants vous honorent une fois de plus comme des héros, reconnaissant votre dévouement et votre bravoure.")
     TB.textbox_output("Avec votre quête accomplie et votre royaume en sécurité, vous vous retirez pour profiter enfin de la paix que vous avez si durement gagnée. Mais vous savez que, si jamais une nouvelle menace surgit, vous serez prêt à défendre votre royaume avec la même détermination et la même force.")
-=======
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
                Ett.gardiens_race), "img/spectres gardiens.png")
     pygame.mixer.music.load("./sounds/ch9_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
->>>>>>> 6f34e2afcf5c5ed7bb663958acb7c40319b29c78
 
     return 10, HEROS
 
@@ -943,15 +940,12 @@ def chapitre10():
                          window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous venez de passer au chapitre 10.")
 
-<<<<<<< HEAD
-=======
     tps_musique = pygame.mixer.music.get_pos()
     # C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe, Ett.gardiens_race), "img/spectres gardiens.png")
     pygame.mixer.music.load("./sounds/ch10_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
 
->>>>>>> 6f34e2afcf5c5ed7bb663958acb7c40319b29c78
     TB.textbox_output("Merci d'avoir joué")
     TB.textbox_output("Fin de la partie")
     return 10, HEROS
