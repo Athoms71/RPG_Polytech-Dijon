@@ -88,18 +88,24 @@ class Monstre ():
         self.inventaire = []
 
 
-# Joueur & monstres normaux
+# Joueur & monstres normaux : somme = 70
 guerrier = Type("guerrier", 50, 10, 10)
 archer = Type("archer", 50, 10, 5)
-tank = Type("tank", 60, 5, 15)
-
+tank = Type("tank", 55, 5, 15)
+# somme = 70
 humain = Type("humain", 50, 10, 10)
-elfe = Type("elfe", 60, 5, 15)
-orc = Type("orc", 70, 15, 5)
+elfe = Type("elfe", 50, 10, 5)
+orc = Type("orc", 55, 5, 15)
 
 # Monstres spéciaux (ou boss) -> fin de chapitre
-ombre_race = Type("ombre", 50, 20, 0)
+# ombre: somme = 60 + 60
+ombre_race = Type("ombre", 40, 20, 0)
 ombre_assaillante_classe = Type("Ombre Assaillante", 30, 20, 10)
+
+
+# garde squelette : somme = 70
+squelette_race = Type("squelette", 50, 20, 0)
+Garde_squelette_classe = Type("Garde Squelette", 20, 10, 10)
 
 liste_classe = [guerrier, archer, tank]
 liste_race = [humain, elfe, orc]
