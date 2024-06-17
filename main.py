@@ -367,7 +367,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre2()
+                AVANCEMENT, HEROS = chapitre2(HEROS)
             case 3:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
                 pygame.mixer.music.play(-1)
@@ -375,7 +375,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre3()
+                AVANCEMENT, HEROS = chapitre3(HEROS)
             case 4:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
@@ -384,7 +384,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre4()
+                AVANCEMENT, HEROS = chapitre4(HEROS)
             case 5:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
                 pygame.mixer.music.play(-1)
@@ -392,7 +392,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre5()
+                AVANCEMENT, HEROS = chapitre5(HEROS)
             case 6:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
@@ -401,7 +401,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre6()
+                AVANCEMENT, HEROS = chapitre6(HEROS)
             case 7:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
                 pygame.mixer.music.play(-1)
@@ -409,7 +409,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre7()
+                AVANCEMENT, HEROS = chapitre7(HEROS)
             case 8:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
@@ -418,7 +418,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre8()
+                AVANCEMENT, HEROS = chapitre8(HEROS)
             case 9:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
                 pygame.mixer.music.play(-1)
@@ -426,7 +426,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre9()
+                AVANCEMENT, HEROS = chapitre9(HEROS)
             case 10:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
@@ -435,7 +435,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre10()
+                AVANCEMENT, HEROS = chapitre10(HEROS)
                 changement_affichage()
                 GAME_RUNNING = False
             case _:

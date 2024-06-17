@@ -1,15 +1,17 @@
 nom_joueur
-tfgdv
+w<qsdefxgchvjbklnmù:
 classe_joueur
 guerrier
 race_joueur
-humain
+orc
 inventaire_joueur
-
+Arc/30/0/15/main_droite/,
 pv_joueur
-100
+25
 argent_joueur
 0
+sprite_joueur
+
 main_gauche_joueur
 épée/5/0/5/arme/
 main_droite_joueur
@@ -25,4 +27,4 @@ jambes_joueur
 pieds_joueur
 
 avancement
-1
+2
