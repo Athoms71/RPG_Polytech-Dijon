@@ -31,6 +31,9 @@ def bataille(screen: pygame.Surface, personnage: Ett.Joueur, ennemi: Ett.Monstre
     TB.textbox_output("La bataille est terminée !")
     if personnage.pv <= 0:
         TB.textbox_output("Vous avez perdu...")
+        TB.textbox_output(
+            "Tous les espoirs du royaume s'évanouissent avec votre mort...")
+        pygame.quit
     else:
         TB.textbox_output("Vous avez gagné !")
 
@@ -90,8 +93,23 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
                 # on utilise l'élément choisi, puis on le retire
                 objChoisi.utilisation(personnage)
                 personnage.inventaire.pop(i)
+
+                bonusArmes = 0
+                bonusDef = 0
+
+                if (len(personnage.inventaire) != 0):
+                    for i in range(len(personnage.inventaire)):
+                        if type(personnage.inventaire[i]) == E.Equipement:
+                            bonusArmes += personnage.inventaire[i].atk
+                # on calcul les bonus de def lié aux defences
+
+                if (len(ennemi.inventaire) != 0):
+                    for i in range(len(ennemi.inventaire)):
+                        if type(ennemi.inventaire[i]) == E.Equipement:
+                            bonusDef += ennemi.inventaire[i].dfc
+
                 TB.textbox_output(
-                    "vous avez utilisé '"+str(nomObjChoisi)+"'@Vos nouvelles statisitiques sont :@- PV : "+str(personnage.pv)+"/"+str(personnage.pv_max)+"@- Dégâts par coup : "+(str(personnage.pc-ennemi.pd))+"@- Résistance : "+str(personnage.pd))
+                    "vous avez utilisé '"+str(nomObjChoisi)+"'@Vos nouvelles statisitiques sont :@- PV : "+str(personnage.pv)+"/"+str(personnage.pv_max)+"@- Dégâts par coup : "+(str(max(0, personnage.pc-ennemi.pd+bonusArmes)))+"@- Résistance : "+str(personnage.pd+bonusDef))
 
         else:
             TB.textbox_output(
