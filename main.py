@@ -896,10 +896,12 @@ def chapitre9():
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
 
-    TB.textbox_output("")
-    TB.textbox_output("")
-    TB.textbox_output("")
-    TB.textbox_output("")
+    TB.textbox_output("Avec la défaite du Seigneur des Ombres et la fin de l'éclipse, la paix commence à revenir sur votre royaume. Les habitants, libérés de l'ombre qui pesait sur eux, célèbrent votre victoire et vous honorent comme des héros. Cependant, vous savez que votre quête n'est pas encore terminée.")
+    TB.textbox_output("Alors que vous vous reposez après votre victoire, une nouvelle menace se profile à l'horizon. Des rumeurs circulent selon lesquelles des forces maléfiques, ayant survécu à la chute du Seigneur des Ombres, se rassemblent dans les recoins les plus sombres du royaume, prêtes à lancer une nouvelle attaque.")
+    TB.textbox_output(
+        "Vous décidez de reprendre votre équipement et de vous préparer à affronter cette nouvelle menace, déterminé à protéger votre royaume une fois de plus.")
+    TB.textbox_output(
+        "Alors que vous parcourez le royaume à la recherche des forces ennemies, vous rencontrez un groupe de guerriers déterminés à vous aider dans votre quête.")
 
     done = False
     while not done:
@@ -938,13 +940,12 @@ def chapitre10():
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
-    TB.textbox_output("Vous venez de passer au chapitre 10.")
-
-    tps_musique = pygame.mixer.music.get_pos()
-    # C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe, Ett.gardiens_race), "img/spectres gardiens.png")
-    pygame.mixer.music.load("./sounds/ch10_music.mp3")
-    pygame.mixer.music.play(-1)
-    pygame.mixer.music.set_pos(tps_musique)
+    TB.textbox_output("Des années ont passé depuis la fin de la grande éclipse qui a menacé votre royaume. La paix règne désormais en maître, les habitants vaquent à leurs occupations avec sérénité, et les histoires des héros qui ont sauvé le royaume sont maintenant légendaires.")
+    TB.textbox_output("Vous, le héros de cette histoire, avez trouvé votre place dans ce nouveau monde de paix. Certains jours, vous voyagez à travers le royaume, rencontrant des gens reconnaissants qui vous remercient pour votre courage et votre dévouement. D'autres jours, vous vous reposez dans votre demeure, profitant des doux moments de calme et de tranquillité.")
+    TB.textbox_output("Mais même dans cette ère de paix, il y a toujours des défis à relever. De temps en temps, une nouvelle menace émerge, un bandit à traquer, une bête à chasser, ou un mystère à résoudre. À chaque fois, vous vous levez pour affronter ces défis avec la même détermination et le même courage qui vous ont permis de vaincre l'éclipse.")
+    TB.textbox_output("Vous vous souvenez des compagnons qui ont partagé votre quête, des amis que vous avez rencontrés en chemin, et des ennemis que vous avez affrontés. Leurs visages et leurs histoires restent gravés dans votre mémoire, rappelant les épreuves que vous avez traversées et les victoires que vous avez remportées ensemble.")
+    TB.textbox_output("Alors que vous regardez le ciel étoilé, vous vous souvenez de l'éclipse qui a assombri votre royaume, mais aussi de la lumière qui a brillé dans les ténèbres, celle de l'espoir, de la bravoure et de la détermination. Et vous savez que, quoi qu'il arrive, cette lumière brillera toujours, guidant votre chemin et illuminant votre destinée.")
+    TB.textbox_output("Votre aventure dans le royaume de l'éclipse se termine ici, mais votre histoire ne fait que commencer. Car tant qu'il y aura des héros prêts à se battre pour ce en quoi ils croient, le royaume continuera à prospérer, baigné dans la lumière de l'espoir et de la paix.")
 
     TB.textbox_output("Merci d'avoir joué")
     TB.textbox_output("Fin de la partie")
