@@ -16,7 +16,7 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
             "Voulez vous vendre ou acheter des objets ?@@- 1 : Vendre@- 2 : Acheter@- 3 : Partir")
         if (choix == "1"):  # Vendre
             choixType = (TB.textbox_input(
-                "Voulez vous vendre?@@- 1 : des consommables@- 2 : De l'équipement"))
+                "Voulez vous vendre?@@- 1 : Des consommables@- 2 : De l'équipement"))
             j = 0
 
             if (choixType == "1"):  # on vend des consommables
@@ -51,7 +51,7 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
                 liste_equip_a_afficher = ""
                 liste_equipements_vente = []  # liste des equipements que l'on peut vendre
                 for i in range(len(joueur.inventaire)):
-                    if joueur.inventaire[i].cat in ["main_droite", "main_gauche", "tete", "torse", "jambe", "pied"]:
+                    if joueur.inventaire[i].cat in ["main_droite", "main_gauche", "tete", "torse", "jambes", "pieds"]:
                         j += 1
                         liste_equip_a_afficher += (str(j) + " - "+str(joueur.inventaire[i].cat) +
                                                    " : "+str(joueur.inventaire[i].nom) +

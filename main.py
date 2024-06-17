@@ -502,7 +502,7 @@ def chapitre1():
                     25, 0, 30, "main_droite"), HEROS)
 
     if choix == "2":
-        TB.textbox_output("2. Ignorer les symboles et avancer dans la forêt :@ Vous choisissez de ne pas suivre le sentier et de continuer votre chemin dans la forêt. Plus loin, vous trouvez une cachette naturelle sous un arbre colossal. En fouillant, vous découvrez un vieux sac contenant un arc en bois sombre et un carquois rempli de flèches enchantées. Vous vous équipez de l'arc, sentant une connexion immédiate avec l'arme.")
+        TB.textbox_output("2. Ignorer les symboles et avancer dans la forêt :@Vous choisissez de ne pas suivre le sentier et de continuer votre chemin dans la forêt. Plus loin, vous trouvez une cachette naturelle sous un arbre colossal. En fouillant, vous découvrez un vieux sac contenant un arc en bois sombre et un carquois rempli de flèches enchantées. Vous vous équipez de l'arc, sentant une connexion immédiate avec l'arme.")
         M.obt_objet(E.Equipement("Arc", 30, 0, 15, "main_droite"), HEROS)
 
     TB.textbox_output("Vous continuez votre marche, les ténèbres de la forêt vous enveloppant. Chaque pas que vous faites vous éloigne un peu plus de votre passé et vous rapproche de la vérité sur cette éclipse mystérieuse et des créatures qui ont ravagé votre village. ")
@@ -544,8 +544,8 @@ def chapitre2():
         if choix == "1":
             TB.textbox_output("1. Résoudre l'énigme du mécanisme :@Vous examinez le mécanisme et remarquez des symboles similaires à ceux vus dans la forêt. En manipulant soigneusement les pièces mobiles, vous parvenez à déverrouiller la porte. À l'intérieur, vous trouvez une amulette ancienne, gravée de runes protectrices. En la mettant autour de votre cou, vous ressentez un pouvoir de protection et de clairvoyance.")
 
-        M.obt_objet(E.Equipement("Amulette de clairevoyance",
-                    0, 8, 10, "tete"), HEROS)
+            M.obt_objet(E.Equipement("Amulette de clairevoyance",
+                                     0, 8, 10, "tete"), HEROS)
         if choix == "2":
             TB.textbox_output("2. Forcer l'entrée :@Impatient, vous décidez de forcer l'entrée en utilisant votre force et vos armes. Après plusieurs essais, la porte finit par céder. À l'intérieur, vous trouvez une épée en cristal, légèrement fissurée mais encore imprégnée d'une énergie redoutable. L'épée vibre légèrement entre vos mains, comme si elle reconnaissait votre détermination.")
             M.obt_objet(E.Equipement("épé de cristal",
@@ -568,7 +568,7 @@ def chapitre3():
 
     while not done:
         choix = TB.textbox_input(
-            "Choix: @ - 1 : Tenter de déchiffrer les runes@- 2 : Ignorer les runes et explorer la clairière")
+            "Choix: @- 1 : Tenter de déchiffrer les runes@- 2 : Ignorer les runes et explorer la clairière")
         if choix in ["1", "2"]:
             done = True
         if choix == "1":
@@ -576,8 +576,6 @@ def chapitre3():
             M.obt_objet(E.Equipement("Baguette de sorcier ancienne",
                                      45, 0, 10, "main_droite"), HEROS)
 
-        M.obt_objet(E.Equipement("Amulette de clairevoyance",
-                    0, 8, 10, "tete"), HEROS)
         if choix == "2":
             TB.textbox_output("2. Ignorer les runes et explorer la clairière :@Vous choisissez de ne pas perdre de temps avec les runes et d'explorer la clairière à la place. En fouillant les environs, vous découvrez un petit coffret enterré sous les racines de l'arbre. À l'intérieur, vous trouvez une amulette en jade, gravée de symboles de protection. Vous mettez l'amulette autour de votre cou, sentant une aura protectrice vous envelopper.")
             M.obt_objet(E.Equipement("Amulette de jade",
@@ -609,7 +607,7 @@ def chapitre4():
     done = False
     while not done:
         choix = TB.textbox_input(
-            "Choix: @ - 1 : Utiliser un cristal lunaire sur l'autel@- 2 : Réciter une incantation des runes découvertes")
+            "Choix: @- 1 : Utiliser un cristal lunaire sur l'autel@- 2 : Réciter une incantation des runes découvertes")
         if choix in ["1", "2"]:
             done = True
         if choix == "1":
@@ -621,11 +619,11 @@ def chapitre4():
             M.obt_objet(E.Equipement("L'Anneau de la Lune",
                                      15, 15, 10, "main_gauche"), HEROS)
 
-    TB.textbox_output("Avec le bouclier ou la bague, vous sentez que vous avez maintenant le pouvoir de libérer la cité de sa malédiction. Vous retournez voir Alaric et ensemble, vous organisez un rituel pour invoquer l'énergie de la lune et dissiper la malédiction.")
+    TB.textbox_output("Avec cet artéfact légendaire, vous sentez que vous avez maintenant le pouvoir de libérer la cité de sa malédiction. Vous retournez voir Alaric et ensemble, vous organisez un rituel pour invoquer l'énergie de la lune et dissiper la malédiction.")
 
     TB.textbox_output("Le rituel est un succès, et pour la première fois depuis des décennies, le soleil se lève sur la cité. Les habitants vous remercient chaleureusement, offrant leur aide pour votre quête future. Vous quittez la cité sous la lune, maintenant libérée, avec un sentiment renouvelé de force et d'espoir.")
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Equipement("épé longue", 55, 0, 0, 55, "main_droite"))])
+        HEROS, 1, [(E.Equipement("épé longue", 55, 0, 55, "main_droite"))])
     fontaine(HEROS)
     return 5, HEROS
 
