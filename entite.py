@@ -115,7 +115,7 @@ golem_foret_classe = Type("Le Gardien de la Fôret", 50, 0, 10)
 gardiens_race = Type("Gardiens", 100, 20, 0)
 gardiens_nocturnes_classe = Type("Gardiens Nocturnes", 10, 30, 10)
 
-# Gardien Nocturne : somme : 120 + 50
+# spectreGardien  : somme : 150 + 50
 spectres_gardiens_classe = Type("spectres Gardiens", 110, 20, 20)
 
 
