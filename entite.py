@@ -129,5 +129,13 @@ spectres_labyrinthe = Type("Spectre du labyrinthe", 20, 50, 30)
 
 spectres_profondeurs = Type("Spectre des profondeurs", 50, 50, 30)
 
+# Gardien ombre
+
+Gardiens_ombres_classe = Type("Gardiens Nocturnes", 170, 50, 30)
+
+# boss finam
+boss_final_classe = Type("Seigneur des Ombres", 150, 40, 20)
+boss_final_race = Type("Seigneur des Ombres race", 150, 30, 20)
+
 liste_classe = [guerrier, archer, tank]
 liste_race = [humain, elfe, orc]

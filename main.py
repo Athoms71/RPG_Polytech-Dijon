@@ -851,7 +851,6 @@ def chapitre7():
     TB.textbox_output("Avec l'artefact en votre possession, vous retournez sur votre navire, prêt à continuer votre voyage à travers la mer des âmes. Vous avez maintenant les moyens de naviguer en sécurité à travers ces eaux hantées, mais vous savez que de nouveaux défis vous attendent avant d'atteindre votre destination finale.")
 
     M.ouvertureDeLaBoutique(HEROS, 1, [])
-    fontaine(HEROS)
     return 8, HEROS
 
 
@@ -868,14 +867,41 @@ def chapitre8():
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
-    TB.textbox_output("Vous venez de passer au chapitre 8.")
+
+    TB.textbox_output("Votre voyage à travers la mer des âmes vous conduit finalement aux abords d'un château lugubre, perché sur une falaise escarpée. Ce château est connu sous le nom de Château des Ombres, le repaire supposé de la source de l'éclipse et de son instigateur, un être de ténèbres ancestrales.")
+    TB.textbox_output("Alors que vous approchez du château, vous sentez une aura maléfique vous envelopper, vous mettant au défi avant même d'avoir franchi les portes. Vous savez que le combat qui vous attend sera le plus difficile de votre quête jusqu'à présent, mais vous êtes déterminé à mettre fin à l'éclipse et à sauver votre royaume.")
+    TB.textbox_output(
+        "Vous entrez dans le château et êtes immédiatement assailli par des hordes de créatures des ténèbres, invoquées pour défendre leur maître.")
 
     tps_musique = pygame.mixer.music.get_pos()
-    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
-               Ett.gardiens_race), "img/spectres gardiens.png")
+    C.bataille(screen, HEROS, Ett.Monstre(Ett.Gardiens_ombres_classe,
+               Ett.gardiens_race), "img/garde des ombres.png")
     pygame.mixer.music.load("./sounds/never_again.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
+
+    TB.textbox_output("Après avoir triomphé des gardes, vous vous frayez un chemin à travers les couloirs sombres et tortueux du château, suivant les traces de l'énergie maléfique jusqu'à ce que vous arriviez devant une grande porte verrouillée. Vous savez que derrière cette porte se trouve votre destinée, mais vous devez d'abord la déverrouiller.")
+
+    done = False
+    while not done:
+        choix = TB.textbox_input(
+            "Choix: @- 1 : Forcer la porte@- 2 : Chercher une clé")
+        if choix in ["1", "2"]:
+            done = True
+        if choix == "1":
+            TB.textbox_output("1. Forcer la porte :@Vous décidez de forcer la porte avec toute votre force, déterminé à affronter ce qui se cache derrière. Après plusieurs essais, la porte cède finalement, révélant une chambre sombre où flotte une aura sinistre. Vous avancez, prêt à affronter votre adversaire.")
+        if choix == "2":
+            TB.textbox_output("2. Chercher une clé :@Vous choisissez de chercher une clé pour ouvrir la porte, espérant qu'elle révélera un chemin plus sûr. En fouillant les pièces adjacentes, vous trouvez une clé cachée dans une vieille armoire. Avec la clé en main, vous ouvrez la porte et pénétrez dans la chambre, prêt à affronter ce qui vous attend.")
+
+    TB.textbox_output("Vous vous retrouvez face à face avec l'instigateur de l'éclipse, un être de ténèbres ancestrales connu sous le nom de Seigneur des Ombres. Son regard est empli de malice et de pouvoir, mais vous savez que vous devez le vaincre pour mettre fin à l'éclipse et sauver votre royaume.")
+    fontaine(HEROS)
+    tps_musique = pygame.mixer.music.get_pos()
+    C.bataille(screen, HEROS, Ett.Monstre(Ett.boss_final_classe,
+               Ett.boss_final_race), "./img/seigneur_ombres.png")
+    pygame.mixer.music.stop()  # c est normal qu il n y ai plus de musique
+
+    TB.textbox_output("Après un combat épique et épuisant, vous parvenez finalement à vaincre le Seigneur des Ombres, mettant ainsi un terme à son règne de terreur. L'éclipse commence à se dissiper lentement, laissant place à la lumière du soleil et à l'espoir pour votre royaume.")
+    TB.textbox_output("Vous êtes acclamé comme un héros par votre peuple reconnaissant, mais vous savez que votre aventure ne fait que commencer. Avec l'éclipse vaincue, de nouveaux défis et de nouvelles quêtes vous attendent, mais vous êtes prêt à affronter l'avenir avec courage et détermination.")
 
     return 9, HEROS
 
