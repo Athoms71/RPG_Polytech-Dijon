@@ -98,6 +98,7 @@ elfe = Type("elfe", 50, 10, 5)
 orc = Type("orc", 55, 10, 5)
 
 # Monstres spéciaux (ou boss) -> fin de chapitre
+
 # ombre: somme = 60 + 50
 ombre_race = Type("ombre", 40, 15, 0)
 ombre_assaillante_classe = Type("Ombre Assaillante", 30, 15, 0)

@@ -484,10 +484,10 @@ def chapitre1():
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.ombre_assaillante_classe,
-               Ett.ombre_race), "./img/skeleton_warriors.jpg")
+               Ett.ombre_race), "./img/ombre assayante.png")
     pygame.mixer.music.load("./sounds/never_again.mp3")
-    pygame.mixer.music.set_pos(tps_musique)
     pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_pos(tps_musique)
     screen.blit(background, (0, 0))
     screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
     M.obt_objet(E.Consommable(
@@ -533,14 +533,14 @@ def chapitre2():
     background = pygame.transform.scale(
         background, (window_width, window_height))
     sprite = pygame.image.load(
-        f"./img/{HEROS.race.nom}_{HEROS.classe.nom}.png")
+        f"./img/{HEROS.race}_{HEROS.classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
     TB.textbox_output("Après avoir échappé à l'attaque de votre village, vous errez dans la forêt pendant plusieurs jours, cherchant des réponses et un refuge. Les arbres s'éclaircissent finalement, révélant une vallée cachée où se dressent les ruines d'une civilisation ancienne, à moitié enfouies sous la végétation.")
     TB.textbox_output("Vous avancez prudemment parmi les pierres effondrées et les colonnes brisées, sentant l'aura mystique qui émane de cet endroit oublié. Des fresques murales racontent l'histoire d'un royaume autrefois prospère, détruit par une force obscure similaire à celle qui a attaqué votre village. Vous comprenez que ces ruines détiennent des secrets vitaux pour votre quête.")
     TB.textbox_output("Soudain, des bruits étranges retentissent autour de vous. Des silhouettes se déplacent parmi les décombres. Vous vous cachez derrière une colonne et observez des créatures humanoïdes aux yeux brillants, gardant les lieux.")
     C.bataille(screen, HEROS, Ett.Monstre(
-        Ett.garde_squelette_classe, Ett.squelette_race))
+        Ett.garde_squelette_classe, Ett.squelette_race), "/img/skeleton_warriors.jpg")
     M.obt_objet(E.Consommable("Petite potion de force",
                 5, 5, 0, 10, "attaque"), HEROS)
     M.obt_objet(E.Equipement("Heaume Basique",
@@ -587,7 +587,7 @@ def chapitre3():
     background = pygame.transform.scale(
         background, (window_width, window_height))
     race = HEROS.race
-    classe = HEROS.classe.nom
+    classe = HEROS.classe
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
@@ -612,7 +612,7 @@ def chapitre3():
                                      10, 10, 10, "tete"), HEROS)
     TB.textbox_output("Alors que vous continuez à explorer la forêt, vous entendez soudain des bruits de pas lourds derrière vous. Vous vous retournez pour voir une créature massive, composée de branches et de feuillage, ses yeux brillants de malveillance. Elle avance vers vous, ses griffes prêtes à frapper.")
     C.bataille(screen, HEROS, Ett.Monstre(
-        Ett.golem_foret_classe, Ett.golem_race))
+        Ett.golem_foret_classe, Ett.golem_race), "img/golem.png")
     TB.textbox_output("Après un combat intense, vous parvenez à vaincre le Golem de la Forêt, utilisant votre nouvelle arme ou votre amulette pour vous protéger. Avec la créature vaincue, les murmures de la forêt s'apaisent, comme si les esprits vous reconnaissaient enfin comme un allié.")
     TB.textbox_output("Vous quittez la Forêt des Murmures, votre équipement renforcé et votre détermination intacte. Vous savez que les défis à venir seront encore plus redoutables, mais chaque pas vous rapproche de la vérité sur l'éclipse et du moyen de sauver votre royaume.")
     M.ouvertureDeLaBoutique(
@@ -629,7 +629,7 @@ def chapitre4():
     background = pygame.transform.scale(
         background, (window_width, window_height))
     race = HEROS.race
-    classe = HEROS.classe.nom
+    classe = HEROS.classe
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
@@ -637,7 +637,7 @@ def chapitre4():
     TB.textbox_output("En explorant les rues pavées et les bâtiments élégants mais décrépits, vous apprenez que la cité est sous l'emprise d'une malédiction qui maintient la lune éternellement dans le ciel. Les habitants vivent dans la peur, sachant que cette anomalie attire des créatures nocturnes dangereuses. Vous êtes déterminé à les aider et à en apprendre plus sur cette malédiction.")
     TB.textbox_output("Vous rencontrez le chef de la cité, un vieil homme sage nommé Alaric, qui vous explique que la clé pour briser la malédiction se trouve dans un ancien sanctuaire au centre de la ville. Cependant, le sanctuaire est gardé par des créatures de l'ombre. En vous approchant du sanctuaire, vous êtes attaqué par un groupe de gardiens nocturnes.")
     C.bataille(screen, HEROS, Ett.Monstre(
-        Ett.gardiens_nocturnes_classe, Ett.gardiens_race))
+        Ett.gardiens_nocturnes_classe, Ett.gardiens_race), "img/gardien nocturne.png")
     M.obt_objet(E.Equipement("Bouclier de fer",
                 0, 20, 40, "main_gauche"), HEROS)
 
@@ -676,11 +676,32 @@ def chapitre5():
     background = pygame.transform.scale(
         background, (window_width, window_height))
     race = HEROS.race
-    classe = HEROS.classe.nom
+    classe = HEROS.classe
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
-    TB.textbox_output("Vous venez de passer au chapitre 5.")
+    TB.textbox_output("Après avoir libéré la cité sous la lune, vous continuez votre quête vers le nord, suivant les indications des anciens textes et des conseils des habitants reconnaissants. Votre destination est un temple ancien, caché dans les montagnes, dédié aux étoiles et à leurs mystérieux pouvoirs.")
+    TB.textbox_output("La montée est ardue, les sentiers escarpés et souvent masqués par des nuages épais. Après plusieurs jours de marche, vous atteignez enfin l'entrée du temple des étoiles. Devant vous se dresse une structure imposante, faite de pierres anciennes et ornée de symboles célestes. L'air est imprégné de magie, et vous sentez une énergie puissante émaner des lieux.")
+    TB.textbox_output("En entrant dans le temple, vous découvrez une salle immense, avec un plafond voûté parsemé de cristaux brillants, imitant un ciel étoilé. Au centre de la salle, un autel lumineux attire votre attention. Alors que vous vous en approchez, des créatures spectrales surgissent des ombres pour défendre le sanctuaire.")
+    C.bataille(HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
+               Ett.gardiens_race), "img/spectres gardiens.png")
+    done = False
+    while not done:
+        choix = TB.textbox_input(
+            "Choix: @- 1 : Résoudre l'énigme de l'étoile polaire@- 2 : Résoudre l'énigme de la constellation du lion")
+        if choix in ["1", "2"]:
+            done = True
+        if choix == "1":
+            TB.textbox_output("1. Résoudre l'énigme de l'étoile polaire :@Vous décidez de vous concentrer sur l'énigme de l'étoile polaire. Après avoir aligné les cristaux selon les indications des symboles, un éclat de lumière illumine l'autel et une cape étoilée apparaît. En l'enfilant, vous ressentez une protection contre les forces obscures et une clarté mentale accrue.")
+            M.obt_objet(E.Equipement(
+                "Cape d'étoile", 0, 35, 45, "main_gauche"))
+        if choix == "2":
+            TB.textbox_output("2. Résoudre l'énigme de la constellation du lion :@Vous choisissez de résoudre l'énigme de la constellation du lion. En replaçant les cristaux pour former la constellation, l'autel s'illumine et une épée céleste se matérialise. Vous saisissez l'épée, sentant une puissance nouvelle et une force inébranlable couler dans vos bras.")
+            M.obt_objet(E.Equipement("épé de la Constellation du Lion",
+                                     55, 0, 55, "main_gauche"), HEROS)
+    TB.textbox_output("Avec votre nouvelle acquisition, vous explorez plus avant le temple. Vous découvrez des fresques et des inscriptions révélant l'histoire de l'éclipse et de l'ancien royaume. Vous apprenez que l'éclipse est liée à un artefact puissant, caché dans un lieu secret et protégé par des forces redoutables.")
+    TB.textbox_output("Soudain, une porte secrète s'ouvre, révélant un passage vers une chambre intérieure. Là, vous trouvez un ancien grimoire, contenant des sorts et des incantations oubliées, ainsi qu'une carte détaillant l'emplacement de l'artefact que vous cherchez.")
+    TB.textbox_output("Vous quittez le temple des étoiles, votre esprit éclairé par les nouvelles connaissances et votre équipement renforcé par les artefacts célestes. Vous savez que le chemin sera encore long et dangereux, mais vous êtes déterminé à poursuivre votre quête pour sauver votre royaume de l'éclipse imminente.")
     return 6, HEROS
 
 
@@ -693,7 +714,7 @@ def chapitre6():
     background = pygame.transform.scale(
         background, (window_width, window_height))
     race = HEROS.race
-    classe = HEROS.classe.nom
+    classe = HEROS.classe
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
@@ -710,7 +731,7 @@ def chapitre7():
     background = pygame.transform.scale(
         background, (window_width, window_height))
     race = HEROS.race
-    classe = HEROS.classe.nom
+    classe = HEROS.classe
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
@@ -727,7 +748,7 @@ def chapitre8():
     background = pygame.transform.scale(
         background, (window_width, window_height))
     race = HEROS.race
-    classe = HEROS.classe.nom
+    classe = HEROS.classe
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
@@ -744,7 +765,7 @@ def chapitre9():
     background = pygame.transform.scale(
         background, (window_width, window_height))
     race = HEROS.race
-    classe = HEROS.classe.nom
+    classe = HEROS.classe
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
@@ -761,7 +782,7 @@ def chapitre10():
     background = pygame.transform.scale(
         background, (window_width, window_height))
     race = HEROS.race
-    classe = HEROS.classe.nom
+    classe = HEROS.classe
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
