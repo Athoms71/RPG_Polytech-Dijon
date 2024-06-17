@@ -73,38 +73,105 @@ def continuer_partie():
     global HEROS
     if os.path.exists("save.txt"):
         DICT_VAR = OF.load()
+        print(DICT_VAR)
         HEROS.nom = DICT_VAR["nom_joueur"]
-        HEROS.classe = DICT_VAR["classe_joueur"]
-        HEROS.race = DICT_VAR["race_joueur"]
-        HEROS.inventaire = DICT_VAR["inventaire_joueur"]
+        match DICT_VAR["classe_joueur"]:
+            case "guerrier":
+                HEROS.classe = Ett.guerrier
+                HEROS.pv_max += Ett.guerrier.pv_max
+                HEROS.pc += Ett.guerrier.pc
+                HEROS.pd += Ett.guerrier.pd
+            case "archer":
+                HEROS.classe = Ett.archer
+                HEROS.pv_max += Ett.archer.pv_max
+                HEROS.pc += Ett.archer.pc
+                HEROS.pd += Ett.archer.pd
+            case "tank":
+                HEROS.classe = Ett.tank
+                HEROS.pv_max = Ett.tank.pv_max
+                HEROS.pc = Ett.tank.pc
+                HEROS.pd = Ett.tank.pd
+        match DICT_VAR["race_joueur"]:
+            case "humain":
+                HEROS.race = Ett.humain
+                HEROS.pv_max += Ett.humain.pv_max
+                HEROS.pc += Ett.humain.pc
+                HEROS.pd += Ett.humain.pd
+            case "elfe":
+                HEROS.race = Ett.elfe
+                HEROS.pv_max += Ett.elfe.pv_max
+                HEROS.pc += Ett.elfe.pc
+                HEROS.pd += Ett.elfe.pd
+            case "orc":
+                HEROS.race = Ett.orc
+                HEROS.pv_max += Ett.orc.pv_max
+                HEROS.pc += Ett.orc.pc
+                HEROS.pd += Ett.orc.pd
+        for elt in DICT_VAR["inventaire_joueur"]:
+            new_conso = E.Consommable(elt[0], int(elt[1]), int(
+                elt[2]), int(elt[3]), int(elt[4]), elt[5])
+            HEROS.inventaire.append(new_conso)
         HEROS.pv = int(DICT_VAR["pv_joueur"])
         HEROS.argent = int(DICT_VAR["argent_joueur"])
-        HEROS.main_gauche = DICT_VAR["main_gauche_joueur"]
-        HEROS.main_droite = DICT_VAR["main_droite_joueur"]
-        HEROS.tete = DICT_VAR["tete_joueur"]
-        HEROS.torse = DICT_VAR["torse_joueur"]
-        HEROS.gants = DICT_VAR["gants_joueur"]
-        HEROS.jambes = DICT_VAR["jambes_joueur"]
-        HEROS.pieds = DICT_VAR["pieds_joueur"]
+        lmg = DICT_VAR["main_gauche_joueur"]
+        lmd = DICT_VAR["main_droite_joueur"]
+        lte = DICT_VAR["tete_joueur"]
+        lto = DICT_VAR["torse_joueur"]
+        lg = DICT_VAR["gants_joueur"]
+        lj = DICT_VAR["jambes_joueur"]
+        lp = DICT_VAR["pieds_joueur"]
+        if lmg != []:
+            HEROS.main_gauche = E.Equipement(lmg[0], int(lmg[1]), int(
+                lmg[2]), int(lmg[3]), lmg[4])
+        if lmd != []:
+            HEROS.main_droite = E.Equipement(lmd[0], int(lmd[1]), int(
+                lmd[2]), int(lmd[3]), lmd[4])
+        if lte != []:
+            HEROS.tete = E.Equipement(lte[0], int(lte[1]), int(
+                lte[2]), int(lte[3]), lte[4])
+        if lto != []:
+            HEROS.torse = E.Equipement(lto[0], int(lto[1]), int(
+                lto[2]), int(lto[3]), lto[4])
+        if lg != []:
+            HEROS.gants = E.Equipement(lg[0], int(lg[1]), int(
+                lg[2]), int(lg[3]), lg[4])
+        if lj != []:
+            HEROS.jambes = E.Equipement(lj[0], int(lj[1]), int(
+                lj[2]), int(lj[3]), lj[4])
+        if lp != []:
+            HEROS.pieds = E.Equipement(lp[0], int(lp[1]), int(
+                lp[2]), int(lp[3]), lp[4])
         AVANCEMENT = int(DICT_VAR["avancement"])
         changement_affichage()
 
 
 def dict_var_update(dict_var: dict, heros: Ett.Joueur, avancement: int):
     '''Sauvegarde les valeurs des différentes variables dans le dictionnaire de sauvegarde'''
+    def attribuer_equipement(partie_corps):
+        if partie_corps == []:
+            return []
+        return [partie_corps.nom, int(partie_corps.atk), int(partie_corps.dfc), int(partie_corps.prix), partie_corps.cat]
     dict_var["nom_joueur"] = heros.nom
-    dict_var["classe_joueur"] = heros.classe
-    dict_var["race_joueur"] = heros.race
-    dict_var["inventaire_joueur"] = heros.inventaire
+    dict_var["classe_joueur"] = heros.classe.nom
+    dict_var["race_joueur"] = heros.race.nom
+    for elt in heros.inventaire:
+        list_temp = []
+        list_temp.append(elt.nom)
+        list_temp.append(elt.atk)
+        list_temp.append(elt.dfc)
+        list_temp.append(elt.heal)
+        list_temp.append(elt.prix)
+        list_temp.append(elt.cat)
+        dict_var["inventaire_joueur"] = list_temp
     dict_var["pv_joueur"] = heros.pv
     dict_var["argent_joueur"] = heros.argent
-    dict_var["main_gauche_joueur"] = heros.main_gauche
-    dict_var["main_droite_joueur"] = heros.main_droite
-    dict_var["tete_joueur"] = heros.tete
-    dict_var["torse_joueur"] = heros.torse
-    dict_var["gants_joueur"] = heros.gants
-    dict_var["jambes_joueur"] = heros.jambes
-    dict_var["pieds_joueur"] = heros.pieds
+    dict_var["main_gauche_joueur"] = attribuer_equipement(heros.main_gauche)
+    dict_var["main_droite_joueur"] = attribuer_equipement(heros.main_droite)
+    dict_var["tete_joueur"] = attribuer_equipement(heros.tete)
+    dict_var["torse_joueur"] = attribuer_equipement(heros.torse)
+    dict_var["gants_joueur"] = attribuer_equipement(heros.gants)
+    dict_var["jambes_joueur"] = attribuer_equipement(heros.jambes)
+    dict_var["pieds_joueur"] = attribuer_equipement(heros.pieds)
     dict_var["avancement"] = avancement
     return dict_var
 
@@ -206,7 +273,7 @@ def jeu():
             case 0:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
-                AVANCEMENT, HEROS = chapitre0()
+                AVANCEMENT, HEROS = chapitre0(HEROS)
             case 1:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
                 pygame.mixer.music.play(-1)
@@ -301,7 +368,7 @@ def jeu():
         check_events()
 
 
-def chapitre0():
+def chapitre0(heros: Ett.Joueur):
     '''Lance le chapitre d'introduction du jeu'''
     screen.fill(BLACK)
     TB.textbox_output(
@@ -323,28 +390,30 @@ def chapitre0():
     TB.textbox_output(
         "L'aventure vous appelle, cher héros. Êtes-vous prêt à répondre à son appel et à laisser votre marque sur les Royaumes de l'Éclipse ?")
     done = False
-    nom = TB.textbox_input("Veuillez entrer le nom de votre personnage : ")
+    nom_heros = TB.textbox_input(
+        "Veuillez entrer le nom de votre personnage : ")
     while not done:
-        race = ""
+        race_heros = ""
         choix_race = TB.textbox_input(
             "Veuillez selectionner une race parmi :@- 1 : humain@- 2 : elfe@- 3 : orc")
         if (choix_race) in ["1", "2", "3"]:
             done = True
-            race = int(choix_race)
+            race_heros = int(choix_race)
     done = False
     while not done:
-        classe = ""
+        classe_heros = ""
         choix_classe = TB.textbox_input(
             "Veuillez selectionner une classe parmi :@@- 1 : guerrier@- 2 : archer@- 3 : tank@@")
         if choix_classe in ["1", "2", "3"]:
             done = True
-            classe = int(choix_classe)
+            classe_heros = int(choix_classe)
 
     # on crée un heros avec le X eme element de la liste des races/classes
-    heros = Ett.Joueur(nom, Ett.liste_classe[int(
-        classe)-1], Ett.liste_race[int(race)-1])
-    TB.textbox_output("Vous etes : "+heros.nom+", de la race des "+heros.race+", vous etes un futur " +
-                      heros.classe+" dont on racontera l'hisoire pendant des générations !")
+    heros.nom = nom_heros
+    heros.classe = Ett.liste_classe[int(classe_heros)-1]
+    heros.race = Ett.liste_race[int(race_heros)-1]
+    TB.textbox_output("Vous etes : "+heros.nom+", de la race des "+heros.race.nom+", vous etes un futur " +
+                      heros.classe.nom+" dont on racontera l'hisoire pendant des générations !")
     return (1, heros)
 
 
@@ -355,21 +424,22 @@ def chapitre1(heros: Ett.Joueur):
     background = pygame.transform.scale(
         background, (window_width, window_height))
     screen.blit(background, (0, 0))
+    TB.textbox_output("Test")
     M.obt_objet(E.Consommable("Petite potion de force",
-                5, 5, 0, 10, 10, "attaque"), heros)
+                5, 5, 0, 10, "attaque"), heros)
     M.obt_objet(E.Equipement("Heaume",
-                0, 5, 10, 10, "tete"), heros)
+                0, 5, 10, "tete"), heros)
     M.ouvertureDeLaBoutique(
-        heros, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, 10, "attaque"))])
+        heros, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque"))])
 
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
-    ombreAssayante = Ett.Monstre(Ett.ombre_assayante_classe, Ett.ombre_race)
+    ombreAssayante = Ett.Monstre(Ett.ombre_assaillante_classe, Ett.ombre_race)
     C.bataille(heros, ombreAssayante)
     M.obt_objet(E.Consommable(
-        "Petite potion de soin", 0, 0, 10, 10, 10,  "soin"), heros)
+        "Petite potion de soin", 0, 0, 10, 10,  "soin"), heros)
     M.obt_objet(E.Consommable(
-        "Petite potion de soin", 0, 0, 10, 10, 10, "soin"), heros)
+        "Petite potion de soin", 0, 0, 10, 10, "soin"), heros)
     TB.textbox_output("Après un combat acharné, vous parvenez à abattre l'une des créatures, mais vous réalisez que vous ne pouvez pas sauver ce qui reste du village. Vous devez fuir et trouver un endroit sûr.")
     background = pygame.image.load(
         "./img/chemin_pierre_runes.jpg").convert_alpha()
@@ -386,17 +456,17 @@ def chapitre1(heros: Ett.Joueur):
     if choix == "1":
         TB.textbox_output("1. Suivre le sentier marqué :@Vous décidez de suivre le sentier, intrigué par les signes. Après une marche prudente, vous tombez sur une petite clairière où repose un ancien autel. Sur l'autel, vous trouvez une dague en argent finement ouvragée, ornée de runes protectrices. Vous la prenez, sentant une légère chaleur émaner de l'arme, comme si elle vous acceptait comme son porteur légitime.")
         M.obt_objet(E.Equipement("Dague en argent",
-                    35, 0, 30, 5, "main_droite"), heros)
+                    35, 0, 30, "main_droite"), heros)
 
     if choix == "2":
         TB.textbox_output("2. Ignorer les symboles et avancer dans la forêt :@ Vous choisissez de ne pas suivre le sentier et de continuer votre chemin dans la forêt. Plus loin, vous trouvez une cachette naturelle sous un arbre colossal. En fouillant, vous découvrez un vieux sac contenant un arc en bois sombre et un carquois rempli de flèches enchantées. Vous vous équipez de l'arc, sentant une connexion immédiate avec l'arme.")
-        M.obt_objet(E.Equipement("Arc", 40, 0, 15, 5, "main_droite"), heros)
+        M.obt_objet(E.Equipement("Arc", 40, 0, 15, "main_droite"), heros)
 
     TB.textbox_output("Vous continuez votre marche, les ténèbres de la forêt vous enveloppant. Chaque pas que vous faites vous éloigne un peu plus de votre passé et vous rapproche de la vérité sur cette éclipse mystérieuse et des créatures qui ont ravagé votre village. ")
     TB.textbox_output(
         "La quête pour découvrir la source de cette malédiction et venger votre foyer commence maintenant.")
     M.ouvertureDeLaBoutique(
-        heros, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, 10, "attaque"))])
+        heros, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque"))])
     return 2, heros
 
 
@@ -479,19 +549,20 @@ DICT_VAR = {            # Dictionnaire de sauvegarde
     "inventaire_joueur": [],
     "pv_joueur": 0,
     "argent_joueur": 0,
-    "main_gauche_joueur": None,
-    "main_droite_joueur": None,
-    "tete_joueur": None,
-    "torse_joueur": None,
-    "gants_joueur": None,
-    "jambes_joueur": None,
-    "pieds_joueur": None,
+    "main_gauche_joueur": [],
+    "main_droite_joueur": [],
+    "tete_joueur": [],
+    "torse_joueur": [],
+    "gants_joueur": [],
+    "jambes_joueur": [],
+    "pieds_joueur": [],
     "avancement": 0
 }
 ETAT = "ecran_titre"    # Variable de sélection de menus : ecran_titre / jeu
 GAME_RUNNING = False    # Variable qui indique si le jeu tourne ou non
 AVANCEMENT = 0
 HEROS = Ett.Joueur("", Ett.guerrier, Ett.humain)
+HEROS.main_gauche = E.Equipement("épée", 5, 0, 5, "arme")
 
 while RUNNING:
     if ETAT == "ecran_titre":
