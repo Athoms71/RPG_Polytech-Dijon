@@ -110,7 +110,7 @@ def check_events():
             changement_affichage()
             OF.save(DICT_VAR)
             GAME_RUNNING = False
-            pygame.mixer.music.load("./sounds/main_theme.mp3")
+            pygame.mixer.music.load("./sounds/title_theme.mp3")
             pygame.mixer.music.play(-1)
     pygame_widgets.update(events)
     pygame.display.flip()
@@ -356,96 +356,51 @@ def jeu():
     while GAME_RUNNING:
         match AVANCEMENT:
             case 0:
-                pygame.mixer.music.load("./sounds/musique_jeu.mp3")
-                pygame.mixer.music.play(-1)
+                fade("img_to_black")
                 AVANCEMENT, HEROS = chapitre0()
             case 1:
                 pygame.mixer.music.load("./sounds/never_again.mp3")
                 pygame.mixer.music.play(-1)
                 fade("black_to_img_to_black", "./img/chemin_fond_flou.png",
                      "./img/burning_village.jpg", "Chapitre 1 : L'aube de l'Éclipse")
-                background = pygame.image.load("./img/pont_fond.jpg")
-                background = pygame.transform.scale(
-                    background, (window_width, window_height))
-                screen.blit(background, (0, 0))
                 AVANCEMENT, HEROS = chapitre1()
             case 2:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
-                background = pygame.image.load(
-                    "img/chemin_fond.jpg").convert_alpha()
-                background = pygame.transform.scale(
-                    background, (window_width, window_height))
-                screen.blit(background, (0, 0))
-                AVANCEMENT, HEROS = chapitre2(HEROS)
+
+                AVANCEMENT, HEROS = chapitre2()
             case 3:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
                 pygame.mixer.music.play(-1)
-                background = pygame.image.load("./img/pont_fond.jpg")
-                background = pygame.transform.scale(
-                    background, (window_width, window_height))
-                screen.blit(background, (0, 0))
-                AVANCEMENT, HEROS = chapitre3(HEROS)
+                AVANCEMENT, HEROS = chapitre3()
             case 4:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
-                background = pygame.image.load(
-                    "img/chemin_fond.jpg").convert_alpha()
-                background = pygame.transform.scale(
-                    background, (window_width, window_height))
-                screen.blit(background, (0, 0))
-                AVANCEMENT, HEROS = chapitre4(HEROS)
+                AVANCEMENT, HEROS = chapitre4()
             case 5:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
                 pygame.mixer.music.play(-1)
-                background = pygame.image.load("./img/pont_fond.jpg")
-                background = pygame.transform.scale(
-                    background, (window_width, window_height))
-                screen.blit(background, (0, 0))
-                AVANCEMENT, HEROS = chapitre5(HEROS)
+                AVANCEMENT, HEROS = chapitre5()
             case 6:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
-                background = pygame.image.load(
-                    "img/chemin_fond.jpg").convert_alpha()
-                background = pygame.transform.scale(
-                    background, (window_width, window_height))
-                screen.blit(background, (0, 0))
-                AVANCEMENT, HEROS = chapitre6(HEROS)
+                AVANCEMENT, HEROS = chapitre6()
             case 7:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
                 pygame.mixer.music.play(-1)
-                background = pygame.image.load("./img/pont_fond.jpg")
-                background = pygame.transform.scale(
-                    background, (window_width, window_height))
-                screen.blit(background, (0, 0))
-                AVANCEMENT, HEROS = chapitre7(HEROS)
+                AVANCEMENT, HEROS = chapitre7()
             case 8:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
-                background = pygame.image.load(
-                    "img/chemin_fond.jpg").convert_alpha()
-                background = pygame.transform.scale(
-                    background, (window_width, window_height))
-                screen.blit(background, (0, 0))
-                AVANCEMENT, HEROS = chapitre8(HEROS)
+                AVANCEMENT, HEROS = chapitre8()
             case 9:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
                 pygame.mixer.music.play(-1)
-                background = pygame.image.load("./img/pont_fond.jpg")
-                background = pygame.transform.scale(
-                    background, (window_width, window_height))
-                screen.blit(background, (0, 0))
-                AVANCEMENT, HEROS = chapitre9(HEROS)
+                AVANCEMENT, HEROS = chapitre9()
             case 10:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
-                background = pygame.image.load(
-                    "img/chemin_fond.jpg").convert_alpha()
-                background = pygame.transform.scale(
-                    background, (window_width, window_height))
-                screen.blit(background, (0, 0))
-                AVANCEMENT, HEROS = chapitre10(HEROS)
+                AVANCEMENT, HEROS = chapitre10()
                 changement_affichage()
                 GAME_RUNNING = False
             case _:
@@ -458,7 +413,6 @@ def jeu():
 def chapitre0():
     '''Lance le chapitre d'introduction du jeu'''
     global HEROS
-    screen.fill(BLACK)
     TB.textbox_output(
         "Bonjour, avant de comencer, nous vous proposons un petit didacticiel.@@Pour passer à la boite de texte suivante, appuyez sur n importe quelle touche.@@@@@appuyez pour continuer")
     TB.textbox_output(

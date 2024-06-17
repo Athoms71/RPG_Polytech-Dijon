@@ -2,6 +2,7 @@ import entite as Ett
 import equipement as E
 import random
 import textbox as TB
+import pygame
 
 
 def DX(X):
@@ -11,6 +12,8 @@ def DX(X):
 
 def bataille(personnage: Ett.Joueur, ennemi: Ett.Monstre):
     """tant que le joueur et le(s) ennemi(s) ont 1 PV ou plus, on alterne entre le tour du joueur et celui du monstre"""
+    pygame.mixer.music.load("./sounds/")
+    pygame.mixer.music.play(-1)
     TB.textbox_output("Vous allez vous battre contre " +
                       str(ennemi.classe)+", préparez vous au combat.")
     while personnage.pv > 0 and ennemi.pv > 0:

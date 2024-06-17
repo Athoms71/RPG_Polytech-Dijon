@@ -37,7 +37,6 @@ def load():
         for i in range(0, len(f), 2):
             key = f[i][:-1]
             values = f[i+1][:-1].split(',')
-            print(key, ':', values)
             if key == "inventaire_joueur":
                 dict_var[key] = []
                 for conso in values[:-1]:
