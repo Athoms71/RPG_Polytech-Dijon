@@ -477,7 +477,7 @@ def chapitre1():
 
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
-    C.bataille(HEROS, Ett.Monstre(
+    C.bataille(screen, HEROS, Ett.Monstre(
         Ett.ombre_assaillante_classe, Ett.ombre_race))
     M.obt_objet(E.Consommable(
         "Petite potion de soin", 0, 0, 30, 10,  "soin"), HEROS)
@@ -519,7 +519,7 @@ def chapitre2():
     TB.textbox_output("Après avoir échappé à l'attaque de votre village, vous errez dans la forêt pendant plusieurs jours, cherchant des réponses et un refuge. Les arbres s'éclaircissent finalement, révélant une vallée cachée où se dressent les ruines d'une civilisation ancienne, à moitié enfouies sous la végétation.")
     TB.textbox_output("Vous avancez prudemment parmi les pierres effondrées et les colonnes brisées, sentant l'aura mystique qui émane de cet endroit oublié. Des fresques murales racontent l'histoire d'un royaume autrefois prospère, détruit par une force obscure similaire à celle qui a attaqué votre village. Vous comprenez que ces ruines détiennent des secrets vitaux pour votre quête.")
     TB.textbox_output("Soudain, des bruits étranges retentissent autour de vous. Des silhouettes se déplacent parmi les décombres. Vous vous cachez derrière une colonne et observez des créatures humanoïdes aux yeux brillants, gardant les lieux.")
-    C.bataille(HEROS, Ett.Monstre(
+    C.bataille(screen, HEROS, Ett.Monstre(
         Ett.garde_squelette_classe, Ett.squelette_race))
     M.obt_objet(E.Consommable("Petite potion de force",
                 5, 5, 0, 10, "attaque"), HEROS)
@@ -581,7 +581,7 @@ def chapitre3():
             M.obt_objet(E.Equipement("Amulette de jade",
                                      10, 10, 10, "tete"), HEROS)
     TB.textbox_output("Alors que vous continuez à explorer la forêt, vous entendez soudain des bruits de pas lourds derrière vous. Vous vous retournez pour voir une créature massive, composée de branches et de feuillage, ses yeux brillants de malveillance. Elle avance vers vous, ses griffes prêtes à frapper.")
-    C.bataille(HEROS, Ett.Monstre(
+    C.bataille(screen, HEROS, Ett.Monstre(
         Ett.golem_foret_classe, Ett.golem_race))
     TB.textbox_output("Après un combat intense, vous parvenez à vaincre le Golem de la Forêt, utilisant votre nouvelle arme ou votre amulette pour vous protéger. Avec la créature vaincue, les murmures de la forêt s'apaisent, comme si les esprits vous reconnaissaient enfin comme un allié.")
     TB.textbox_output("Vous quittez la Forêt des Murmures, votre équipement renforcé et votre détermination intacte. Vous savez que les défis à venir seront encore plus redoutables, mais chaque pas vous rapproche de la vérité sur l'éclipse et du moyen de sauver votre royaume.")
@@ -597,7 +597,7 @@ def chapitre4():
     TB.textbox_output("Après avoir quitté la Forêt des Murmures, vous continuez votre voyage jusqu'à atteindre une vallée cachée où se trouve une ville mystérieuse. Dès que vous pénétrez dans cette cité, vous remarquez quelque chose d'étrange : la lune y brille constamment, ne laissant jamais place au jour. Les habitants semblent mener une vie normale, mais il y a une mélancolie palpable dans l'air, comme s'ils étaient prisonniers de cette nuit éternelle.")
     TB.textbox_output("En explorant les rues pavées et les bâtiments élégants mais décrépits, vous apprenez que la cité est sous l'emprise d'une malédiction qui maintient la lune éternellement dans le ciel. Les habitants vivent dans la peur, sachant que cette anomalie attire des créatures nocturnes dangereuses. Vous êtes déterminé à les aider et à en apprendre plus sur cette malédiction.")
     TB.textbox_output("Vous rencontrez le chef de la cité, un vieil homme sage nommé Alaric, qui vous explique que la clé pour briser la malédiction se trouve dans un ancien sanctuaire au centre de la ville. Cependant, le sanctuaire est gardé par des créatures de l'ombre. En vous approchant du sanctuaire, vous êtes attaqué par un groupe de gardiens nocturnes.")
-    C.bataille(HEROS, Ett.Monstre(
+    C.bataille(screen, HEROS, Ett.Monstre(
         Ett.gardiens_nocturnes_classe, Ett.gardiens_race))
     M.obt_objet(E.Equipement("Bouclier de fer",
                 0, 20, 40, "main_gauche"), HEROS)
@@ -631,7 +631,16 @@ def chapitre4():
 def chapitre5():
     '''Lance le chapitre 5 du jeu'''
     global HEROS
-    TB.textbox_output("Vous venez de passer au chapitre 5.")
+    TB.textbox_output("Après avoir libéré la cité sous la lune, vous continuez votre quête vers le nord, suivant les indications des anciens textes et des conseils des habitants reconnaissants. Votre destination est un temple ancien, caché dans les montagnes, dédié aux étoiles et à leurs mystérieux pouvoirs.")
+    TB.textbox_output("La montée est ardue, les sentiers escarpés et souvent masqués par des nuages épais. Après plusieurs jours de marche, vous atteignez enfin l'entrée du temple des étoiles. Devant vous se dresse une structure imposante, faite de pierres anciennes et ornée de symboles célestes. L'air est imprégné de magie, et vous sentez une énergie puissante émaner des lieux.")
+    TB.textbox_output("En entrant dans le temple, vous découvrez une salle immense, avec un plafond voûté parsemé de cristaux brillants, imitant un ciel étoilé. Au centre de la salle, un autel lumineux attire votre attention. Alors que vous vous en approchez, des créatures spectrales surgissent des ombres pour défendre le sanctuaire.")
+    C.bataille(screen, HEROS, Ett.Monstre(
+        Ett.spectres_gardiens_classe, Ett.gardiens_race))
+    TB.textbox_output("Après avoir vaincu les spectres, vous examinez l'autel de plus près. Gravés dessus, des symboles indiquent la présence de trois artefacts célestes, chacun lié à une constellation différente. Vous devez résoudre une série d'énigmes pour obtenir ces artefacts.")
+
+    TB.textbox_output("Avec votre nouvelle acquisition, vous explorez plus avant le temple. Vous découvrez des fresques et des inscriptions révélant l'histoire de l'éclipse et de l'ancien royaume. Vous apprenez que l'éclipse est liée à un artefact puissant, caché dans un lieu secret et protégé par des forces redoutables.")
+    TB.textbox_output("Soudain, une porte secrète s'ouvre, révélant un passage vers une chambre intérieure. Là, vous trouvez un ancien grimoire, contenant des sorts et des incantations oubliées, ainsi qu'une carte détaillant l'emplacement de l'artefact que vous cherchez.")
+    TB.textbox_output("Vous quittez le temple des étoiles, votre esprit éclairé par les nouvelles connaissances et votre équipement renforcé par les artefacts célestes. Vous savez que le chemin sera encore long et dangereux, mais vous êtes déterminé à poursuivre votre quête pour sauver votre royaume de l'éclipse imminente.")
     return 6, HEROS
 
 

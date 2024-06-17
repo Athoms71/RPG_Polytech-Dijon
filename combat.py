@@ -27,6 +27,9 @@ def bataille(personnage: Ett.Joueur, ennemi: Ett.Monstre):
     TB.textbox_output("La bataille est terminée !")
     if personnage.pv <= 0:
         TB.textbox_output("Vous avez perdu...")
+        TB.textbox_output(
+            "Tous les espoirs du royaume s'évanouissent avec votre mort...")
+        pygame.quit
     else:
         TB.textbox_output("Vous avez gagné !")
 
