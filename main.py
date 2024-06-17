@@ -181,7 +181,7 @@ def ecran_titre():
     global ICON
     button_font = pygame.font.Font(
         "./font/VecnaBold-4YY4.ttf", 45)
-    title_font_size = 150
+    title_font_size = 200
     title_font = pygame.font.Font(
         "./font/VecnaBold-4YY4.ttf", title_font_size)
     title_text = title_font.render(
@@ -470,55 +470,55 @@ def chapitre1(heros: Ett.Joueur):
     return 2, heros
 
 
-def chapitre2():
+def chapitre2(heros: Ett.Joueur):
     '''Lance le chapitre 2 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 2.")
-    return 3
+    return 3, heros
 
 
-def chapitre3():
+def chapitre3(heros: Ett.Joueur):
     '''Lance le chapitre 3 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 3.")
-    return 4
+    return 4, heros
 
 
-def chapitre4():
+def chapitre4(heros: Ett.Joueur):
     '''Lance le chapitre 4 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 4.")
-    return 5
+    return 5, heros
 
 
-def chapitre5():
+def chapitre5(heros: Ett.Joueur):
     '''Lance le chapitre 5 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 5.")
-    return 6
+    return 6, heros
 
 
-def chapitre6():
+def chapitre6(heros: Ett.Joueur):
     '''Lance le chapitre 6 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 6.")
-    return 7
+    return 7, heros
 
 
-def chapitre7():
+def chapitre7(heros: Ett.Joueur):
     '''Lance le chapitre 7 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 7.")
-    return 8
+    return 8, heros
 
 
-def chapitre8():
+def chapitre8(heros: Ett.Joueur):
     '''Lance le chapitre 8 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 8.")
-    return 9
+    return 9, heros
 
 
-def chapitre9():
+def chapitre9(heros: Ett.Joueur):
     '''Lance le chapitre 9 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 9.")
-    return 10
+    return 10, heros
 
 
-def chapitre10():
+def chapitre10(heros: Ett.Joueur):
     '''Lance le chapitre 10 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 10.")
     TB.textbox_output("Merci d'avoir joué")
