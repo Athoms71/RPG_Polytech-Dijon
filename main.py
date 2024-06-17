@@ -360,48 +360,74 @@ def jeu():
                 fade("img_to_black")
                 AVANCEMENT, HEROS = chapitre0()
             case 1:
-                pygame.mixer.music.load("./sounds/never_again.mp3")
+                pygame.mixer.music.load("./sounds/ch1_music.mp3")
                 pygame.mixer.music.play(-1)
-                fade("black_to_img_to_black", "./img/chemin_fond_flou.png",
+                fade("img_to_black")
+                fade("black_to_img_to_black", "./img/black_screen.png",
                      "./img/burning_village.jpg", "Chapitre 1 : L'aube de l'Éclipse")
                 AVANCEMENT, HEROS = chapitre1()
             case 2:
-                pygame.mixer.music.load("./sounds/musique_jeu.mp3")
+                pygame.mixer.music.load("./sounds/ch2_music.mp3")
                 pygame.mixer.music.play(-1)
+                fade("img_to_black")
                 fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
                      "./img/ruines_dans_foret.jpg", "Chapitre 2 : Les ruines oubliées")
                 AVANCEMENT, HEROS = chapitre2()
             case 3:
-                pygame.mixer.music.load("./sounds/marchand_theme.mp3")
+                pygame.mixer.music.load("./sounds/ch3_music.mp3")
                 pygame.mixer.music.play(-1)
+                fade("img_to_black")
+                fade("black_to_img_to_black", "./img/ruines_dans_foret.jpg",
+                     "./img/foret_sombre.png", "Chapitre 3 : La forêt des murmures")
                 AVANCEMENT, HEROS = chapitre3()
             case 4:
-                pygame.mixer.music.load("./sounds/musique_jeu.mp3")
+                pygame.mixer.music.load("./sounds/ch4_music.mp3")
                 pygame.mixer.music.play(-1)
+                fade("img_to_black")
+                fade("black_to_img_to_black", "./img/foret_sombre.jpg",
+                     "./img/ruines_dans_foret.png", "Chapitre 4 : La cité sous la lune")
                 AVANCEMENT, HEROS = chapitre4()
             case 5:
-                pygame.mixer.music.load("./sounds/marchand_theme.mp3")
+                pygame.mixer.music.load("./sounds/ch5_music.mp3")
                 pygame.mixer.music.play(-1)
+                fade("img_to_black")
+                fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
+                     "./img/ruines_dans_foret.png", "Chapitre 5 : Le temple des étoiles")
                 AVANCEMENT, HEROS = chapitre5()
             case 6:
-                pygame.mixer.music.load("./sounds/musique_jeu.mp3")
+                pygame.mixer.music.load("./sounds/ch6_music.mp3")
                 pygame.mixer.music.play(-1)
+                fade("img_to_black")
+                fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
+                     "./img/ruines_dans_foret.png", "Chapitre 6 : Les cavernes de l'oubli")
                 AVANCEMENT, HEROS = chapitre6()
             case 7:
-                pygame.mixer.music.load("./sounds/marchand_theme.mp3")
+                pygame.mixer.music.load("./sounds/ch7_music.mp3")
                 pygame.mixer.music.play(-1)
+                fade("img_to_black")
+                fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
+                     "./img/ruines_dans_foret.png", "Chapitre 7 : La mer des âmes")
                 AVANCEMENT, HEROS = chapitre7()
             case 8:
-                pygame.mixer.music.load("./sounds/musique_jeu.mp3")
+                pygame.mixer.music.load("./sounds/ch8_music.mp3")
                 pygame.mixer.music.play(-1)
+                fade("img_to_black")
+                fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
+                     "./img/ruines_dans_foret.png", "Chapitre 8 : Le château des ombres")
                 AVANCEMENT, HEROS = chapitre8()
             case 9:
-                pygame.mixer.music.load("./sounds/marchand_theme.mp3")
+                pygame.mixer.music.load("./sounds/ch9_music.mp3")
                 pygame.mixer.music.play(-1)
+                fade("img_to_black")
+                fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
+                     "./img/ruines_dans_foret.png", "Chapitre 9 : Le retour des Héros")
                 AVANCEMENT, HEROS = chapitre9()
             case 10:
-                pygame.mixer.music.load("./sounds/musique_jeu.mp3")
+                pygame.mixer.music.load("./sounds/ch10_music.mp3")
                 pygame.mixer.music.play(-1)
+                fade("img_to_black")
+                fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
+                     "./img/ruines_dans_foret.jpg", "Chapitre 10 : Épilogue")
                 AVANCEMENT, HEROS = chapitre10()
                 changement_affichage()
                 GAME_RUNNING = False
@@ -485,7 +511,7 @@ def chapitre1():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.ombre_assaillante_classe,
                Ett.ombre_race), "./img/ombre assayante.png")
-    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.load("./sounds/ch1_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
     screen.blit(background, (0, 0))
@@ -527,7 +553,7 @@ def chapitre1():
 def chapitre2():
     '''Lance le chapitre 2 du jeu'''
     global HEROS
-    fade("black_to_img", "./img/burning_village.jpg")
+    fade("black_to_img", "./img/ruines_dans_foret.png")
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -540,7 +566,7 @@ def chapitre2():
     TB.textbox_output("Vous avancez prudemment parmi les pierres effondrées et les colonnes brisées, sentant l'aura mystique qui émane de cet endroit oublié. Des fresques murales racontent l'histoire d'un royaume autrefois prospère, détruit par une force obscure similaire à celle qui a attaqué votre village. Vous comprenez que ces ruines détiennent des secrets vitaux pour votre quête.")
     TB.textbox_output("Soudain, des bruits étranges retentissent autour de vous. Des silhouettes se déplacent parmi les décombres. Vous vous cachez derrière une colonne et observez des créatures humanoïdes aux yeux brillants, gardant les lieux.")
     C.bataille(screen, HEROS, Ett.Monstre(
-        Ett.garde_squelette_classe, Ett.squelette_race), "./img/skeleton_warriors.png")
+        Ett.garde_squelette_classe, Ett.squelette_race), "./img/skeleton_warrior.png")
     M.obt_objet(E.Consommable("Petite potion de force",
                 5, 5, 0, 10, "attaque"), HEROS)
     M.obt_objet(E.Equipement("Heaume Basique",

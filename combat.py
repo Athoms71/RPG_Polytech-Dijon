@@ -13,7 +13,10 @@ def DX(X):
 
 def bataille(screen: pygame.Surface, personnage: Ett.Joueur, ennemi: Ett.Monstre, ch_sprite_ennemi: str = "./img/skeleton_warriors.jpg"):
     """tant que le joueur et le(s) ennemi(s) ont 1 PV ou plus, on alterne entre le tour du joueur et celui du monstre"""
-    pygame.mixer.music.load("./sounds/battle_music.mp3")
+    if ch_sprite_ennemi == "./img/seigneur_ombres.png":
+        pygame.mixer.music.load("./sounds/battle_of_the_dragons.mp3")
+    else:
+        pygame.mixer.music.load("./sounds/battle_music.mp3")
     pygame.mixer.music.play(-1)
     sprite_ennemi = pygame.image.load(ch_sprite_ennemi)
     sprite_ennemi = pygame.transform.flip(sprite_ennemi, True, False)
