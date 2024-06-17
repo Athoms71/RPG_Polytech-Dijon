@@ -424,18 +424,11 @@ def chapitre1(heros: Ett.Joueur):
     background = pygame.transform.scale(
         background, (window_width, window_height))
     screen.blit(background, (0, 0))
-    TB.textbox_output("Test")
-    M.obt_objet(E.Consommable("Petite potion de force",
-                5, 5, 0, 10, "attaque"), heros)
-    M.obt_objet(E.Equipement("Heaume",
-                0, 5, 10, "tete"), heros)
-    M.ouvertureDeLaBoutique(
-        heros, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque"))])
 
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
-    ombreAssayante = Ett.Monstre(Ett.ombre_assaillante_classe, Ett.ombre_race)
-    C.bataille(heros, ombreAssayante)
+    C.bataille(heros, Ett.Monstre(
+        Ett.ombre_assaillante_classe, Ett.ombre_race))
     M.obt_objet(E.Consommable(
         "Petite potion de soin", 0, 0, 10, 10,  "soin"), heros)
     M.obt_objet(E.Consommable(
@@ -456,11 +449,11 @@ def chapitre1(heros: Ett.Joueur):
     if choix == "1":
         TB.textbox_output("1. Suivre le sentier marqué :@Vous décidez de suivre le sentier, intrigué par les signes. Après une marche prudente, vous tombez sur une petite clairière où repose un ancien autel. Sur l'autel, vous trouvez une dague en argent finement ouvragée, ornée de runes protectrices. Vous la prenez, sentant une légère chaleur émaner de l'arme, comme si elle vous acceptait comme son porteur légitime.")
         M.obt_objet(E.Equipement("Dague en argent",
-                    35, 0, 30, "main_droite"), heros)
+                    25, 0, 30, "main_droite"), heros)
 
     if choix == "2":
         TB.textbox_output("2. Ignorer les symboles et avancer dans la forêt :@ Vous choisissez de ne pas suivre le sentier et de continuer votre chemin dans la forêt. Plus loin, vous trouvez une cachette naturelle sous un arbre colossal. En fouillant, vous découvrez un vieux sac contenant un arc en bois sombre et un carquois rempli de flèches enchantées. Vous vous équipez de l'arc, sentant une connexion immédiate avec l'arme.")
-        M.obt_objet(E.Equipement("Arc", 40, 0, 15, "main_droite"), heros)
+        M.obt_objet(E.Equipement("Arc", 30, 0, 15, "main_droite"), heros)
 
     TB.textbox_output("Vous continuez votre marche, les ténèbres de la forêt vous enveloppant. Chaque pas que vous faites vous éloigne un peu plus de votre passé et vous rapproche de la vérité sur cette éclipse mystérieuse et des créatures qui ont ravagé votre village. ")
     TB.textbox_output(
@@ -472,13 +465,49 @@ def chapitre1(heros: Ett.Joueur):
 
 def chapitre2(heros: Ett.Joueur):
     '''Lance le chapitre 2 du jeu'''
-    TB.textbox_output("Vous venez de passer au chapitre 2.")
+    TB.textbox_output("Après avoir échappé à l'attaque de votre village, vous errez dans la forêt pendant plusieurs jours, cherchant des réponses et un refuge. Les arbres s'éclaircissent finalement, révélant une vallée cachée où se dressent les ruines d'une civilisation ancienne, à moitié enfouies sous la végétation.")
+    TB.textbox_output("Vous avancez prudemment parmi les pierres effondrées et les colonnes brisées, sentant l'aura mystique qui émane de cet endroit oublié. Des fresques murales racontent l'histoire d'un royaume autrefois prospère, détruit par une force obscure similaire à celle qui a attaqué votre village. Vous comprenez que ces ruines détiennent des secrets vitaux pour votre quête.")
+    TB.textbox_output("Soudain, des bruits étranges retentissent autour de vous. Des silhouettes se déplacent parmi les décombres. Vous vous cachez derrière une colonne et observez des créatures humanoïdes aux yeux brillants, gardant les lieux.")
+    C.bataille(heros, Ett.Monstre(
+        Ett.Garde_squelette_classe, Ett.squelette_race))
+    M.obt_objet(E.Consommable("Petite potion de force",
+                5, 5, 0, 10, "attaque"), heros)
+    M.obt_objet(E.Equipement("Heaume Basique",
+                0, 5, 10, "tete"), heros)
+    M.obt_objet(E.Equipement("Plastron Basique",
+                             0, 7, 10, "torse"), heros)
+    M.obt_objet(E.Equipement("Jambières Basique",
+                             0, 5, 10, "jambes"), heros)
+    M.obt_objet(E.Equipement("Bottes Basique",
+                             0, 3, 10, "pieds"), heros)
+    M.ouvertureDeLaBoutique(
+        heros, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque"))])
+    TB.textbox_output("Après avoir vaincu l'un des gardes squelettiques, vous fouillez les ruines à la recherche d'indices. Vous tombez sur une chambre secrète, protégée par un mécanisme complexe.")
+    done = False
+    choix = ""
+    while not done:
+        TB.textbox_output(
+            "Choix: @ - 1 : Résoudre l'énigme du mécanisme@- 2 : Forcer l'entrée")
+        if choix in ["1", "2"]:
+            done = True
+    if choix == "1":
+        TB.textbox_output("1. Résoudre l'énigme du mécanisme :@Vous examinez le mécanisme et remarquez des symboles similaires à ceux vus dans la forêt. En manipulant soigneusement les pièces mobiles, vous parvenez à déverrouiller la porte. À l'intérieur, vous trouvez une amulette ancienne, gravée de runes protectrices. En la mettant autour de votre cou, vous ressentez un pouvoir de protection et de clairvoyance.")
+
+        M.obt_objet(E.Equipement("Amulette de clairevoyance",
+                    0, 8, 10, "tete"), heros)
+        if choix == "2":
+            TB.textbox_output("2. Forcer l'entrée :@Impatient, vous décidez de forcer l'entrée en utilisant votre force et vos armes. Après plusieurs essais, la porte finit par céder. À l'intérieur, vous trouvez une épée en cristal, légèrement fissurée mais encore imprégnée d'une énergie redoutable. L'épée vibre légèrement entre vos mains, comme si elle reconnaissait votre détermination.")
+            M.obt_objet(E.Equipement("épé de cristal",
+                        40, 0, 15, "main_droite"), heros)
+    TB.textbox_output("Avec votre nouvelle acquisition, vous continuez à explorer les ruines. Vous trouvez finalement un ancien grimoire, contenant des histoires et des prophéties sur l'éclipse et les créatures des ombres. En le feuilletant, vous apprenez qu'un artefact puissant, capable de contrôler ou détruire ces créatures, est caché quelque part dans le royaume.")
+    TB.textbox_output("Votre quête prend une nouvelle tournure. Armé de nouvelles connaissances et de puissants artefacts, vous quittez les ruines et vous vous enfoncez plus profondément dans la vallée, déterminé à trouver cet artefact avant qu'il ne soit trop tard.")
     return 3, heros
 
 
 def chapitre3(heros: Ett.Joueur):
     '''Lance le chapitre 3 du jeu'''
     TB.textbox_output("Vous venez de passer au chapitre 3.")
+
     return 4, heros
 
 

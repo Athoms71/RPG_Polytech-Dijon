@@ -1,9 +1,9 @@
 nom_joueur
-test
+Augustin
 classe_joueur
-guerrier
+archer
 race_joueur
-humain
+elfe
 inventaire_joueur
 
 pv_joueur
