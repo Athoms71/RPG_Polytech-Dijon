@@ -920,14 +920,27 @@ def chapitre9():
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
 
-    tps_musique = pygame.mixer.music.get_pos()
-    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
-               Ett.gardiens_race), "img/spectres gardiens.png")
-    pygame.mixer.music.load("./sounds/never_again.mp3")
-    pygame.mixer.music.play(-1)
-    pygame.mixer.music.set_pos(tps_musique)
+    TB.textbox_output("")
+    TB.textbox_output("")
+    TB.textbox_output("")
+    TB.textbox_output("")
 
-    TB.textbox_output("Vous venez de passer au chapitre 9.")
+    done = False
+    while not done:
+        choix = TB.textbox_input(
+            "Choix: @- 1 : Accepter l'aide des guerriers@- 2 : Continuer seul")
+        if choix in ["1", "2"]:
+            done = True
+        if choix == "1":
+            TB.textbox_output("1. Accepter l'aide des guerriers :@Reconnaissant la valeur de l'unité, vous acceptez l'aide des guerriers. Ensemble, vous formez une force imposante, prête à affronter n'importe quelle menace qui se dresse sur votre chemin. En échange de leur aide, les guerriers vous offrent des armes et des armures améliorées, renforçant ainsi votre préparation pour le combat à venir.")
+        if choix == "2":
+            TB.textbox_output("2. Déterminé à prouver votre force et votre courage, vous décidez de continuer seul. Vous remerciez les guerriers pour leur offre d'aide, mais vous préférez suivre votre propre chemin. Vous savez que la tâche qui vous attend est ardue, mais vous êtes prêt à la relever seul, avec votre détermination comme seule arme.")
+
+    TB.textbox_output(
+        "Quel que soit votre choix, vous vous lancez dans une série de batailles épiques contre les forces maléfiques, repoussant chaque assaut avec force et courage.")
+    TB.textbox_output("Finalement, après de nombreuses batailles et de nombreux défis surmontés, vous parvenez à vaincre les forces maléfiques et à ramener la paix durable dans votre royaume. Les habitants vous honorent une fois de plus comme des héros, reconnaissant votre dévouement et votre bravoure.")
+    TB.textbox_output("Avec votre quête accomplie et votre royaume en sécurité, vous vous retirez pour profiter enfin de la paix que vous avez si durement gagnée. Mais vous savez que, si jamais une nouvelle menace surgit, vous serez prêt à défendre votre royaume avec la même détermination et la même force.")
+
     return 10, HEROS
 
 
@@ -945,13 +958,6 @@ def chapitre10():
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous venez de passer au chapitre 10.")
-
-    tps_musique = pygame.mixer.music.get_pos()
-    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
-               Ett.gardiens_race), "img/spectres gardiens.png")
-    pygame.mixer.music.load("./sounds/never_again.mp3")
-    pygame.mixer.music.play(-1)
-    pygame.mixer.music.set_pos(tps_musique)
 
     TB.textbox_output("Merci d'avoir joué")
     TB.textbox_output("Fin de la partie")
