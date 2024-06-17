@@ -125,5 +125,9 @@ spectre_race = Type("spectre", 100, 20, 0)
 spectres_labyrinthe = Type("Spectre du labyrinthe", 20, 50, 30)
 
 
+# spectre labyrinyhe : somme 120 + 100
+
+spectres_profondeurs = Type("Spectre des profondeurs", 50, 50, 30)
+
 liste_classe = [guerrier, archer, tank]
 liste_race = [humain, elfe, orc]

@@ -706,8 +706,7 @@ def chapitre4():
 
     TB.textbox_output("Le rituel est un succès, et pour la première fois depuis des décennies, le soleil se lève sur la cité. Les habitants vous remercient chaleureusement, offrant leur aide pour votre quête future. Vous quittez la cité sous la lune, maintenant libérée, avec un sentiment renouvelé de force et d'espoir.")
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Equipement("épé longue", 55, 0, 55, "main_droite"))])
-    fontaine(HEROS)
+        HEROS, 1, [(E.Equipement("épé longue", 60, 0, 90, "main_droite"))])
     return 5, HEROS
 
 
@@ -752,6 +751,10 @@ def chapitre5():
     TB.textbox_output("Avec votre nouvelle acquisition, vous explorez plus avant le temple. Vous découvrez des fresques et des inscriptions révélant l'histoire de l'éclipse et de l'ancien royaume. Vous apprenez que l'éclipse est liée à un artefact puissant, caché dans un lieu secret et protégé par des forces redoutables.")
     TB.textbox_output("Soudain, une porte secrète s'ouvre, révélant un passage vers une chambre intérieure. Là, vous trouvez un ancien grimoire, contenant des sorts et des incantations oubliées, ainsi qu'une carte détaillant l'emplacement de l'artefact que vous cherchez.")
     TB.textbox_output("Vous quittez le temple des étoiles, votre esprit éclairé par les nouvelles connaissances et votre équipement renforcé par les artefacts célestes. Vous savez que le chemin sera encore long et dangereux, mais vous êtes déterminé à poursuivre votre quête pour sauver votre royaume de l'éclipse imminente.")
+
+    M.ouvertureDeLaBoutique(
+        HEROS, 1, [(E.Equipement("épé des ténebres", 65, 0, 85, "main_droite"))])
+    fontaine(HEROS)
     return 6, HEROS
 
 
@@ -799,8 +802,9 @@ def chapitre6():
     TB.textbox_output("Vous suivez ce passage jusqu'à une chambre cachée, où des fresques anciennes racontent l'histoire de héros passés, ceux qui ont tenté de combattre l'éclipse mais ont échoué. Vous comprenez que ces âmes perdues sont celles des anciens héros, piégées dans les cavernes pour l'éternité.")
     TB.textbox_output("Dans cette chambre, vous trouvez un vieux grimoire, contenant des sorts oubliés et des incantations pour sceller les créatures de l'ombre. En le prenant, vous ressentez une lourdeur sur vos épaules, comme si vous héritiez du destin des anciens héros.")
     TB.textbox_output("En sortant des cavernes de l'oubli, vous êtes plus déterminé que jamais à réussir là où les autres ont échoué. Vous avez acquis de nouveaux pouvoirs et des connaissances cruciales, mais vous savez que le chemin qui vous attend est encore plus périlleux.")
-
-    TB.textbox_output("Vous venez de passer au chapitre 6.")
+    M.ouvertureDeLaBoutique(
+        HEROS, 1, [(E.Equipement("Couronne étrange", 0, 25, 55, "tete"))])
+    fontaine(HEROS)
     return 7, HEROS
 
 
@@ -817,15 +821,37 @@ def chapitre7():
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
-    TB.textbox_output("Vous venez de passer au chapitre 7.")
-
+    TB.textbox_output("Après avoir traversé les Cavernes de l'Oubli et acquis de nouveaux pouvoirs, vous poursuivez votre quête vers la mer des âmes, un océan mystérieux entouré de légendes et de contes lugubres. On dit que cette mer est le lieu où reposent les âmes des défunts, piégées dans un cycle éternel de tourment.")
+    TB.textbox_output("Naviguant à bord d'un vieux navire abandonné que vous avez réparé, vous sentez une étrange aura de malédiction planer sur ces eaux. La mer est agitée, les vagues déferlent avec une intensité déconcertante et le ciel est constamment obscurci par des nuages sombres.")
+    TB.textbox_output("Alors que vous avancez dans les eaux tumultueuses, votre navire est soudain attaqué par des créatures marines, des esprits tourmentés cherchant à vous engloutir dans les profondeurs de l'océan.")
     tps_musique = pygame.mixer.music.get_pos()
-    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
-               Ett.gardiens_race), "img/spectres gardiens.png")
+    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_profondeurs,
+               Ett.spectre_race), "img/spectre profondeurs.png")
     pygame.mixer.music.load("./sounds/never_again.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
+    TB.textbox_output("Après avoir repoussé les attaquants, vous continuez à naviguer, cherchant un signe, un indice sur la manière de traverser la mer des âmes en toute sécurité. Au loin, vous apercevez une île isolée, entourée d'un halo de lumière éthérée. Vous décidez de vous en approcher, espérant y trouver des réponses.")
+    TB.textbox_output("En abordant l'île, vous découvrez un ancien sanctuaire, gardé par une entité marine bienveillante. Elle vous raconte l'histoire de la mer des âmes et vous informe qu'un ancien artefact, capable de contrôler les flots tumultueux de l'océan, est caché au fond des eaux.")
 
+    done = False
+    while not done:
+        choix = TB.textbox_input(
+            "Choix: @- 1 : Plonger dans les profondeurs pour trouver l'artefact@- 2 : Demander à l'entité marine de vous guider vers l'artefact")
+        if choix in ["1", "2"]:
+            done = True
+        if choix == "1":
+            TB.textbox_output("1. Plonger dans les profondeurs pour trouver l'artefact :@Vous décidez de plonger dans les profondeurs de la mer des âmes, bravant les dangers pour trouver l'artefact par vous-même. Après une plongée périlleuse, vous découvrez une épave ancienne au fond de l'océan. En explorant l'épave, vous trouvez un trident ancien, orné de runes marines. Vous le récupérez, sentant le pouvoir de l'océan couler à travers vous.")
+            M.obt_objet(E.Equipement(
+                "Trident ancien", 60, 0, 75, "main_droite"), HEROS)
+        if choix == "2":
+            TB.textbox_output("2. Demander à l'entité marine de vous guider vers l'artefact :@Vous choisissez de demander à l'entité marine de vous guider vers l'artefact. Avec sa guidance, vous plongez dans les eaux profondes et trouvez rapidement un coffre ancien enfoui dans le sable. À l'intérieur, vous trouvez un collier de coquillages lumineux, qui semble émettre une lueur protectrice. Vous le prenez, sentant une connexion avec les créatures marines.")
+            M.obt_objet(E.Equipement("Collier de coquillages",
+                                     0, 35, 75, "tete"), HEROS)
+
+    TB.textbox_output("Avec l'artefact en votre possession, vous retournez sur votre navire, prêt à continuer votre voyage à travers la mer des âmes. Vous avez maintenant les moyens de naviguer en sécurité à travers ces eaux hantées, mais vous savez que de nouveaux défis vous attendent avant d'atteindre votre destination finale.")
+
+    M.ouvertureDeLaBoutique(HEROS, 1, [])
+    fontaine(HEROS)
     return 8, HEROS
 
 
