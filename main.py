@@ -772,6 +772,7 @@ def chapitre6():
     TB.textbox_output("En entrant dans les cavernes, l'air devient plus froid et une obscurité oppressante vous enveloppe. Vos pas résonnent contre les parois humides et vous sentez que quelque chose vous observe dans les ténèbres. Vous allumez une torche pour éclairer votre chemin et avancez prudemment.")
     TB.textbox_output(
         "Rapidement, vous vous trouvez face à un choix de chemins, chacun menant plus profondément dans le labyrinthe.")
+    done = False
     while not done:
         choix = TB.textbox_input(
             "Choix: @- 1 : Prendre le chemin de droite, marqué par des symboles mystérieux@- 2 : Prendre le chemin de gauche, illuminé par une lueur étrange")
@@ -780,7 +781,7 @@ def chapitre6():
         if choix == "1":
             TB.textbox_output("1. Prendre le chemin de droite, marqué par des symboles mystérieux :@Vous décidez de suivre le chemin de droite, attiré par les symboles gravés sur les parois. Les symboles ressemblent à ceux vus dans le temple des étoiles, et vous les suivez en espérant qu'ils vous mèneront à quelque chose d'important. Au bout du chemin, vous trouvez une alcôve cachée avec une bague d'ombre, qui semble absorber la lumière. En la mettant, vous sentez une connexion avec les ombres, vous permettant de passer inaperçu.")
             M.obt_objet(E.Equipement(
-                "Bague des ombres", 10, 35, 55, "main_gauche"))
+                "Bague des ombres", 10, 35, 55, "main_gauche"), HEROS)
         if choix == "2":
             TB.textbox_output("2. Prendre le chemin de gauche, illuminé par une lueur étrange :@Vous choisissez le chemin de gauche, intrigué par la lueur mystérieuse. En suivant cette lumière, vous arrivez dans une caverne où des cristaux phosphorescents illuminent une source souterraine. À côté de la source, vous trouvez un bracelet d'ombre, qui semble renforcer votre force physique. Vous mettez le bracelet, sentant un pouvoir brut se réveiller en vous.")
             M.obt_objet(E.Equipement("Bracelet étrange",
@@ -789,7 +790,7 @@ def chapitre6():
         "Alors que vous continuez à explorer les cavernes, vous êtes soudain attaqué par une créature massive, formée de ténèbres mouvantes et de cris d'âmes perdues.")
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_labyrinthe,
-               Ett.spectre_race), "img/spectres gardiens.png")
+               Ett.spectre_race), "img/spectre labyrinthe.png")
     pygame.mixer.music.load("./sounds/never_again.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
