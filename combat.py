@@ -55,12 +55,17 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
     """effectue une action parmi celles disponibles, prend en parametre l ennemi et le joueur"""
     temps_recup_competence = 0
     premier_tour = True
+    done = False
     if (len(personnage.lister_inventaire_consommable()) > 0):
-        choix = TB.textbox_input(
-            "choisissez une action parmi :@-1 : attaquer@-2 : utiliser un objet@")
+        while not done:
+            choix = TB.textbox_input(
+                "choisissez une action parmi :@-1 : attaquer@-2 : utiliser un objet@")
+            if choix in ["1", "2"]:
+                done = True
     else:
         choix = "1"
         TB.textbox_output("Vous attaquez")
+
     if choix == "1":
         if premier_tour:
             premier_tour = False
@@ -72,14 +77,16 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
             liste_equipements += str(
                 # on ajoute tt les élément a la suite en leur donnant un indice et en ajoutant des sauts al la ligne
                 str(i+1)+'- '+personnage.lister_inventaire_consommable()[i])+'@'
-        choix_consommable = TB.textbox_input("Choisissez l objet que vous souhaitez utiliser parmi la liste de vos objets :@" +
-                                             liste_equipements)
-
-        if (choix_consommable in ["1", "2", "3", "4", "5", "6", "7", "8"]):
-            choix_consommable = int(choix_consommable)-1
-            if (choix_consommable <= len((personnage.lister_inventaire_consommable())) and len((personnage.lister_inventaire_consommable())) != 0):
-                nomObjChoisi = personnage.lister_inventaire_consommable()[
-                    choix_consommable]
+        done2 = False
+        while not done2:
+            choix_consommable = TB.textbox_input("Choisissez l objet que vous souhaitez utiliser parmi la liste de vos objets :@" +
+                                                 liste_equipements)
+            if (choix_consommable in ["1", "2", "3", "4", "5", "6", "7", "8"]):
+                choix_consommable = int(choix_consommable)-1
+                done2 = True
+                if (choix_consommable <= len((personnage.lister_inventaire_consommable())) and len((personnage.lister_inventaire_consommable())) != 0):
+                    nomObjChoisi = personnage.lister_inventaire_consommable()[
+                        choix_consommable]
 
                 done = False
                 i = 0
@@ -113,11 +120,6 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
                 TB.textbox_output(
                     "vous avez utilisé '"+str(nomObjChoisi)+"'@Vos nouvelles statisitiques sont :@- PV : "+str(personnage.pv)+"/"+str(personnage.pv_max)+"@- Dégâts par coup : "+(str(max(0, personnage.pc-ennemi.pd+bonusArmes)))+"@- Résistance : "+str(personnage.pd+bonusDef))
 
-        else:
-            TB.textbox_output(
-                "choix invalide, votre tour est passé :)")
-            TB.textbox_output("le choix est"+str(choix_consommable))
-
     else:
         TB.textbox_output("choix indisponible, votre tour est passé :)")
     temps_recup_competence -= 1
@@ -145,9 +147,12 @@ def attaquer(source, destination, type_attaquant: int):
             for i in range(len(destination.inventaire)):
                 if type(destination.inventaire[i]) == E.Equipement:
                     bonusDef += destination.inventaire[i].dfc
-
-        crit = TB.textbox_input(
-            "Voulez vous tenter une attaque critique ?@-1 : oui@-2 : non@")
+        done = False
+        while not done:
+            crit = TB.textbox_input(
+                "Voulez vous tenter une attaque critique ?@-1 : oui@-2 : non@")
+            if crit in ["1", "2"]:
+                done = True
         if crit == "1":
             # par exemple si l attaque de bas (source.pc est 10, on attaque entre 5 et 15)
             degat = int(source.pc/2 + DX(source.pc)) + bonusArmes

@@ -119,6 +119,11 @@ gardiens_nocturnes_classe = Type("Gardiens Nocturnes", 10, 30, 10)
 # spectreGardien  : somme : 150 + 50
 spectres_gardiens_classe = Type("spectres Gardiens", 110, 20, 20)
 
+# spectre labyrinyhe : somme 120 + 100
+
+spectre_race = Type("spectre", 100, 20, 0)
+spectres_labyrinthe = Type("Spectre du labyrinthe", 20, 50, 30)
+
 
 liste_classe = [guerrier, archer, tank]
 liste_race = [humain, elfe, orc]

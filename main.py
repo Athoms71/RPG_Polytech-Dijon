@@ -539,8 +539,14 @@ def chapitre2():
     TB.textbox_output("Après avoir échappé à l'attaque de votre village, vous errez dans la forêt pendant plusieurs jours, cherchant des réponses et un refuge. Les arbres s'éclaircissent finalement, révélant une vallée cachée où se dressent les ruines d'une civilisation ancienne, à moitié enfouies sous la végétation.")
     TB.textbox_output("Vous avancez prudemment parmi les pierres effondrées et les colonnes brisées, sentant l'aura mystique qui émane de cet endroit oublié. Des fresques murales racontent l'histoire d'un royaume autrefois prospère, détruit par une force obscure similaire à celle qui a attaqué votre village. Vous comprenez que ces ruines détiennent des secrets vitaux pour votre quête.")
     TB.textbox_output("Soudain, des bruits étranges retentissent autour de vous. Des silhouettes se déplacent parmi les décombres. Vous vous cachez derrière une colonne et observez des créatures humanoïdes aux yeux brillants, gardant les lieux.")
+    tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(
-        Ett.garde_squelette_classe, Ett.squelette_race), "./img/skeleton_warriors.png")
+        Ett.garde_squelette_classe, Ett.squelette_race), "./img/skeleton_warrior.png")
+    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_pos(tps_musique)
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
     M.obt_objet(E.Consommable("Petite potion de force",
                 5, 5, 0, 10, "attaque"), HEROS)
     M.obt_objet(E.Equipement("Heaume Basique",
@@ -611,8 +617,14 @@ def chapitre3():
             M.obt_objet(E.Equipement("Amulette de jade",
                                      10, 10, 10, "tete"), HEROS)
     TB.textbox_output("Alors que vous continuez à explorer la forêt, vous entendez soudain des bruits de pas lourds derrière vous. Vous vous retournez pour voir une créature massive, composée de branches et de feuillage, ses yeux brillants de malveillance. Elle avance vers vous, ses griffes prêtes à frapper.")
+    tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(
         Ett.golem_foret_classe, Ett.golem_race), "img/golem.png")
+    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_pos(tps_musique)
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
     TB.textbox_output("Après un combat intense, vous parvenez à vaincre le Golem de la Forêt, utilisant votre nouvelle arme ou votre amulette pour vous protéger. Avec la créature vaincue, les murmures de la forêt s'apaisent, comme si les esprits vous reconnaissaient enfin comme un allié.")
     TB.textbox_output("Vous quittez la Forêt des Murmures, votre équipement renforcé et votre détermination intacte. Vous savez que les défis à venir seront encore plus redoutables, mais chaque pas vous rapproche de la vérité sur l'éclipse et du moyen de sauver votre royaume.")
     M.ouvertureDeLaBoutique(
@@ -636,8 +648,14 @@ def chapitre4():
     TB.textbox_output("Après avoir quitté la Forêt des Murmures, vous continuez votre voyage jusqu'à atteindre une vallée cachée où se trouve une ville mystérieuse. Dès que vous pénétrez dans cette cité, vous remarquez quelque chose d'étrange : la lune y brille constamment, ne laissant jamais place au jour. Les habitants semblent mener une vie normale, mais il y a une mélancolie palpable dans l'air, comme s'ils étaient prisonniers de cette nuit éternelle.")
     TB.textbox_output("En explorant les rues pavées et les bâtiments élégants mais décrépits, vous apprenez que la cité est sous l'emprise d'une malédiction qui maintient la lune éternellement dans le ciel. Les habitants vivent dans la peur, sachant que cette anomalie attire des créatures nocturnes dangereuses. Vous êtes déterminé à les aider et à en apprendre plus sur cette malédiction.")
     TB.textbox_output("Vous rencontrez le chef de la cité, un vieil homme sage nommé Alaric, qui vous explique que la clé pour briser la malédiction se trouve dans un ancien sanctuaire au centre de la ville. Cependant, le sanctuaire est gardé par des créatures de l'ombre. En vous approchant du sanctuaire, vous êtes attaqué par un groupe de gardiens nocturnes.")
+    tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(
         Ett.gardiens_nocturnes_classe, Ett.gardiens_race), "img/gardien nocturne.png")
+    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_pos(tps_musique)
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
     M.obt_objet(E.Equipement("Bouclier de fer",
                 0, 20, 40, "main_gauche"), HEROS)
 
@@ -683,8 +701,14 @@ def chapitre5():
     TB.textbox_output("Après avoir libéré la cité sous la lune, vous continuez votre quête vers le nord, suivant les indications des anciens textes et des conseils des habitants reconnaissants. Votre destination est un temple ancien, caché dans les montagnes, dédié aux étoiles et à leurs mystérieux pouvoirs.")
     TB.textbox_output("La montée est ardue, les sentiers escarpés et souvent masqués par des nuages épais. Après plusieurs jours de marche, vous atteignez enfin l'entrée du temple des étoiles. Devant vous se dresse une structure imposante, faite de pierres anciennes et ornée de symboles célestes. L'air est imprégné de magie, et vous sentez une énergie puissante émaner des lieux.")
     TB.textbox_output("En entrant dans le temple, vous découvrez une salle immense, avec un plafond voûté parsemé de cristaux brillants, imitant un ciel étoilé. Au centre de la salle, un autel lumineux attire votre attention. Alors que vous vous en approchez, des créatures spectrales surgissent des ombres pour défendre le sanctuaire.")
+    tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
                Ett.gardiens_race), "img/spectres gardiens.png")
+    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_pos(tps_musique)
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
     done = False
     while not done:
         choix = TB.textbox_input(
@@ -718,6 +742,37 @@ def chapitre6():
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
+    TB.textbox_output("Avec la carte et les connaissances acquises au temple des étoiles, vous vous dirigez maintenant vers un réseau de cavernes souterraines connues sous le nom de Cavernes de l'Oubli. Ces cavernes sont réputées pour leur labyrinthe sans fin et leurs créatures de l'ombre. On dit que ceux qui y pénètrent sont confrontés à leurs peurs les plus profondes.")
+    TB.textbox_output("En entrant dans les cavernes, l'air devient plus froid et une obscurité oppressante vous enveloppe. Vos pas résonnent contre les parois humides et vous sentez que quelque chose vous observe dans les ténèbres. Vous allumez une torche pour éclairer votre chemin et avancez prudemment.")
+    TB.textbox_output(
+        "Rapidement, vous vous trouvez face à un choix de chemins, chacun menant plus profondément dans le labyrinthe.")
+    while not done:
+        choix = TB.textbox_input(
+            "Choix: @- 1 : Prendre le chemin de droite, marqué par des symboles mystérieux@- 2 : Prendre le chemin de gauche, illuminé par une lueur étrange")
+        if choix in ["1", "2"]:
+            done = True
+        if choix == "1":
+            TB.textbox_output("1. Prendre le chemin de droite, marqué par des symboles mystérieux :@Vous décidez de suivre le chemin de droite, attiré par les symboles gravés sur les parois. Les symboles ressemblent à ceux vus dans le temple des étoiles, et vous les suivez en espérant qu'ils vous mèneront à quelque chose d'important. Au bout du chemin, vous trouvez une alcôve cachée avec une bague d'ombre, qui semble absorber la lumière. En la mettant, vous sentez une connexion avec les ombres, vous permettant de passer inaperçu.")
+            M.obt_objet(E.Equipement(
+                "Bague des ombres", 10, 35, 55, "main_gauche"))
+        if choix == "2":
+            TB.textbox_output("2. Prendre le chemin de gauche, illuminé par une lueur étrange :@Vous choisissez le chemin de gauche, intrigué par la lueur mystérieuse. En suivant cette lumière, vous arrivez dans une caverne où des cristaux phosphorescents illuminent une source souterraine. À côté de la source, vous trouvez un bracelet d'ombre, qui semble renforcer votre force physique. Vous mettez le bracelet, sentant un pouvoir brut se réveiller en vous.")
+            M.obt_objet(E.Equipement("Bracelet étrange",
+                                     70, 0, 55, "main_droite"), HEROS)
+    TB.textbox_output(
+        "Alors que vous continuez à explorer les cavernes, vous êtes soudain attaqué par une créature massive, formée de ténèbres mouvantes et de cris d'âmes perdues.")
+    tps_musique = pygame.mixer.music.get_pos()
+    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_labyrinthe,
+               Ett.spectre_race), "img/spectres gardiens.png")
+    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_pos(tps_musique)
+
+    TB.textbox_output("Après un combat éprouvant, vous parvenez à vaincre le Spectre du Labyrinthe, utilisant vos nouvelles compétences et équipements. Le spectre vaincu, les ténèbres autour de vous semblent se dissiper légèrement, révélant un passage secret plus loin dans la caverne.")
+    TB.textbox_output("Vous suivez ce passage jusqu'à une chambre cachée, où des fresques anciennes racontent l'histoire de héros passés, ceux qui ont tenté de combattre l'éclipse mais ont échoué. Vous comprenez que ces âmes perdues sont celles des anciens héros, piégées dans les cavernes pour l'éternité.")
+    TB.textbox_output("Dans cette chambre, vous trouvez un vieux grimoire, contenant des sorts oubliés et des incantations pour sceller les créatures de l'ombre. En le prenant, vous ressentez une lourdeur sur vos épaules, comme si vous héritiez du destin des anciens héros.")
+    TB.textbox_output("En sortant des cavernes de l'oubli, vous êtes plus déterminé que jamais à réussir là où les autres ont échoué. Vous avez acquis de nouveaux pouvoirs et des connaissances cruciales, mais vous savez que le chemin qui vous attend est encore plus périlleux.")
+
     TB.textbox_output("Vous venez de passer au chapitre 6.")
     return 7, HEROS
 
@@ -736,6 +791,14 @@ def chapitre7():
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous venez de passer au chapitre 7.")
+
+    tps_musique = pygame.mixer.music.get_pos()
+    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
+               Ett.gardiens_race), "img/spectres gardiens.png")
+    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_pos(tps_musique)
+
     return 8, HEROS
 
 
@@ -753,6 +816,14 @@ def chapitre8():
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous venez de passer au chapitre 8.")
+
+    tps_musique = pygame.mixer.music.get_pos()
+    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
+               Ett.gardiens_race), "img/spectres gardiens.png")
+    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_pos(tps_musique)
+
     return 9, HEROS
 
 
@@ -769,6 +840,14 @@ def chapitre9():
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
+
+    tps_musique = pygame.mixer.music.get_pos()
+    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
+               Ett.gardiens_race), "img/spectres gardiens.png")
+    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_pos(tps_musique)
+
     TB.textbox_output("Vous venez de passer au chapitre 9.")
     return 10, HEROS
 
@@ -787,6 +866,14 @@ def chapitre10():
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous venez de passer au chapitre 10.")
+
+    tps_musique = pygame.mixer.music.get_pos()
+    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
+               Ett.gardiens_race), "img/spectres gardiens.png")
+    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_pos(tps_musique)
+
     TB.textbox_output("Merci d'avoir joué")
     TB.textbox_output("Fin de la partie")
     return 10

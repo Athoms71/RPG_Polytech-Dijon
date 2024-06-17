@@ -1,13 +1,13 @@
 nom_joueur
-Augustin
+tzr'efsd
 classe_joueur
-guerrier
+archer
 race_joueur
-elfe
+orc
 inventaire_joueur
-épé de la Constellation du Lion/55/0/55/main_gauche/,
+Arc/30/0/15/main_droite/,
 pv_joueur
-25
+45
 argent_joueur
 0
 sprite_joueur
@@ -27,4 +27,4 @@ jambes_joueur
 pieds_joueur
 
 avancement
-7
+2
