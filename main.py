@@ -275,7 +275,7 @@ def jeu():
                 pygame.mixer.music.play(-1)
                 AVANCEMENT, HEROS = chapitre0(HEROS)
             case 1:
-                pygame.mixer.music.load("./sounds/marchand_theme.mp3")
+                pygame.mixer.music.load("./sounds/never_again.mp3")
                 pygame.mixer.music.play(-1)
                 background = pygame.image.load("./img/pont_fond.jpg")
                 background = pygame.transform.scale(
@@ -501,12 +501,35 @@ def chapitre2(heros: Ett.Joueur):
                         40, 0, 15, "main_droite"), heros)
     TB.textbox_output("Avec votre nouvelle acquisition, vous continuez à explorer les ruines. Vous trouvez finalement un ancien grimoire, contenant des histoires et des prophéties sur l'éclipse et les créatures des ombres. En le feuilletant, vous apprenez qu'un artefact puissant, capable de contrôler ou détruire ces créatures, est caché quelque part dans le royaume.")
     TB.textbox_output("Votre quête prend une nouvelle tournure. Armé de nouvelles connaissances et de puissants artefacts, vous quittez les ruines et vous vous enfoncez plus profondément dans la vallée, déterminé à trouver cet artefact avant qu'il ne soit trop tard.")
+    Fontaine(heros)
     return 3, heros
 
 
 def chapitre3(heros: Ett.Joueur):
     '''Lance le chapitre 3 du jeu'''
-    TB.textbox_output("Vous venez de passer au chapitre 3.")
+    TB.textbox_output("")
+    TB.textbox_output("")
+    TB.textbox_output("")
+    done = False
+    choix = ""
+    while not done:
+        TB.textbox_output(
+            "Choix: @ - 1 : Résoudre l'énigme du mécanisme@- 2 : Forcer l'entrée")
+        if choix in ["1", "2"]:
+            done = True
+    if choix == "1":
+        TB.textbox_output("1. Résoudre l'énigme du mécanisme :@Vous examinez le mécanisme et remarquez des symboles similaires à ceux vus dans la forêt. En manipulant soigneusement les pièces mobiles, vous parvenez à déverrouiller la porte. À l'intérieur, vous trouvez une amulette ancienne, gravée de runes protectrices. En la mettant autour de votre cou, vous ressentez un pouvoir de protection et de clairvoyance.")
+
+        M.obt_objet(E.Equipement("Amulette de clairevoyance",
+                    0, 8, 10, "tete"), heros)
+        if choix == "2":
+            TB.textbox_output("2. Forcer l'entrée :@Impatient, vous décidez de forcer l'entrée en utilisant votre force et vos armes. Après plusieurs essais, la porte finit par céder. À l'intérieur, vous trouvez une épée en cristal, légèrement fissurée mais encore imprégnée d'une énergie redoutable. L'épée vibre légèrement entre vos mains, comme si elle reconnaissait votre détermination.")
+            M.obt_objet(E.Equipement("épé de cristal",
+                        40, 0, 15, "main_droite"), heros)
+    TB.textbox_output("")
+    TB.textbox_output("")
+    TB.textbox_output("")
+    TB.textbox_output("")
 
     return 4, heros
 
@@ -598,3 +621,11 @@ while RUNNING:
         ecran_titre()
     elif ETAT == "jeu":
         jeu()
+
+
+def Fontaine(hero: Ett.Joueur):
+    TB.textbox_output(
+        "Vous tombez face a une fontaine, vous décidez de boir son eau, et vous sentez votre énergie vitale remonter...")
+    hero.pv = hero.pv_max
+    TB.textbox_output(
+        "Vous avez été soingés de vos blessures :@"+str(hero.pv)+"/"+str(hero.pv_max)+"PV")

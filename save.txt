@@ -1,9 +1,9 @@
 nom_joueur
-Augustin
+tfgdv
 classe_joueur
-archer
+guerrier
 race_joueur
-elfe
+humain
 inventaire_joueur
 
 pv_joueur
