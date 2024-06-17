@@ -520,7 +520,7 @@ def chapitre2():
     TB.textbox_output("Vous avancez prudemment parmi les pierres effondrées et les colonnes brisées, sentant l'aura mystique qui émane de cet endroit oublié. Des fresques murales racontent l'histoire d'un royaume autrefois prospère, détruit par une force obscure similaire à celle qui a attaqué votre village. Vous comprenez que ces ruines détiennent des secrets vitaux pour votre quête.")
     TB.textbox_output("Soudain, des bruits étranges retentissent autour de vous. Des silhouettes se déplacent parmi les décombres. Vous vous cachez derrière une colonne et observez des créatures humanoïdes aux yeux brillants, gardant les lieux.")
     C.bataille(HEROS, Ett.Monstre(
-        Ett.Garde_squelette_classe, Ett.squelette_race))
+        Ett.garde_squelette_classe, Ett.squelette_race))
     M.obt_objet(E.Consommable("Petite potion de force",
                 5, 5, 0, 10, "attaque"), HEROS)
     M.obt_objet(E.Equipement("Heaume Basique",
@@ -587,13 +587,46 @@ def chapitre3():
         Ett.golem_foret_classe, Ett.golem_race))
     TB.textbox_output("Après un combat intense, vous parvenez à vaincre le Golem de la Forêt, utilisant votre nouvelle arme ou votre amulette pour vous protéger. Avec la créature vaincue, les murmures de la forêt s'apaisent, comme si les esprits vous reconnaissaient enfin comme un allié.")
     TB.textbox_output("Vous quittez la Forêt des Murmures, votre équipement renforcé et votre détermination intacte. Vous savez que les défis à venir seront encore plus redoutables, mais chaque pas vous rapproche de la vérité sur l'éclipse et du moyen de sauver votre royaume.")
+    M.ouvertureDeLaBoutique(
+        HEROS, 1, [(E.Consommable("Potion de force intermédiaire", 10, 0, 3, 40, "attaque"))])
     return 4, HEROS
 
 
 def chapitre4():
     '''Lance le chapitre 4 du jeu'''
     global HEROS
-    TB.textbox_output("Vous venez de passer au chapitre 4.")
+
+    TB.textbox_output("Après avoir quitté la Forêt des Murmures, vous continuez votre voyage jusqu'à atteindre une vallée cachée où se trouve une ville mystérieuse. Dès que vous pénétrez dans cette cité, vous remarquez quelque chose d'étrange : la lune y brille constamment, ne laissant jamais place au jour. Les habitants semblent mener une vie normale, mais il y a une mélancolie palpable dans l'air, comme s'ils étaient prisonniers de cette nuit éternelle.")
+    TB.textbox_output("En explorant les rues pavées et les bâtiments élégants mais décrépits, vous apprenez que la cité est sous l'emprise d'une malédiction qui maintient la lune éternellement dans le ciel. Les habitants vivent dans la peur, sachant que cette anomalie attire des créatures nocturnes dangereuses. Vous êtes déterminé à les aider et à en apprendre plus sur cette malédiction.")
+    TB.textbox_output("Vous rencontrez le chef de la cité, un vieil homme sage nommé Alaric, qui vous explique que la clé pour briser la malédiction se trouve dans un ancien sanctuaire au centre de la ville. Cependant, le sanctuaire est gardé par des créatures de l'ombre. En vous approchant du sanctuaire, vous êtes attaqué par un groupe de gardiens nocturnes.")
+    C.bataille(HEROS, Ett.Monstre(
+        Ett.gardiens_nocturnes_classe, Ett.gardiens_race))
+    M.obt_objet(E.Equipement("Bouclier de fer",
+                0, 20, 40, "main_gauche"), HEROS)
+
+    TB.textbox_output("Après avoir vaincu les gardiens, vous entrez dans le sanctuaire et trouvez un autel au centre de la pièce, illuminé par une lumière lunaire intense. L'autel est orné de cristaux lunaires et de symboles anciens.")
+
+    done = False
+    while not done:
+        choix = TB.textbox_input(
+            "Choix: @ - 1 : Utiliser un cristal lunaire sur l'autel@- 2 : Réciter une incantation des runes découvertes")
+        if choix in ["1", "2"]:
+            done = True
+        if choix == "1":
+            TB.textbox_output("1. Utiliser un cristal lunaire sur l'autel :@Vous choisissez de prendre un cristal lunaire et de le placer sur l'autel. Dès que le cristal touche la surface, une lumière éclatante inonde la pièce et l'autel se met à vibrer. Un bouclier lunaire apparaît devant vous, fait d'une lumière pure et protectrice. Vous prenez le bouclier, sentant sa force apaisante vous envelopper.")
+            M.obt_objet(E.Equipement(
+                "Bouclier de fer", 0, 25, 45, "main_gauche"))
+        if choix == "2":
+            TB.textbox_output("2. Réciter une incantation des runes découvertes :@Vous vous souvenez des runes que vous avez vues dans la Forêt des Murmures et commencez à réciter une incantation. Les symboles sur l'autel s'illuminent, et une vague d'énergie vous traverse. Une bague de lune apparaît sur l'autel, ornée de pierres scintillantes. Vous la mettez, sentant une puissance nouvelle renforcer vos capacités magiques.")
+            M.obt_objet(E.Equipement("L'Anneau de la Lune",
+                                     15, 15, 10, "main_gauche"), HEROS)
+
+    TB.textbox_output("Avec le bouclier ou la bague, vous sentez que vous avez maintenant le pouvoir de libérer la cité de sa malédiction. Vous retournez voir Alaric et ensemble, vous organisez un rituel pour invoquer l'énergie de la lune et dissiper la malédiction.")
+
+    TB.textbox_output("Le rituel est un succès, et pour la première fois depuis des décennies, le soleil se lève sur la cité. Les habitants vous remercient chaleureusement, offrant leur aide pour votre quête future. Vous quittez la cité sous la lune, maintenant libérée, avec un sentiment renouvelé de force et d'espoir.")
+    M.ouvertureDeLaBoutique(
+        HEROS, 1, [(E.Equipement("épé longue", 55, 0, 0, 55, "main_droite"))])
+    fontaine(HEROS)
     return 5, HEROS
 
 
