@@ -490,7 +490,7 @@ def chapitre0(heros: Ett.Joueur):
     heros.classe = Ett.liste_classe[int(classe_heros)-1]
     heros.race = Ett.liste_race[int(race_heros)-1]
     sprite = pygame.image.load(heros.update_sprite())
-    screen.blit(sprite, (-window_width//6,
+    screen.blit(sprite, (sprite.get_width()//2,
                 # windwow_width//2 pour ennemi à droite
                          window_height-1.01*sprite.get_height()))
     TB.textbox_output("Vous etes : "+heros.nom+", de la race des "+heros.race.nom+", vous etes un futur " +

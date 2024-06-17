@@ -7,6 +7,7 @@ import pygame
 def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list = []):
     """Attention, liste achat doit estre de 5 elements ou moins !"""
     pygame.mixer.music.load("./sounds/marchand_theme.mp3")
+    pygame.mixer.music.play(-1)
     done = False
     stockMarchand = listeAchat
     TB.textbox_output("Vous croisez un marchand itinérant.")
