@@ -27,7 +27,7 @@ class Joueur ():
         self.sprite = ""
 
     def update_sprite(self):
-        return f"./img/{self.race.nom}_{self.classe.nom}.png"
+        return f"./img/{self.race}_{self.classe}.png"
 
     def lister_inventaire_consommable(self):
         liste_inventaire = []

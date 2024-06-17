@@ -218,16 +218,18 @@ def continuer_partie():
         changement_affichage()
 
 
-def dict_var_update(dict_var: dict, heros: Ett.Joueur, avancement: int):
+def dict_var_update(dict_var: dict, avancement: int):
     '''Sauvegarde les valeurs des différentes variables dans le dictionnaire de sauvegarde'''
+    global HEROS
+
     def attribuer_equipement(partie_corps):
         if partie_corps == []:
             return []
         return [partie_corps.nom, int(partie_corps.atk), int(partie_corps.dfc), int(partie_corps.prix), partie_corps.cat]
-    dict_var["nom_joueur"] = heros.nom
-    dict_var["classe_joueur"] = heros.classe.nom
-    dict_var["race_joueur"] = heros.race.nom
-    for elt in heros.inventaire:
+    dict_var["nom_joueur"] = HEROS.nom
+    dict_var["classe_joueur"] = HEROS.classe.nom
+    dict_var["race_joueur"] = HEROS.race.nom
+    for elt in HEROS.inventaire:
         list_temp = []
         list_temp.append(elt.nom)
         list_temp.append(elt.atk)
@@ -237,16 +239,16 @@ def dict_var_update(dict_var: dict, heros: Ett.Joueur, avancement: int):
         list_temp.append(elt.prix)
         list_temp.append(elt.cat)
         dict_var["inventaire_joueur"] = list_temp
-    dict_var["pv_joueur"] = heros.pv
-    dict_var["argent_joueur"] = heros.argent
-    dict_var["sprite_joueur"] = heros.sprite
-    dict_var["main_gauche_joueur"] = attribuer_equipement(heros.main_gauche)
-    dict_var["main_droite_joueur"] = attribuer_equipement(heros.main_droite)
-    dict_var["tete_joueur"] = attribuer_equipement(heros.tete)
-    dict_var["torse_joueur"] = attribuer_equipement(heros.torse)
-    dict_var["gants_joueur"] = attribuer_equipement(heros.gants)
-    dict_var["jambes_joueur"] = attribuer_equipement(heros.jambes)
-    dict_var["pieds_joueur"] = attribuer_equipement(heros.pieds)
+    dict_var["pv_joueur"] = HEROS.pv
+    dict_var["argent_joueur"] = HEROS.argent
+    dict_var["sprite_joueur"] = HEROS.sprite
+    dict_var["main_gauche_joueur"] = attribuer_equipement(HEROS.main_gauche)
+    dict_var["main_droite_joueur"] = attribuer_equipement(HEROS.main_droite)
+    dict_var["tete_joueur"] = attribuer_equipement(HEROS.tete)
+    dict_var["torse_joueur"] = attribuer_equipement(HEROS.torse)
+    dict_var["gants_joueur"] = attribuer_equipement(HEROS.gants)
+    dict_var["jambes_joueur"] = attribuer_equipement(HEROS.jambes)
+    dict_var["pieds_joueur"] = attribuer_equipement(HEROS.pieds)
     dict_var["avancement"] = avancement
     return dict_var
 
@@ -348,7 +350,7 @@ def jeu():
             case 0:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
-                AVANCEMENT, HEROS = chapitre0(HEROS)
+                AVANCEMENT, HEROS = chapitre0()
             case 1:
                 pygame.mixer.music.load("./sounds/never_again.mp3")
                 pygame.mixer.music.play(-1)
@@ -358,7 +360,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT, HEROS = chapitre1(HEROS)
+                AVANCEMENT, HEROS = chapitre1()
             case 2:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
@@ -440,13 +442,14 @@ def jeu():
                 GAME_RUNNING = False
             case _:
                 check_events()
-        DICT_VAR = dict_var_update(DICT_VAR, HEROS, AVANCEMENT)
+        DICT_VAR = dict_var_update(DICT_VAR, AVANCEMENT)
         OF.save(DICT_VAR)
         check_events()
 
 
-def chapitre0(heros: Ett.Joueur):
+def chapitre0():
     '''Lance le chapitre d'introduction du jeu'''
+    global HEROS
     screen.fill(BLACK)
     TB.textbox_output(
         "Bonjour, avant de comencer, nous vous proposons un petit didacticiel.@@Pour passer à la boite de texte suivante, appuyez sur n importe quelle touche.@@@@@appuyez pour continuer")
@@ -486,20 +489,20 @@ def chapitre0(heros: Ett.Joueur):
             classe_heros = int(choix_classe)
 
     # on crée un heros avec le X eme element de la liste des races/classes
-    heros.nom = nom_heros
-    heros.classe = Ett.liste_classe[int(classe_heros)-1]
-    heros.race = Ett.liste_race[int(race_heros)-1]
-    sprite = pygame.image.load(heros.update_sprite())
-    screen.blit(sprite, (sprite.get_width()//2,
+    HEROS = Ett.Joueur(nom_heros, Ett.liste_classe[int(
+        classe_heros)-1], Ett.liste_race[int(race_heros)-1])
+    sprite = pygame.image.load(HEROS.update_sprite())
+    screen.blit(sprite, (250,
                 # windwow_width//2 pour ennemi à droite
-                         window_height-1.01*sprite.get_height()))
-    TB.textbox_output("Vous etes : "+heros.nom+", de la race des "+heros.race.nom+", vous etes un futur " +
-                      heros.classe.nom+" dont on racontera l'hisoire pendant des générations !")
-    return (1, heros)
+                         window_height-sprite.get_height()))
+    TB.textbox_output("Vous etes : "+HEROS.nom+", de la race des "+HEROS.race.nom+", vous etes un futur " +
+                      HEROS.classe.nom+" dont on racontera l'hisoire pendant des générations !")
+    return (1, HEROS)
 
 
-def chapitre1(heros: Ett.Joueur):
+def chapitre1():
     '''Lance le chapitre 1 du jeu'''
+    global HEROS
     fade("black_to_img", "./img/burning_village.jpg")
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
@@ -509,12 +512,12 @@ def chapitre1(heros: Ett.Joueur):
 
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
-    C.bataille(heros, Ett.Monstre(
+    C.bataille(HEROS, Ett.Monstre(
         Ett.ombre_assaillante_classe, Ett.ombre_race))
     M.obt_objet(E.Consommable(
-        "Petite potion de soin", 0, 0, 10, 10,  "soin"), heros)
+        "Petite potion de soin", 0, 0, 10, 10,  "soin"), HEROS)
     M.obt_objet(E.Consommable(
-        "Petite potion de soin", 0, 0, 10, 10, "soin"), heros)
+        "Petite potion de soin", 0, 0, 10, 10, "soin"), HEROS)
     TB.textbox_output("Après un combat acharné, vous parvenez à abattre l'une des créatures, mais vous réalisez que vous ne pouvez pas sauver ce qui reste du village. Vous devez fuir et trouver un endroit sûr.")
     background = pygame.image.load(
         "./img/chemin_pierre_runes.jpg").convert_alpha()
@@ -531,39 +534,40 @@ def chapitre1(heros: Ett.Joueur):
     if choix == "1":
         TB.textbox_output("1. Suivre le sentier marqué :@Vous décidez de suivre le sentier, intrigué par les signes. Après une marche prudente, vous tombez sur une petite clairière où repose un ancien autel. Sur l'autel, vous trouvez une dague en argent finement ouvragée, ornée de runes protectrices. Vous la prenez, sentant une légère chaleur émaner de l'arme, comme si elle vous acceptait comme son porteur légitime.")
         M.obt_objet(E.Equipement("Dague en argent",
-                    25, 0, 30, "main_droite"), heros)
+                    25, 0, 30, "main_droite"), HEROS)
 
     if choix == "2":
         TB.textbox_output("2. Ignorer les symboles et avancer dans la forêt :@ Vous choisissez de ne pas suivre le sentier et de continuer votre chemin dans la forêt. Plus loin, vous trouvez une cachette naturelle sous un arbre colossal. En fouillant, vous découvrez un vieux sac contenant un arc en bois sombre et un carquois rempli de flèches enchantées. Vous vous équipez de l'arc, sentant une connexion immédiate avec l'arme.")
-        M.obt_objet(E.Equipement("Arc", 30, 0, 15, "main_droite"), heros)
+        M.obt_objet(E.Equipement("Arc", 30, 0, 15, "main_droite"), HEROS)
 
     TB.textbox_output("Vous continuez votre marche, les ténèbres de la forêt vous enveloppant. Chaque pas que vous faites vous éloigne un peu plus de votre passé et vous rapproche de la vérité sur cette éclipse mystérieuse et des créatures qui ont ravagé votre village. ")
     TB.textbox_output(
         "La quête pour découvrir la source de cette malédiction et venger votre foyer commence maintenant.")
     M.ouvertureDeLaBoutique(
-        heros, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque"))])
-    return 2, heros
+        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque"))])
+    return 2, HEROS
 
 
-def chapitre2(heros: Ett.Joueur):
+def chapitre2():
     '''Lance le chapitre 2 du jeu'''
+    global HEROS
     TB.textbox_output("Après avoir échappé à l'attaque de votre village, vous errez dans la forêt pendant plusieurs jours, cherchant des réponses et un refuge. Les arbres s'éclaircissent finalement, révélant une vallée cachée où se dressent les ruines d'une civilisation ancienne, à moitié enfouies sous la végétation.")
     TB.textbox_output("Vous avancez prudemment parmi les pierres effondrées et les colonnes brisées, sentant l'aura mystique qui émane de cet endroit oublié. Des fresques murales racontent l'histoire d'un royaume autrefois prospère, détruit par une force obscure similaire à celle qui a attaqué votre village. Vous comprenez que ces ruines détiennent des secrets vitaux pour votre quête.")
     TB.textbox_output("Soudain, des bruits étranges retentissent autour de vous. Des silhouettes se déplacent parmi les décombres. Vous vous cachez derrière une colonne et observez des créatures humanoïdes aux yeux brillants, gardant les lieux.")
-    C.bataille(heros, Ett.Monstre(
+    C.bataille(HEROS, Ett.Monstre(
         Ett.Garde_squelette_classe, Ett.squelette_race))
     M.obt_objet(E.Consommable("Petite potion de force",
-                5, 5, 0, 10, "attaque"), heros)
+                5, 5, 0, 10, "attaque"), HEROS)
     M.obt_objet(E.Equipement("Heaume Basique",
-                0, 5, 10, "tete"), heros)
+                0, 5, 10, "tete"), HEROS)
     M.obt_objet(E.Equipement("Plastron Basique",
-                             0, 7, 10, "torse"), heros)
+                             0, 7, 10, "torse"), HEROS)
     M.obt_objet(E.Equipement("Jambières Basique",
-                             0, 5, 10, "jambes"), heros)
+                             0, 5, 10, "jambes"), HEROS)
     M.obt_objet(E.Equipement("Bottes Basique",
-                             0, 3, 10, "pieds"), heros)
+                             0, 3, 10, "pieds"), HEROS)
     M.ouvertureDeLaBoutique(
-        heros, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque"))])
+        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque"))])
     TB.textbox_output("Après avoir vaincu l'un des gardes squelettiques, vous fouillez les ruines à la recherche d'indices. Vous tombez sur une chambre secrète, protégée par un mécanisme complexe.")
     done = False
     choix = ""
@@ -576,19 +580,20 @@ def chapitre2(heros: Ett.Joueur):
         TB.textbox_output("1. Résoudre l'énigme du mécanisme :@Vous examinez le mécanisme et remarquez des symboles similaires à ceux vus dans la forêt. En manipulant soigneusement les pièces mobiles, vous parvenez à déverrouiller la porte. À l'intérieur, vous trouvez une amulette ancienne, gravée de runes protectrices. En la mettant autour de votre cou, vous ressentez un pouvoir de protection et de clairvoyance.")
 
         M.obt_objet(E.Equipement("Amulette de clairevoyance",
-                    0, 8, 10, "tete"), heros)
+                    0, 8, 10, "tete"), HEROS)
         if choix == "2":
             TB.textbox_output("2. Forcer l'entrée :@Impatient, vous décidez de forcer l'entrée en utilisant votre force et vos armes. Après plusieurs essais, la porte finit par céder. À l'intérieur, vous trouvez une épée en cristal, légèrement fissurée mais encore imprégnée d'une énergie redoutable. L'épée vibre légèrement entre vos mains, comme si elle reconnaissait votre détermination.")
             M.obt_objet(E.Equipement("épé de cristal",
-                        40, 0, 15, "main_droite"), heros)
+                        40, 0, 15, "main_droite"), HEROS)
     TB.textbox_output("Avec votre nouvelle acquisition, vous continuez à explorer les ruines. Vous trouvez finalement un ancien grimoire, contenant des histoires et des prophéties sur l'éclipse et les créatures des ombres. En le feuilletant, vous apprenez qu'un artefact puissant, capable de contrôler ou détruire ces créatures, est caché quelque part dans le royaume.")
     TB.textbox_output("Votre quête prend une nouvelle tournure. Armé de nouvelles connaissances et de puissants artefacts, vous quittez les ruines et vous vous enfoncez plus profondément dans la vallée, déterminé à trouver cet artefact avant qu'il ne soit trop tard.")
-    Fontaine(heros)
-    return 3, heros
+    Fontaine(HEROS)
+    return 3, HEROS
 
 
-def chapitre3(heros: Ett.Joueur):
+def chapitre3():
     '''Lance le chapitre 3 du jeu'''
+    global HEROS
     TB.textbox_output("")
     TB.textbox_output("")
     TB.textbox_output("")
@@ -603,57 +608,64 @@ def chapitre3(heros: Ett.Joueur):
         TB.textbox_output("1. Résoudre l'énigme du mécanisme :@Vous examinez le mécanisme et remarquez des symboles similaires à ceux vus dans la forêt. En manipulant soigneusement les pièces mobiles, vous parvenez à déverrouiller la porte. À l'intérieur, vous trouvez une amulette ancienne, gravée de runes protectrices. En la mettant autour de votre cou, vous ressentez un pouvoir de protection et de clairvoyance.")
 
         M.obt_objet(E.Equipement("Amulette de clairevoyance",
-                    0, 8, 10, "tete"), heros)
+                    0, 8, 10, "tete"), HEROS)
         if choix == "2":
             TB.textbox_output("2. Forcer l'entrée :@Impatient, vous décidez de forcer l'entrée en utilisant votre force et vos armes. Après plusieurs essais, la porte finit par céder. À l'intérieur, vous trouvez une épée en cristal, légèrement fissurée mais encore imprégnée d'une énergie redoutable. L'épée vibre légèrement entre vos mains, comme si elle reconnaissait votre détermination.")
             M.obt_objet(E.Equipement("épé de cristal",
-                        40, 0, 15, "main_droite"), heros)
+                        40, 0, 15, "main_droite"), HEROS)
     TB.textbox_output("")
     TB.textbox_output("")
     TB.textbox_output("")
     TB.textbox_output("")
 
-    return 4, heros
+    return 4, HEROS
 
 
-def chapitre4(heros: Ett.Joueur):
+def chapitre4():
     '''Lance le chapitre 4 du jeu'''
+    global HEROS
     TB.textbox_output("Vous venez de passer au chapitre 4.")
-    return 5, heros
+    return 5, HEROS
 
 
-def chapitre5(heros: Ett.Joueur):
+def chapitre5():
     '''Lance le chapitre 5 du jeu'''
+    global HEROS
     TB.textbox_output("Vous venez de passer au chapitre 5.")
-    return 6, heros
+    return 6, HEROS
 
 
-def chapitre6(heros: Ett.Joueur):
+def chapitre6():
     '''Lance le chapitre 6 du jeu'''
+    global HEROS
     TB.textbox_output("Vous venez de passer au chapitre 6.")
-    return 7, heros
+    return 7, HEROS
 
 
-def chapitre7(heros: Ett.Joueur):
+def chapitre7():
     '''Lance le chapitre 7 du jeu'''
+    global HEROS
     TB.textbox_output("Vous venez de passer au chapitre 7.")
-    return 8, heros
+    return 8, HEROS
 
 
-def chapitre8(heros: Ett.Joueur):
+def chapitre8():
     '''Lance le chapitre 8 du jeu'''
+    global HEROS
     TB.textbox_output("Vous venez de passer au chapitre 8.")
-    return 9, heros
+    return 9, HEROS
 
 
-def chapitre9(heros: Ett.Joueur):
+def chapitre9():
     '''Lance le chapitre 9 du jeu'''
+    global HEROS
     TB.textbox_output("Vous venez de passer au chapitre 9.")
-    return 10, heros
+    return 10, HEROS
 
 
-def chapitre10(heros: Ett.Joueur):
+def chapitre10():
     '''Lance le chapitre 10 du jeu'''
+    global HEROS
     TB.textbox_output("Vous venez de passer au chapitre 10.")
     TB.textbox_output("Merci d'avoir joué")
     TB.textbox_output("Fin de la partie")
@@ -686,8 +698,6 @@ DICT_VAR = {            # Dictionnaire de sauvegarde
 ETAT = "ecran_titre"    # Variable de sélection de menus : ecran_titre / jeu
 GAME_RUNNING = False    # Variable qui indique si le jeu tourne ou non
 AVANCEMENT = 0
-HEROS = Ett.Joueur("", Ett.guerrier, Ett.humain)
-HEROS.main_gauche = E.Equipement("épée", 5, 0, 5, "arme")
 
 pygame.init()
 pygame.mixer_music.load("./sounds/title_theme.mp3")
