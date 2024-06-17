@@ -155,33 +155,33 @@ def continuer_partie():
         HEROS.nom = DICT_VAR["nom_joueur"]
         match DICT_VAR["classe_joueur"]:
             case "guerrier":
-                HEROS.classe = Ett.guerrier
+                HEROS.classe = Ett.guerrier.nom
                 HEROS.pv_max = Ett.guerrier.pv_max
                 HEROS.pc = Ett.guerrier.pc
                 HEROS.pd = Ett.guerrier.pd
             case "archer":
-                HEROS.classe = Ett.archer
+                HEROS.classe = Ett.archer.nom
                 HEROS.pv_max = Ett.archer.pv_max
                 HEROS.pc = Ett.archer.pc
                 HEROS.pd = Ett.archer.pd
             case "tank":
-                HEROS.classe = Ett.tank
+                HEROS.classe = Ett.tank.nom
                 HEROS.pv_max = Ett.tank.pv_max
                 HEROS.pc = Ett.tank.pc
                 HEROS.pd = Ett.tank.pd
         match DICT_VAR["race_joueur"]:
             case "humain":
-                HEROS.race = Ett.humain
+                HEROS.race = Ett.humain.nom
                 HEROS.pv_max += Ett.humain.pv_max
                 HEROS.pc += Ett.humain.pc
                 HEROS.pd += Ett.humain.pd
             case "elfe":
-                HEROS.race = Ett.elfe
+                HEROS.race = Ett.elfe.nom
                 HEROS.pv_max += Ett.elfe.pv_max
                 HEROS.pc += Ett.elfe.pc
                 HEROS.pd += Ett.elfe.pd
             case "orc":
-                HEROS.race = Ett.orc
+                HEROS.race = Ett.orc.nom
                 HEROS.pv_max += Ett.orc.pv_max
                 HEROS.pc += Ett.orc.pc
                 HEROS.pd += Ett.orc.pd
@@ -368,7 +368,8 @@ def jeu():
             case 2:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
-
+                fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
+                     "./img/ruines_dans_foret.jpg", "Chapitre 2 : Les ruines oubliées")
                 AVANCEMENT, HEROS = chapitre2()
             case 3:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
@@ -481,8 +482,12 @@ def chapitre1():
     screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
+    tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.ombre_assaillante_classe,
                Ett.ombre_race), "./img/skeleton_warriors.jpg")
+    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.set_pos(tps_musique)
+    pygame.mixer.music.play(-1)
     screen.blit(background, (0, 0))
     screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
     M.obt_objet(E.Consommable(
