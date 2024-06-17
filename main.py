@@ -11,6 +11,14 @@ import marchand as M
 import equipement as E
 
 
+def fontaine(hero: Ett.Joueur):
+    TB.textbox_output(
+        "Vous tombez face a une fontaine, vous décidez de boir son eau, et vous sentez votre énergie vitale remonter...")
+    hero.pv = hero.pv_max
+    TB.textbox_output(
+        "Vous avez été soingés de vos blessures :@"+str(hero.pv)+"/"+str(hero.pv_max)+"PV")
+
+
 def dimensions_ecran():
     '''Récupère les dimensions de l'écran du joueur et les retourne dans un tuple (w,h)'''
     screen_info = pygame.display.Info()
@@ -181,7 +189,7 @@ def continuer_partie():
                 new_conso = E.Consommable(elt[0], int(elt[1]), int(
                     elt[2]), int(elt[3]), int(elt[4]), elt[5])
             elif len(elt) == 5:
-                new_conso = E.Consommable(elt[0], int(elt[1]), int(
+                new_conso = E.Equipement(elt[0], int(elt[1]), int(
                     elt[2]), int(elt[3]), elt[4])
             HEROS.inventaire.append(new_conso)
         HEROS.pv = int(DICT_VAR["pv_joueur"])
@@ -369,7 +377,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre2()
+                AVANCEMENT, HEROS = chapitre2(HEROS)
             case 3:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
                 pygame.mixer.music.play(-1)
@@ -377,7 +385,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre3()
+                AVANCEMENT, HEROS = chapitre3(HEROS)
             case 4:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
@@ -386,7 +394,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre4()
+                AVANCEMENT, HEROS = chapitre4(HEROS)
             case 5:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
                 pygame.mixer.music.play(-1)
@@ -394,7 +402,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre5()
+                AVANCEMENT, HEROS = chapitre5(HEROS)
             case 6:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
@@ -403,7 +411,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre6()
+                AVANCEMENT, HEROS = chapitre6(HEROS)
             case 7:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
                 pygame.mixer.music.play(-1)
@@ -411,7 +419,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre7()
+                AVANCEMENT, HEROS = chapitre7(HEROS)
             case 8:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
@@ -420,7 +428,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre8()
+                AVANCEMENT, HEROS = chapitre8(HEROS)
             case 9:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
                 pygame.mixer.music.play(-1)
@@ -428,7 +436,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre9()
+                AVANCEMENT, HEROS = chapitre9(HEROS)
             case 10:
                 pygame.mixer.music.load("./sounds/musique_jeu.mp3")
                 pygame.mixer.music.play(-1)
@@ -437,7 +445,7 @@ def jeu():
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
                 screen.blit(background, (0, 0))
-                AVANCEMENT = chapitre10()
+                AVANCEMENT, HEROS = chapitre10(HEROS)
                 changement_affichage()
                 GAME_RUNNING = False
             case _:
@@ -570,14 +578,14 @@ def chapitre2():
         HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque"))])
     TB.textbox_output("Après avoir vaincu l'un des gardes squelettiques, vous fouillez les ruines à la recherche d'indices. Vous tombez sur une chambre secrète, protégée par un mécanisme complexe.")
     done = False
-    choix = ""
+
     while not done:
-        TB.textbox_output(
-            "Choix: @ - 1 : Résoudre l'énigme du mécanisme@- 2 : Forcer l'entrée")
+        choix = TB.textbox_input(
+            "Choix: @- 1 : Résoudre l'énigme du mécanisme@- 2 : Forcer l'entrée")
         if choix in ["1", "2"]:
             done = True
-    if choix == "1":
-        TB.textbox_output("1. Résoudre l'énigme du mécanisme :@Vous examinez le mécanisme et remarquez des symboles similaires à ceux vus dans la forêt. En manipulant soigneusement les pièces mobiles, vous parvenez à déverrouiller la porte. À l'intérieur, vous trouvez une amulette ancienne, gravée de runes protectrices. En la mettant autour de votre cou, vous ressentez un pouvoir de protection et de clairvoyance.")
+        if choix == "1":
+            TB.textbox_output("1. Résoudre l'énigme du mécanisme :@Vous examinez le mécanisme et remarquez des symboles similaires à ceux vus dans la forêt. En manipulant soigneusement les pièces mobiles, vous parvenez à déverrouiller la porte. À l'intérieur, vous trouvez une amulette ancienne, gravée de runes protectrices. En la mettant autour de votre cou, vous ressentez un pouvoir de protection et de clairvoyance.")
 
         M.obt_objet(E.Equipement("Amulette de clairevoyance",
                     0, 8, 10, "tete"), HEROS)
@@ -587,33 +595,38 @@ def chapitre2():
                         40, 0, 15, "main_droite"), HEROS)
     TB.textbox_output("Avec votre nouvelle acquisition, vous continuez à explorer les ruines. Vous trouvez finalement un ancien grimoire, contenant des histoires et des prophéties sur l'éclipse et les créatures des ombres. En le feuilletant, vous apprenez qu'un artefact puissant, capable de contrôler ou détruire ces créatures, est caché quelque part dans le royaume.")
     TB.textbox_output("Votre quête prend une nouvelle tournure. Armé de nouvelles connaissances et de puissants artefacts, vous quittez les ruines et vous vous enfoncez plus profondément dans la vallée, déterminé à trouver cet artefact avant qu'il ne soit trop tard.")
-    Fontaine(HEROS)
+    fontaine(HEROS)
+    M.ouvertureDeLaBoutique(
+        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque"))])
     return 3, HEROS
 
 
 def chapitre3():
     '''Lance le chapitre 3 du jeu'''
     global HEROS
-    TB.textbox_output("")
-    TB.textbox_output("")
-    TB.textbox_output("")
+    TB.textbox_output("Après avoir quitté les ruines oubliées avec une nouvelle détermination, vous vous dirigez vers la Forêt des Murmures, un endroit réputé pour être hanté par des esprits malveillants. La forêt est dense et sombre, les arbres immenses bloquant la lumière du soleil. Chaque pas que vous faites est accompagné de murmures étranges qui semblent vous suivre, chuchotant des secrets oubliés et des avertissements cryptiques.")
+    TB.textbox_output("Les murmures deviennent plus insistants alors que vous vous enfoncez dans la forêt. Vous commencez à distinguer des mots et des phrases, comme si les arbres eux-mêmes tentaient de communiquer avec vous. Vous comprenez que pour progresser, vous devez déchiffrer ces murmures et comprendre leur signification.")
+    TB.textbox_output("En vous concentrant, vous percevez une direction à suivre. Les murmures vous conduisent à une clairière où se dresse un arbre ancien, ses racines formant une sorte de sanctuaire naturel. Là, vous trouvez un autel entouré de pierres gravées de runes. Vous devez résoudre l'énigme des runes pour libérer l'énergie protectrice de l'arbre.")
     done = False
-    choix = ""
+
     while not done:
-        TB.textbox_output(
-            "Choix: @ - 1 : Résoudre l'énigme du mécanisme@- 2 : Forcer l'entrée")
+        choix = TB.textbox_input(
+            "Choix: @ - 1 : Tenter de déchiffrer les runes@- 2 : Ignorer les runes et explorer la clairière")
         if choix in ["1", "2"]:
             done = True
-    if choix == "1":
-        TB.textbox_output("1. Résoudre l'énigme du mécanisme :@Vous examinez le mécanisme et remarquez des symboles similaires à ceux vus dans la forêt. En manipulant soigneusement les pièces mobiles, vous parvenez à déverrouiller la porte. À l'intérieur, vous trouvez une amulette ancienne, gravée de runes protectrices. En la mettant autour de votre cou, vous ressentez un pouvoir de protection et de clairvoyance.")
+        if choix == "1":
+            TB.textbox_output("1. Tenter de déchiffrer les runes :@Vous décidez de vous concentrer sur les runes. En utilisant les connaissances acquises dans les ruines, vous parvenez à déchiffrer les symboles et à activer l'autel. Un éclat de lumière enveloppe l'arbre, révélant une baguette ancienne imprégnée de magie. Vous prenez la baguette, sentant une puissance nouvelle couler dans vos veines.")
+            M.obt_objet(E.Equipement("Baguette de sorcier ancienne",
+                                     45, 0, 10, "main_droite"), HEROS)
 
         M.obt_objet(E.Equipement("Amulette de clairevoyance",
                     0, 8, 10, "tete"), HEROS)
         if choix == "2":
-            TB.textbox_output("2. Forcer l'entrée :@Impatient, vous décidez de forcer l'entrée en utilisant votre force et vos armes. Après plusieurs essais, la porte finit par céder. À l'intérieur, vous trouvez une épée en cristal, légèrement fissurée mais encore imprégnée d'une énergie redoutable. L'épée vibre légèrement entre vos mains, comme si elle reconnaissait votre détermination.")
-            M.obt_objet(E.Equipement("épé de cristal",
-                        40, 0, 15, "main_droite"), HEROS)
-    TB.textbox_output("")
+            TB.textbox_output("2. Ignorer les runes et explorer la clairière :@Vous choisissez de ne pas perdre de temps avec les runes et d'explorer la clairière à la place. En fouillant les environs, vous découvrez un petit coffret enterré sous les racines de l'arbre. À l'intérieur, vous trouvez une amulette en jade, gravée de symboles de protection. Vous mettez l'amulette autour de votre cou, sentant une aura protectrice vous envelopper.")
+            M.obt_objet(E.Equipement("Amulette de jade",
+                                     10, 10, 10, "tete"), HEROS)
+    TB.textbox_output("Alors que vous continuez à explorer la forêt, vous entendez soudain des bruits de pas lourds derrière vous. Vous vous retournez pour voir une créature massive, composée de branches et de feuillage, ses yeux brillants de malveillance. Elle avance vers vous, ses griffes prêtes à frapper.")
+    C.bataille(HEROS, Ett)
     TB.textbox_output("")
     TB.textbox_output("")
     TB.textbox_output("")
@@ -715,11 +728,3 @@ while RUNNING:
         ecran_titre()
     elif ETAT == "jeu":
         jeu()
-
-
-def Fontaine(hero: Ett.Joueur):
-    TB.textbox_output(
-        "Vous tombez face a une fontaine, vous décidez de boir son eau, et vous sentez votre énergie vitale remonter...")
-    hero.pv = hero.pv_max
-    TB.textbox_output(
-        "Vous avez été soingés de vos blessures :@"+str(hero.pv)+"/"+str(hero.pv_max)+"PV")
