@@ -107,5 +107,9 @@ ombre_assaillante_classe = Type("Ombre Assaillante", 30, 20, 0)
 squelette_race = Type("squelette", 50, 20, 0)
 Garde_squelette_classe = Type("Garde Squelette", 20, 10, 10)
 
+# garde golem : somme = 70 + 40
+golem_race = Type("Golem", 100, 20, 0)
+golem_foret_classe = Type("Le Gardien de la Fôret", 50, 0, 10)
+
 liste_classe = [guerrier, archer, tank]
 liste_race = [humain, elfe, orc]

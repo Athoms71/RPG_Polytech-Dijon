@@ -235,8 +235,8 @@ def dict_var_update(dict_var: dict, avancement: int):
             return []
         return [partie_corps.nom, int(partie_corps.atk), int(partie_corps.dfc), int(partie_corps.prix), partie_corps.cat]
     dict_var["nom_joueur"] = HEROS.nom
-    dict_var["classe_joueur"] = HEROS.classe.nom
-    dict_var["race_joueur"] = HEROS.race.nom
+    dict_var["classe_joueur"] = HEROS.classe
+    dict_var["race_joueur"] = HEROS.race
     for elt in HEROS.inventaire:
         list_temp = []
         list_temp.append(elt.nom)
@@ -472,6 +472,8 @@ def chapitre0():
             "Quand cette boite de dialogue disparaitera ,  écrivez'1' pour repondre 'oui', appuyer, pour 'non',  écrivez 2. Puis appuyez sur 'entrer' pour valider@@@@@@appuyez pour continuer")
     TB.textbox_output(
         "Bien joué, continuez comme ça !@@@@@@@appuyez pour continuer")
+    TB.textbox_output(
+        "Enfin si vous souhaitez quitter à tout moment, vous pouvez appuyer sur ''tab'', une sauvegarde automatique se fait à la fin de chaque chapitres")
     TB.textbox_output("Bienvenue aventurier, dans les Royaumes de l'Éclipse !@Au seuil de cette aventure épique, vous êtes sur le point d'embarquer pour des terres inconnues, où le destin se tisse entre les ombres et la lumière.")
     TB.textbox_output("Préparez-vous à plonger dans un monde de mystère et de magie, où chaque choix que vous ferez influencera le cours de l'histoire. Des terres sauvages aux cités florissantes, des donjons oubliés aux montagnes glacées, l'aventure vous attend à chaque tournant.")
     TB.textbox_output("Avant de commencer votre voyage, il est temps de forger votre propre destin. Créez votre personnage, choisissez votre race, votre classe et vos compétences, et préparez-vous à affronter les défis qui vous attendent. Votre courage, votre astuce et votre détermination seront vos meilleurs alliés dans cette quête pour la gloire et la fortune.")
@@ -503,8 +505,8 @@ def chapitre0():
     screen.blit(sprite, (250,
                 # windwow_width//2 pour ennemi à droite
                          window_height-sprite.get_height()))
-    TB.textbox_output("Vous etes : "+HEROS.nom+", de la race des "+HEROS.race.nom+", vous etes un futur " +
-                      HEROS.classe.nom+" dont on racontera l'hisoire pendant des générations !")
+    TB.textbox_output("Vous etes : "+HEROS.nom+", de la race des "+HEROS.race+", vous etes un futur " +
+                      HEROS.classe+" dont on racontera l'hisoire pendant des générations !")
     return (1, HEROS)
 
 
@@ -523,9 +525,9 @@ def chapitre1():
     C.bataille(HEROS, Ett.Monstre(
         Ett.ombre_assaillante_classe, Ett.ombre_race))
     M.obt_objet(E.Consommable(
-        "Petite potion de soin", 0, 0, 10, 10,  "soin"), HEROS)
+        "Petite potion de soin", 0, 0, 30, 10,  "soin"), HEROS)
     M.obt_objet(E.Consommable(
-        "Petite potion de soin", 0, 0, 10, 10, "soin"), HEROS)
+        "Petite potion de soin", 0, 0, 30, 10, "soin"), HEROS)
     TB.textbox_output("Après un combat acharné, vous parvenez à abattre l'une des créatures, mais vous réalisez que vous ne pouvez pas sauver ce qui reste du village. Vous devez fuir et trouver un endroit sûr.")
     background = pygame.image.load(
         "./img/chemin_pierre_runes.jpg").convert_alpha()
@@ -626,11 +628,10 @@ def chapitre3():
             M.obt_objet(E.Equipement("Amulette de jade",
                                      10, 10, 10, "tete"), HEROS)
     TB.textbox_output("Alors que vous continuez à explorer la forêt, vous entendez soudain des bruits de pas lourds derrière vous. Vous vous retournez pour voir une créature massive, composée de branches et de feuillage, ses yeux brillants de malveillance. Elle avance vers vous, ses griffes prêtes à frapper.")
-    C.bataille(HEROS, Ett)
-    TB.textbox_output("")
-    TB.textbox_output("")
-    TB.textbox_output("")
-
+    C.bataille(HEROS, Ett.Monstre(
+        Ett.golem_foret_classe, Ett.golem_race))
+    TB.textbox_output("Après un combat intense, vous parvenez à vaincre le Golem de la Forêt, utilisant votre nouvelle arme ou votre amulette pour vous protéger. Avec la créature vaincue, les murmures de la forêt s'apaisent, comme si les esprits vous reconnaissaient enfin comme un allié.")
+    TB.textbox_output("Vous quittez la Forêt des Murmures, votre équipement renforcé et votre détermination intacte. Vous savez que les défis à venir seront encore plus redoutables, mais chaque pas vous rapproche de la vérité sur l'éclipse et du moyen de sauver votre royaume.")
     return 4, HEROS
 
 
