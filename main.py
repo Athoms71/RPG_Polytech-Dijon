@@ -19,6 +19,75 @@ def dimensions_ecran():
     return (screen_width, screen_height)
 
 
+def fade(mode: str, ch_image1: str = "./img/chemin_fond_flou.png", ch_image2: str = "./img/chemin_fond_flou.png", text: str = ""):
+    global BLACK
+    screen_width, screen_height = dimensions_ecran()
+    image1 = pygame.image.load(ch_image1)
+    image2 = pygame.image.load(ch_image2)
+    image1 = pygame.transform.scale(image1, (screen_width, screen_height))
+    image2 = pygame.transform.scale(image2, (screen_width, screen_height))
+    font = pygame.font.Font("./font/VecnaBold-4YY4.ttf", 100)
+    texte = font.render(text, True, WHITE)
+    texte_rect = texte.get_rect(center=(window_width//2, window_height//2))
+    fade = pygame.Surface((screen_width, screen_height))
+    fade.fill(BLACK, (0, 0, window_width, window_height))
+    if mode == "img_to_black":
+        opacity = 0
+        for r in range(300):
+            opacity += 1
+            fade.set_alpha(opacity)
+            screen.blit(image1, (0, 0))
+            screen.blit(texte, texte_rect)
+            screen.blit(fade, (0, 0))
+            pygame.display.update()
+            pygame.time.delay(5)
+    elif mode == "black_to_img":
+        opacity = 300
+        for r in range(300):
+            opacity -= 1
+            fade.set_alpha(opacity)
+            screen.blit(image1, (0, 0))
+            screen.blit(texte, texte_rect)
+            screen.blit(fade, (0, 0))
+            pygame.display.update()
+            pygame.time.delay(5)
+    elif mode == "img_to_black_to_img":
+        opacity = 0
+        for r in range(300):
+            opacity += 1
+            fade.set_alpha(opacity)
+            screen.blit(image1, (0, 0))
+            screen.blit(texte, texte_rect)
+            screen.blit(fade, (0, 0))
+            pygame.display.update()
+            pygame.time.delay(5)
+        for r in range(300):
+            opacity -= 1
+            fade.set_alpha(opacity)
+            screen.blit(image2, (0, 0))
+            screen.blit(fade, (0, 0))
+            pygame.display.update()
+            pygame.time.delay(5)
+    elif mode == "black_to_img_to_black":
+        opacity = 300
+        for r in range(300):
+            opacity -= 1
+            fade.set_alpha(opacity)
+            screen.blit(image2, (0, 0))
+            screen.blit(texte, texte_rect)
+            screen.blit(fade, (0, 0))
+            pygame.display.update()
+            pygame.time.delay(5)
+        pygame.time.delay(3000)
+        for r in range(300):
+            opacity += 1
+            fade.set_alpha(opacity)
+            screen.blit(image2, (0, 0))
+            screen.blit(fade, (0, 0))
+            pygame.display.update()
+            pygame.time.delay(5)
+
+
 def check_events():
     '''Regarde les évènements dans la queue et réalise des actions en fonction des conditions (touches, état des variables...)'''
     global ETAT
@@ -78,14 +147,14 @@ def continuer_partie():
         match DICT_VAR["classe_joueur"]:
             case "guerrier":
                 HEROS.classe = Ett.guerrier
-                HEROS.pv_max += Ett.guerrier.pv_max
-                HEROS.pc += Ett.guerrier.pc
-                HEROS.pd += Ett.guerrier.pd
+                HEROS.pv_max = Ett.guerrier.pv_max
+                HEROS.pc = Ett.guerrier.pc
+                HEROS.pd = Ett.guerrier.pd
             case "archer":
                 HEROS.classe = Ett.archer
-                HEROS.pv_max += Ett.archer.pv_max
-                HEROS.pc += Ett.archer.pc
-                HEROS.pd += Ett.archer.pd
+                HEROS.pv_max = Ett.archer.pv_max
+                HEROS.pc = Ett.archer.pc
+                HEROS.pd = Ett.archer.pd
             case "tank":
                 HEROS.classe = Ett.tank
                 HEROS.pv_max = Ett.tank.pv_max
@@ -108,8 +177,12 @@ def continuer_partie():
                 HEROS.pc += Ett.orc.pc
                 HEROS.pd += Ett.orc.pd
         for elt in DICT_VAR["inventaire_joueur"]:
-            new_conso = E.Consommable(elt[0], int(elt[1]), int(
-                elt[2]), int(elt[3]), int(elt[4]), elt[5])
+            if len(elt) == 6:
+                new_conso = E.Consommable(elt[0], int(elt[1]), int(
+                    elt[2]), int(elt[3]), int(elt[4]), elt[5])
+            elif len(elt) == 5:
+                new_conso = E.Consommable(elt[0], int(elt[1]), int(
+                    elt[2]), int(elt[3]), elt[4])
             HEROS.inventaire.append(new_conso)
         HEROS.pv = int(DICT_VAR["pv_joueur"])
         HEROS.argent = int(DICT_VAR["argent_joueur"])
@@ -159,12 +232,14 @@ def dict_var_update(dict_var: dict, heros: Ett.Joueur, avancement: int):
         list_temp.append(elt.nom)
         list_temp.append(elt.atk)
         list_temp.append(elt.dfc)
-        list_temp.append(elt.heal)
+        if type(elt) == E.Consommable:
+            list_temp.append(elt.heal)
         list_temp.append(elt.prix)
         list_temp.append(elt.cat)
         dict_var["inventaire_joueur"] = list_temp
     dict_var["pv_joueur"] = heros.pv
     dict_var["argent_joueur"] = heros.argent
+    dict_var["sprite_joueur"] = heros.sprite
     dict_var["main_gauche_joueur"] = attribuer_equipement(heros.main_gauche)
     dict_var["main_droite_joueur"] = attribuer_equipement(heros.main_droite)
     dict_var["tete_joueur"] = attribuer_equipement(heros.tete)
@@ -277,6 +352,8 @@ def jeu():
             case 1:
                 pygame.mixer.music.load("./sounds/marchand_theme.mp3")
                 pygame.mixer.music.play(-1)
+                fade("black_to_img_to_black", "./img/chemin_fond_flou.png",
+                     "./img/burning_village.jpg", "Chapitre 1 : L'aube de l'Éclipse")
                 background = pygame.image.load("./img/pont_fond.jpg")
                 background = pygame.transform.scale(
                     background, (window_width, window_height))
@@ -412,6 +489,10 @@ def chapitre0(heros: Ett.Joueur):
     heros.nom = nom_heros
     heros.classe = Ett.liste_classe[int(classe_heros)-1]
     heros.race = Ett.liste_race[int(race_heros)-1]
+    sprite = pygame.image.load(heros.update_sprite())
+    screen.blit(sprite, (-window_width//6,
+                # windwow_width//2 pour ennemi à droite
+                         window_height-1.01*sprite.get_height()))
     TB.textbox_output("Vous etes : "+heros.nom+", de la race des "+heros.race.nom+", vous etes un futur " +
                       heros.classe.nom+" dont on racontera l'hisoire pendant des générations !")
     return (1, heros)
@@ -419,6 +500,7 @@ def chapitre0(heros: Ett.Joueur):
 
 def chapitre1(heros: Ett.Joueur):
     '''Lance le chapitre 1 du jeu'''
+    fade("black_to_img", "./img/burning_village.jpg")
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -526,18 +608,8 @@ def chapitre10():
     return 10
 
 
-pygame.init()
-pygame.mixer_music.load("./sounds/title_theme.mp3")
-pygame.mixer.music.play(-1)
-pygame.display.set_caption("Les Royaumes de l'Éclipse")
-pygame.key.set_repeat(400, 30)
-ICON = pygame.image.load("img/logo.png").convert_alpha()
-pygame.display.set_icon(ICON)
-window_width, window_height = dimensions_ecran()
-button_w, button_h = 350, 80
-screen = pygame.display.set_mode((window_width, window_height))
-
 # Variables globales
+ICON = pygame.image.load("img/logo.png").convert_alpha()
 RUNNING = True
 BLACK = (0, 0, 0)
 GREY_30 = (30, 30, 30)
@@ -549,6 +621,7 @@ DICT_VAR = {            # Dictionnaire de sauvegarde
     "inventaire_joueur": [],
     "pv_joueur": 0,
     "argent_joueur": 0,
+    "sprite_joueur": "",
     "main_gauche_joueur": [],
     "main_droite_joueur": [],
     "tete_joueur": [],
@@ -564,6 +637,17 @@ AVANCEMENT = 0
 HEROS = Ett.Joueur("", Ett.guerrier, Ett.humain)
 HEROS.main_gauche = E.Equipement("épée", 5, 0, 5, "arme")
 
+pygame.init()
+pygame.mixer_music.load("./sounds/title_theme.mp3")
+pygame.mixer.music.play(-1)
+pygame.display.set_caption("Les Royaumes de l'Éclipse")
+pygame.key.set_repeat(400, 30)
+pygame.display.set_icon(ICON)
+window_width, window_height = dimensions_ecran()
+button_w, button_h = 350, 80
+screen = pygame.display.set_mode((window_width, window_height))
+
+fade("black_to_img", "./img/chemin_fond_flou.png")
 while RUNNING:
     if ETAT == "ecran_titre":
         ecran_titre()
