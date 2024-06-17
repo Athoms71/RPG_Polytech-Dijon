@@ -28,7 +28,7 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
                         liste_equipements_vente.append(joueur.inventaire[i])
                 if (len(liste_equip_a_afficher)) == 0:
                     TB.textbox_output(
-                        "Vous ne possez rien de valeur dans cette catégorie :)")
+                        "Vous ne possédez rien de valeur dans cette catégorie :)")
                 else:
                     TB.textbox_output("Lequel souhaitez vous vendre ?")
                     choixVente = TB.textbox_input(str(liste_equip_a_afficher))
@@ -56,7 +56,7 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
                         liste_equipements_vente.append(joueur.inventaire[i])
                 if (len(liste_equip_a_afficher)) == 0:
                     TB.textbox_output(
-                        "Vous ne possez rien de valeur dans cette catégorie :)")
+                        "Vous ne possédez rien de valeur dans cette catégorie :)")
                 else:
                     TB.textbox_output("Lequel souhaitez vous vendre ?")
                     choixVente = TB.textbox_input(str(liste_equip_a_afficher))
@@ -82,12 +82,12 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
         if choix == "2":
             if len(stockMarchand) == 0:
                 TB.textbox_output(
-                    "Le marchand n'as rien a vous proposer à acheter")
+                    "Le marchand n'a rien à vous proposer à acheter")
             else:
                 TB.textbox_output(
-                    "Le marchand vous sort des equipements, lequel voudrez vous acheter ?")
+                    "Le marchand vous sort des equipements, lequel voudriez vous acheter ?")
                 aAfficherMarchand = "Vous avez " + \
-                    str(joueur.argent)+" PO, le marchand vous poropose :"
+                    str(joueur.argent)+" PO, le marchand vous propose :"
                 for i in range(len(stockMarchand)):
                     aAfficherMarchand += "@- " + \
                         str(i+1)+" : " + \
@@ -146,11 +146,8 @@ def venteObligatoireEquipement(joueur: Ett.Joueur, equipement1: E.Equipement, eq
 
 def venteObligatoireConsommable(joueur: Ett.Joueur):
     TB.textbox_output(
-        "il semblerait que vous ayez trop de consommables dans dans votre inventaire, veuillez en vendre :")
-    liste_conso_joueur = []
-    for i in range(len(joueur.inventaire)):
-        if (type(joueur.inventaire[i]) == E.Consommable):
-            liste_conso_joueur.append(joueur.inventaire[i])
+        "il semblerait que vous ayez trop de consommables dans votre inventaire, veuillez en vendre :")
+    liste_conso_joueur = joueur.inventaire
     if len(liste_conso_joueur) == 6:
 
         choix_vente = int(TB.textbox_input("Lequel de ces consommables souhaitez vous vendre parmis :@- 1 :" +
