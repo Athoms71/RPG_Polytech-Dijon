@@ -10,10 +10,14 @@ def DX(X):
     return (random.randint(1, X))
 
 
-def bataille(personnage: Ett.Joueur, ennemi: Ett.Monstre):
+def bataille(screen: pygame.Surface, personnage: Ett.Joueur, ennemi: Ett.Monstre, ch_sprite_ennemi: str = "./img/skeleton_warriors.jpg"):
     """tant que le joueur et le(s) ennemi(s) ont 1 PV ou plus, on alterne entre le tour du joueur et celui du monstre"""
-    pygame.mixer.music.load("./sounds/")
+    pygame.mixer.music.load("./sounds/battle_music.mp3")
     pygame.mixer.music.play(-1)
+    sprite_ennemi = pygame.image.load(ch_sprite_ennemi)
+    sprite_ennemi = pygame.transform.flip(sprite_ennemi, True, False)
+    screen.blit(sprite_ennemi, (screen.get_width()-25-sprite_ennemi.get_width(),
+                                screen.get_height()-(sprite_ennemi.get_height()+50)))
     TB.textbox_output("Vous allez vous battre contre " +
                       str(ennemi.classe)+", préparez vous au combat.")
     while personnage.pv > 0 and ennemi.pv > 0:

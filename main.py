@@ -69,6 +69,7 @@ def fade(mode: str, ch_image1: str = "./img/chemin_fond_flou.png", ch_image2: st
             screen.blit(fade, (0, 0))
             pygame.display.update()
             pygame.time.delay(5)
+            pygame.time.delay(3000)
         for r in range(300):
             opacity -= 1
             fade.set_alpha(opacity)
@@ -474,11 +475,16 @@ def chapitre1():
     background = pygame.transform.scale(
         background, (window_width, window_height))
     screen.blit(background, (0, 0))
-
+    race = HEROS.race.nom
+    classe = HEROS.classe.nom
+    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
-    C.bataille(HEROS, Ett.Monstre(
-        Ett.ombre_assaillante_classe, Ett.ombre_race))
+    C.bataille(screen, HEROS, Ett.Monstre(Ett.ombre_assaillante_classe,
+               Ett.ombre_race), "./img/skeleton_warriors.jpg")
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
     M.obt_objet(E.Consommable(
         "Petite potion de soin", 0, 0, 30, 10,  "soin"), HEROS)
     M.obt_objet(E.Consommable(
@@ -516,6 +522,16 @@ def chapitre1():
 def chapitre2():
     '''Lance le chapitre 2 du jeu'''
     global HEROS
+    fade("black_to_img", "./img/burning_village.jpg")
+    background = pygame.image.load(
+        "./img/burning_village.jpg").convert_alpha()
+    background = pygame.transform.scale(
+        background, (window_width, window_height))
+    race = HEROS.race.nom
+    classe = HEROS.classe.nom
+    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    screen.blit(sprite, (25,
+                         window_height-(sprite.get_height()+50)))
     TB.textbox_output("Après avoir échappé à l'attaque de votre village, vous errez dans la forêt pendant plusieurs jours, cherchant des réponses et un refuge. Les arbres s'éclaircissent finalement, révélant une vallée cachée où se dressent les ruines d'une civilisation ancienne, à moitié enfouies sous la végétation.")
     TB.textbox_output("Vous avancez prudemment parmi les pierres effondrées et les colonnes brisées, sentant l'aura mystique qui émane de cet endroit oublié. Des fresques murales racontent l'histoire d'un royaume autrefois prospère, détruit par une force obscure similaire à celle qui a attaqué votre village. Vous comprenez que ces ruines détiennent des secrets vitaux pour votre quête.")
     TB.textbox_output("Soudain, des bruits étranges retentissent autour de vous. Des silhouettes se déplacent parmi les décombres. Vous vous cachez derrière une colonne et observez des créatures humanoïdes aux yeux brillants, gardant les lieux.")
@@ -561,6 +577,16 @@ def chapitre2():
 def chapitre3():
     '''Lance le chapitre 3 du jeu'''
     global HEROS
+    fade("black_to_img", "./img/burning_village.jpg")
+    background = pygame.image.load(
+        "./img/burning_village.jpg").convert_alpha()
+    background = pygame.transform.scale(
+        background, (window_width, window_height))
+    race = HEROS.race.nom
+    classe = HEROS.classe.nom
+    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    screen.blit(sprite, (25,
+                         window_height-(sprite.get_height()+50)))
     TB.textbox_output("Après avoir quitté les ruines oubliées avec une nouvelle détermination, vous vous dirigez vers la Forêt des Murmures, un endroit réputé pour être hanté par des esprits malveillants. La forêt est dense et sombre, les arbres immenses bloquant la lumière du soleil. Chaque pas que vous faites est accompagné de murmures étranges qui semblent vous suivre, chuchotant des secrets oubliés et des avertissements cryptiques.")
     TB.textbox_output("Les murmures deviennent plus insistants alors que vous vous enfoncez dans la forêt. Vous commencez à distinguer des mots et des phrases, comme si les arbres eux-mêmes tentaient de communiquer avec vous. Vous comprenez que pour progresser, vous devez déchiffrer ces murmures et comprendre leur signification.")
     TB.textbox_output("En vous concentrant, vous percevez une direction à suivre. Les murmures vous conduisent à une clairière où se dresse un arbre ancien, ses racines formant une sorte de sanctuaire naturel. Là, vous trouvez un autel entouré de pierres gravées de runes. Vous devez résoudre l'énigme des runes pour libérer l'énergie protectrice de l'arbre.")
@@ -595,7 +621,16 @@ def chapitre3():
 def chapitre4():
     '''Lance le chapitre 4 du jeu'''
     global HEROS
-
+    fade("black_to_img", "./img/burning_village.jpg")
+    background = pygame.image.load(
+        "./img/burning_village.jpg").convert_alpha()
+    background = pygame.transform.scale(
+        background, (window_width, window_height))
+    race = HEROS.race.nom
+    classe = HEROS.classe.nom
+    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    screen.blit(sprite, (25,
+                         window_height-(sprite.get_height()+50)))
     TB.textbox_output("Après avoir quitté la Forêt des Murmures, vous continuez votre voyage jusqu'à atteindre une vallée cachée où se trouve une ville mystérieuse. Dès que vous pénétrez dans cette cité, vous remarquez quelque chose d'étrange : la lune y brille constamment, ne laissant jamais place au jour. Les habitants semblent mener une vie normale, mais il y a une mélancolie palpable dans l'air, comme s'ils étaient prisonniers de cette nuit éternelle.")
     TB.textbox_output("En explorant les rues pavées et les bâtiments élégants mais décrépits, vous apprenez que la cité est sous l'emprise d'une malédiction qui maintient la lune éternellement dans le ciel. Les habitants vivent dans la peur, sachant que cette anomalie attire des créatures nocturnes dangereuses. Vous êtes déterminé à les aider et à en apprendre plus sur cette malédiction.")
     TB.textbox_output("Vous rencontrez le chef de la cité, un vieil homme sage nommé Alaric, qui vous explique que la clé pour briser la malédiction se trouve dans un ancien sanctuaire au centre de la ville. Cependant, le sanctuaire est gardé par des créatures de l'ombre. En vous approchant du sanctuaire, vous êtes attaqué par un groupe de gardiens nocturnes.")
@@ -633,6 +668,16 @@ def chapitre4():
 def chapitre5():
     '''Lance le chapitre 5 du jeu'''
     global HEROS
+    fade("black_to_img", "./img/burning_village.jpg")
+    background = pygame.image.load(
+        "./img/burning_village.jpg").convert_alpha()
+    background = pygame.transform.scale(
+        background, (window_width, window_height))
+    race = HEROS.race.nom
+    classe = HEROS.classe.nom
+    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    screen.blit(sprite, (25,
+                         window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous venez de passer au chapitre 5.")
     return 6, HEROS
 
@@ -640,6 +685,16 @@ def chapitre5():
 def chapitre6():
     '''Lance le chapitre 6 du jeu'''
     global HEROS
+    fade("black_to_img", "./img/burning_village.jpg")
+    background = pygame.image.load(
+        "./img/burning_village.jpg").convert_alpha()
+    background = pygame.transform.scale(
+        background, (window_width, window_height))
+    race = HEROS.race.nom
+    classe = HEROS.classe.nom
+    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    screen.blit(sprite, (25,
+                         window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous venez de passer au chapitre 6.")
     return 7, HEROS
 
@@ -647,6 +702,16 @@ def chapitre6():
 def chapitre7():
     '''Lance le chapitre 7 du jeu'''
     global HEROS
+    fade("black_to_img", "./img/burning_village.jpg")
+    background = pygame.image.load(
+        "./img/burning_village.jpg").convert_alpha()
+    background = pygame.transform.scale(
+        background, (window_width, window_height))
+    race = HEROS.race.nom
+    classe = HEROS.classe.nom
+    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    screen.blit(sprite, (25,
+                         window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous venez de passer au chapitre 7.")
     return 8, HEROS
 
@@ -654,6 +719,16 @@ def chapitre7():
 def chapitre8():
     '''Lance le chapitre 8 du jeu'''
     global HEROS
+    fade("black_to_img", "./img/burning_village.jpg")
+    background = pygame.image.load(
+        "./img/burning_village.jpg").convert_alpha()
+    background = pygame.transform.scale(
+        background, (window_width, window_height))
+    race = HEROS.race.nom
+    classe = HEROS.classe.nom
+    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    screen.blit(sprite, (25,
+                         window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous venez de passer au chapitre 8.")
     return 9, HEROS
 
@@ -661,6 +736,16 @@ def chapitre8():
 def chapitre9():
     '''Lance le chapitre 9 du jeu'''
     global HEROS
+    fade("black_to_img", "./img/burning_village.jpg")
+    background = pygame.image.load(
+        "./img/burning_village.jpg").convert_alpha()
+    background = pygame.transform.scale(
+        background, (window_width, window_height))
+    race = HEROS.race.nom
+    classe = HEROS.classe.nom
+    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    screen.blit(sprite, (25,
+                         window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous venez de passer au chapitre 9.")
     return 10, HEROS
 
@@ -668,6 +753,16 @@ def chapitre9():
 def chapitre10():
     '''Lance le chapitre 10 du jeu'''
     global HEROS
+    fade("black_to_img", "./img/burning_village.jpg")
+    background = pygame.image.load(
+        "./img/burning_village.jpg").convert_alpha()
+    background = pygame.transform.scale(
+        background, (window_width, window_height))
+    race = HEROS.race.nom
+    classe = HEROS.classe.nom
+    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    screen.blit(sprite, (25,
+                         window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous venez de passer au chapitre 10.")
     TB.textbox_output("Merci d'avoir joué")
     TB.textbox_output("Fin de la partie")
