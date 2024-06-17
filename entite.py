@@ -17,13 +17,13 @@ class Joueur ():
         self.pd = classe.pd + race.pd
         self.inventaire = []
         self.argent = 0
-        self.main_gauche = None
-        self.main_droite = None
-        self.tete = None
-        self.torse = None
-        self.gants = None
-        self.jambes = None
-        self.pieds = None
+        self.main_gauche = []
+        self.main_droite = []
+        self.tete = []
+        self.torse = []
+        self.gants = []
+        self.jambes = []
+        self.pieds = []
 
     def lister_inventaire_consommable(self):
         liste_inventaire = []
@@ -85,17 +85,17 @@ class Monstre ():
 
 
 # Joueur & monstres normaux
-guerrier = Type("guerrier", 0, 20, 5)
-archer = Type("archer", 0, 30, 0)
-tank = Type("tank", 20, 2, 10)
+guerrier = Type("guerrier", 50, 10, 10)
+archer = Type("archer", 50, 10, 5)
+tank = Type("tank", 60, 5, 15)
 
-humain = Type("humain", 100, 30, 20)
-elfe = Type("elfe", 75, 40, 20)
-orc = Type("orc", 200, 10, 40)
+humain = Type("humain", 50, 10, 10)
+elfe = Type("elfe", 60, 5, 15)
+orc = Type("orc", 70, 15, 5)
 
 # Monstres spéciaux (ou boss) -> fin de chapitre
 ombre_race = Type("ombre", 50, 20, 0)
-ombre_assayante_classe = Type("Ombre Assaillante", 30, 20, 10)
+ombre_assaillante_classe = Type("Ombre Assaillante", 30, 20, 10)
 
 liste_classe = [guerrier, archer, tank]
 liste_race = [humain, elfe, orc]
