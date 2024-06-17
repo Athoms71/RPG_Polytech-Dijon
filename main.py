@@ -475,8 +475,8 @@ def chapitre1():
     background = pygame.transform.scale(
         background, (window_width, window_height))
     screen.blit(background, (0, 0))
-    race = HEROS.race.nom
-    classe = HEROS.classe.nom
+    race = HEROS.race
+    classe = HEROS.classe
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
@@ -527,9 +527,8 @@ def chapitre2():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race.nom
-    classe = HEROS.classe.nom
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    sprite = pygame.image.load(
+        f"./img/{HEROS.race.nom}_{HEROS.classe.nom}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
     TB.textbox_output("Après avoir échappé à l'attaque de votre village, vous errez dans la forêt pendant plusieurs jours, cherchant des réponses et un refuge. Les arbres s'éclaircissent finalement, révélant une vallée cachée où se dressent les ruines d'une civilisation ancienne, à moitié enfouies sous la végétation.")
@@ -582,7 +581,7 @@ def chapitre3():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race.nom
+    race = HEROS.race
     classe = HEROS.classe.nom
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
@@ -624,7 +623,7 @@ def chapitre4():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race.nom
+    race = HEROS.race
     classe = HEROS.classe.nom
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
@@ -671,7 +670,7 @@ def chapitre5():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race.nom
+    race = HEROS.race
     classe = HEROS.classe.nom
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
@@ -688,7 +687,7 @@ def chapitre6():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race.nom
+    race = HEROS.race
     classe = HEROS.classe.nom
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
@@ -705,7 +704,7 @@ def chapitre7():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race.nom
+    race = HEROS.race
     classe = HEROS.classe.nom
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
@@ -722,7 +721,7 @@ def chapitre8():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race.nom
+    race = HEROS.race
     classe = HEROS.classe.nom
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
@@ -739,7 +738,7 @@ def chapitre9():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race.nom
+    race = HEROS.race
     classe = HEROS.classe.nom
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
@@ -756,7 +755,7 @@ def chapitre10():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race.nom
+    race = HEROS.race
     classe = HEROS.classe.nom
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
