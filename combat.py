@@ -34,6 +34,7 @@ def bataille(screen: pygame.Surface, personnage: Ett.Joueur, ennemi: Ett.Monstre
         TB.textbox_output(
             "Tous les espoirs du royaume s'évanouissent avec votre mort...")
         pygame.quit
+        quit
     else:
         TB.textbox_output("Vous avez gagné !")
 

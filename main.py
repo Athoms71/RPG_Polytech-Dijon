@@ -540,7 +540,7 @@ def chapitre2():
     TB.textbox_output("Vous avancez prudemment parmi les pierres effondrées et les colonnes brisées, sentant l'aura mystique qui émane de cet endroit oublié. Des fresques murales racontent l'histoire d'un royaume autrefois prospère, détruit par une force obscure similaire à celle qui a attaqué votre village. Vous comprenez que ces ruines détiennent des secrets vitaux pour votre quête.")
     TB.textbox_output("Soudain, des bruits étranges retentissent autour de vous. Des silhouettes se déplacent parmi les décombres. Vous vous cachez derrière une colonne et observez des créatures humanoïdes aux yeux brillants, gardant les lieux.")
     C.bataille(screen, HEROS, Ett.Monstre(
-        Ett.garde_squelette_classe, Ett.squelette_race), "/img/skeleton_warriors.jpg")
+        Ett.garde_squelette_classe, Ett.squelette_race), "./img/skeleton_warriors.jpg")
     M.obt_objet(E.Consommable("Petite potion de force",
                 5, 5, 0, 10, "attaque"), HEROS)
     M.obt_objet(E.Equipement("Heaume Basique",
@@ -683,7 +683,7 @@ def chapitre5():
     TB.textbox_output("Après avoir libéré la cité sous la lune, vous continuez votre quête vers le nord, suivant les indications des anciens textes et des conseils des habitants reconnaissants. Votre destination est un temple ancien, caché dans les montagnes, dédié aux étoiles et à leurs mystérieux pouvoirs.")
     TB.textbox_output("La montée est ardue, les sentiers escarpés et souvent masqués par des nuages épais. Après plusieurs jours de marche, vous atteignez enfin l'entrée du temple des étoiles. Devant vous se dresse une structure imposante, faite de pierres anciennes et ornée de symboles célestes. L'air est imprégné de magie, et vous sentez une énergie puissante émaner des lieux.")
     TB.textbox_output("En entrant dans le temple, vous découvrez une salle immense, avec un plafond voûté parsemé de cristaux brillants, imitant un ciel étoilé. Au centre de la salle, un autel lumineux attire votre attention. Alors que vous vous en approchez, des créatures spectrales surgissent des ombres pour défendre le sanctuaire.")
-    C.bataille(HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
+    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
                Ett.gardiens_race), "img/spectres gardiens.png")
     done = False
     while not done:
