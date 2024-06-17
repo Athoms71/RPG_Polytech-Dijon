@@ -148,13 +148,10 @@ def textbox_input(texte: str):
 def textbox_output(text):
     pygame.init()
     "écrit dans la textbox le text fournis en entree."
-    # pygame.font.Font("font/TheWildBreathOfZelda-15Lv.ttf", 32)
     font = pygame.font.Font(None, 32)
     clock = pygame.time.Clock()
     input_box = pygame.Rect(0, (dimensions_ecran(
     )[1]*2/3), (dimensions_ecran()[0]), (dimensions_ecran()[1]*1/3))
-    # color_inactive = pygame.Color('lightskyblue3')
-    # color_active = pygame.Color('dodgerblue2')
     color = pygame.Color('lightskyblue3')
     text_en_cours = ''
     done = False
@@ -167,13 +164,10 @@ def textbox_output(text):
                 if event.key == pygame.K_TAB:
                     pygame.quit()
                     quit()
-
         if len(text_en_cours) < len(text):
             text_en_cours += text[len(text_en_cours)]
             # a chaque iteration, on ajoute un caractere a la liste a afficher jusqu'a que le texte soit complet'"
-
         for i in range(8):
-
             if i == 0:
                 # Render the current text.
                 txt_surface_l0 = font.render(

@@ -24,6 +24,10 @@ class Joueur ():
         self.gants = []
         self.jambes = []
         self.pieds = []
+        self.sprite = ""
+
+    def update_sprite(self):
+        return f"./img/{self.race.nom}_{self.classe.nom}.png"
 
     def lister_inventaire_consommable(self):
         liste_inventaire = []
