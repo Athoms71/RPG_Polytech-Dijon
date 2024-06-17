@@ -1,5 +1,6 @@
 import entite as Ett
 import equipement as E
+import gestion_bruits as GB
 import random
 import textbox as TB
 import pygame
@@ -153,6 +154,8 @@ def attaquer(source, destination, type_attaquant: int):
             degat = source.pc + bonusArmes
 
         resistance = destination.pd + bonusDef
+        for i in range(len(GB.sons_epee.bruits)//2):
+            GB.sons_epee.play_sound()
         TB.textbox_output("vous avez infligé "+str(max(0, degat-resistance)) +
                           " dégats, l'adversaire a encore " +
                           str(max(0, destination.pv-(max(0, degat-resistance)))
@@ -176,6 +179,7 @@ def attaquer(source, destination, type_attaquant: int):
 
         degat = source.pc + bonusArmes
         resistance = destination.pd + bonusDef
+        GB.sons_epee.play_sound()
         TB.textbox_output("le "+str(source.classe)+" vous attaque et vous inflige "+(
             str(max(0, degat-resistance))) + " degats. Il vous reste " + str(max(0, destination.pv-(degat-resistance))) + "/"+str(destination.pv_max) + " PV")
 
