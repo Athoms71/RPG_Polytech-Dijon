@@ -149,8 +149,8 @@ def continuer_partie():
     global AVANCEMENT
     global HEROS
     if os.path.exists("save.txt"):
+        HEROS = Ett.Joueur("", Ett.guerrier, Ett.humain)
         DICT_VAR = OF.load()
-        print(DICT_VAR)
         HEROS.nom = DICT_VAR["nom_joueur"]
         match DICT_VAR["classe_joueur"]:
             case "guerrier":
@@ -235,8 +235,8 @@ def dict_var_update(dict_var: dict, avancement: int):
             return []
         return [partie_corps.nom, int(partie_corps.atk), int(partie_corps.dfc), int(partie_corps.prix), partie_corps.cat]
     dict_var["nom_joueur"] = HEROS.nom
-    dict_var["classe_joueur"] = HEROS.classe.nom
-    dict_var["race_joueur"] = HEROS.race.nom
+    dict_var["classe_joueur"] = HEROS.classe
+    dict_var["race_joueur"] = HEROS.race
     for elt in HEROS.inventaire:
         list_temp = []
         list_temp.append(elt.nom)
@@ -500,11 +500,12 @@ def chapitre0():
     HEROS = Ett.Joueur(nom_heros, Ett.liste_classe[int(
         classe_heros)-1], Ett.liste_race[int(race_heros)-1])
     sprite = pygame.image.load(HEROS.update_sprite())
-    screen.blit(sprite, (250,
-                # windwow_width//2 pour ennemi à droite
-                         window_height-sprite.get_height()))
-    TB.textbox_output("Vous etes : "+HEROS.nom+", de la race des "+HEROS.race.nom+", vous etes un futur " +
-                      HEROS.classe.nom+" dont on racontera l'hisoire pendant des générations !")
+    screen.blit(sprite, (25,
+                         window_height-(sprite.get_height()+50)))
+    TB.textbox_output("Vous etes : "+HEROS.nom+", de la race des "+HEROS.race+", vous etes un futur " +
+                      HEROS.classe+" dont on racontera l'hisoire pendant des générations !")
+    TB.textbox_output("Voici vos statistiques :@- PV max : " +
+                      str(HEROS.pv_max)+"@- Points de Combat : "+str(HEROS.pc)+"@- Points de Défense : "+str(HEROS.pd))
     return (1, HEROS)
 
 
