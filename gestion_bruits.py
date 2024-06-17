@@ -1,10 +1,5 @@
 import pygame
-from pygame.locals import *
 from random import randint
-
-pygame.init()
-pygame.mixer.init()
-screen = pygame.display.set_mode((600, 600))
 
 
 class playlist():
@@ -15,7 +10,9 @@ class playlist():
         '''Joue un bruit aléatoire d'une playlist donnée'''
         index_bruit = randint(0, len(self.bruits)-1)
         bruit = pygame.mixer.Sound(self.bruits[index_bruit])
+        len_bruit = int(bruit.get_length())
         bruit.play()
+        pygame.time.delay(len_bruit)
 
     def play_sounds(self, loopback: int = 0):
         '''Joue tous les bruits aléatoirement d'une playlist donnée'''
@@ -36,7 +33,6 @@ class playlist():
 
 # Création des différentes playlists en fonction des bruits
 sons_epee = playlist([
-    "./sounds/bruit_epee.mp3",
     "./sounds/bruit_epee_1.mp3",
     "./sounds/bruit_epee_2.mp3",
     "./sounds/bruit_epee_3.mp3",

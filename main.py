@@ -540,7 +540,7 @@ def chapitre2():
     TB.textbox_output("Vous avancez prudemment parmi les pierres effondrées et les colonnes brisées, sentant l'aura mystique qui émane de cet endroit oublié. Des fresques murales racontent l'histoire d'un royaume autrefois prospère, détruit par une force obscure similaire à celle qui a attaqué votre village. Vous comprenez que ces ruines détiennent des secrets vitaux pour votre quête.")
     TB.textbox_output("Soudain, des bruits étranges retentissent autour de vous. Des silhouettes se déplacent parmi les décombres. Vous vous cachez derrière une colonne et observez des créatures humanoïdes aux yeux brillants, gardant les lieux.")
     C.bataille(screen, HEROS, Ett.Monstre(
-        Ett.garde_squelette_classe, Ett.squelette_race), "./img/skeleton_warriors.jpg")
+        Ett.garde_squelette_classe, Ett.squelette_race), "./img/skeleton_warriors.png")
     M.obt_objet(E.Consommable("Petite potion de force",
                 5, 5, 0, 10, "attaque"), HEROS)
     M.obt_objet(E.Equipement("Heaume Basique",
