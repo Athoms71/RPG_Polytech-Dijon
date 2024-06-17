@@ -687,8 +687,7 @@ def chapitre4():
 
     TB.textbox_output("Le rituel est un succès, et pour la première fois depuis des décennies, le soleil se lève sur la cité. Les habitants vous remercient chaleureusement, offrant leur aide pour votre quête future. Vous quittez la cité sous la lune, maintenant libérée, avec un sentiment renouvelé de force et d'espoir.")
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Equipement("épé longue", 55, 0, 55, "main_droite"))])
-    fontaine(HEROS)
+        HEROS, 1, [(E.Equipement("épé longue", 60, 0, 90, "main_droite"))])
     return 5, HEROS
 
 
@@ -732,6 +731,10 @@ def chapitre5():
     TB.textbox_output("Avec votre nouvelle acquisition, vous explorez plus avant le temple. Vous découvrez des fresques et des inscriptions révélant l'histoire de l'éclipse et de l'ancien royaume. Vous apprenez que l'éclipse est liée à un artefact puissant, caché dans un lieu secret et protégé par des forces redoutables.")
     TB.textbox_output("Soudain, une porte secrète s'ouvre, révélant un passage vers une chambre intérieure. Là, vous trouvez un ancien grimoire, contenant des sorts et des incantations oubliées, ainsi qu'une carte détaillant l'emplacement de l'artefact que vous cherchez.")
     TB.textbox_output("Vous quittez le temple des étoiles, votre esprit éclairé par les nouvelles connaissances et votre équipement renforcé par les artefacts célestes. Vous savez que le chemin sera encore long et dangereux, mais vous êtes déterminé à poursuivre votre quête pour sauver votre royaume de l'éclipse imminente.")
+
+    M.ouvertureDeLaBoutique(
+        HEROS, 1, [(E.Equipement("épé des ténebres", 65, 0, 85, "main_droite"))])
+    fontaine(HEROS)
     return 6, HEROS
 
 
@@ -751,6 +754,7 @@ def chapitre6():
     TB.textbox_output("En entrant dans les cavernes, l'air devient plus froid et une obscurité oppressante vous enveloppe. Vos pas résonnent contre les parois humides et vous sentez que quelque chose vous observe dans les ténèbres. Vous allumez une torche pour éclairer votre chemin et avancez prudemment.")
     TB.textbox_output(
         "Rapidement, vous vous trouvez face à un choix de chemins, chacun menant plus profondément dans le labyrinthe.")
+    done = False
     while not done:
         choix = TB.textbox_input(
             "Choix: @- 1 : Prendre le chemin de droite, marqué par des symboles mystérieux@- 2 : Prendre le chemin de gauche, illuminé par une lueur étrange")
@@ -759,7 +763,7 @@ def chapitre6():
         if choix == "1":
             TB.textbox_output("1. Prendre le chemin de droite, marqué par des symboles mystérieux :@Vous décidez de suivre le chemin de droite, attiré par les symboles gravés sur les parois. Les symboles ressemblent à ceux vus dans le temple des étoiles, et vous les suivez en espérant qu'ils vous mèneront à quelque chose d'important. Au bout du chemin, vous trouvez une alcôve cachée avec une bague d'ombre, qui semble absorber la lumière. En la mettant, vous sentez une connexion avec les ombres, vous permettant de passer inaperçu.")
             M.obt_objet(E.Equipement(
-                "Bague des ombres", 10, 35, 55, "main_gauche"))
+                "Bague des ombres", 10, 35, 55, "main_gauche"), HEROS)
         if choix == "2":
             TB.textbox_output("2. Prendre le chemin de gauche, illuminé par une lueur étrange :@Vous choisissez le chemin de gauche, intrigué par la lueur mystérieuse. En suivant cette lumière, vous arrivez dans une caverne où des cristaux phosphorescents illuminent une source souterraine. À côté de la source, vous trouvez un bracelet d'ombre, qui semble renforcer votre force physique. Vous mettez le bracelet, sentant un pouvoir brut se réveiller en vous.")
             M.obt_objet(E.Equipement("Bracelet étrange",
@@ -768,7 +772,7 @@ def chapitre6():
         "Alors que vous continuez à explorer les cavernes, vous êtes soudain attaqué par une créature massive, formée de ténèbres mouvantes et de cris d'âmes perdues.")
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_labyrinthe,
-               Ett.spectre_race), "img/spectres gardiens.png")
+               Ett.spectre_race), "img/spectre labyrinthe.png")
     pygame.mixer.music.load("./sounds/ch6_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
@@ -777,8 +781,9 @@ def chapitre6():
     TB.textbox_output("Vous suivez ce passage jusqu'à une chambre cachée, où des fresques anciennes racontent l'histoire de héros passés, ceux qui ont tenté de combattre l'éclipse mais ont échoué. Vous comprenez que ces âmes perdues sont celles des anciens héros, piégées dans les cavernes pour l'éternité.")
     TB.textbox_output("Dans cette chambre, vous trouvez un vieux grimoire, contenant des sorts oubliés et des incantations pour sceller les créatures de l'ombre. En le prenant, vous ressentez une lourdeur sur vos épaules, comme si vous héritiez du destin des anciens héros.")
     TB.textbox_output("En sortant des cavernes de l'oubli, vous êtes plus déterminé que jamais à réussir là où les autres ont échoué. Vous avez acquis de nouveaux pouvoirs et des connaissances cruciales, mais vous savez que le chemin qui vous attend est encore plus périlleux.")
-
-    TB.textbox_output("Vous venez de passer au chapitre 6.")
+    M.ouvertureDeLaBoutique(
+        HEROS, 1, [(E.Equipement("Couronne étrange", 0, 25, 55, "tete"))])
+    fontaine(HEROS)
     return 7, HEROS
 
 
@@ -794,15 +799,36 @@ def chapitre7():
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
-    TB.textbox_output("Vous venez de passer au chapitre 7.")
-
+    TB.textbox_output("Après avoir traversé les Cavernes de l'Oubli et acquis de nouveaux pouvoirs, vous poursuivez votre quête vers la mer des âmes, un océan mystérieux entouré de légendes et de contes lugubres. On dit que cette mer est le lieu où reposent les âmes des défunts, piégées dans un cycle éternel de tourment.")
+    TB.textbox_output("Naviguant à bord d'un vieux navire abandonné que vous avez réparé, vous sentez une étrange aura de malédiction planer sur ces eaux. La mer est agitée, les vagues déferlent avec une intensité déconcertante et le ciel est constamment obscurci par des nuages sombres.")
+    TB.textbox_output("Alors que vous avancez dans les eaux tumultueuses, votre navire est soudain attaqué par des créatures marines, des esprits tourmentés cherchant à vous engloutir dans les profondeurs de l'océan.")
     tps_musique = pygame.mixer.music.get_pos()
-    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
-               Ett.gardiens_race), "img/spectres gardiens.png")
+    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_profondeurs,
+               Ett.spectre_race), "img/spectre profondeurs.png")
     pygame.mixer.music.load("./sounds/ch7_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
+    TB.textbox_output("Après avoir repoussé les attaquants, vous continuez à naviguer, cherchant un signe, un indice sur la manière de traverser la mer des âmes en toute sécurité. Au loin, vous apercevez une île isolée, entourée d'un halo de lumière éthérée. Vous décidez de vous en approcher, espérant y trouver des réponses.")
+    TB.textbox_output("En abordant l'île, vous découvrez un ancien sanctuaire, gardé par une entité marine bienveillante. Elle vous raconte l'histoire de la mer des âmes et vous informe qu'un ancien artefact, capable de contrôler les flots tumultueux de l'océan, est caché au fond des eaux.")
 
+    done = False
+    while not done:
+        choix = TB.textbox_input(
+            "Choix: @- 1 : Plonger dans les profondeurs pour trouver l'artefact@- 2 : Demander à l'entité marine de vous guider vers l'artefact")
+        if choix in ["1", "2"]:
+            done = True
+        if choix == "1":
+            TB.textbox_output("1. Plonger dans les profondeurs pour trouver l'artefact :@Vous décidez de plonger dans les profondeurs de la mer des âmes, bravant les dangers pour trouver l'artefact par vous-même. Après une plongée périlleuse, vous découvrez une épave ancienne au fond de l'océan. En explorant l'épave, vous trouvez un trident ancien, orné de runes marines. Vous le récupérez, sentant le pouvoir de l'océan couler à travers vous.")
+            M.obt_objet(E.Equipement(
+                "Trident ancien", 60, 0, 75, "main_droite"), HEROS)
+        if choix == "2":
+            TB.textbox_output("2. Demander à l'entité marine de vous guider vers l'artefact :@Vous choisissez de demander à l'entité marine de vous guider vers l'artefact. Avec sa guidance, vous plongez dans les eaux profondes et trouvez rapidement un coffre ancien enfoui dans le sable. À l'intérieur, vous trouvez un collier de coquillages lumineux, qui semble émettre une lueur protectrice. Vous le prenez, sentant une connexion avec les créatures marines.")
+            M.obt_objet(E.Equipement("Collier de coquillages",
+                                     0, 35, 75, "tete"), HEROS)
+
+    TB.textbox_output("Avec l'artefact en votre possession, vous retournez sur votre navire, prêt à continuer votre voyage à travers la mer des âmes. Vous avez maintenant les moyens de naviguer en sécurité à travers ces eaux hantées, mais vous savez que de nouveaux défis vous attendent avant d'atteindre votre destination finale.")
+
+    M.ouvertureDeLaBoutique(HEROS, 1, [])
     return 8, HEROS
 
 
@@ -818,14 +844,41 @@ def chapitre8():
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
-    TB.textbox_output("Vous venez de passer au chapitre 8.")
+
+    TB.textbox_output("Votre voyage à travers la mer des âmes vous conduit finalement aux abords d'un château lugubre, perché sur une falaise escarpée. Ce château est connu sous le nom de Château des Ombres, le repaire supposé de la source de l'éclipse et de son instigateur, un être de ténèbres ancestrales.")
+    TB.textbox_output("Alors que vous approchez du château, vous sentez une aura maléfique vous envelopper, vous mettant au défi avant même d'avoir franchi les portes. Vous savez que le combat qui vous attend sera le plus difficile de votre quête jusqu'à présent, mais vous êtes déterminé à mettre fin à l'éclipse et à sauver votre royaume.")
+    TB.textbox_output(
+        "Vous entrez dans le château et êtes immédiatement assailli par des hordes de créatures des ténèbres, invoquées pour défendre leur maître.")
 
     tps_musique = pygame.mixer.music.get_pos()
-    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
-               Ett.gardiens_race), "img/spectres gardiens.png")
+    C.bataille(screen, HEROS, Ett.Monstre(Ett.Gardiens_ombres_classe,
+               Ett.gardiens_race), "img/garde des ombres.png")
     pygame.mixer.music.load("./sounds/ch8_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
+
+    TB.textbox_output("Après avoir triomphé des gardes, vous vous frayez un chemin à travers les couloirs sombres et tortueux du château, suivant les traces de l'énergie maléfique jusqu'à ce que vous arriviez devant une grande porte verrouillée. Vous savez que derrière cette porte se trouve votre destinée, mais vous devez d'abord la déverrouiller.")
+
+    done = False
+    while not done:
+        choix = TB.textbox_input(
+            "Choix: @- 1 : Forcer la porte@- 2 : Chercher une clé")
+        if choix in ["1", "2"]:
+            done = True
+        if choix == "1":
+            TB.textbox_output("1. Forcer la porte :@Vous décidez de forcer la porte avec toute votre force, déterminé à affronter ce qui se cache derrière. Après plusieurs essais, la porte cède finalement, révélant une chambre sombre où flotte une aura sinistre. Vous avancez, prêt à affronter votre adversaire.")
+        if choix == "2":
+            TB.textbox_output("2. Chercher une clé :@Vous choisissez de chercher une clé pour ouvrir la porte, espérant qu'elle révélera un chemin plus sûr. En fouillant les pièces adjacentes, vous trouvez une clé cachée dans une vieille armoire. Avec la clé en main, vous ouvrez la porte et pénétrez dans la chambre, prêt à affronter ce qui vous attend.")
+
+    TB.textbox_output("Vous vous retrouvez face à face avec l'instigateur de l'éclipse, un être de ténèbres ancestrales connu sous le nom de Seigneur des Ombres. Son regard est empli de malice et de pouvoir, mais vous savez que vous devez le vaincre pour mettre fin à l'éclipse et sauver votre royaume.")
+    fontaine(HEROS)
+    tps_musique = pygame.mixer.music.get_pos()
+    C.bataille(screen, HEROS, Ett.Monstre(Ett.boss_final_classe,
+               Ett.boss_final_race), "./img/seigneur_ombres.png")
+    pygame.mixer.music.stop()  # c est normal qu il n y ai plus de musique
+
+    TB.textbox_output("Après un combat épique et épuisant, vous parvenez finalement à vaincre le Seigneur des Ombres, mettant ainsi un terme à son règne de terreur. L'éclipse commence à se dissiper lentement, laissant place à la lumière du soleil et à l'espoir pour votre royaume.")
+    TB.textbox_output("Vous êtes acclamé comme un héros par votre peuple reconnaissant, mais vous savez que votre aventure ne fait que commencer. Avec l'éclipse vaincue, de nouveaux défis et de nouvelles quêtes vous attendent, mais vous êtes prêt à affronter l'avenir avec courage et détermination.")
 
     return 9, HEROS
 
