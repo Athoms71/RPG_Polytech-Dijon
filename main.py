@@ -27,74 +27,42 @@ def dimensions_ecran():
     return (screen_width, screen_height)
 
 
-def fade(mode: str, ch_image1: str = "./img/chemin_fond_flou.png", ch_image2: str = "./img/chemin_fond_flou.png", text: str = ""):
+def fade(mode: str, ch_image: str, text: str = ""):
+    '''Définit le fondu à créer :\n
+        - 1 : fade in\n
+        - -1 : fade out'''
     global BLACK
     screen_width, screen_height = dimensions_ecran()
-    image1 = pygame.image.load(ch_image1)
-    image2 = pygame.image.load(ch_image2)
-    image1 = pygame.transform.scale(image1, (screen_width, screen_height))
-    image2 = pygame.transform.scale(image2, (screen_width, screen_height))
+    if ch_image != "":
+        image = pygame.image.load(ch_image)
+        image = pygame.transform.scale(image, (screen_width, screen_height))
     font = pygame.font.Font("./font/VecnaBold-4YY4.ttf", 100)
     texte = font.render(text, True, WHITE)
     texte_rect = texte.get_rect(center=(window_width//2, window_height//2))
     fade = pygame.Surface((screen_width, screen_height))
     fade.fill(BLACK, (0, 0, window_width, window_height))
-    if mode == "img_to_black":
-        opacity = 0
-        for r in range(300):
-            opacity += 1
-            fade.set_alpha(opacity)
-            screen.blit(image1, (0, 0))
-            screen.blit(texte, texte_rect)
-            screen.blit(fade, (0, 0))
-            pygame.display.update()
-            pygame.time.delay(5)
-    elif mode == "black_to_img":
+    if mode == 1:
         opacity = 300
         for r in range(300):
             opacity -= 1
             fade.set_alpha(opacity)
-            screen.blit(image1, (0, 0))
+            screen.blit(image, (0, 0))
             screen.blit(texte, texte_rect)
             screen.blit(fade, (0, 0))
             pygame.display.update()
-            pygame.time.delay(5)
-    elif mode == "img_to_black_to_img":
+            pygame.time.wait(5)
+    elif mode == -1:
         opacity = 0
         for r in range(300):
             opacity += 1
             fade.set_alpha(opacity)
-            screen.blit(image1, (0, 0))
+            screen.blit(image, (0, 0))
             screen.blit(texte, texte_rect)
             screen.blit(fade, (0, 0))
             pygame.display.update()
-            pygame.time.delay(5)
-            pygame.time.delay(3000)
-        for r in range(300):
-            opacity -= 1
-            fade.set_alpha(opacity)
-            screen.blit(image2, (0, 0))
-            screen.blit(fade, (0, 0))
-            pygame.display.update()
-            pygame.time.delay(5)
-    elif mode == "black_to_img_to_black":
-        opacity = 300
-        for r in range(300):
-            opacity -= 1
-            fade.set_alpha(opacity)
-            screen.blit(image2, (0, 0))
-            screen.blit(texte, texte_rect)
-            screen.blit(fade, (0, 0))
-            pygame.display.update()
-            pygame.time.delay(5)
-        pygame.time.delay(3000)
-        for r in range(300):
-            opacity += 1
-            fade.set_alpha(opacity)
-            screen.blit(image2, (0, 0))
-            screen.blit(fade, (0, 0))
-            pygame.display.update()
-            pygame.time.delay(5)
+            pygame.time.wait(5)
+    if text != "":
+        pygame.time.wait(2500)
 
 
 def check_events():
@@ -133,6 +101,7 @@ def changement_affichage():
         ETAT = "jeu"
     elif ETAT == "jeu":
         ETAT = "ecran_titre"
+        fade(1, "./img/chemin_fond_flou.png")
 
 
 def nouvelle_partie():
@@ -354,81 +323,95 @@ def jeu():
     global DICT_VAR
     global HEROS
     GAME_RUNNING = True
+    fade(-1, "./img/chemin_fond_flou.png")
     while GAME_RUNNING:
         match AVANCEMENT:
             case 0:
-                fade("img_to_black")
                 AVANCEMENT, HEROS = chapitre0()
             case 1:
                 pygame.mixer.music.load("./sounds/ch1_music.mp3")
                 pygame.mixer.music.play(-1)
-                fade("img_to_black")
-                fade("black_to_img_to_black", "./img/black_screen.png",
-                     "./img/burning_village.jpg", "Chapitre 1 : L'aube de l'Éclipse")
+                fade(1, "./img/burning_village.png",
+                     "Chapitre 1 : L'aube de l'Éclipse")
+                fade(-1, "./img/burning_village.png")
+                fade(1, "./img/burning_village.jpg")
                 AVANCEMENT, HEROS = chapitre1()
+                fade(-1, "./img/chemin_pierre_runes.jpg")
             case 2:
                 pygame.mixer.music.load("./sounds/ch2_music.mp3")
                 pygame.mixer.music.play(-1)
-                fade("img_to_black")
-                fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
-                     "./img/ruines_dans_foret.jpg", "Chapitre 2 : Les ruines oubliées")
+                fade(1, "./img/ruines_dans_foret.jpg",
+                     "Chapitre 2 : Les ruines oubliées")
+                fade(-1, "./img/ruines_dans_foret.jpg")
+                fade(1, "./img/ruines_dans_foret.png")
                 AVANCEMENT, HEROS = chapitre2()
+                fade(-1, "./img/book_in_ruins.jpg")
             case 3:
                 pygame.mixer.music.load("./sounds/ch3_music.mp3")
                 pygame.mixer.music.play(-1)
-                fade("img_to_black")
-                fade("black_to_img_to_black", "./img/ruines_dans_foret.jpg",
-                     "./img/foret_sombre.png", "Chapitre 3 : La forêt des murmures")
+                fade(1, "./img/foret_sombre.png",
+                     "Chapitre 3 : La forêt des murmures")
+                fade(-1, "./img/foret_sombre.png")
+                fade(1, "./img/foret_sombre.jpg")
                 AVANCEMENT, HEROS = chapitre3()
+                fade(-1, "./img/foret_sombre.jpg")
             case 4:
                 pygame.mixer.music.load("./sounds/ch4_music.mp3")
                 pygame.mixer.music.play(-1)
-                fade("img_to_black")
-                fade("black_to_img_to_black", "./img/foret_sombre.jpg",
-                     "./img/ruines_dans_foret.png", "Chapitre 4 : La cité sous la lune")
+                fade(1, "./img/burning_village.png",
+                     "Chapitre 4 : La cité sous la lune")
+                fade(-1, "./img/burning_village.png")
+                fade(1, "./img/burning_village.jpg")
                 AVANCEMENT, HEROS = chapitre4()
             case 5:
                 pygame.mixer.music.load("./sounds/ch5_music.mp3")
                 pygame.mixer.music.play(-1)
-                fade("img_to_black")
-                fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
-                     "./img/ruines_dans_foret.png", "Chapitre 5 : Le temple des étoiles")
+                fade(1, "./img/burning_village.png",
+                     "Chapitre 5 : Le temple des étoiles")
+                fade(-1, "./img/burning_village.png")
+                fade(1, "./img/burning_village.jpg")
                 AVANCEMENT, HEROS = chapitre5()
             case 6:
                 pygame.mixer.music.load("./sounds/ch6_music.mp3")
                 pygame.mixer.music.play(-1)
-                fade("img_to_black")
-                fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
-                     "./img/ruines_dans_foret.png", "Chapitre 6 : Les cavernes de l'oubli")
+                fade(1, "./img/burning_village.png",
+                     "Chapitre 6 : Les cavernes de l'oubli")
+                fade(-1, "./img/burning_village.png")
+                fade(1, "./img/burning_village.jpg")
                 AVANCEMENT, HEROS = chapitre6()
             case 7:
                 pygame.mixer.music.load("./sounds/ch7_music.mp3")
                 pygame.mixer.music.play(-1)
-                fade("img_to_black")
-                fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
-                     "./img/ruines_dans_foret.png", "Chapitre 7 : La mer des âmes")
+                fade(1, "./img/burning_village.png",
+                     "Chapitre 7 : La mer des âmes")
+                fade(-1, "./img/burning_village.png")
+                fade(1, "./img/burning_village.jpg")
                 AVANCEMENT, HEROS = chapitre7()
             case 8:
                 pygame.mixer.music.load("./sounds/ch8_music.mp3")
                 pygame.mixer.music.play(-1)
-                fade("img_to_black")
-                fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
-                     "./img/ruines_dans_foret.png", "Chapitre 8 : Le château des ombres")
+                fade(1, "./img/burning_village.png",
+                     "Chapitre 8 : Le château des ombres")
+                fade(-1, "./img/burning_village.png")
+                fade(1, "./img/burning_village.jpg")
                 AVANCEMENT, HEROS = chapitre8()
             case 9:
                 pygame.mixer.music.load("./sounds/ch9_music.mp3")
                 pygame.mixer.music.play(-1)
-                fade("img_to_black")
-                fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
-                     "./img/ruines_dans_foret.png", "Chapitre 9 : Le retour des Héros")
+                fade(1, "./img/burning_village.png",
+                     "Chapitre 9 : Le retour des Héros")
+                fade(-1, "./img/burning_village.png")
+                fade(1, "./img/burning_village.jpg")
                 AVANCEMENT, HEROS = chapitre9()
             case 10:
                 pygame.mixer.music.load("./sounds/ch10_music.mp3")
                 pygame.mixer.music.play(-1)
-                fade("img_to_black")
-                fade("black_to_img_to_black", "./img/chemin_pierre_runes.png",
-                     "./img/ruines_dans_foret.jpg", "Chapitre 10 : Épilogue")
+                fade(1, "./img/burning_village.png",
+                     "Chapitre 10 : Épilogue")
+                fade(-1, "./img/burning_village.png")
+                fade(1, "./img/burning_village.jpg")
                 AVANCEMENT, HEROS = chapitre10()
+                fade(-1, "./img/burning_village.jpg")
                 changement_affichage()
                 GAME_RUNNING = False
             case _:
@@ -496,7 +479,6 @@ def chapitre0():
 def chapitre1():
     '''Lance le chapitre 1 du jeu'''
     global HEROS
-    fade("black_to_img", "./img/burning_village.jpg")
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -521,11 +503,9 @@ def chapitre1():
     M.obt_objet(E.Consommable(
         "Petite potion de soin", 0, 0, 30, 10, "soin"), HEROS)
     TB.textbox_output("Après un combat acharné, vous parvenez à abattre l'une des créatures, mais vous réalisez que vous ne pouvez pas sauver ce qui reste du village. Vous devez fuir et trouver un endroit sûr.")
-    background = pygame.image.load(
-        "./img/chemin_pierre_runes.jpg").convert_alpha()
-    background = pygame.transform.scale(
-        background, (window_width, window_height))
-    screen.blit(background, (0, 0))
+    fade(-1, "./img/burning_village.jpg")
+    fade(1, "./img/chemin_pierre_runes.jpg")
+    screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous vous dirigez vers la forêt voisine, cherchant à échapper à l'horreur qui s'est abattue sur vous. En vous enfonçant dans les bois, vous découvrez un sentier à peine visible, marqué par des signes anciens. Vous sentez une étrange énergie émanant de ces symboles.")
     done = False
     while not done:
@@ -553,7 +533,6 @@ def chapitre1():
 def chapitre2():
     '''Lance le chapitre 2 du jeu'''
     global HEROS
-    fade("black_to_img", "./img/ruines_dans_foret.png")
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -568,7 +547,7 @@ def chapitre2():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(
         Ett.garde_squelette_classe, Ett.squelette_race), "./img/skeleton_warrior.png")
-    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.load("./sounds/ch2_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
     screen.blit(background, (0, 0))
@@ -602,7 +581,11 @@ def chapitre2():
             TB.textbox_output("2. Forcer l'entrée :@Impatient, vous décidez de forcer l'entrée en utilisant votre force et vos armes. Après plusieurs essais, la porte finit par céder. À l'intérieur, vous trouvez une épée en cristal, légèrement fissurée mais encore imprégnée d'une énergie redoutable. L'épée vibre légèrement entre vos mains, comme si elle reconnaissait votre détermination.")
             M.obt_objet(E.Equipement("épé de cristal",
                         40, 0, 15, "main_droite"), HEROS)
-    TB.textbox_output("Avec votre nouvelle acquisition, vous continuez à explorer les ruines. Vous trouvez finalement un ancien grimoire, contenant des histoires et des prophéties sur l'éclipse et les créatures des ombres. En le feuilletant, vous apprenez qu'un artefact puissant, capable de contrôler ou détruire ces créatures, est caché quelque part dans le royaume.")
+    TB.textbox_output(
+        "Avec votre nouvelle acquisition, vous continuez à explorer les ruines.")
+    fade(-1, "./img/ruines_dans_foret.png")
+    fade(1, "./img/book_in_ruins.jpg")
+    TB.textbox_output("Vous trouvez finalement un ancien grimoire, contenant des histoires et des prophéties sur l'éclipse et les créatures des ombres. En le feuilletant, vous apprenez qu'un artefact puissant, capable de contrôler ou détruire ces créatures, est caché quelque part dans le royaume.")
     TB.textbox_output("Votre quête prend une nouvelle tournure. Armé de nouvelles connaissances et de puissants artefacts, vous quittez les ruines et vous vous enfoncez plus profondément dans la vallée, déterminé à trouver cet artefact avant qu'il ne soit trop tard.")
     fontaine(HEROS)
     M.ouvertureDeLaBoutique(
@@ -613,7 +596,6 @@ def chapitre2():
 def chapitre3():
     '''Lance le chapitre 3 du jeu'''
     global HEROS
-    fade("black_to_img", "./img/burning_village.jpg")
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -646,7 +628,7 @@ def chapitre3():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(
         Ett.golem_foret_classe, Ett.golem_race), "img/golem.png")
-    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.load("./sounds/ch3_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
     screen.blit(background, (0, 0))
@@ -661,7 +643,6 @@ def chapitre3():
 def chapitre4():
     '''Lance le chapitre 4 du jeu'''
     global HEROS
-    fade("black_to_img", "./img/burning_village.jpg")
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -677,7 +658,7 @@ def chapitre4():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(
         Ett.gardiens_nocturnes_classe, Ett.gardiens_race), "img/gardien nocturne.png")
-    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.load("./sounds/ch4_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
     screen.blit(background, (0, 0))
@@ -713,7 +694,6 @@ def chapitre4():
 def chapitre5():
     '''Lance le chapitre 5 du jeu'''
     global HEROS
-    fade("black_to_img", "./img/burning_village.jpg")
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -729,7 +709,7 @@ def chapitre5():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
                Ett.gardiens_race), "img/spectres gardiens.png")
-    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.load("./sounds/ch5_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
     screen.blit(background, (0, 0))
@@ -761,7 +741,6 @@ def chapitre5():
 def chapitre6():
     '''Lance le chapitre 6 du jeu'''
     global HEROS
-    fade("black_to_img", "./img/burning_village.jpg")
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -794,7 +773,7 @@ def chapitre6():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_labyrinthe,
                Ett.spectre_race), "img/spectre labyrinthe.png")
-    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.load("./sounds/ch6_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
 
@@ -811,7 +790,6 @@ def chapitre6():
 def chapitre7():
     '''Lance le chapitre 7 du jeu'''
     global HEROS
-    fade("black_to_img", "./img/burning_village.jpg")
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -827,7 +805,7 @@ def chapitre7():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_profondeurs,
                Ett.spectre_race), "img/spectre profondeurs.png")
-    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.load("./sounds/ch7_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
     TB.textbox_output("Après avoir repoussé les attaquants, vous continuez à naviguer, cherchant un signe, un indice sur la manière de traverser la mer des âmes en toute sécurité. Au loin, vous apercevez une île isolée, entourée d'un halo de lumière éthérée. Vous décidez de vous en approcher, espérant y trouver des réponses.")
@@ -857,7 +835,6 @@ def chapitre7():
 def chapitre8():
     '''Lance le chapitre 8 du jeu'''
     global HEROS
-    fade("black_to_img", "./img/burning_village.jpg")
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -876,7 +853,7 @@ def chapitre8():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.Gardiens_ombres_classe,
                Ett.gardiens_race), "img/garde des ombres.png")
-    pygame.mixer.music.load("./sounds/never_again.mp3")
+    pygame.mixer.music.load("./sounds/ch8_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
 
@@ -909,7 +886,6 @@ def chapitre8():
 def chapitre9():
     '''Lance le chapitre 9 du jeu'''
     global HEROS
-    fade("black_to_img", "./img/burning_village.jpg")
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -920,6 +896,7 @@ def chapitre9():
     screen.blit(sprite, (25,
                          window_height-(sprite.get_height()+50)))
 
+<<<<<<< HEAD
     TB.textbox_output("")
     TB.textbox_output("")
     TB.textbox_output("")
@@ -940,6 +917,14 @@ def chapitre9():
         "Quel que soit votre choix, vous vous lancez dans une série de batailles épiques contre les forces maléfiques, repoussant chaque assaut avec force et courage.")
     TB.textbox_output("Finalement, après de nombreuses batailles et de nombreux défis surmontés, vous parvenez à vaincre les forces maléfiques et à ramener la paix durable dans votre royaume. Les habitants vous honorent une fois de plus comme des héros, reconnaissant votre dévouement et votre bravoure.")
     TB.textbox_output("Avec votre quête accomplie et votre royaume en sécurité, vous vous retirez pour profiter enfin de la paix que vous avez si durement gagnée. Mais vous savez que, si jamais une nouvelle menace surgit, vous serez prêt à défendre votre royaume avec la même détermination et la même force.")
+=======
+    tps_musique = pygame.mixer.music.get_pos()
+    C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
+               Ett.gardiens_race), "img/spectres gardiens.png")
+    pygame.mixer.music.load("./sounds/ch9_music.mp3")
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_pos(tps_musique)
+>>>>>>> 6f34e2afcf5c5ed7bb663958acb7c40319b29c78
 
     return 10, HEROS
 
@@ -947,7 +932,6 @@ def chapitre9():
 def chapitre10():
     '''Lance le chapitre 10 du jeu'''
     global HEROS
-    fade("black_to_img", "./img/burning_village.jpg")
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -959,9 +943,18 @@ def chapitre10():
                          window_height-(sprite.get_height()+50)))
     TB.textbox_output("Vous venez de passer au chapitre 10.")
 
+<<<<<<< HEAD
+=======
+    tps_musique = pygame.mixer.music.get_pos()
+    # C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe, Ett.gardiens_race), "img/spectres gardiens.png")
+    pygame.mixer.music.load("./sounds/ch10_music.mp3")
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_pos(tps_musique)
+
+>>>>>>> 6f34e2afcf5c5ed7bb663958acb7c40319b29c78
     TB.textbox_output("Merci d'avoir joué")
     TB.textbox_output("Fin de la partie")
-    return 10
+    return 10, HEROS
 
 
 # Variables globales
@@ -1001,7 +994,7 @@ window_width, window_height = dimensions_ecran()
 button_w, button_h = 350, 80
 screen = pygame.display.set_mode((window_width, window_height))
 
-fade("black_to_img", "./img/chemin_fond_flou.png")
+fade(1, "./img/chemin_fond_flou.png")
 while RUNNING:
     if ETAT == "ecran_titre":
         ecran_titre()
