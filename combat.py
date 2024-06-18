@@ -190,6 +190,6 @@ def attaquer(source, destination, type_attaquant: int):
         resistance = destination.pd + bonusDef
         GB.sons_epee.play_sound()
         TB.textbox_output("le "+str(source.classe)+" vous attaque et vous inflige "+(
-            str(max(0, degat-resistance))) + " degats. Il vous reste " + str(max(0, destination.pv-(degat-resistance))) + "/"+str(destination.pv_max) + " PV")
+            str(max(0, degat-resistance))) + " degats. Il vous reste " + str(max(0, destination.pv-max(0, (degat-resistance)))) + "/"+str(destination.pv_max) + " PV")
 
     destination.pv -= max(0, (degat-resistance))
