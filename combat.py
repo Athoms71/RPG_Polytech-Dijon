@@ -14,6 +14,7 @@ def DX(X):
 def bataille(screen: pygame.Surface, personnage: Ett.Joueur, ennemi: Ett.Monstre, ch_sprite_ennemi: str = "./img/skeleton_warriors.jpg"):
     """tant que le joueur et le(s) ennemi(s) ont 1 PV ou plus, on alterne entre le tour du joueur et celui du monstre"""
     if ch_sprite_ennemi == "./img/seigneur_ombres.png":
+        # cas particulier de musique si on est face au boss finale
         pygame.mixer.music.load("./sounds/battle_of_the_dragons.mp3")
     else:
         pygame.mixer.music.load("./sounds/battle_music.mp3")
@@ -42,6 +43,7 @@ def bataille(screen: pygame.Surface, personnage: Ett.Joueur, ennemi: Ett.Monstre
 
 
 def action_du_tour_monstre(personnage: Ett.Joueur, ennemi: Ett.Monstre):
+    """On regarde si le monstre a moins de 20% de ses PV, puis, s il a une potion de soins, il se soigne en l'utilisant, sinon, il attaque"""
     liste_inv = []
     for elt in ennemi.inventaire:
         if elt.cat == "soin":
@@ -53,7 +55,7 @@ def action_du_tour_monstre(personnage: Ett.Joueur, ennemi: Ett.Monstre):
 
 
 def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
-    """effectue une action parmi celles disponibles, prend en parametre l ennemi et le joueur"""
+    """effectue une action parmi celles disponibles(utiliser un consommable ou attaquer, si le joueur n as pas de consommables dans son inventaire, il n as pas le choix et il attaque nécessairement), prend en parametre l ennemi et le joueur"""
     temps_recup_competence = 0
     premier_tour = True
     done = False
@@ -127,11 +129,13 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
 
 
 def attaquer(source, destination, type_attaquant: int):
-    """prend en parametre la source de l attaque et sa destination,
+    """Prend en parametre la source de l attaque et sa destination,
     elle peuvent chacune etre de type joueur ou monstre, puis on enleve
     aux pv de la destinantion autant que les dégats de la source
     Si le type attaquant est 1, le joueur attaque un monstre, sinon,
-    c est le monstre qui attaque le joueur"""
+    c est le monstre qui attaque le joueur, pour attaquer, on calcule 
+    ensuite les bonus d'attaque et défense de chaque partis pour les 
+    ajouter et soustraire à la fin."""
 
     if type_attaquant == 1:
         # on calcule le bonus d attaque lié aux armes

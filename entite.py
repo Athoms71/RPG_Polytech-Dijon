@@ -19,20 +19,16 @@ class Joueur ():
         self.argent = 0
 
     def update_sprite(self):
+        """Prend en parametre un joueur et revoie le chemin vers son sprite"""
         return f"./img/{self.race}_{self.classe}.png"
 
     def lister_inventaire_consommable(self):
+        """Prend en parametre un joueur et revoie une liste avec le nom de chaque consommables qu'il a dans son inventaire"""
         liste_inventaire = []
         for i in range(len(self.inventaire)):
             if self.inventaire[i].cat in ["soin", "attaque", "defense"]:
                 liste_inventaire.append(self.inventaire[i].nom)
         return liste_inventaire
-
-    def inventaire_est_plein(self):
-        if self.taille_inv >= self.taille_inv_max:
-            return True
-        else:
-            return False
 
 
 class Monstre ():
