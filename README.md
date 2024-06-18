@@ -10,7 +10,6 @@ Bienvenue dans **Les Royaumes de l'Éclipse**, un jeu de rôle (RPG) développé
 - [Utilisation](#utilisation)
 - [Contribuer](#contribuer)
 - [Crédits](#crédits)
-- [Licence](#licence)
 
 ## Description
 
