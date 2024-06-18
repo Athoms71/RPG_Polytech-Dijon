@@ -581,7 +581,7 @@ def chapitre2():
     screen.blit(sprite_marchand, (screen.get_width()-25-sprite_marchand.get_width(),
                                   screen.get_height()-(sprite_marchand.get_height()+50)))
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Consommable("Potion étrange", 15, 10, 0, 25, "attaque")), (E.Equipement("Bottes d'aventurier", 0, 7, 10, "pieds"), HEROS)])
+        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Consommable("Potion étrange", 15, 10, 0, 25, "attaque")), (E.Equipement("Bottes d'aventurier", 0, 7, 10, "pieds"))])
     screen.blit(background, (0, 0))
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     return 3, HEROS

@@ -84,44 +84,44 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
         while not done2:
             choix_consommable = TB.textbox_input("Choisissez l objet que vous souhaitez utiliser parmi la liste de vos objets :@" +
                                                  liste_equipements)
-            if (choix_consommable in ["1", "2", "3", "4", "5", "6", "7", "8"]):
+            if (choix_consommable in ["1", "2", "3", "4", "5"]):
                 choix_consommable = int(choix_consommable)-1
-                done2 = True
-                if (choix_consommable <= len((personnage.lister_inventaire_consommable())) and len((personnage.lister_inventaire_consommable())) != 0):
+                if (choix_consommable < len((personnage.lister_inventaire_consommable())) and len((personnage.lister_inventaire_consommable())) != 0):
                     nomObjChoisi = personnage.lister_inventaire_consommable()[
                         choix_consommable]
 
-                done = False
-                i = 0
-                # on viens parcourir l inventaire du joueur pour y trouver l'élément cherché
-                while (not done):
-                    if personnage.inventaire[i].nom == nomObjChoisi:
-                        objChoisi = personnage.inventaire[i]
-                        done = True
-                        break
-                    i += 1
-                    if i > len(personnage.inventaire):
-                        break
-                # on utilise l'élément choisi, puis on le retire
-                objChoisi.utilisation(personnage)
-                personnage.inventaire.pop(i)
+                    done = False
+                    i = 0
+                    # on viens parcourir l inventaire du joueur pour y trouver l'élément cherché
+                    while (not done):
+                        if personnage.inventaire[i].nom == nomObjChoisi:
+                            objChoisi = personnage.inventaire[i]
+                            done = True
+                            break
+                        i += 1
+                        if i > len(personnage.inventaire)-1:
+                            break
+                    # on utilise l'élément choisi, puis on le retire
+                    objChoisi.utilisation(personnage)
+                    personnage.inventaire.pop(i)
 
-                bonusArmes = 0
-                bonusDef = 0
+                    bonusArmes = 0
+                    bonusDef = 0
 
-                if (len(personnage.inventaire) != 0):
-                    for i in range(len(personnage.inventaire)):
-                        if type(personnage.inventaire[i]) == E.Equipement:
-                            bonusArmes += personnage.inventaire[i].atk
-                # on calcul les bonus de def lié aux defences
+                    if (len(personnage.inventaire) != 0):
+                        for i in range(len(personnage.inventaire)):
+                            if type(personnage.inventaire[i]) == E.Equipement:
+                                bonusArmes += personnage.inventaire[i].atk
+                    # on calcul les bonus de def lié aux defences
 
-                if (len(ennemi.inventaire) != 0):
-                    for i in range(len(ennemi.inventaire)):
-                        if type(ennemi.inventaire[i]) == E.Equipement:
-                            bonusDef += ennemi.inventaire[i].dfc
+                    if (len(ennemi.inventaire) != 0):
+                        for i in range(len(ennemi.inventaire)):
+                            if type(ennemi.inventaire[i]) == E.Equipement:
+                                bonusDef += ennemi.inventaire[i].dfc
 
-                TB.textbox_output(
-                    "vous avez utilisé '"+str(nomObjChoisi)+"'@Vos nouvelles statisitiques sont :@- PV : "+str(personnage.pv)+"/"+str(personnage.pv_max)+"@- Dégâts par coup : "+(str(max(0, personnage.pc-ennemi.pd+bonusArmes)))+"@- Résistance : "+str(personnage.pd+bonusDef))
+                    TB.textbox_output(
+                        "vous avez utilisé '"+str(nomObjChoisi)+"'@Vos nouvelles statisitiques sont :@- PV : "+str(personnage.pv)+"/"+str(personnage.pv_max)+"@- Dégâts par coup : "+(str(max(0, personnage.pc-ennemi.pd+bonusArmes)))+"@- Résistance : "+str(personnage.pd+bonusDef))
+                    done2 = True
 
     else:
         TB.textbox_output("choix indisponible, votre tour est passé :)")

@@ -60,10 +60,10 @@ ombre_assaillante_classe = Type("Ombre Assaillante", 30, 15, 0)
 
 # garde squelette : somme = 70 + 40
 squelette_race = Type("squelette", 50, 20, 0)
-garde_squelette_classe = Type("Garde Squelette", 20, 10, 10)
+garde_squelette_classe = Type("Garde Squelette", 40, 10, 10)
 
 # garde golem : somme = 120 + 60
-golem_race = Type("Golem", 100, 20, 10)
+golem_race = Type("Golem", 100, 20, 20)
 golem_foret_classe = Type("Le Gardien de la Fôret", 50, 10, 10)
 
 # Gardien Nocturne : somme : 120 + 50
