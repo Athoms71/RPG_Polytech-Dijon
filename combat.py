@@ -84,10 +84,9 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
         while not done2:
             choix_consommable = TB.textbox_input("Choisissez l'objet que vous souhaitez utiliser parmi la liste de vos objets :@" +
                                                  liste_equipements)
-            if (choix_consommable in ["1", "2", "3", "4", "5", "6", "7", "8"]):
+            if (choix_consommable in ["1", "2", "3", "4", "5"]):
                 choix_consommable = int(choix_consommable)-1
-                done2 = True
-                if (choix_consommable <= len((personnage.lister_inventaire_consommable())) and len((personnage.lister_inventaire_consommable())) != 0):
+                if (choix_consommable < len((personnage.lister_inventaire_consommable())) and len((personnage.lister_inventaire_consommable())) != 0):
                     nomObjChoisi = personnage.lister_inventaire_consommable()[
                         choix_consommable]
 
@@ -115,13 +114,14 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
                             bonusArmes += personnage.inventaire[i].atk
                 # on calcule les bonus de def liés aux défenses
 
-                if (len(ennemi.inventaire) != 0):
-                    for i in range(len(ennemi.inventaire)):
-                        if type(ennemi.inventaire[i]) == E.Equipement:
-                            bonusDef += ennemi.inventaire[i].dfc
+                    if (len(ennemi.inventaire) != 0):
+                        for i in range(len(ennemi.inventaire)):
+                            if type(ennemi.inventaire[i]) == E.Equipement:
+                                bonusDef += ennemi.inventaire[i].dfc
 
-                TB.textbox_output(
-                    "Vous avez utilisé '"+str(nomObjChoisi)+"'@Vos nouvelles statisitiques sont :@- PV : "+str(personnage.pv)+"/"+str(personnage.pv_max)+"@- Dégâts par coup : "+(str(max(0, personnage.pc-ennemi.pd+bonusArmes)))+"@- Résistance : "+str(personnage.pd+bonusDef))
+                    TB.textbox_output(
+                        "Vous avez utilisé '"+str(nomObjChoisi)+"'@Vos nouvelles statisitiques sont :@- PV : "+str(personnage.pv)+"/"+str(personnage.pv_max)+"@- Dégâts par coup : "+(str(max(0, personnage.pc-ennemi.pd+bonusArmes)))+"@- Résistance : "+str(personnage.pd+bonusDef))
+                    done2 = True
 
     else:
         TB.textbox_output("Choix indisponible, votre tour est passé :)")

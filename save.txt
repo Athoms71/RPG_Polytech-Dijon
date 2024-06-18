@@ -1,0 +1,14 @@
+nom_joueur
+Augustin
+classe_joueur
+guerrier
+race_joueur
+humain
+inventaire_joueur
+Petite potion de soin/0/0/30/10/soin/,Petite potion de soin/0/0/30/10/soin/,Arc/30/0/15/main_droite/,Petite potion de soin/0/0/30/10/soin/,Petite potion de soin/0/0/30/10/soin/,Arc/30/0/15/main_droite/,Petite potion de force/5/5/0/10/attaque/,Heaume Basique/0/5/7/tete/,Plastron Basique/0/7/10/torse/,Jambières Basique/0/5/7/jambes/,Bottes d'aventurier/0/7/10/pieds/,
+pv_joueur
+100
+argent_joueur
+10
+avancement
+3

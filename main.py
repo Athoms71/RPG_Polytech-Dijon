@@ -464,6 +464,7 @@ def chapitre1():
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
+
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(
         Ett.ombre_assaillante_classe, Ett.ombre_race), "./img/ombre assayante.png")
@@ -580,7 +581,7 @@ def chapitre2():
     screen.blit(sprite_marchand, (screen.get_width()-25-sprite_marchand.get_width(),
                                   screen.get_height()-(sprite_marchand.get_height()+50)))
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Consommable("Potion étrange", 15, 10, 0, 25, "attaque")), (E.Equipement("Bottes d'aventurier", 0, 7, 10, "pieds"), HEROS)])
+        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Consommable("Potion étrange", 15, 10, 0, 25, "attaque")), (E.Equipement("Bottes d'aventurier", 0, 7, 10, "pieds"))])
     screen.blit(background, (0, 0))
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     return 3, HEROS
