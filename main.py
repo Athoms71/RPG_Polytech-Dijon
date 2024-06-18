@@ -119,7 +119,6 @@ def continuer_partie():
     global AVANCEMENT
     global HEROS
     if os.path.exists("save.txt"):
-        HEROS = Ett.Joueur("", Ett.guerrier, Ett.humain)
         DICT_VAR = OF.load()
         HEROS.nom = DICT_VAR["nom_joueur"]
         match DICT_VAR["classe_joueur"]:
@@ -164,34 +163,6 @@ def continuer_partie():
             HEROS.inventaire.append(new_conso)
         HEROS.pv = int(DICT_VAR["pv_joueur"])
         HEROS.argent = int(DICT_VAR["argent_joueur"])
-        lmg = DICT_VAR["main_gauche_joueur"]
-        lmd = DICT_VAR["main_droite_joueur"]
-        lte = DICT_VAR["tete_joueur"]
-        lto = DICT_VAR["torse_joueur"]
-        lg = DICT_VAR["gants_joueur"]
-        lj = DICT_VAR["jambes_joueur"]
-        lp = DICT_VAR["pieds_joueur"]
-        if lmg != []:
-            HEROS.main_gauche = E.Equipement(lmg[0], int(lmg[1]), int(
-                lmg[2]), int(lmg[3]), lmg[4])
-        if lmd != []:
-            HEROS.main_droite = E.Equipement(lmd[0], int(lmd[1]), int(
-                lmd[2]), int(lmd[3]), lmd[4])
-        if lte != []:
-            HEROS.tete = E.Equipement(lte[0], int(lte[1]), int(
-                lte[2]), int(lte[3]), lte[4])
-        if lto != []:
-            HEROS.torse = E.Equipement(lto[0], int(lto[1]), int(
-                lto[2]), int(lto[3]), lto[4])
-        if lg != []:
-            HEROS.gants = E.Equipement(lg[0], int(lg[1]), int(
-                lg[2]), int(lg[3]), lg[4])
-        if lj != []:
-            HEROS.jambes = E.Equipement(lj[0], int(lj[1]), int(
-                lj[2]), int(lj[3]), lj[4])
-        if lp != []:
-            HEROS.pieds = E.Equipement(lp[0], int(lp[1]), int(
-                lp[2]), int(lp[3]), lp[4])
         AVANCEMENT = int(DICT_VAR["avancement"])
         changement_affichage()
 
@@ -199,11 +170,6 @@ def continuer_partie():
 def dict_var_update(dict_var: dict, avancement: int):
     '''Sauvegarde les valeurs des différentes variables dans le dictionnaire de sauvegarde'''
     global HEROS
-
-    def attribuer_equipement(partie_corps):
-        if partie_corps == []:
-            return []
-        return [partie_corps.nom, int(partie_corps.atk), int(partie_corps.dfc), int(partie_corps.prix), partie_corps.cat]
     dict_var["nom_joueur"] = HEROS.nom
     dict_var["classe_joueur"] = HEROS.classe
     dict_var["race_joueur"] = HEROS.race
@@ -216,17 +182,9 @@ def dict_var_update(dict_var: dict, avancement: int):
             list_temp.append(elt.heal)
         list_temp.append(elt.prix)
         list_temp.append(elt.cat)
-        dict_var["inventaire_joueur"] = list_temp
+        dict_var["inventaire_joueur"].append(list_temp)
     dict_var["pv_joueur"] = HEROS.pv
     dict_var["argent_joueur"] = HEROS.argent
-    dict_var["sprite_joueur"] = HEROS.sprite
-    dict_var["main_gauche_joueur"] = attribuer_equipement(HEROS.main_gauche)
-    dict_var["main_droite_joueur"] = attribuer_equipement(HEROS.main_droite)
-    dict_var["tete_joueur"] = attribuer_equipement(HEROS.tete)
-    dict_var["torse_joueur"] = attribuer_equipement(HEROS.torse)
-    dict_var["gants_joueur"] = attribuer_equipement(HEROS.gants)
-    dict_var["jambes_joueur"] = attribuer_equipement(HEROS.jambes)
-    dict_var["pieds_joueur"] = attribuer_equipement(HEROS.pieds)
     dict_var["avancement"] = avancement
     return dict_var
 
@@ -471,7 +429,7 @@ def chapitre0():
                       HEROS.classe+" dont on racontera l'hisoire pendant des générations !")
     TB.textbox_output("Voici vos statistiques :@- PV max : " +
                       str(HEROS.pv_max)+"@- Points de Combat : "+str(HEROS.pc)+"@- Points de Défense : "+str(HEROS.pd))
-    return (1, HEROS)
+    return 1, HEROS
 
 
 def chapitre1():
@@ -483,10 +441,7 @@ def chapitre1():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    screen.blit(background, (0, 0))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
@@ -614,11 +569,8 @@ def chapitre3():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
-    screen.blit(sprite, (25,
-                         window_height-(sprite.get_height()+50)))
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Après avoir quitté les ruines oubliées avec une nouvelle détermination, vous vous dirigez vers la Forêt des Murmures, un endroit réputé pour être hanté par des esprits malveillants. La forêt est dense et sombre, les arbres immenses bloquant la lumière du soleil. Chaque pas que vous faites est accompagné de murmures étranges qui semblent vous suivre, chuchotant des secrets oubliés et des avertissements cryptiques.")
     TB.textbox_output("Les murmures deviennent plus insistants alors que vous vous enfoncez dans la forêt. Vous commencez à distinguer des mots et des phrases, comme si les arbres eux-mêmes tentaient de communiquer avec vous. Vous comprenez que pour progresser, vous devez déchiffrer ces murmures et comprendre leur signification.")
     TB.textbox_output("En vous concentrant, vous percevez une direction à suivre. Les murmures vous conduisent à une clairière où se dresse un arbre ancien, ses racines formant une sorte de sanctuaire naturel. Là, vous trouvez un autel entouré de pierres gravées de runes. Vous devez résoudre l'énigme des runes pour libérer l'énergie protectrice de l'arbre.")
@@ -651,7 +603,7 @@ def chapitre3():
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
     screen.blit(background, (0, 0))
-    screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Après un combat intense, vous parvenez à vaincre le Golem de la Forêt, utilisant votre nouvelle arme ou votre amulette pour vous protéger. Avec la créature vaincue, les murmures de la forêt s'apaisent, comme si les esprits vous reconnaissaient enfin comme un allié.")
     TB.textbox_output("Vous quittez la Forêt des Murmures, votre équipement renforcé et votre détermination intacte. Vous savez que les défis à venir seront encore plus redoutables, mais chaque pas vous rapproche de la vérité sur l'éclipse et du moyen de sauver votre royaume.")
     M.ouvertureDeLaBoutique(
@@ -667,11 +619,8 @@ def chapitre4():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
-    screen.blit(sprite, (25,
-                         window_height-(sprite.get_height()+50)))
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Après avoir quitté la Forêt des Murmures, vous continuez votre voyage jusqu'à atteindre une vallée cachée où se trouve une ville mystérieuse. Dès que vous pénétrez dans cette cité, vous remarquez quelque chose d'étrange : la lune y brille constamment, ne laissant jamais place au jour. Les habitants semblent mener une vie normale, mais il y a une mélancolie palpable dans l'air, comme s'ils étaient prisonniers de cette nuit éternelle.")
     TB.textbox_output("En explorant les rues pavées et les bâtiments élégants mais décrépits, vous apprenez que la cité est sous l'emprise d'une malédiction qui maintient la lune éternellement dans le ciel. Les habitants vivent dans la peur, sachant que cette anomalie attire des créatures nocturnes dangereuses. Vous êtes déterminé à les aider et à en apprendre plus sur cette malédiction.")
     TB.textbox_output("Vous rencontrez le chef de la cité, un vieil homme sage nommé Alaric, qui vous explique que la clé pour briser la malédiction se trouve dans un ancien sanctuaire au centre de la ville. Cependant, le sanctuaire est gardé par des créatures de l'ombre. En vous approchant du sanctuaire, vous êtes attaqué par un groupe de gardiens nocturnes.")
@@ -687,7 +636,7 @@ def chapitre4():
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
     screen.blit(background, (0, 0))
-    screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     M.obt_objet(E.Equipement("Bouclier de fer",
                 0, 20, 40, "main_gauche"), HEROS)
 
@@ -724,11 +673,8 @@ def chapitre5():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
-    screen.blit(sprite, (25,
-                         window_height-(sprite.get_height()+50)))
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Après avoir libéré la cité sous la lune, vous continuez votre quête vers le nord, suivant les indications des anciens textes et des conseils des habitants reconnaissants. Votre destination est un temple ancien, caché dans les montagnes, dédié aux étoiles et à leurs mystérieux pouvoirs.")
     TB.textbox_output("La montée est ardue, les sentiers escarpés et souvent masqués par des nuages épais. Après plusieurs jours de marche, vous atteignez enfin l'entrée du temple des étoiles. Devant vous se dresse une structure imposante, faite de pierres anciennes et ornée de symboles célestes. L'air est imprégné de magie, et vous sentez une énergie puissante émaner des lieux.")
     TB.textbox_output("En entrant dans le temple, vous découvrez une salle immense, avec un plafond voûté parsemé de cristaux brillants, imitant un ciel étoilé. Au centre de la salle, un autel lumineux attire votre attention. Alors que vous vous en approchez, des créatures spectrales surgissent des ombres pour défendre le sanctuaire.")
@@ -744,7 +690,7 @@ def chapitre5():
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
     screen.blit(background, (0, 0))
-    screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     done = False
     while not done:
         choix = TB.textbox_input(
@@ -777,11 +723,8 @@ def chapitre6():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
-    screen.blit(sprite, (25,
-                         window_height-(sprite.get_height()+50)))
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Avec la carte et les connaissances acquises au temple des étoiles, vous vous dirigez maintenant vers un réseau de cavernes souterraines connues sous le nom de Cavernes de l'Oubli. Ces cavernes sont réputées pour leur labyrinthe sans fin et leurs créatures de l'ombre. On dit que ceux qui y pénètrent sont confrontés à leurs peurs les plus profondes.")
     TB.textbox_output("En entrant dans les cavernes, l'air devient plus froid et une obscurité oppressante vous enveloppe. Vos pas résonnent contre les parois humides et vous sentez que quelque chose vous observe dans les ténèbres. Vous allumez une torche pour éclairer votre chemin et avancez prudemment.")
     TB.textbox_output(
@@ -834,11 +777,8 @@ def chapitre7():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
-    screen.blit(sprite, (25,
-                         window_height-(sprite.get_height()+50)))
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Après avoir traversé les Cavernes de l'Oubli et acquis de nouveaux pouvoirs, vous poursuivez votre quête vers la mer des âmes, un océan mystérieux entouré de légendes et de contes lugubres. On dit que cette mer est le lieu où reposent les âmes des défunts, piégées dans un cycle éternel de tourment.")
     TB.textbox_output("Naviguant à bord d'un vieux navire abandonné que vous avez réparé, vous sentez une étrange aura de malédiction planer sur ces eaux. La mer est agitée, les vagues déferlent avec une intensité déconcertante et le ciel est constamment obscurci par des nuages sombres.")
     TB.textbox_output("Alors que vous avancez dans les eaux tumultueuses, votre navire est soudain attaqué par des créatures marines, des esprits tourmentés cherchant à vous engloutir dans les profondeurs de l'océan.")
@@ -887,11 +827,8 @@ def chapitre8():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
-    screen.blit(sprite, (25,
-                         window_height-(sprite.get_height()+50)))
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
 
     TB.textbox_output("Votre voyage à travers la mer des âmes vous conduit finalement aux abords d'un château lugubre, perché sur une falaise escarpée. Ce château est connu sous le nom de Château des Ombres, le repaire supposé de la source de l'éclipse et de son instigateur, un être de ténèbres ancestrales.")
     TB.textbox_output("Alors que vous approchez du château, vous sentez une aura maléfique vous envelopper, vous mettant au défi avant même d'avoir franchi les portes. Vous savez que le combat qui vous attend sera le plus difficile de votre quête jusqu'à présent, mais vous êtes déterminé à mettre fin à l'éclipse et à sauver votre royaume.")
@@ -953,11 +890,8 @@ def chapitre9():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
-    screen.blit(sprite, (25,
-                         window_height-(sprite.get_height()+50)))
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
 
     TB.textbox_output("Avec la défaite du Seigneur des Ombres et la fin de l'éclipse, la paix commence à revenir sur votre royaume. Les habitants, libérés de l'ombre qui pesait sur eux, célèbrent votre victoire et vous honorent comme des héros. Cependant, vous savez que votre quête n'est pas encore terminée.")
     TB.textbox_output("Alors que vous vous reposez après votre victoire, une nouvelle menace se profile à l'horizon. Des rumeurs circulent selon lesquelles des forces maléfiques, ayant survécu à la chute du Seigneur des Ombres, se rassemblent dans les recoins les plus sombres du royaume, prêtes à lancer une nouvelle attaque.")
@@ -1003,11 +937,8 @@ def chapitre10():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
-    screen.blit(sprite, (25,
-                         window_height-(sprite.get_height()+50)))
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Des années ont passé depuis la fin de la grande éclipse qui a menacé votre royaume. La paix règne désormais en maître, les habitants vaquent à leurs occupations avec sérénité, et les histoires des héros qui ont sauvé le royaume sont maintenant légendaires.")
     TB.textbox_output("Vous, le héros de cette histoire, avez trouvé votre place dans ce nouveau monde de paix. Certains jours, vous voyagez à travers le royaume, rencontrant des gens reconnaissants qui vous remercient pour votre courage et votre dévouement. D'autres jours, vous vous reposez dans votre demeure, profitant des doux moments de calme et de tranquillité.")
     TB.textbox_output("Mais même dans cette ère de paix, il y a toujours des défis à relever. De temps en temps, une nouvelle menace émerge, un bandit à traquer, une bête à chasser, ou un mystère à résoudre. À chaque fois, vous vous levez pour affronter ces défis avec la même détermination et le même courage qui vous ont permis de vaincre l'éclipse.")
@@ -1033,14 +964,6 @@ DICT_VAR = {            # Dictionnaire de sauvegarde
     "inventaire_joueur": [],
     "pv_joueur": 0,
     "argent_joueur": 0,
-    "sprite_joueur": "",
-    "main_gauche_joueur": [],
-    "main_droite_joueur": [],
-    "tete_joueur": [],
-    "torse_joueur": [],
-    "gants_joueur": [],
-    "jambes_joueur": [],
-    "pieds_joueur": [],
     "avancement": 0
 }
 ETAT = "ecran_titre"    # Variable de sélection de menus : ecran_titre / jeu
