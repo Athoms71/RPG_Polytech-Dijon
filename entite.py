@@ -17,14 +17,6 @@ class Joueur ():
         self.pd = classe.pd + race.pd
         self.inventaire = []
         self.argent = 0
-        self.main_gauche = []
-        self.main_droite = []
-        self.tete = []
-        self.torse = []
-        self.gants = []
-        self.jambes = []
-        self.pieds = []
-        self.sprite = ""
 
     def update_sprite(self):
         return f"./img/{self.race}_{self.classe}.png"
@@ -41,40 +33,6 @@ class Joueur ():
             return True
         else:
             return False
-
-    def changement_equipement(self, choix_chgt: str):
-        liste_chgt = []
-        for elt in self.inventaire:
-            if elt.cat == choix_chgt:
-                liste_chgt.append(elt)
-        print("Voici la liste de votre équipement :", liste_chgt)
-        i_chgt = int(
-            input("Entrez le numéro de l'équipement que vous souhaitez équiper : "))
-        if choix_chgt == "main_gauche":
-            self.main_gauche, liste_chgt[i_chgt -
-                                         1] = liste_chgt[i_chgt-1], self.main_gauche
-        elif choix_chgt == "main_droite":
-            self.main_droite, liste_chgt[i_chgt -
-                                         1] = liste_chgt[i_chgt-1], self.main_droite
-            print("Vous venez d'équiper \""+self.main_droite+"\".")
-        elif choix_chgt == "tete":
-            self.tete, liste_chgt[i_chgt-1] = liste_chgt[i_chgt-1], self.tete
-            print("Vous venez d'équiper \""+self.tete+"\".")
-        elif choix_chgt == "torse":
-            self.torse, liste_chgt[i_chgt-1] = liste_chgt[i_chgt-1], self.torse
-            print("Vous venez d'équiper \""+self.torse+"\".")
-        elif choix_chgt == "gants":
-            self.gants, liste_chgt[i_chgt-1] = liste_chgt[i_chgt-1], self.gants
-            print("Vous venez d'équiper \""+self.gants+"\".")
-        elif choix_chgt == "jambes":
-            self.jambes, liste_chgt[i_chgt -
-                                    1] = liste_chgt[i_chgt-1], self.jambes
-            print("Vous venez d'équiper \""+self.jambes+"\".")
-        elif choix_chgt == "pieds":
-            self.pieds, liste_chgt[i_chgt-1] = liste_chgt[i_chgt-1], self.pieds
-            print("Vous venez d'équiper \""+self.pieds+"\".")
-        if liste_chgt[i_chgt-1] != None:
-            self.inventaire.append(liste_chgt[i_chgt-1])
 
 
 class Monstre ():
