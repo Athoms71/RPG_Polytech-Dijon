@@ -331,12 +331,11 @@ def jeu():
             case 1:
                 pygame.mixer.music.load("./sounds/ch1_music.mp3")
                 pygame.mixer.music.play(-1)
-                fade(1, "./img/burning_village.png",
-                     "Chapitre 1 : L'aube de l'Éclipse")
-                fade(-1, "./img/burning_village.png")
+                # fade(1, "./img/burning_village.png","Chapitre 1 : L'aube de l'Éclipse")
+                # fade(-1, "./img/burning_village.png")
                 fade(1, "./img/burning_village.jpg")
                 AVANCEMENT, HEROS = chapitre1()
-                fade(-1, "./img/chemin_pierre_runes.jpg")
+                # fade(-1, "./img/chemin_pierre_runes.jpg")
             case 2:
                 pygame.mixer.music.load("./sounds/ch2_music.mp3")
                 pygame.mixer.music.play(-1)
@@ -467,8 +466,7 @@ def chapitre0():
     HEROS = Ett.Joueur(nom_heros, Ett.liste_classe[int(
         classe_heros)-1], Ett.liste_race[int(race_heros)-1])
     sprite = pygame.image.load(HEROS.update_sprite())
-    screen.blit(sprite, (25,
-                         window_height-(sprite.get_height()+50)))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Vous etes : "+HEROS.nom+", de la race des "+HEROS.race+", vous etes un futur " +
                       HEROS.classe+" dont on racontera l'hisoire pendant des générations !")
     TB.textbox_output("Voici vos statistiques :@- PV max : " +
@@ -487,7 +485,7 @@ def chapitre1():
     race = HEROS.race
     classe = HEROS.classe
     sprite = pygame.image.load(f"./img/{race}_{classe}.png")
-    screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
     tps_musique = pygame.mixer.music.get_pos()
@@ -497,7 +495,7 @@ def chapitre1():
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
     screen.blit(background, (0, 0))
-    screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     M.obt_objet(E.Consommable(
         "Petite potion de soin", 0, 0, 30, 10,  "soin"), HEROS)
     M.obt_objet(E.Consommable(
@@ -505,7 +503,7 @@ def chapitre1():
     TB.textbox_output("Après un combat acharné, vous parvenez à abattre l'une des créatures, mais vous réalisez que vous ne pouvez pas sauver ce qui reste du village. Vous devez fuir et trouver un endroit sûr.")
     fade(-1, "./img/burning_village.jpg")
     fade(1, "./img/chemin_pierre_runes.jpg")
-    screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Vous vous dirigez vers la forêt voisine, cherchant à échapper à l'horreur qui s'est abattue sur vous. En vous enfonçant dans les bois, vous découvrez un sentier à peine visible, marqué par des signes anciens. Vous sentez une étrange énergie émanant de ces symboles.")
     done = False
     while not done:
@@ -539,8 +537,7 @@ def chapitre2():
         background, (window_width, window_height))
     sprite = pygame.image.load(
         f"./img/{HEROS.race}_{HEROS.classe}.png")
-    screen.blit(sprite, (25,
-                         window_height-(sprite.get_height()+50)))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Après avoir échappé à l'attaque de votre village, vous errez dans la forêt pendant plusieurs jours, cherchant des réponses et un refuge. Les arbres s'éclaircissent finalement, révélant une vallée cachée où se dressent les ruines d'une civilisation ancienne, à moitié enfouies sous la végétation.")
     TB.textbox_output("Vous avancez prudemment parmi les pierres effondrées et les colonnes brisées, sentant l'aura mystique qui émane de cet endroit oublié. Des fresques murales racontent l'histoire d'un royaume autrefois prospère, détruit par une force obscure similaire à celle qui a attaqué votre village. Vous comprenez que ces ruines détiennent des secrets vitaux pour votre quête.")
     TB.textbox_output("Soudain, des bruits étranges retentissent autour de vous. Des silhouettes se déplacent parmi les décombres. Vous vous cachez derrière une colonne et observez des créatures humanoïdes aux yeux brillants, gardant les lieux.")
@@ -551,7 +548,7 @@ def chapitre2():
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
     screen.blit(background, (0, 0))
-    screen.blit(sprite, (25, window_height-(sprite.get_height()+50)))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     M.obt_objet(E.Consommable("Petite potion de force",
                 5, 5, 0, 10, "attaque"), HEROS)
     M.obt_objet(E.Equipement("Heaume Basique",
