@@ -508,7 +508,7 @@ def chapitre1():
     TB.textbox_output(
         "La quête pour découvrir la source de cette malédiction et venger votre foyer commence maintenant.")
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Equipement("Bouclier de bois", 0, 5, 5, "main_gauche"), E.Equipement("épé en bois", 10, 0, 5, "main_droite"))])
+        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Equipement("Bouclier de bois", 0, 5, 5, "main_gauche")), (E.Equipement("épé en bois", 10, 0, 5, "main_droite"))])
     return 2, HEROS
 
 
@@ -549,8 +549,6 @@ def chapitre2():
                              0, 5, 7, "jambes"), HEROS)
     M.obt_objet(E.Equipement("Bottes Basique",
                              0, 3, 5, "pieds"), HEROS)
-    M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque"))])
     TB.textbox_output("Après avoir vaincu l'un des gardes squelettiques, vous fouillez les ruines à la recherche d'indices. Vous tombez sur une chambre secrète, protégée par un mécanisme complexe.")
     done = False
 
