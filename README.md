@@ -40,8 +40,9 @@ Pour installer et exécuter le jeu sur votre machine locale, suivez ces étapes 
 
 ## Utilisation
 
-Pour lancer le jeu, utilisez la commande suivante dans le répertoire du jeu : ```bash
-python main.py
+Pour lancer le jeu, utilisez la commande suivante dans le répertoire du jeu :
+    ```bash
+    python main.py
 
 ## Contribuer
 
