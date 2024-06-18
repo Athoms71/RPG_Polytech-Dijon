@@ -429,7 +429,7 @@ def chapitre0():
                       HEROS.classe+" dont on racontera l'hisoire pendant des générations !")
     TB.textbox_output("Voici vos statistiques :@- PV max : " +
                       str(HEROS.pv_max)+"@- Points de Combat : "+str(HEROS.pc)+"@- Points de Défense : "+str(HEROS.pd))
-    return (1, HEROS)
+    return 1, HEROS
 
 
 def chapitre1():
@@ -441,10 +441,7 @@ def chapitre1():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    screen.blit(background, (0, 0))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
@@ -572,9 +569,7 @@ def chapitre3():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Après avoir quitté les ruines oubliées avec une nouvelle détermination, vous vous dirigez vers la Forêt des Murmures, un endroit réputé pour être hanté par des esprits malveillants. La forêt est dense et sombre, les arbres immenses bloquant la lumière du soleil. Chaque pas que vous faites est accompagné de murmures étranges qui semblent vous suivre, chuchotant des secrets oubliés et des avertissements cryptiques.")
     TB.textbox_output("Les murmures deviennent plus insistants alors que vous vous enfoncez dans la forêt. Vous commencez à distinguer des mots et des phrases, comme si les arbres eux-mêmes tentaient de communiquer avec vous. Vous comprenez que pour progresser, vous devez déchiffrer ces murmures et comprendre leur signification.")
@@ -624,9 +619,7 @@ def chapitre4():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Après avoir quitté la Forêt des Murmures, vous continuez votre voyage jusqu'à atteindre une vallée cachée où se trouve une ville mystérieuse. Dès que vous pénétrez dans cette cité, vous remarquez quelque chose d'étrange : la lune y brille constamment, ne laissant jamais place au jour. Les habitants semblent mener une vie normale, mais il y a une mélancolie palpable dans l'air, comme s'ils étaient prisonniers de cette nuit éternelle.")
     TB.textbox_output("En explorant les rues pavées et les bâtiments élégants mais décrépits, vous apprenez que la cité est sous l'emprise d'une malédiction qui maintient la lune éternellement dans le ciel. Les habitants vivent dans la peur, sachant que cette anomalie attire des créatures nocturnes dangereuses. Vous êtes déterminé à les aider et à en apprendre plus sur cette malédiction.")
@@ -680,9 +673,7 @@ def chapitre5():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Après avoir libéré la cité sous la lune, vous continuez votre quête vers le nord, suivant les indications des anciens textes et des conseils des habitants reconnaissants. Votre destination est un temple ancien, caché dans les montagnes, dédié aux étoiles et à leurs mystérieux pouvoirs.")
     TB.textbox_output("La montée est ardue, les sentiers escarpés et souvent masqués par des nuages épais. Après plusieurs jours de marche, vous atteignez enfin l'entrée du temple des étoiles. Devant vous se dresse une structure imposante, faite de pierres anciennes et ornée de symboles célestes. L'air est imprégné de magie, et vous sentez une énergie puissante émaner des lieux.")
@@ -732,9 +723,7 @@ def chapitre6():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Avec la carte et les connaissances acquises au temple des étoiles, vous vous dirigez maintenant vers un réseau de cavernes souterraines connues sous le nom de Cavernes de l'Oubli. Ces cavernes sont réputées pour leur labyrinthe sans fin et leurs créatures de l'ombre. On dit que ceux qui y pénètrent sont confrontés à leurs peurs les plus profondes.")
     TB.textbox_output("En entrant dans les cavernes, l'air devient plus froid et une obscurité oppressante vous enveloppe. Vos pas résonnent contre les parois humides et vous sentez que quelque chose vous observe dans les ténèbres. Vous allumez une torche pour éclairer votre chemin et avancez prudemment.")
@@ -788,9 +777,7 @@ def chapitre7():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Après avoir traversé les Cavernes de l'Oubli et acquis de nouveaux pouvoirs, vous poursuivez votre quête vers la mer des âmes, un océan mystérieux entouré de légendes et de contes lugubres. On dit que cette mer est le lieu où reposent les âmes des défunts, piégées dans un cycle éternel de tourment.")
     TB.textbox_output("Naviguant à bord d'un vieux navire abandonné que vous avez réparé, vous sentez une étrange aura de malédiction planer sur ces eaux. La mer est agitée, les vagues déferlent avec une intensité déconcertante et le ciel est constamment obscurci par des nuages sombres.")
@@ -840,9 +827,7 @@ def chapitre8():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
 
     TB.textbox_output("Votre voyage à travers la mer des âmes vous conduit finalement aux abords d'un château lugubre, perché sur une falaise escarpée. Ce château est connu sous le nom de Château des Ombres, le repaire supposé de la source de l'éclipse et de son instigateur, un être de ténèbres ancestrales.")
@@ -905,9 +890,7 @@ def chapitre9():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
 
     TB.textbox_output("Avec la défaite du Seigneur des Ombres et la fin de l'éclipse, la paix commence à revenir sur votre royaume. Les habitants, libérés de l'ombre qui pesait sur eux, célèbrent votre victoire et vous honorent comme des héros. Cependant, vous savez que votre quête n'est pas encore terminée.")
@@ -954,9 +937,7 @@ def chapitre10():
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
         background, (window_width, window_height))
-    race = HEROS.race
-    classe = HEROS.classe
-    sprite = pygame.image.load(f"./img/{race}_{classe}.png")
+    sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Des années ont passé depuis la fin de la grande éclipse qui a menacé votre royaume. La paix règne désormais en maître, les habitants vaquent à leurs occupations avec sérénité, et les histoires des héros qui ont sauvé le royaume sont maintenant légendaires.")
     TB.textbox_output("Vous, le héros de cette histoire, avez trouvé votre place dans ce nouveau monde de paix. Certains jours, vous voyagez à travers le royaume, rencontrant des gens reconnaissants qui vous remercient pour votre courage et votre dévouement. D'autres jours, vous vous reposez dans votre demeure, profitant des doux moments de calme et de tranquillité.")
