@@ -435,6 +435,8 @@ def chapitre0():
 def chapitre1():
     '''Lance le chapitre 1 du jeu'''
     global HEROS
+    global RUNNING
+
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -449,6 +451,13 @@ def chapitre1():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.ombre_assaillante_classe,
                Ett.ombre_race), "./img/ombre assayante.png")
+
+    if HEROS.pv <= 0:
+        RUNNING = False
+        pygame.quit()
+        pygame.mixer.quit()
+        quit()
+
     pygame.mixer.music.load("./sounds/ch1_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
@@ -458,6 +467,7 @@ def chapitre1():
         "Petite potion de soin", 0, 0, 30, 10,  "soin"), HEROS)
     M.obt_objet(E.Consommable(
         "Petite potion de soin", 0, 0, 30, 10, "soin"), HEROS)
+
     TB.textbox_output("Après un combat acharné, vous parvenez à abattre l'une des créatures, mais vous réalisez que vous ne pouvez pas sauver ce qui reste du village. Vous devez fuir et trouver un endroit sûr.")
     fade(-1, "./img/burning_village.jpg")
     fade(1, "./img/chemin_pierre_runes.jpg")
@@ -489,6 +499,7 @@ def chapitre1():
 def chapitre2():
     '''Lance le chapitre 2 du jeu'''
     global HEROS
+    global RUNNING
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -502,6 +513,11 @@ def chapitre2():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(
         Ett.garde_squelette_classe, Ett.squelette_race), "./img/skeleton_warrior.png")
+    if HEROS.pv <= 0:
+        RUNNING = False
+        pygame.quit()
+        pygame.mixer.quit()
+        quit()
     pygame.mixer.music.load("./sounds/ch2_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
@@ -551,6 +567,7 @@ def chapitre2():
 def chapitre3():
     '''Lance le chapitre 3 du jeu'''
     global HEROS
+    global RUNNING
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -582,6 +599,11 @@ def chapitre3():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(
         Ett.golem_foret_classe, Ett.golem_race), "img/golem.png")
+    if HEROS.pv <= 0:
+        RUNNING = False
+        pygame.quit()
+        pygame.mixer.quit()
+        quit()
     pygame.mixer.music.load("./sounds/ch3_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
@@ -597,6 +619,7 @@ def chapitre3():
 def chapitre4():
     '''Lance le chapitre 4 du jeu'''
     global HEROS
+    global RUNNING
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -611,6 +634,11 @@ def chapitre4():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(
         Ett.gardiens_nocturnes_classe, Ett.gardiens_race), "img/gardien nocturne.png")
+    if HEROS.pv <= 0:
+        RUNNING = False
+        pygame.quit()
+        pygame.mixer.quit()
+        quit()
     pygame.mixer.music.load("./sounds/ch4_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
@@ -647,6 +675,7 @@ def chapitre4():
 def chapitre5():
     '''Lance le chapitre 5 du jeu'''
     global HEROS
+    global RUNNING
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -661,6 +690,11 @@ def chapitre5():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
                Ett.gardiens_race), "img/spectres gardiens.png")
+    if HEROS.pv <= 0:
+        RUNNING = False
+        pygame.quit()
+        pygame.mixer.quit()
+        quit()
     pygame.mixer.music.load("./sounds/ch5_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
@@ -693,6 +727,7 @@ def chapitre5():
 def chapitre6():
     '''Lance le chapitre 6 du jeu'''
     global HEROS
+    global RUNNING
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -724,9 +759,16 @@ def chapitre6():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_labyrinthe,
                Ett.spectre_race), "img/spectre labyrinthe.png")
+    if HEROS.pv <= 0:
+        RUNNING = False
+        pygame.quit()
+        pygame.mixer.quit()
+        quit()
     pygame.mixer.music.load("./sounds/ch6_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
 
     TB.textbox_output("Après un combat éprouvant, vous parvenez à vaincre le Spectre du Labyrinthe, utilisant vos nouvelles compétences et équipements. Le spectre vaincu, les ténèbres autour de vous semblent se dissiper légèrement, révélant un passage secret plus loin dans la caverne.")
     TB.textbox_output("Vous suivez ce passage jusqu'à une chambre cachée, où des fresques anciennes racontent l'histoire de héros passés, ceux qui ont tenté de combattre l'éclipse mais ont échoué. Vous comprenez que ces âmes perdues sont celles des anciens héros, piégées dans les cavernes pour l'éternité.")
@@ -741,6 +783,7 @@ def chapitre6():
 def chapitre7():
     '''Lance le chapitre 7 du jeu'''
     global HEROS
+    global RUNNING
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -755,9 +798,16 @@ def chapitre7():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_profondeurs,
                Ett.spectre_race), "img/spectre profondeurs.png")
+    if HEROS.pv <= 0:
+        RUNNING = False
+        pygame.quit()
+        pygame.mixer.quit()
+        quit()
     pygame.mixer.music.load("./sounds/ch7_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Après avoir repoussé les attaquants, vous continuez à naviguer, cherchant un signe, un indice sur la manière de traverser la mer des âmes en toute sécurité. Au loin, vous apercevez une île isolée, entourée d'un halo de lumière éthérée. Vous décidez de vous en approcher, espérant y trouver des réponses.")
     TB.textbox_output("En abordant l'île, vous découvrez un ancien sanctuaire, gardé par une entité marine bienveillante. Elle vous raconte l'histoire de la mer des âmes et vous informe qu'un ancien artefact, capable de contrôler les flots tumultueux de l'océan, est caché au fond des eaux.")
 
@@ -785,6 +835,7 @@ def chapitre7():
 def chapitre8():
     '''Lance le chapitre 8 du jeu'''
     global HEROS
+    global RUNNING
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -802,9 +853,16 @@ def chapitre8():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.Gardiens_ombres_classe,
                Ett.gardiens_race), "img/garde des ombres.png")
+    if HEROS.pv <= 0:
+        RUNNING = False
+        pygame.quit()
+        pygame.mixer.quit()
+        quit()
     pygame.mixer.music.load("./sounds/ch8_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
 
     TB.textbox_output("Après avoir triomphé des gardes, vous vous frayez un chemin à travers les couloirs sombres et tortueux du château, suivant les traces de l'énergie maléfique jusqu'à ce que vous arriviez devant une grande porte verrouillée. Vous savez que derrière cette porte se trouve votre destinée, mais vous devez d'abord la déverrouiller.")
 
@@ -824,7 +882,14 @@ def chapitre8():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.boss_final_classe,
                Ett.boss_final_race), "./img/seigneur_ombres.png")
+    if HEROS.pv <= 0:
+        RUNNING = False
+        pygame.quit()
+        pygame.mixer.quit()
+        quit()
     pygame.mixer.music.stop()  # c est normal qu il n y ai plus de musique
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
 
     TB.textbox_output("Après un combat épique et épuisant, vous parvenez finalement à vaincre le Seigneur des Ombres, mettant ainsi un terme à son règne de terreur. L'éclipse commence à se dissiper lentement, laissant place à la lumière du soleil et à l'espoir pour votre royaume.")
     TB.textbox_output("Vous êtes acclamé comme un héros par votre peuple reconnaissant, mais vous savez que votre aventure ne fait que commencer. Avec l'éclipse vaincue, de nouveaux défis et de nouvelles quêtes vous attendent, mais vous êtes prêt à affronter l'avenir avec courage et détermination.")
@@ -835,6 +900,7 @@ def chapitre8():
 def chapitre9():
     '''Lance le chapitre 9 du jeu'''
     global HEROS
+    global RUNNING
     background = pygame.image.load(
         "./img/burning_village.jpg").convert_alpha()
     background = pygame.transform.scale(
@@ -869,6 +935,11 @@ def chapitre9():
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.spectres_gardiens_classe,
                Ett.gardiens_race), "img/spectres gardiens.png")
+    if HEROS.pv <= 0:
+        RUNNING = False
+        pygame.quit()
+        pygame.mixer.quit()
+        quit()
     pygame.mixer.music.load("./sounds/ch9_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
