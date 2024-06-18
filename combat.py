@@ -70,8 +70,6 @@ def action_du_tour_joueur(personnage:  Ett.Joueur, ennemi: Ett.Monstre):
         TB.textbox_output("Vous attaquez")
 
     if choix == "1":
-        if premier_tour:
-            premier_tour = False
         attaquer(personnage, ennemi, 1)
 
     elif choix == "2":
@@ -186,7 +184,7 @@ def attaquer(source, destination, type_attaquant: int):
 
         degat = source.pc + bonusArmes
         resistance = destination.pd + bonusDef
-        GB.sons_epee.play_sound()
+        GB.sons_monstre.play_sound()
         TB.textbox_output("Le "+str(source.classe)+" vous attaque et vous inflige "+(
             str(max(0, degat-resistance))) + " dégâts. Il vous reste " + str(max(0, destination.pv-max(0, (degat-resistance)))) + "/"+str(destination.pv_max) + " PV.")
 
