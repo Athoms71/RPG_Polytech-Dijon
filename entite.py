@@ -109,32 +109,32 @@ squelette_race = Type("squelette", 50, 20, 0)
 garde_squelette_classe = Type("Garde Squelette", 20, 10, 10)
 
 # garde golem : somme = 120 + 60
-golem_race = Type("Golem", 100, 20, 0)
-golem_foret_classe = Type("Le Gardien de la Fôret", 50, 0, 10)
+golem_race = Type("Golem", 100, 20, 10)
+golem_foret_classe = Type("Le Gardien de la Fôret", 50, 10, 10)
 
 # Gardien Nocturne : somme : 120 + 50
-gardiens_race = Type("Gardiens", 100, 20, 0)
-gardiens_nocturnes_classe = Type("Gardiens Nocturnes", 10, 30, 10)
+gardiens_race = Type("Gardiens", 100, 10, 20)
+gardiens_nocturnes_classe = Type("Gardiens Nocturnes", 55, 30, 10)
 
 # spectreGardien  : somme : 150 + 50
-spectres_gardiens_classe = Type("spectres Gardiens", 110, 20, 20)
+spectres_gardiens_classe = Type("spectres Gardiens", 150, 30, 20)
 
 # spectre labyrinyhe : somme 120 + 100
 
-spectre_race = Type("spectre", 100, 20, 0)
-spectres_labyrinthe = Type("Spectre du labyrinthe", 20, 50, 30)
+spectre_race = Type("spectre", 160, 20, 20)
+spectres_labyrinthe = Type("Spectre du labyrinthe", 80, 50, 30)
 
 
 # spectre labyrinyhe : somme 120 + 100
 
-spectres_profondeurs = Type("Spectre des profondeurs", 50, 50, 30)
+spectres_profondeurs = Type("Spectre des profondeurs", 90, 50, 30)
 
 # Gardien ombre
 
-Gardiens_ombres_classe = Type("Gardiens Nocturnes", 170, 50, 30)
+Gardiens_ombres_classe = Type("Gardiens Nocturnes", 170, 50, 70)
 
 # boss finam
-boss_final_classe = Type("Seigneur des Ombres", 150, 40, 20)
+boss_final_classe = Type("Seigneur des Ombres", 150, 40, 50)
 boss_final_race = Type("Seigneur des Ombres race", 150, 30, 20)
 
 liste_classe = [guerrier, archer, tank]

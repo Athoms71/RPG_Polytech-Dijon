@@ -1,15 +1,15 @@
 nom_joueur
-test
+Augustin
 classe_joueur
-tank
+archer
 race_joueur
-orc
+elfe
 inventaire_joueur
-Arc/30/0/15/main_droite/,
+Collier de coquillages/0/35/75/tete/,
 pv_joueur
-50
+100
 argent_joueur
-0
+80
 sprite_joueur
 
 main_gauche_joueur
@@ -27,4 +27,4 @@ jambes_joueur
 pieds_joueur
 
 avancement
-6
+8
