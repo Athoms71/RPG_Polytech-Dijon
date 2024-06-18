@@ -447,7 +447,7 @@ def chapitre0():
     TB.textbox_output("Vous etes : "+HEROS.nom+", de la race des "+HEROS.race+", vous etes un futur " +
                       HEROS.classe+" dont on racontera l'hisoire pendant des générations !")
     TB.textbox_output("Voici vos statistiques :@- PV max : " +
-                      str(HEROS.pv_max)+"@- Points de Combat : "+str(HEROS.pc)+"@- Points de Défense : "+str(HEROS.pd))
+                      str(HEROS.pv_max)+"@- Points de Combat (dégâts par coup): "+str(HEROS.pc)+"@- Points de Défense (quantité des blessures prévenu par coup): "+str(HEROS.pd))
     return 1, HEROS
 
 
@@ -508,7 +508,7 @@ def chapitre1():
     TB.textbox_output(
         "La quête pour découvrir la source de cette malédiction et venger votre foyer commence maintenant.")
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque"))])
+        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Equipement("Bouclier de bois", 0, 5, 5, "main_gauche"), E.Equipement("épé en bois", 10, 0, 5, "main_droite"))])
     return 2, HEROS
 
 
@@ -542,13 +542,13 @@ def chapitre2():
     M.obt_objet(E.Consommable("Petite potion de force",
                 5, 5, 0, 10, "attaque"), HEROS)
     M.obt_objet(E.Equipement("Heaume Basique",
-                0, 5, 10, "tete"), HEROS)
+                0, 5, 7, "tete"), HEROS)
     M.obt_objet(E.Equipement("Plastron Basique",
                              0, 7, 10, "torse"), HEROS)
     M.obt_objet(E.Equipement("Jambières Basique",
-                             0, 5, 10, "jambes"), HEROS)
+                             0, 5, 7, "jambes"), HEROS)
     M.obt_objet(E.Equipement("Bottes Basique",
-                             0, 3, 10, "pieds"), HEROS)
+                             0, 3, 5, "pieds"), HEROS)
     M.ouvertureDeLaBoutique(
         HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque"))])
     TB.textbox_output("Après avoir vaincu l'un des gardes squelettiques, vous fouillez les ruines à la recherche d'indices. Vous tombez sur une chambre secrète, protégée par un mécanisme complexe.")
@@ -576,7 +576,7 @@ def chapitre2():
     TB.textbox_output("Votre quête prend une nouvelle tournure. Armé de nouvelles connaissances et de puissants artefacts, vous quittez les ruines et vous vous enfoncez plus profondément dans la vallée, déterminé à trouver cet artefact avant qu'il ne soit trop tard.")
     fontaine(HEROS)
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque"))])
+        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Consommable("Potion étrange", 15, 10, 0, 25, "attaque")), (E.Equipement("Bottes d'aventurier", 0, 7, 10, "pieds"), HEROS)])
     return 3, HEROS
 
 
@@ -626,7 +626,7 @@ def chapitre3():
     TB.textbox_output("Après un combat intense, vous parvenez à vaincre le Golem de la Forêt, utilisant votre nouvelle arme ou votre amulette pour vous protéger. Avec la créature vaincue, les murmures de la forêt s'apaisent, comme si les esprits vous reconnaissaient enfin comme un allié.")
     TB.textbox_output("Vous quittez la Forêt des Murmures, votre équipement renforcé et votre détermination intacte. Vous savez que les défis à venir seront encore plus redoutables, mais chaque pas vous rapproche de la vérité sur l'éclipse et du moyen de sauver votre royaume.")
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Consommable("Potion de force intermédiaire", 10, 0, 3, 40, "attaque"))])
+        HEROS, 1, [(E.Consommable("Potion de force intermédiaire", 10, 0, 3, 40, "attaque")), (E.Consommable("Dague elfique", 17, 0, 20, "main_droite"))])
     return 4, HEROS
 
 
@@ -679,8 +679,9 @@ def chapitre4():
     TB.textbox_output("Avec cet artéfact légendaire, vous sentez que vous avez maintenant le pouvoir de libérer la cité de sa malédiction. Vous retournez voir Alaric et ensemble, vous organisez un rituel pour invoquer l'énergie de la lune et dissiper la malédiction.")
 
     TB.textbox_output("Le rituel est un succès, et pour la première fois depuis des décennies, le soleil se lève sur la cité. Les habitants vous remercient chaleureusement, offrant leur aide pour votre quête future. Vous quittez la cité sous la lune, maintenant libérée, avec un sentiment renouvelé de force et d'espoir.")
+    fontaine(HEROS)
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Equipement("épé longue", 60, 0, 90, "main_droite"))])
+        HEROS, 1, [(E.Equipement("épé de l'élu", 60, 0, 90, "main_droite")), (E.Consommable("Potion de soin intermédiaire", 0, 0, 70, 40, "soin"))])
     return 5, HEROS
 
 
@@ -729,7 +730,7 @@ def chapitre5():
     TB.textbox_output("Vous quittez le temple des étoiles, votre esprit éclairé par les nouvelles connaissances et votre équipement renforcé par les artefacts célestes. Vous savez que le chemin sera encore long et dangereux, mais vous êtes déterminé à poursuivre votre quête pour sauver votre royaume de l'éclipse imminente.")
 
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Equipement("épé des ténebres", 65, 0, 85, "main_droite"))])
+        HEROS, 1, [(E.Equipement("épé des ténebres", 65, 0, 85, "main_droite")), (E.Equipement("Bouclier des ténebres", 5, 30, 65, "main_droite"))])
     fontaine(HEROS)
     return 6, HEROS
 
@@ -784,7 +785,6 @@ def chapitre6():
     TB.textbox_output("En sortant des cavernes de l'oubli, vous êtes plus déterminé que jamais à réussir là où les autres ont échoué. Vous avez acquis de nouveaux pouvoirs et des connaissances cruciales, mais vous savez que le chemin qui vous attend est encore plus périlleux.")
     M.ouvertureDeLaBoutique(
         HEROS, 1, [(E.Equipement("Couronne étrange", 0, 25, 55, "tete"))])
-    fontaine(HEROS)
     return 7, HEROS
 
 
@@ -833,7 +833,7 @@ def chapitre7():
                                      0, 35, 75, "tete"), HEROS)
 
     TB.textbox_output("Avec l'artefact en votre possession, vous retournez sur votre navire, prêt à continuer votre voyage à travers la mer des âmes. Vous avez maintenant les moyens de naviguer en sécurité à travers ces eaux hantées, mais vous savez que de nouveaux défis vous attendent avant d'atteindre votre destination finale.")
-
+    fontaine(HEROS)
     M.ouvertureDeLaBoutique(HEROS, 1, [])
     return 8, HEROS
 
