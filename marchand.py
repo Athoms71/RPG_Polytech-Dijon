@@ -5,7 +5,8 @@ import pygame
 
 
 def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list = []):
-    """Attention, liste achat doit estre de 5 elements ou moins !"""
+    """Lance la boutique du marchand avec en vente la liste "listeAchat", Attention, liste achat doit estre de 5 elements ou moins !
+    La variable honneteté permet ed moduler la valeur des équipements"""
     pygame.mixer.music.load("./sounds/marchand_theme.mp3")
     pygame.mixer.music.play(-1)
     done = False
@@ -148,6 +149,8 @@ def venteObligatoireEquipement(joueur: Ett.Joueur, equipement1: E.Equipement, eq
 
 
 def venteObligatoireConsommable(joueur: Ett.Joueur):
+    """propose de vendre un des consommables dans l inventaire du joueur en parametre,
+    le vend puis le retire de l'inventaire"""
     TB.textbox_output(
         "il semblerait que vous ayez trop de consommables dans votre inventaire, veuillez en vendre :")
     liste_conso_joueur = joueur.inventaire
