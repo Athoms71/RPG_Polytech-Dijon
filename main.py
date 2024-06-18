@@ -465,19 +465,14 @@ def chapitre1():
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
 
-    M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Equipement("Bouclier de bois", 0, 5, 5, "main_gauche")), (E.Equipement("épé en bois", 10, 0, 5, "main_droite"))])
-
     tps_musique = pygame.mixer.music.get_pos()
-    C.bataille(screen, HEROS, Ett.Monstre(Ett.ombre_assaillante_classe,
-               Ett.ombre_race), "./img/ombre assayante.png")
-
+    C.bataille(screen, HEROS, Ett.Monstre(
+        Ett.ombre_assaillante_classe, Ett.ombre_race), "./img/ombre assayante.png")
     if HEROS.pv <= 0:
         RUNNING = False
         pygame.quit()
         pygame.mixer.quit()
         quit()
-
     pygame.mixer.music.load("./sounds/ch1_music.mp3")
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_pos(tps_musique)
@@ -511,8 +506,13 @@ def chapitre1():
     TB.textbox_output("Vous continuez votre marche, les ténèbres de la forêt vous enveloppant. Chaque pas que vous faites vous éloigne un peu plus de votre passé et vous rapproche de la vérité sur cette éclipse mystérieuse et des créatures qui ont ravagé votre village. ")
     TB.textbox_output(
         "La quête pour découvrir la source de cette malédiction et venger votre foyer commence maintenant.")
+    sprite_marchand = pygame.image.load("./img/marchand.png")
+    screen.blit(sprite_marchand, (screen.get_width()-25-sprite_marchand.get_width(),
+                                  screen.get_height()-(sprite_marchand.get_height()+50)))
     M.ouvertureDeLaBoutique(
         HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Equipement("Bouclier de bois", 0, 5, 5, "main_gauche")), (E.Equipement("épé en bois", 10, 0, 5, "main_droite"))])
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     return 2, HEROS
 
 
@@ -577,8 +577,13 @@ def chapitre2():
     TB.textbox_output("Vous trouvez finalement un ancien grimoire, contenant des histoires et des prophéties sur l'éclipse et les créatures des ombres. En le feuilletant, vous apprenez qu'un artefact puissant, capable de contrôler ou détruire ces créatures, est caché quelque part dans le royaume.")
     TB.textbox_output("Votre quête prend une nouvelle tournure. Armé de nouvelles connaissances et de puissants artefacts, vous quittez les ruines et vous vous enfoncez plus profondément dans la vallée, déterminé à trouver cet artefact avant qu'il ne soit trop tard.")
     fontaine(HEROS)
+    sprite_marchand = pygame.image.load("./img/marchand.png")
+    screen.blit(sprite_marchand, (screen.get_width()-25-sprite_marchand.get_width(),
+                                  screen.get_height()-(sprite_marchand.get_height()+50)))
     M.ouvertureDeLaBoutique(
         HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Consommable("Potion étrange", 15, 10, 0, 25, "attaque")), (E.Equipement("Bottes d'aventurier", 0, 7, 10, "pieds"), HEROS)])
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     return 3, HEROS
 
 
@@ -627,8 +632,13 @@ def chapitre3():
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Après un combat intense, vous parvenez à vaincre le Golem de la Forêt, utilisant votre nouvelle arme ou votre amulette pour vous protéger. Avec la créature vaincue, les murmures de la forêt s'apaisent, comme si les esprits vous reconnaissaient enfin comme un allié.")
     TB.textbox_output("Vous quittez la Forêt des Murmures, votre équipement renforcé et votre détermination intacte. Vous savez que les défis à venir seront encore plus redoutables, mais chaque pas vous rapproche de la vérité sur l'éclipse et du moyen de sauver votre royaume.")
+    sprite_marchand = pygame.image.load("./img/marchand.png")
+    screen.blit(sprite_marchand, (screen.get_width()-25-sprite_marchand.get_width(),
+                                  screen.get_height()-(sprite_marchand.get_height()+50)))
     M.ouvertureDeLaBoutique(
         HEROS, 1, [(E.Consommable("Potion de force intermédiaire", 10, 0, 3, 40, "attaque")), (E.Consommable("Dague elfique", 17, 0, 20, "main_droite"))])
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     return 4, HEROS
 
 
@@ -682,8 +692,13 @@ def chapitre4():
 
     TB.textbox_output("Le rituel est un succès, et pour la première fois depuis des décennies, le soleil se lève sur la cité. Les habitants vous remercient chaleureusement, offrant leur aide pour votre quête future. Vous quittez la cité sous la lune, maintenant libérée, avec un sentiment renouvelé de force et d'espoir.")
     fontaine(HEROS)
+    sprite_marchand = pygame.image.load("./img/marchand.png")
+    screen.blit(sprite_marchand, (screen.get_width()-25-sprite_marchand.get_width(),
+                                  screen.get_height()-(sprite_marchand.get_height()+50)))
     M.ouvertureDeLaBoutique(
         HEROS, 1, [(E.Equipement("épé de l'élu", 60, 0, 90, "main_droite")), (E.Consommable("Potion de soin intermédiaire", 0, 0, 70, 40, "soin"))])
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     return 5, HEROS
 
 
@@ -730,9 +745,13 @@ def chapitre5():
     TB.textbox_output("Avec votre nouvelle acquisition, vous explorez plus avant le temple. Vous découvrez des fresques et des inscriptions révélant l'histoire de l'éclipse et de l'ancien royaume. Vous apprenez que l'éclipse est liée à un artefact puissant, caché dans un lieu secret et protégé par des forces redoutables.")
     TB.textbox_output("Soudain, une porte secrète s'ouvre, révélant un passage vers une chambre intérieure. Là, vous trouvez un ancien grimoire, contenant des sorts et des incantations oubliées, ainsi qu'une carte détaillant l'emplacement de l'artefact que vous cherchez.")
     TB.textbox_output("Vous quittez le temple des étoiles, votre esprit éclairé par les nouvelles connaissances et votre équipement renforcé par les artefacts célestes. Vous savez que le chemin sera encore long et dangereux, mais vous êtes déterminé à poursuivre votre quête pour sauver votre royaume de l'éclipse imminente.")
-
+    sprite_marchand = pygame.image.load("./img/marchand.png")
+    screen.blit(sprite_marchand, (screen.get_width()-25-sprite_marchand.get_width(),
+                                  screen.get_height()-(sprite_marchand.get_height()+50)))
     M.ouvertureDeLaBoutique(
         HEROS, 1, [(E.Equipement("épé des ténebres", 65, 0, 85, "main_droite")), (E.Equipement("Bouclier des ténebres", 5, 30, 65, "main_droite"))])
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     fontaine(HEROS)
     return 6, HEROS
 
@@ -785,8 +804,13 @@ def chapitre6():
     TB.textbox_output("Vous suivez ce passage jusqu'à une chambre cachée, où des fresques anciennes racontent l'histoire de héros passés, ceux qui ont tenté de combattre l'éclipse mais ont échoué. Vous comprenez que ces âmes perdues sont celles des anciens héros, piégées dans les cavernes pour l'éternité.")
     TB.textbox_output("Dans cette chambre, vous trouvez un vieux grimoire, contenant des sorts oubliés et des incantations pour sceller les créatures de l'ombre. En le prenant, vous ressentez une lourdeur sur vos épaules, comme si vous héritiez du destin des anciens héros.")
     TB.textbox_output("En sortant des cavernes de l'oubli, vous êtes plus déterminé que jamais à réussir là où les autres ont échoué. Vous avez acquis de nouveaux pouvoirs et des connaissances cruciales, mais vous savez que le chemin qui vous attend est encore plus périlleux.")
+    sprite_marchand = pygame.image.load("./img/marchand.png")
+    screen.blit(sprite_marchand, (screen.get_width()-25-sprite_marchand.get_width(),
+                                  screen.get_height()-(sprite_marchand.get_height()+50)))
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Equipement("Couronne étrange", 0, 25, 55, "tete")), (E.Equipement("Couronne de roi", 0, 0, 125, "tete"))])
+        HEROS, 1, [(E.Equipement("Couronne étrange", 0, 25, 55, "tete"))])
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     return 7, HEROS
 
 
@@ -836,7 +860,12 @@ def chapitre7():
 
     TB.textbox_output("Avec l'artefact en votre possession, vous retournez sur votre navire, prêt à continuer votre voyage à travers la mer des âmes. Vous avez maintenant les moyens de naviguer en sécurité à travers ces eaux hantées, mais vous savez que de nouveaux défis vous attendent avant d'atteindre votre destination finale.")
     fontaine(HEROS)
+    sprite_marchand = pygame.image.load("./img/marchand.png")
+    screen.blit(sprite_marchand, (screen.get_width()-25-sprite_marchand.get_width(),
+                                  screen.get_height()-(sprite_marchand.get_height()+50)))
     M.ouvertureDeLaBoutique(HEROS, 1, [])
+    screen.blit(background, (0, 0))
+    screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     return 8, HEROS
 
 
