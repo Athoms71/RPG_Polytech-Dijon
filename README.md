@@ -41,7 +41,7 @@ Pour installer et exécuter le jeu sur votre machine locale, suivez ces étapes 
 ## Utilisation
 
 Pour lancer le jeu, utilisez la commande suivante dans le répertoire du jeu :
-    ```bash
+
     python main.py
 
 ## Contribuer
@@ -54,6 +54,9 @@ Les contributions sont les bienvenues ! Pour contribuer, veuillez suivre cette �
     git checkout -b feature-nom_de_la_branche
 3. Effectuez vos modifications.
 4. Commitez vos changements :
+    ```bash
+    git commit -m "Description de vos chngements"
+5. Poussez vers la branche :
     ```bash
     git push origin feature-nom_de_la_branche
 5. Ouvrez une Pull Request.
