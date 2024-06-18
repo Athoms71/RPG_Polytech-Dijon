@@ -464,6 +464,10 @@ def chapitre1():
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Vous vous réveillez en sursaut dans votre humble demeure, l'air empli de fumée et les cris déchirant la tranquillité de la nuit. Votre village est attaqué par des créatures mystérieuses, surgies des ombres. Vous entendez les hurlements de vos voisins et le rugissement des flammes qui dévorent les maisons autour de vous.")
     TB.textbox_output("Vous vous précipitez hors de votre maison, arme en main, prêt à défendre ce qui reste de votre foyer. Mais il est déjà trop tard. Les créatures, ressemblant à des ombres animées, ont réduit votre village en cendres. Seuls les souvenirs de vos proches perdurent dans votre esprit.")
+
+    M.ouvertureDeLaBoutique(
+        HEROS, 1, [(E.Consommable("Petite potion de force", 5, 5, 0, 10, "attaque")), (E.Equipement("Bouclier de bois", 0, 5, 5, "main_gauche")), (E.Equipement("épé en bois", 10, 0, 5, "main_droite"))])
+
     tps_musique = pygame.mixer.music.get_pos()
     C.bataille(screen, HEROS, Ett.Monstre(Ett.ombre_assaillante_classe,
                Ett.ombre_race), "./img/ombre assayante.png")
@@ -782,7 +786,7 @@ def chapitre6():
     TB.textbox_output("Dans cette chambre, vous trouvez un vieux grimoire, contenant des sorts oubliés et des incantations pour sceller les créatures de l'ombre. En le prenant, vous ressentez une lourdeur sur vos épaules, comme si vous héritiez du destin des anciens héros.")
     TB.textbox_output("En sortant des cavernes de l'oubli, vous êtes plus déterminé que jamais à réussir là où les autres ont échoué. Vous avez acquis de nouveaux pouvoirs et des connaissances cruciales, mais vous savez que le chemin qui vous attend est encore plus périlleux.")
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Equipement("Couronne étrange", 0, 25, 55, "tete"))])
+        HEROS, 1, [(E.Equipement("Couronne étrange", 0, 25, 55, "tete")), (E.Equipement("Couronne de roi", 0, 0, 125, "tete"))])
     return 7, HEROS
 
 
