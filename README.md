@@ -54,7 +54,7 @@ Les contributions sont les bienvenues ! Pour contribuer, veuillez suivre cette Ã
 3. Effectuez vos modifications.
 4. Commitez vos changements :
     ```bash
-    git commit -m "Description de vos chngements"
+    git commit -m "Description de vos changements"
 5. Poussez vers la branche :
     ```bash
     git push origin feature-nom_de_la_branche
