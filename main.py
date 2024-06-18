@@ -401,23 +401,23 @@ def chapitre0():
     '''Lance le chapitre d'introduction du jeu'''
     global HEROS
     TB.textbox_output(
-        "Bonjour, avant de comencer, nous vous proposons un petit didacticiel.@@Pour passer à la boite de texte suivante, appuyez sur n importe quelle touche.@@@@@appuyez pour continuer")
+        "Bonjour aventurier ! Avant de commencer, nous vous proposons un petit didacticiel.@@Pour passer à la boite de texte suivante, appuyez sur n'importe quelle touche.@@@@@Appuyez pour continuer")
     TB.textbox_output(
-        "Bien joué, continuez comme ça !@@@@@@@appuyez pour continuer")
+        "Bien joué, continuez comme ça !@@@@@@@Appuyez pour continuer")
     done = 0
     while not done:
-        if (TB.textbox_input("Pour entrer du texte, une boite de dialogue vierge va apparaitre, tu pourra y entre ta réponse ou ce que tu souhaite communiquer puis appuyer sur 'entrer'pour valider ta réponse. les questions seront formalisées comme suit :@Avez vous compris ?@- 1 : Oui@- 2 : Non@(vous devrez écrir dans la boite de texte vierge qui va aparaitre '1' pour répondre 'oui' et '2' pour répondre 'Non').@appuyez pour continuer") == "1"):
+        if (TB.textbox_input("Pour entrer du texte, une boite de dialogue vierge va apparaître. Tu pourras y entrer ta réponse ou ce que tu souhaites communiquer puis appuyer sur 'entrer' pour valider ta réponse. Les questions seront formalisées comme suit :@Avez vous compris ?@- 1 : Oui@- 2 : Non@Vous devrez écrire dans la boîte de texte vierge qui va aparaitre '1' pour répondre 'oui' et '2' pour répondre 'Non'.@Appuyez pour continuer") == "1"):
             done = 1
             break
         TB.textbox_output(
-            "Quand cette boite de dialogue disparaitera ,  écrivez'1' pour repondre 'oui', appuyer, pour 'non',  écrivez 2. Puis appuyez sur 'entrer' pour valider@@@@@@appuyez pour continuer")
+            "Quand cette boîte de dialogue disparaîtra, écrivez '1' pour répondre 'oui' ou '2' pour 'non' puis appuyez sur 'entrer' pour valider.@@@@@@Appuyez pour continuer")
     TB.textbox_output(
-        "Bien joué, continuez comme ça !@@@@@@@appuyez pour continuer")
+        "Bien joué, continuez comme ça !@@@@@@@Appuyez pour continuer")
     TB.textbox_output(
-        "Enfin si vous souhaitez quitter à tout moment, vous pouvez appuyer sur ''tab'', une sauvegarde automatique se fait à la fin de chaque chapitres")
+        "Enfin, si vous le souhaitez, vous pouvez quitter à tout moment en appuyant sur 'tab'. Une sauvegarde automatique se fait à la fin de chaque chapitre.")
     TB.textbox_output("Bienvenue aventurier, dans les Royaumes de l'Éclipse !@Au seuil de cette aventure épique, vous êtes sur le point d'embarquer pour des terres inconnues, où le destin se tisse entre les ombres et la lumière.")
-    TB.textbox_output("Préparez-vous à plonger dans un monde de mystère et de magie, où chaque choix que vous ferez influencera le cours de l'histoire. Des terres sauvages aux cités florissantes, des donjons oubliés aux montagnes glacées, l'aventure vous attend à chaque tournant.")
-    TB.textbox_output("Avant de commencer votre voyage, il est temps de forger votre propre destin. Créez votre personnage, choisissez votre race, votre classe et vos compétences, et préparez-vous à affronter les défis qui vous attendent. Votre courage, votre astuce et votre détermination seront vos meilleurs alliés dans cette quête pour la gloire et la fortune.")
+    TB.textbox_output("Préparez-vous à plonger dans un monde de mystère et de magie, où chaque choix que vous ferez influencera le cours de l'Histoire. Des terres sauvages aux cités florissantes, des donjons oubliés aux montagnes glacées, l'aventure vous attend à chaque tournant.")
+    TB.textbox_output("Avant de commencer votre voyage, il est temps de forger votre propre destin. Créez votre personnage, choisissez votre race, votre classe et préparez-vous à affronter les défis qui vous attendent. Votre courage, votre astuce et votre détermination seront vos meilleurs alliés dans cette quête pour la gloire et l'honneur.")
     TB.textbox_output(
         "L'aventure vous appelle, cher héros. Êtes-vous prêt à répondre à son appel et à laisser votre marque sur les Royaumes de l'Éclipse ?")
     done = False
@@ -426,7 +426,7 @@ def chapitre0():
     while not done:
         race_heros = ""
         choix_race = TB.textbox_input(
-            "Veuillez selectionner une race parmi :@- 1 : humain@- 2 : elfe@- 3 : orc")
+            "Veuillez sélectionner une race parmi :@- 1 : humain@- 2 : elfe@- 3 : orc")
         if (choix_race) in ["1", "2", "3"]:
             done = True
             race_heros = int(choix_race)
@@ -434,7 +434,7 @@ def chapitre0():
     while not done:
         classe_heros = ""
         choix_classe = TB.textbox_input(
-            "Veuillez selectionner une classe parmi :@@- 1 : guerrier@- 2 : archer@- 3 : tank@@")
+            "Veuillez sélectionner une classe parmi :@- 1 : guerrier@- 2 : archer@- 3 : tank")
         if choix_classe in ["1", "2", "3"]:
             done = True
             classe_heros = int(choix_classe)
@@ -444,8 +444,8 @@ def chapitre0():
         classe_heros)-1], Ett.liste_race[int(race_heros)-1])
     sprite = pygame.image.load(HEROS.update_sprite())
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
-    TB.textbox_output("Vous etes : "+HEROS.nom+", de la race des "+HEROS.race+", vous etes un futur " +
-                      HEROS.classe+" dont on racontera l'hisoire pendant des générations !")
+    TB.textbox_output("Vous êtes : "+HEROS.nom+", de la race des "+HEROS.race+"s. Vous êtes un futur " +
+                      HEROS.classe+" dont on contera l'hisoire pendant des générations !")
     TB.textbox_output("Voici vos statistiques :@- PV max : " +
                       str(HEROS.pv_max)+"@- Points de Combat (dégâts par coup): "+str(HEROS.pc)+"@- Points de Défense (quantité des blessures prévenu par coup): "+str(HEROS.pd))
     return 1, HEROS
@@ -502,7 +502,7 @@ def chapitre1():
         TB.textbox_output("2. Ignorer les symboles et avancer dans la forêt :@Vous choisissez de ne pas suivre le sentier et de continuer votre chemin dans la forêt. Plus loin, vous trouvez une cachette naturelle sous un arbre colossal. En fouillant, vous découvrez un vieux sac contenant un arc en bois sombre et un carquois rempli de flèches enchantées. Vous vous équipez de l'arc, sentant une connexion immédiate avec l'arme.")
         M.obt_objet(E.Equipement("Arc", 30, 0, 15, "main_droite"), HEROS)
 
-    TB.textbox_output("Vous continuez votre marche, les ténèbres de la forêt vous enveloppant. Chaque pas que vous faites vous éloigne un peu plus de votre passé et vous rapproche de la vérité sur cette éclipse mystérieuse et des créatures qui ont ravagé votre village. ")
+    TB.textbox_output("Vous continuez votre marche, les ténèbres de la forêt vous enveloppant. Chaque pas que vous faites vous éloigne un peu plus de votre passé et vous rapproche de la vérité sur cette Éclipse mystérieuse et des créatures qui ont ravagé votre village. ")
     TB.textbox_output(
         "La quête pour découvrir la source de cette malédiction et venger votre foyer commence maintenant.")
     sprite_marchand = pygame.image.load("./img/marchand.png")
@@ -573,7 +573,7 @@ def chapitre2():
         "Avec votre nouvelle acquisition, vous continuez à explorer les ruines.")
     fade(-1, "./img/ruines_dans_foret.png")
     fade(1, "./img/book_in_ruins.jpg")
-    TB.textbox_output("Vous trouvez finalement un ancien grimoire, contenant des histoires et des prophéties sur l'éclipse et les créatures des ombres. En le feuilletant, vous apprenez qu'un artefact puissant, capable de contrôler ou détruire ces créatures, est caché quelque part dans le royaume.")
+    TB.textbox_output("Vous trouvez finalement un ancien grimoire, contenant des histoires et des prophéties sur l'Éclipse et les créatures des ombres. En le feuilletant, vous apprenez qu'un artefact puissant, capable de contrôler ou détruire ces créatures, est caché quelque part dans le royaume.")
     TB.textbox_output("Votre quête prend une nouvelle tournure. Armé de nouvelles connaissances et de puissants artefacts, vous quittez les ruines et vous vous enfoncez plus profondément dans la vallée, déterminé à trouver cet artefact avant qu'il ne soit trop tard.")
     fontaine(HEROS)
     sprite_marchand = pygame.image.load("./img/marchand.png")
@@ -630,7 +630,7 @@ def chapitre3():
     screen.blit(background, (0, 0))
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     TB.textbox_output("Après un combat intense, vous parvenez à vaincre le Golem de la Forêt, utilisant votre nouvelle arme ou votre amulette pour vous protéger. Avec la créature vaincue, les murmures de la forêt s'apaisent, comme si les esprits vous reconnaissaient enfin comme un allié.")
-    TB.textbox_output("Vous quittez la Forêt des Murmures, votre équipement renforcé et votre détermination intacte. Vous savez que les défis à venir seront encore plus redoutables, mais chaque pas vous rapproche de la vérité sur l'éclipse et du moyen de sauver votre royaume.")
+    TB.textbox_output("Vous quittez la Forêt des Murmures, votre équipement renforcé et votre détermination intacte. Vous savez que les défis à venir seront encore plus redoutables, mais chaque pas vous rapproche de la vérité sur l'Éclipse et du moyen de sauver votre royaume.")
     sprite_marchand = pygame.image.load("./img/marchand.png")
     screen.blit(sprite_marchand, (screen.get_width()-25-sprite_marchand.get_width(),
                                   screen.get_height()-(sprite_marchand.get_height()+50)))
@@ -695,7 +695,7 @@ def chapitre4():
     screen.blit(sprite_marchand, (screen.get_width()-25-sprite_marchand.get_width(),
                                   screen.get_height()-(sprite_marchand.get_height()+50)))
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Equipement("épé de l'élu", 60, 0, 90, "main_droite")), (E.Consommable("Potion de soin intermédiaire", 0, 0, 70, 40, "soin"))])
+        HEROS, 1, [(E.Equipement("Épée de l'élu", 60, 0, 90, "main_droite")), (E.Consommable("Potion de soin intermédiaire", 0, 0, 70, 40, "soin"))])
     screen.blit(background, (0, 0))
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     return 5, HEROS
@@ -739,16 +739,16 @@ def chapitre5():
                 "Cape d'étoile", 0, 35, 45, "main_gauche"))
         if choix == "2":
             TB.textbox_output("2. Résoudre l'énigme de la constellation du lion :@Vous choisissez de résoudre l'énigme de la constellation du lion. En replaçant les cristaux pour former la constellation, l'autel s'illumine et une épée céleste se matérialise. Vous saisissez l'épée, sentant une puissance nouvelle et une force inébranlable couler dans vos bras.")
-            M.obt_objet(E.Equipement("épé de la Constellation du Lion",
+            M.obt_objet(E.Equipement("Épée de la Constellation du Lion",
                                      55, 0, 55, "main_gauche"), HEROS)
-    TB.textbox_output("Avec votre nouvelle acquisition, vous explorez plus avant le temple. Vous découvrez des fresques et des inscriptions révélant l'histoire de l'éclipse et de l'ancien royaume. Vous apprenez que l'éclipse est liée à un artefact puissant, caché dans un lieu secret et protégé par des forces redoutables.")
+    TB.textbox_output("Avec votre nouvelle acquisition, vous explorez plus en avant le temple. Vous découvrez des fresques et des inscriptions révélant l'histoire de l'Éclipse et de l'ancien royaume. Vous apprenez que l'Éclipse est liée à un artefact puissant, caché dans un lieu secret et protégé par des forces redoutables.")
     TB.textbox_output("Soudain, une porte secrète s'ouvre, révélant un passage vers une chambre intérieure. Là, vous trouvez un ancien grimoire, contenant des sorts et des incantations oubliées, ainsi qu'une carte détaillant l'emplacement de l'artefact que vous cherchez.")
-    TB.textbox_output("Vous quittez le temple des étoiles, votre esprit éclairé par les nouvelles connaissances et votre équipement renforcé par les artefacts célestes. Vous savez que le chemin sera encore long et dangereux, mais vous êtes déterminé à poursuivre votre quête pour sauver votre royaume de l'éclipse imminente.")
+    TB.textbox_output("Vous quittez le temple des étoiles, votre esprit éclairé par les nouvelles connaissances et votre équipement renforcé par les artefacts célestes. Vous savez que le chemin sera encore long et dangereux, mais vous êtes déterminé à poursuivre votre quête pour sauver votre royaume de l'Éclipse imminente.")
     sprite_marchand = pygame.image.load("./img/marchand.png")
     screen.blit(sprite_marchand, (screen.get_width()-25-sprite_marchand.get_width(),
                                   screen.get_height()-(sprite_marchand.get_height()+50)))
     M.ouvertureDeLaBoutique(
-        HEROS, 1, [(E.Equipement("épé des ténebres", 65, 0, 85, "main_droite")), (E.Equipement("Bouclier des ténebres", 5, 30, 65, "main_droite"))])
+        HEROS, 1, [(E.Equipement("Épée des ténebres", 65, 0, 85, "main_droite")), (E.Equipement("Bouclier des ténebres", 5, 30, 65, "main_droite"))])
     screen.blit(background, (0, 0))
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
     fontaine(HEROS)
@@ -800,7 +800,7 @@ def chapitre6():
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
 
     TB.textbox_output("Après un combat éprouvant, vous parvenez à vaincre le Spectre du Labyrinthe, utilisant vos nouvelles compétences et équipements. Le spectre vaincu, les ténèbres autour de vous semblent se dissiper légèrement, révélant un passage secret plus loin dans la caverne.")
-    TB.textbox_output("Vous suivez ce passage jusqu'à une chambre cachée, où des fresques anciennes racontent l'histoire de héros passés, ceux qui ont tenté de combattre l'éclipse mais ont échoué. Vous comprenez que ces âmes perdues sont celles des anciens héros, piégées dans les cavernes pour l'éternité.")
+    TB.textbox_output("Vous suivez ce passage jusqu'à une chambre cachée, où des fresques anciennes racontent l'histoire de héros passés, ceux qui ont tenté de combattre l'Éclipse mais ont échoué. Vous comprenez que ces âmes perdues sont celles des anciens héros, piégées dans les cavernes pour l'éternité.")
     TB.textbox_output("Dans cette chambre, vous trouvez un vieux grimoire, contenant des sorts oubliés et des incantations pour sceller les créatures de l'ombre. En le prenant, vous ressentez une lourdeur sur vos épaules, comme si vous héritiez du destin des anciens héros.")
     TB.textbox_output("En sortant des cavernes de l'oubli, vous êtes plus déterminé que jamais à réussir là où les autres ont échoué. Vous avez acquis de nouveaux pouvoirs et des connaissances cruciales, mais vous savez que le chemin qui vous attend est encore plus périlleux.")
     sprite_marchand = pygame.image.load("./img/marchand.png")
@@ -845,15 +845,15 @@ def chapitre7():
     done = False
     while not done:
         choix = TB.textbox_input(
-            "Choix: @- 1 : Plonger dans les profondeurs pour trouver l'artefact@- 2 : Demander à l'entité marine de vous guider vers l'artefact")
+            "Choix: @- 1 : Plonger dans les profondeurs pour trouver l'artéfact@- 2 : Demander à l'entité marine de vous guider vers l'artéfact")
         if choix in ["1", "2"]:
             done = True
         if choix == "1":
-            TB.textbox_output("1. Plonger dans les profondeurs pour trouver l'artefact :@Vous décidez de plonger dans les profondeurs de la mer des âmes, bravant les dangers pour trouver l'artefact par vous-même. Après une plongée périlleuse, vous découvrez une épave ancienne au fond de l'océan. En explorant l'épave, vous trouvez un trident ancien, orné de runes marines. Vous le récupérez, sentant le pouvoir de l'océan couler à travers vous.")
+            TB.textbox_output("1. Plonger dans les profondeurs pour trouver l'artéfact :@Vous décidez de plonger dans les profondeurs de la mer des âmes, bravant les dangers pour trouver l'artefact par vous-même. Après une plongée périlleuse, vous découvrez une épave ancienne au fond de l'océan. En explorant l'épave, vous trouvez un trident ancien, orné de runes marines. Vous le récupérez, sentant le pouvoir de l'océan couler à travers vous.")
             M.obt_objet(E.Equipement(
                 "Trident ancien", 60, 0, 75, "main_droite"), HEROS)
         if choix == "2":
-            TB.textbox_output("2. Demander à l'entité marine de vous guider vers l'artefact :@Vous choisissez de demander à l'entité marine de vous guider vers l'artefact. Avec sa guidance, vous plongez dans les eaux profondes et trouvez rapidement un coffre ancien enfoui dans le sable. À l'intérieur, vous trouvez un collier de coquillages lumineux, qui semble émettre une lueur protectrice. Vous le prenez, sentant une connexion avec les créatures marines.")
+            TB.textbox_output("2. Demander à l'entité marine de vous guider vers l'artéfact :@Vous choisissez de demander à l'entité marine de vous guider vers l'artefact. Avec sa guidance, vous plongez dans les eaux profondes et trouvez rapidement un coffre ancien enfoui dans le sable. À l'intérieur, vous trouvez un collier de coquillages lumineux, qui semble émettre une lueur protectrice. Vous le prenez, sentant une connexion avec les créatures marines.")
             M.obt_objet(E.Equipement("Collier de coquillages",
                                      0, 35, 75, "tete"), HEROS)
 
@@ -879,8 +879,8 @@ def chapitre8():
     sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
 
-    TB.textbox_output("Votre voyage à travers la mer des âmes vous conduit finalement aux abords d'un château lugubre, perché sur une falaise escarpée. Ce château est connu sous le nom de Château des Ombres, le repaire supposé de la source de l'éclipse et de son instigateur, un être de ténèbres ancestrales.")
-    TB.textbox_output("Alors que vous approchez du château, vous sentez une aura maléfique vous envelopper, vous mettant au défi avant même d'avoir franchi les portes. Vous savez que le combat qui vous attend sera le plus difficile de votre quête jusqu'à présent, mais vous êtes déterminé à mettre fin à l'éclipse et à sauver votre royaume.")
+    TB.textbox_output("Votre voyage à travers la mer des âmes vous conduit finalement aux abords d'un château lugubre, perché sur une falaise escarpée. Ce château est connu sous le nom de Château des Ombres, le repaire supposé de la source de l'Éclipse et de son instigateur, un être de ténèbres ancestrales.")
+    TB.textbox_output("Alors que vous approchez du château, vous sentez une aura maléfique vous envelopper, vous mettant au défi avant même d'avoir franchi les portes. Vous savez que le combat qui vous attend sera le plus difficile de votre quête jusqu'à présent, mais vous êtes déterminé à mettre fin à l'Éclipse et à sauver votre royaume.")
     TB.textbox_output(
         "Vous entrez dans le château et êtes immédiatement assailli par des hordes de créatures des ténèbres, invoquées pour défendre leur maître.")
 
@@ -911,7 +911,7 @@ def chapitre8():
         if choix == "2":
             TB.textbox_output("2. Chercher une clé :@Vous choisissez de chercher une clé pour ouvrir la porte, espérant qu'elle révélera un chemin plus sûr. En fouillant les pièces adjacentes, vous trouvez une clé cachée dans une vieille armoire. Avec la clé en main, vous ouvrez la porte et pénétrez dans la chambre, prêt à affronter ce qui vous attend.")
 
-    TB.textbox_output("Vous vous retrouvez face à face avec l'instigateur de l'éclipse, un être de ténèbres ancestrales connu sous le nom de Seigneur des Ombres. Son regard est empli de malice et de pouvoir, mais vous savez que vous devez le vaincre pour mettre fin à l'éclipse et sauver votre royaume.")
+    TB.textbox_output("Vous vous retrouvez face à face avec l'instigateur de l'Éclipse, un être de ténèbres ancestrales connu sous le nom de Seigneur des Ombres. Son regard est empli de malice et de pouvoir, mais vous savez que vous devez le vaincre pour mettre fin à l'Éclipse et sauver votre royaume.")
     fontaine(HEROS)
     C.bataille(screen, HEROS, Ett.Monstre(Ett.boss_final_classe,
                Ett.boss_final_race), "./img/seigneur_ombres.png")
@@ -924,8 +924,8 @@ def chapitre8():
     screen.blit(background, (0, 0))
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
 
-    TB.textbox_output("Après un combat épique et épuisant, vous parvenez finalement à vaincre le Seigneur des Ombres, mettant ainsi un terme à son règne de terreur. L'éclipse commence à se dissiper lentement, laissant place à la lumière du soleil et à l'espoir pour votre royaume.")
-    TB.textbox_output("Vous êtes acclamé comme un héros par votre peuple reconnaissant, mais vous savez que votre aventure ne fait que commencer. Avec l'éclipse vaincue, de nouveaux défis et de nouvelles quêtes vous attendent, mais vous êtes prêt à affronter l'avenir avec courage et détermination.")
+    TB.textbox_output("Après un combat épique et épuisant, vous parvenez finalement à vaincre le Seigneur des Ombres, mettant ainsi un terme à son règne de terreur. L'Éclipse commence à se dissiper lentement, laissant place à la lumière du soleil et à l'espoir pour votre royaume.")
+    TB.textbox_output("Vous êtes acclamé comme un héros par votre peuple reconnaissant, mais vous savez que votre aventure ne fait que commencer. Avec l'Éclipse vaincue, de nouveaux défis et de nouvelles quêtes vous attendent, mais vous êtes prêt à affronter l'avenir avec courage et détermination.")
 
     return 9, HEROS
 
@@ -941,7 +941,7 @@ def chapitre9():
     sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
 
-    TB.textbox_output("Avec la défaite du Seigneur des Ombres et la fin de l'éclipse, la paix commence à revenir sur votre royaume. Les habitants, libérés de l'ombre qui pesait sur eux, célèbrent votre victoire et vous honorent comme des héros. Cependant, vous savez que votre quête n'est pas encore terminée.")
+    TB.textbox_output("Avec la défaite du Seigneur des Ombres et la fin de l'Éclipse, la paix commence à revenir sur votre royaume. Les habitants, libérés de l'ombre qui pesait sur eux, célèbrent votre victoire et vous honorent comme des héros. Cependant, vous savez que votre quête n'est pas encore terminée.")
     TB.textbox_output("Alors que vous vous reposez après votre victoire, une nouvelle menace se profile à l'horizon. Des rumeurs circulent selon lesquelles des forces maléfiques, ayant survécu à la chute du Seigneur des Ombres, se rassemblent dans les recoins les plus sombres du royaume, prêtes à lancer une nouvelle attaque.")
     TB.textbox_output(
         "Vous décidez de reprendre votre équipement et de vous préparer à affronter cette nouvelle menace, déterminé à protéger votre royaume une fois de plus.")
@@ -957,7 +957,7 @@ def chapitre9():
         if choix == "1":
             TB.textbox_output("1. Accepter l'aide des guerriers :@Reconnaissant la valeur de l'unité, vous acceptez l'aide des guerriers. Ensemble, vous formez une force imposante, prête à affronter n'importe quelle menace qui se dresse sur votre chemin. En échange de leur aide, les guerriers vous offrent des armes et des armures améliorées, renforçant ainsi votre préparation pour le combat à venir.")
         if choix == "2":
-            TB.textbox_output("2. Déterminé à prouver votre force et votre courage, vous décidez de continuer seul. Vous remerciez les guerriers pour leur offre d'aide, mais vous préférez suivre votre propre chemin. Vous savez que la tâche qui vous attend est ardue, mais vous êtes prêt à la relever seul, avec votre détermination comme seule arme.")
+            TB.textbox_output("2. Continuer seul :@Déterminé à prouver votre force et votre courage, vous décidez de continuer seul. Vous remerciez les guerriers pour leur offre d'aide, mais vous préférez suivre votre propre chemin. Vous savez que la tâche qui vous attend est ardue, mais vous êtes prêt à la relever seul, avec votre détermination comme seule arme.")
 
     TB.textbox_output(
         "Quel que soit votre choix, vous vous lancez dans une série de batailles épiques contre les forces maléfiques, repoussant chaque assaut avec force et courage.")
@@ -987,12 +987,12 @@ def chapitre10():
         background, (window_width, window_height))
     sprite = pygame.image.load(f"./img/{HEROS.race}_{HEROS.classe}.png")
     screen.blit(sprite, (-25, window_height-(sprite.get_height()+100)))
-    TB.textbox_output("Des années ont passé depuis la fin de la grande éclipse qui a menacé votre royaume. La paix règne désormais en maître, les habitants vaquent à leurs occupations avec sérénité, et les histoires des héros qui ont sauvé le royaume sont maintenant légendaires.")
+    TB.textbox_output("Des années ont passé depuis la fin de la grande Éclipse qui a menacé votre royaume. La paix règne désormais en maître, les habitants vaquent à leurs occupations avec sérénité, et les histoires des héros qui ont sauvé le royaume sont maintenant légendaires.")
     TB.textbox_output("Vous, le héros de cette histoire, avez trouvé votre place dans ce nouveau monde de paix. Certains jours, vous voyagez à travers le royaume, rencontrant des gens reconnaissants qui vous remercient pour votre courage et votre dévouement. D'autres jours, vous vous reposez dans votre demeure, profitant des doux moments de calme et de tranquillité.")
-    TB.textbox_output("Mais même dans cette ère de paix, il y a toujours des défis à relever. De temps en temps, une nouvelle menace émerge, un bandit à traquer, une bête à chasser, ou un mystère à résoudre. À chaque fois, vous vous levez pour affronter ces défis avec la même détermination et le même courage qui vous ont permis de vaincre l'éclipse.")
+    TB.textbox_output("Mais même dans cette ère de paix, il y a toujours des défis à relever. De temps en temps, une nouvelle menace émerge, un bandit à traquer, une bête à chasser, ou un mystère à résoudre. À chaque fois, vous vous levez pour affronter ces défis avec la même détermination et le même courage qui vous ont permis de vaincre l'Éclipse.")
     TB.textbox_output("Vous vous souvenez des compagnons qui ont partagé votre quête, des amis que vous avez rencontrés en chemin, et des ennemis que vous avez affrontés. Leurs visages et leurs histoires restent gravés dans votre mémoire, rappelant les épreuves que vous avez traversées et les victoires que vous avez remportées ensemble.")
-    TB.textbox_output("Alors que vous regardez le ciel étoilé, vous vous souvenez de l'éclipse qui a assombri votre royaume, mais aussi de la lumière qui a brillé dans les ténèbres, celle de l'espoir, de la bravoure et de la détermination. Et vous savez que, quoi qu'il arrive, cette lumière brillera toujours, guidant votre chemin et illuminant votre destinée.")
-    TB.textbox_output("Votre aventure dans le royaume de l'éclipse se termine ici, mais votre histoire ne fait que commencer. Car tant qu'il y aura des héros prêts à se battre pour ce en quoi ils croient, le royaume continuera à prospérer, baigné dans la lumière de l'espoir et de la paix.")
+    TB.textbox_output("Alors que vous regardez le ciel étoilé, vous vous souvenez de l'Éclipse qui a assombri votre royaume, mais aussi de la lumière qui a brillé dans les ténèbres, celle de l'espoir, de la bravoure et de la détermination. Et vous savez que, quoi qu'il arrive, cette lumière brillera toujours, guidant votre chemin et illuminant votre destinée.")
+    TB.textbox_output("Votre aventure dans le royaume de l'Éclipse se termine ici, mais votre histoire ne fait que commencer. Car tant qu'il y aura des héros prêts à se battre pour ce en quoi ils croient, le royaume continuera à prospérer, baigné dans la lumière de l'espoir et de la paix.")
 
     TB.textbox_output("Merci d'avoir joué")
     TB.textbox_output("Fin de la partie")

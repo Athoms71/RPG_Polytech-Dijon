@@ -50,19 +50,3 @@ def load():
                 dict_var[key] = values[0]
         file.close()
     return dict_var
-
-
-'''dict_var = {
-    "nom_joueur": "toto",
-    "classe_joueur": "guerrier",
-    "race_joueur": "humain",
-    "pv_joueur": 0,
-    "argent_joueur": 0,
-    "avancement": 0,
-    "inventaire_joueur": [['Petite potion de soin', 0, 0, 30, 10, 'soin'], ['Arc', 30, 0, 15, 'main_droite'], ['Petite potion de force', 5, 5, 0, 10, 'attaque'], ['Petite potion de soin', 0, 0, 30, 10, 'soin'], ['Petite potion de force', 5, 5, 0, 10, 'attaque'], ['Heaume Basique', 0, 5, 10, 'tete'], ['Plastron Basique', 0, 7, 10, 'torse'], ['Jambières Basique', 0, 5, 10, 'jambes'], ['Bottes Basique', 0, 3, 10, 'pieds'], ['épé de cristal', 40, 0, 15, 'main_droite']]
-}
-
-save(dict_var)
-dict_var = load()
-print(dict_var)
-'''

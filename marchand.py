@@ -5,8 +5,9 @@ import pygame
 
 
 def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list = []):
-    """Lance la boutique du marchand avec en vente la liste "listeAchat", Attention, liste achat doit estre de 5 elements ou moins !
-    La variable honneteté permet ed moduler la valeur des équipements"""
+    '''Lance la boutique du marchand avec en vente la liste "listeAchat".\n
+    Attention, liste achat doit être de 5 éléments ou moins !\n
+    La variable honnêteté permet de moduler la valeur des équipements.'''
     pygame.mixer.music.load("./sounds/marchand_theme.mp3")
     pygame.mixer.music.play(-1)
     done = False
@@ -14,10 +15,10 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
     TB.textbox_output("Vous croisez un marchand itinérant.")
     while not done:
         choix = TB.textbox_input(
-            "Voulez vous vendre ou acheter des objets ?@@- 1 : Vendre@- 2 : Acheter@- 3 : Partir")
+            "Voulez-vous vendre ou acheter des objets ?@@- 1 : Vendre@- 2 : Acheter@- 3 : Partir")
         if (choix == "1"):  # Vendre
             choixType = (TB.textbox_input(
-                "Voulez vous vendre?@@- 1 : Des consommables@- 2 : De l'équipement"))
+                "Voulez-vous vendre?@@- 1 : Des consommables@- 2 : De l'équipement"))
             j = 0
 
             if (choixType == "1"):  # on vend des consommables
@@ -34,7 +35,7 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
                     TB.textbox_output(
                         "Vous ne possédez rien de valeur dans cette catégorie :)")
                 else:
-                    TB.textbox_output("Lequel souhaitez vous vendre ?")
+                    TB.textbox_output("Lequel souhaitez-vous vendre ?")
                     choixVente = TB.textbox_input(str(liste_equip_a_afficher))
                     if choixVente in ["1", "2", "3", "4", "5", "6",]:
                         # normalisation du choi aux bons indices
@@ -45,7 +46,7 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
                                 if joueur.inventaire[i].nom == liste_equipements_vente[choixVente].nom:
                                     joueur.argent += joueur.inventaire[i].prix
                                     TB.textbox_output(
-                                        "vous avez vendu : "+str(joueur.inventaire.pop(i).nom))
+                                        "Vous avez vendu : "+str(joueur.inventaire.pop(i).nom))
                                     break
 
             if (choixType == "2"):  # on vend de l'équipement
@@ -62,7 +63,7 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
                     TB.textbox_output(
                         "Vous ne possédez rien de valeur dans cette catégorie :)")
                 else:
-                    TB.textbox_output("Lequel souhaitez vous vendre ?")
+                    TB.textbox_output("Lequel souhaitez-vous vendre ?")
                     choixVente = TB.textbox_input(str(liste_equip_a_afficher))
                     if choixVente in ["1", "2", "3", "4", "5", "6",]:
                         # normalisation du choi aux bons indices
@@ -73,23 +74,23 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
                                 if joueur.inventaire[i].nom == liste_equipements_vente[choixVente].nom:
                                     joueur.argent += joueur.inventaire[i].prix
                                     TB.textbox_output(
-                                        "vous avez vendu : "+str(joueur.inventaire.pop(i).nom))
+                                        "Vous avez vendu : "+str(joueur.inventaire.pop(i).nom))
                                     break
 
                     else:
                         TB.textbox_output(
-                            "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse")
+                            "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse.")
             elif choix not in ["1", "2"]:
                 TB.textbox_output(
-                    "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse")
+                    "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse.")
 
         if choix == "2":
             if len(stockMarchand) == 0:
                 TB.textbox_output(
-                    "Le marchand n'a rien à vous proposer à acheter")
+                    "Le marchand n'a rien à vous proposer à l'achat.")
             else:
                 TB.textbox_output(
-                    "Le marchand vous sort des equipements, lequel voudriez vous acheter ?")
+                    "Le marchand vous sort des équipements, lequel voudriez-vous acheter ?")
                 aAfficherMarchand = "Vous avez " + \
                     str(joueur.argent)+" PO, le marchand vous propose :"
                 for i in range(len(stockMarchand)):
@@ -105,13 +106,14 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
                             joueur.argent -= stockMarchand[choixAchat].prix*honnetete
                             obt_objet(stockMarchand.pop(i), joueur)
                         else:
-                            TB.textbox_output("Vous n avez pas assez d'argent")
+                            TB.textbox_output(
+                                "Vous n'avez pas assez d'argent.")
                     else:
                         TB.textbox_output(
-                            "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse")
+                            "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse.")
                 else:
                     TB.textbox_output(
-                        "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse")
+                        "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse.")
 
         elif choix == "3":  # partir
             TB.textbox_output("Vous quittez le marchand.")
@@ -119,17 +121,17 @@ def ouvertureDeLaBoutique(joueur: Ett.Joueur, honnetete: float, listeAchat: list
 
         elif choix not in ["1", "2", "3"]:
             TB.textbox_output(
-                "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse")
+                "Le marchand vous regarde bizzarement, il ne semble pas comprendre votre réponse.")
 
 
 def venteObligatoireEquipement(joueur: Ett.Joueur, equipement1: E.Equipement, equipement2: E.Equipement):
-    """propose de vendre un des deux objets mis en parametre, le vend puis le retire de l'inventaire"""
+    '''Propose de vendre un des deux objets mis en paramètres, le vend puis le retire de l'inventaire.'''
     TB.textbox_output(
-        "Il semblerait que vous ayez deux equipement équipés sur la meme partie du corps, veuillez en vendre un des deux.")
+        "Il semblerait que vous ayez deux équipements sur la même partie du corps, veuillez en vendre un des deux.")
     done = False
     while (not done):
-        choix = (TB.textbox_input("lequel de ces deux equipement souhaitez vous ventre ?@@-1 : " +
-                                  equipement1.nom+" -> "+str(equipement1.prix)+" Pièces d'or@-2 : "+equipement2.nom+" -> "+str(equipement2.prix)+" Pièces d'or"))
+        choix = (TB.textbox_input("Lequel de ces deux equipement souhaitez-vous vendre ?@@-1 : " +
+                                  equipement1.nom+" -> "+str(equipement1.prix)+" PO@-2 : "+equipement2.nom+" -> "+str(equipement2.prix)+" PO"))
         if choix in ["1", "2"]:
             done = True
 
@@ -149,14 +151,13 @@ def venteObligatoireEquipement(joueur: Ett.Joueur, equipement1: E.Equipement, eq
 
 
 def venteObligatoireConsommable(joueur: Ett.Joueur):
-    """propose de vendre un des consommables dans l inventaire du joueur en parametre,
-    le vend puis le retire de l'inventaire"""
+    '''Propose de vendre un des consommables dans l'inventaire du joueur en paramètre, le vend puis le retire de l'inventaire'''
     TB.textbox_output(
-        "il semblerait que vous ayez trop de consommables dans votre inventaire, veuillez en vendre :")
+        "Il semblerait que vous ayez trop de consommables dans votre inventaire, veuillez en vendre :")
     liste_conso_joueur = joueur.inventaire
     if len(liste_conso_joueur) == 6:
 
-        choix_vente = int(TB.textbox_input("Lequel de ces consommables souhaitez vous vendre parmis :@- 1 :" +
+        choix_vente = int(TB.textbox_input("Lequel de ces consommables souhaitez-vous vendre parmi :@- 1 :" +
                                            str(liste_conso_joueur[0].nom)+" -> " +
                                            str(liste_conso_joueur[0].prix)+" PO@- 2 :" +
                                            str(liste_conso_joueur[1].nom)+" -> " +

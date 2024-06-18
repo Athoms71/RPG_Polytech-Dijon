@@ -10,6 +10,7 @@ class playlist():
         '''Joue un bruit aléatoire d'une playlist donnée'''
         index_bruit = randint(0, len(self.bruits)-1)
         bruit = pygame.mixer.Sound(self.bruits[index_bruit])
+        bruit.set_volume(75.0)
         len_bruit = int(bruit.get_length())
         bruit.play()
         pygame.time.delay(len_bruit)
@@ -25,6 +26,7 @@ class playlist():
                     index_bruit = (index_bruit+1) % len(self.bruits)
                 index_bruit_precedent = index_bruit
                 bruit = pygame.mixer.Sound(self.bruits[index_bruit])
+                bruit.set_volume(75.0)
                 bruit.play()
                 duree_bruit = bruit.get_length()
                 pygame.time.delay(int(duree_bruit+0.2)*1000)
