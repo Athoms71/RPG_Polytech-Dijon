@@ -1,0 +1,14 @@
+nom_joueur
+test
+classe_joueur
+guerrier
+race_joueur
+orc
+inventaire_joueur
+
+pv_joueur
+105
+argent_joueur
+0
+avancement
+1
