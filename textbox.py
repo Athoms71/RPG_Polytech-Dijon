@@ -95,8 +95,8 @@ screen = pygame.display.set_mode((window_width, window_height))
 
 
 def textbox_input(texte: str):
+    '''Renvoie le texte fourni dans la textbox en ayant au préalable affiché le texte mis en paramètre.'''
     textbox_output(texte)
-    "renvoie le text fournis dans la textbox en ayant au prealable affiché le texte mis en parametre"
     pygame.init()
     font = pygame.font.Font(None, 32)
     clock = pygame.time.Clock()
@@ -145,8 +145,8 @@ def textbox_input(texte: str):
 
 
 def textbox_output(text):
+    '''Écrit dans la textbox le text fourni en entrée.'''
     pygame.init()
-    "écrit dans la textbox le text fournis en entree."
     font = pygame.font.Font(None, 32)
     clock = pygame.time.Clock()
     input_box = pygame.Rect(0, (dimensions_ecran(

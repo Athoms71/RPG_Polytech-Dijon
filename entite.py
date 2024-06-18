@@ -19,11 +19,11 @@ class Joueur ():
         self.argent = 0
 
     def update_sprite(self):
-        """Prend en parametre un joueur et revoie le chemin vers son sprite"""
+        '''Prend en paramètre un joueur et renvoie le chemin vers son sprite en fonction de sa race et de sa classe'''
         return f"./img/{self.race}_{self.classe}.png"
 
     def lister_inventaire_consommable(self):
-        """Prend en parametre un joueur et revoie une liste avec le nom de chaque consommables qu'il a dans son inventaire"""
+        '''Prend en paramètre un joueur et renvoie une liste avec le nom de chaque consommable qu'il a dans son inventaire'''
         liste_inventaire = []
         for i in range(len(self.inventaire)):
             if self.inventaire[i].cat in ["soin", "attaque", "defense"]:
@@ -87,7 +87,7 @@ spectres_profondeurs = Type("Spectre des profondeurs", 90, 50, 30)
 
 Gardiens_ombres_classe = Type("Gardiens Nocturnes", 170, 50, 70)
 
-# boss finam
+# boss final
 boss_final_classe = Type("Seigneur des Ombres", 150, 40, 50)
 boss_final_race = Type("Seigneur des Ombres race", 150, 30, 20)
 
